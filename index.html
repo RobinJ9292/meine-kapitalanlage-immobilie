@@ -925,7 +925,7 @@ footer a:hover{color:var(--jade)}
     </div>
     <div>
       <h5>Kontakt</h5>
-      <p><a id="mapLink" href="https://www.google.com/maps/search/?api=1&amp;query=Pappelrain%205%2C%2035428%20Langg%C3%B6ns" target="_blank" rel="noopener" style="display:inline">Pappelrain 5<br>35428 Langgöns</a><br><a href="tel:+4916092085192" style="display:inline">0160 92085192</a><br><a href="mailto:robin.jaenicke@bonnfinanz.de" style="display:inline">robin.jaenicke@bonnfinanz.de</a></p>
+      <p><a id="mapLink" href="https://www.google.com/maps/search/?api=1&amp;query=Robin%20J%C3%A4nicke%20Finanzberater%20Bonnfinanz%2C%20Pappelrain%205%2C%2035428%20Langg%C3%B6ns" target="_blank" rel="noopener" style="display:inline">Pappelrain 5<br>35428 Langgöns</a><br><a href="tel:+4916092085192" style="display:inline">0160 92085192</a><br><a href="mailto:robin.jaenicke@bonnfinanz.de" style="display:inline">robin.jaenicke@bonnfinanz.de</a></p>
     </div>
     <div>
       <h5>Rechtliches</h5>
@@ -1282,15 +1282,6 @@ document.getElementById("qleadForm").addEventListener("submit",function(e){
     spot.style.setProperty("--mx",((e.clientX-r.left)/r.width*100)+"%");
     spot.style.setProperty("--my",((e.clientY-r.top)/r.height*100)+"%");
   });
-})();
-
-/* ---------- Adresse: auf Apple-Geräten Apple Karten, sonst Google Maps ---------- */
-(function(){
-  var a=document.getElementById("mapLink"); if(!a) return;
-  var q="Pappelrain 5, 35428 Langgöns";
-  var ua=navigator.userAgent||"";
-  var isApple=/iPhone|iPad|iPod|Macintosh|Mac OS X/i.test(ua);
-  if(isApple){ a.href="https://maps.apple.com/?address="+encodeURIComponent(q); }
 })();
 
 document.getElementById("leadForm").addEventListener("submit",function(e){
