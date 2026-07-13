@@ -15,11 +15,27 @@
 <meta property="og:locale" content="de_DE">
 
 <!-- ============================================================
-     TRACKING (vor Livegang aktivieren + Consent-Banner einbinden!)
-     1) Meta-Pixel-Code hier einfügen
-     2) GA4 / Google Ads Tag hier einfügen
-     Beides erst NACH Einwilligung laden (DSGVO).
+     TRACKING-KONFIGURATION – hier nur die IDs eintragen.
+     Solange ein Feld leer ("") bleibt, wird das jeweilige Tag
+     NICHT geladen. Alle Tags laden erst NACH Einwilligung (DSGVO/TTDSG).
 ============================================================= -->
+<script>
+window.MKI_CFG = {
+  META_PIXEL_ID:   "1505695874572011",   // Meta-Pixel „Meine Kapitalanlage Immobilie"
+  GA4_ID:          "G-BVTXNWCC3P",        // GA4 Measurement-ID (Property: meine-kapitalanlage-immobilie.de)
+  GADS_ID:         "",   // Google-Ads-Conversion-ID, z. B. "AW-XXXXXXXXXX" (für November-Ads)
+  GADS_LEAD_LABEL: ""    // Google-Ads-Conversion-Label für "Lead", z. B. "abcDEFghiJKL"
+};
+/* Google Consent Mode v2 – Standard: alles abgelehnt, bis der Nutzer zustimmt. */
+window.dataLayer = window.dataLayer || [];
+function gtag(){ dataLayer.push(arguments); }
+gtag('consent','default',{
+  ad_storage:'denied', analytics_storage:'denied',
+  ad_user_data:'denied', ad_personalization:'denied',
+  functionality_storage:'granted', security_storage:'granted',
+  wait_for_update:500
+});
+</script>
 
 <link rel="preconnect" href="https://fonts.bunny.net">
 <link href="https://fonts.bunny.net/css?family=open-sans:400,600,700,800|noto-serif:400,600,700" rel="stylesheet">
@@ -335,6 +351,50 @@ footer a:hover{color:var(--jade)}
   section{padding:64px 0}
 }
 
+
+/* ---------- Consent-Banner ---------- */
+#cc-bar{position:fixed;left:0;right:0;bottom:0;z-index:1000;background:rgba(13,27,46,.97);backdrop-filter:blur(12px);border-top:1px solid rgba(180,214,212,.22);box-shadow:0 -18px 50px rgba(13,27,46,.5);color:var(--t-on-dark);padding:20px 0;transform:translateY(120%);transition:transform .4s cubic-bezier(.16,1,.3,1)}
+#cc-bar.show{transform:translateY(0)}
+.cc-in{max-width:1150px;margin:0 auto;padding:0 24px;display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.cc-txt{flex:1 1 340px;min-width:260px}
+.cc-txt h4{color:#fff;font-family:var(--sans);font-weight:800;font-size:16px;margin-bottom:6px;letter-spacing:-.01em}
+.cc-txt p{color:var(--t-on-dark-muted);font-size:13.5px;line-height:1.55}
+.cc-txt a{color:var(--jade);text-decoration:underline}
+.cc-btns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.cc-btn{display:inline-flex;align-items:center;justify-content:center;border:none;cursor:pointer;font-family:var(--sans);font-weight:800;border-radius:999px;padding:12px 22px;font-size:14px;transition:transform .18s,box-shadow .18s,background .18s;letter-spacing:.01em;white-space:nowrap}
+.cc-btn:hover{transform:translateY(-2px)}
+.cc-accept{background:var(--grad-cta);color:var(--blue-deep);box-shadow:0 12px 30px rgba(159,232,226,.28)}
+.cc-necess{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(180,214,212,.3)}
+.cc-set{background:transparent;color:var(--t-on-dark-muted);text-decoration:underline;padding:12px 8px;font-weight:700}
+.cc-set:hover{color:var(--jade)}
+/* Einstellungen-Dialog */
+#cc-modal{position:fixed;inset:0;z-index:1001;background:rgba(13,27,46,.72);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px}
+#cc-modal.show{display:flex}
+.cc-card{background:var(--white);color:var(--ink);width:100%;max-width:560px;max-height:90vh;overflow:auto;border-radius:var(--r);box-shadow:var(--shadow-md);padding:30px 28px}
+.cc-card h3{color:var(--true-blue);font-size:21px;margin-bottom:6px}
+.cc-card>p{color:var(--muted);font-size:14px;line-height:1.55;margin-bottom:18px}
+.cc-card>p a{color:var(--true-blue);text-decoration:underline}
+.cc-opt{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-top:1px solid var(--line)}
+.cc-opt-txt{flex:1}
+.cc-opt-txt strong{display:block;font-size:15px;color:var(--ink);margin-bottom:3px}
+.cc-opt-txt span{font-size:13px;color:var(--muted);line-height:1.5}
+.cc-sw{position:relative;width:46px;height:26px;flex:0 0 auto;margin-top:2px}
+.cc-sw input{opacity:0;width:0;height:0;position:absolute}
+.cc-slider{position:absolute;inset:0;background:#CBD6D6;border-radius:999px;transition:.2s;cursor:pointer}
+.cc-slider:before{content:"";position:absolute;height:20px;width:20px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.cc-sw input:checked + .cc-slider{background:var(--true-blue)}
+.cc-sw input:checked + .cc-slider:before{transform:translateX(20px)}
+.cc-sw input:disabled + .cc-slider{background:var(--jade);cursor:not-allowed;opacity:.85}
+.cc-modal-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.cc-modal-btns .cc-btn{flex:1;min-width:150px}
+.cc-modal-btns .cc-necess{background:var(--paper);color:var(--true-blue);border:1px solid var(--line)}
+.cc-modal-btns .cc-necess:hover{border-color:var(--true-blue)}
+@media(max-width:720px){
+  .cc-in{gap:14px}
+  .cc-btns{width:100%}
+  .cc-btns .cc-accept,.cc-btns .cc-necess{flex:1}
+  .cc-set{order:3;width:100%}
+}
 </style>
 </head>
 <body>
@@ -769,6 +829,7 @@ footer a:hover{color:var(--jade)}
       <h5>Rechtliches</h5>
       <a href="impressum.html">Impressum</a>
       <a href="datenschutz.html">Datenschutzerklärung</a>
+      <a href="#" data-cookie-settings>Cookie-Einstellungen</a>
       <a href="vermittlerprofil.pdf" target="_blank" rel="noopener">Erstinformation (Vermittlerprofil)</a>
       <a href="https://www.bonnfinanz.de/robin-jaenicke" target="_blank" rel="noopener">Mein Bonnfinanz-Profil</a>
     </div>
@@ -1086,7 +1147,7 @@ document.getElementById("qleadForm").addEventListener("submit",function(e){
   fetch("formular.php",{method:"POST",body:fd}).then(function(r){return r.json()}).then(function(j){
     if(j.ok){f.querySelector(".qrow").style.display="none";b.style.display="none";
       f.querySelector(".qnote").style.display="none";document.getElementById("q-ok").style.display="block";
-      /* Conversion-Event: Meta-Pixel "Lead" hier feuern */
+      if(window.mkiTrackLead) mkiTrackLead("hero-quicklead");
     } else { throw 0; }
   }).catch(function(){b.disabled=false;b.textContent="Kostenfreien Rückruf sichern →";});
 });
@@ -1122,11 +1183,165 @@ document.getElementById("leadForm").addEventListener("submit",function(e){
     .then(function(j){
       if(j.ok){
         f.style.display="none"; document.getElementById("formOk").style.display="block";
-        /* Conversion-Event: hier Meta-Pixel "Lead" + Google-Ads-Conversion feuern */
+        if(window.mkiTrackLead) mkiTrackLead("kontaktformular");
       } else { throw 0; }
     })
     .catch(function(){ err.style.display="block"; btn.disabled=false; btn.textContent="Rückruf anfordern"; });
 });
+</script>
+
+<!-- ============================================================
+     CONSENT-BANNER (DSGVO/TTDSG) – Opt-in, Tags laden erst nach Zustimmung
+============================================================= -->
+<div id="cc-bar" role="dialog" aria-live="polite" aria-label="Datenschutz-Einstellungen">
+  <div class="cc-in">
+    <div class="cc-txt">
+      <h4>Datenschutz – Ihre Entscheidung</h4>
+      <p>Wir verwenden Cookies und ähnliche Technologien. Notwendige sind für den Betrieb der Seite erforderlich. Statistik- und Marketing-Cookies (z.&nbsp;B. Meta, Google) setzen wir nur mit Ihrer Einwilligung – auch zur Übermittlung in die USA. Sie können Ihre Auswahl jederzeit über „Cookie-Einstellungen" im Footer widerrufen. Mehr in der <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.</p>
+    </div>
+    <div class="cc-btns">
+      <button type="button" class="cc-btn cc-necess" data-cc="necessary">Nur notwendige</button>
+      <button type="button" class="cc-btn cc-set" data-cc="settings">Einstellungen</button>
+      <button type="button" class="cc-btn cc-accept" data-cc="all">Alle akzeptieren</button>
+    </div>
+  </div>
+</div>
+
+<div id="cc-modal" role="dialog" aria-modal="true" aria-label="Cookie-Einstellungen">
+  <div class="cc-card">
+    <h3>Cookie-Einstellungen</h3>
+    <p>Wählen Sie selbst, welche Cookies Sie zulassen. Ihre Einwilligung ist freiwillig und jederzeit widerrufbar. Details in der <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.</p>
+    <div class="cc-opt">
+      <div class="cc-opt-txt"><strong>Notwendig</strong><span>Für den Betrieb der Website erforderlich (z.&nbsp;B. Formularversand, Sicherheit). Immer aktiv.</span></div>
+      <label class="cc-sw"><input type="checkbox" checked disabled><span class="cc-slider"></span></label>
+    </div>
+    <div class="cc-opt">
+      <div class="cc-opt-txt"><strong>Statistik</strong><span>Anonymisierte Reichweitenmessung mit Google Analytics 4 – hilft uns, die Seite zu verbessern.</span></div>
+      <label class="cc-sw"><input type="checkbox" id="cc-stats"><span class="cc-slider"></span></label>
+    </div>
+    <div class="cc-opt">
+      <div class="cc-opt-txt"><strong>Marketing</strong><span>Messung des Werbeerfolgs mit Meta-Pixel und Google&nbsp;Ads (Conversion-Tracking, Übermittlung in die USA möglich).</span></div>
+      <label class="cc-sw"><input type="checkbox" id="cc-marketing"><span class="cc-slider"></span></label>
+    </div>
+    <div class="cc-modal-btns">
+      <button type="button" class="cc-btn cc-necess" data-cc="necessary">Nur notwendige</button>
+      <button type="button" class="cc-btn cc-accept" data-cc="save">Auswahl speichern</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   MKI Consent Manager – Opt-in, lädt Tags erst nach Einwilligung.
+============================================================ */
+(function(){
+  var CFG = window.MKI_CFG || {};
+  var KEY = "mki_consent_v1";
+  var loaded = { ga:false, meta:false };
+
+  function readConsent(){
+    try{ return JSON.parse(localStorage.getItem(KEY)); }catch(e){ return null; }
+  }
+  function saveConsent(stats, marketing){
+    var c = { v:1, ts:new Date().toISOString(), stats:!!stats, marketing:!!marketing };
+    try{ localStorage.setItem(KEY, JSON.stringify(c)); }catch(e){}
+    return c;
+  }
+
+  /* ---- Tag-Loader ---- */
+  function loadGA(){
+    if(loaded.ga) return;
+    var id = CFG.GA4_ID || CFG.GADS_ID;
+    if(!id) return;                        // ohne ID nichts laden
+    loaded.ga = true;
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
+    document.head.appendChild(s);
+    gtag('js', new Date());
+    if(CFG.GA4_ID)  gtag('config', CFG.GA4_ID, { anonymize_ip:true });
+    if(CFG.GADS_ID) gtag('config', CFG.GADS_ID);
+  }
+  function loadMeta(){
+    if(loaded.meta) return;
+    if(!CFG.META_PIXEL_ID) return;
+    loaded.meta = true;
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+      (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', CFG.META_PIXEL_ID);
+    fbq('track', 'PageView');
+  }
+
+  /* ---- Einwilligung anwenden ---- */
+  function apply(c){
+    gtag('consent','update',{
+      analytics_storage: c.stats ? 'granted' : 'denied',
+      ad_storage:        c.marketing ? 'granted' : 'denied',
+      ad_user_data:      c.marketing ? 'granted' : 'denied',
+      ad_personalization:c.marketing ? 'granted' : 'denied'
+    });
+    if(c.stats)     loadGA();
+    if(c.marketing){ loadGA(); loadMeta(); }  // Ads-Conversions laufen über gtag
+  }
+
+  /* ---- UI ---- */
+  var bar = document.getElementById("cc-bar");
+  var modal = document.getElementById("cc-modal");
+  var swStats = document.getElementById("cc-stats");
+  var swMkt = document.getElementById("cc-marketing");
+
+  function showBar(){ bar.classList.add("show"); }
+  function hideBar(){ bar.classList.remove("show"); }
+  function openModal(){
+    var c = readConsent() || {stats:false, marketing:false};
+    swStats.checked = !!c.stats; swMkt.checked = !!c.marketing;
+    modal.classList.add("show");
+  }
+  function closeModal(){ modal.classList.remove("show"); }
+
+  function decide(stats, marketing){
+    var c = saveConsent(stats, marketing);
+    apply(c);
+    hideBar(); closeModal();
+  }
+
+  document.addEventListener("click", function(e){
+    var t = e.target.closest("[data-cc]");
+    if(t){
+      var a = t.getAttribute("data-cc");
+      if(a==="all")        decide(true, true);
+      else if(a==="necessary") decide(false, false);
+      else if(a==="settings")  openModal();
+      else if(a==="save")      decide(swStats.checked, swMkt.checked);
+      return;
+    }
+    if(e.target.closest("[data-cookie-settings]")){ e.preventDefault(); openModal(); }
+    else if(e.target === modal){ closeModal(); }  // Klick auf Overlay schließt
+  });
+
+  /* ---- Start: gespeicherte Einwilligung anwenden oder Banner zeigen ---- */
+  var existing = readConsent();
+  if(existing){ apply(existing); }
+  else { setTimeout(showBar, 700); }
+
+  /* ---- Öffentliche Lead-Conversion-API (aus den Formularen aufgerufen) ---- */
+  window.mkiTrackLead = function(source){
+    var c = readConsent() || {};
+    window.dataLayer.push({ event:'lead', lead_source: source||'formular' });
+    if(c.stats && CFG.GA4_ID){
+      gtag('event','generate_lead',{ method: source||'formular' });
+    }
+    if(c.marketing){
+      if(window.fbq) fbq('track','Lead');
+      if(CFG.GADS_ID && CFG.GADS_LEAD_LABEL){
+        gtag('event','conversion',{ send_to: CFG.GADS_ID + '/' + CFG.GADS_LEAD_LABEL });
+      }
+    }
+  };
+})();
 </script>
 </body>
 </html>
