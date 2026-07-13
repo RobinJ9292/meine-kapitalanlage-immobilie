@@ -492,6 +492,20 @@ footer a:hover{color:var(--jade)}
 .msg .cta-row a,.msg .cta-row button{display:inline-flex;align-items:center;gap:5px;font-family:var(--sans);font-size:12.5px;font-weight:800;border-radius:999px;padding:8px 13px;cursor:pointer;text-decoration:none;border:1px solid var(--line);background:var(--paper);color:var(--true-blue)}
 .msg .cta-row a.wa{background:#25D366;color:#fff;border-color:#25D366}
 .msg .cta-row .prim{background:var(--true-blue);color:#fff;border-color:var(--true-blue)}
+
+/* ---------- Warum Immobilien (Block unter dem Hero) ---------- */
+.why{background:#fff;padding:74px 0}
+.why .sec-head{margin-bottom:34px}
+.why .sec-head p{max-width:680px;margin-left:auto;margin-right:auto}
+.ek-highlight{display:flex;align-items:center;gap:8px;justify-content:center;flex-wrap:wrap;background:var(--jade-20);border:1px solid var(--jade-60);border-radius:var(--r);padding:26px 20px;margin-top:30px}
+.ek-col{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:180px;padding:6px 18px}
+.ek-col .ek-label{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.ek-col .ek-val{font-family:var(--serif);font-size:46px;font-weight:700;color:var(--muted);line-height:1.05;margin:6px 0 2px}
+.ek-col.win .ek-val{color:var(--true-blue)}
+.ek-col .ek-sub{font-size:13px;color:var(--muted)}
+.ek-arrow{font-size:30px;color:var(--info);font-weight:700;padding:0 6px}
+.why-caption{text-align:center;font-size:14.5px;color:var(--muted);max-width:760px;margin:18px auto 0;line-height:1.6}
+@media(max-width:640px){.ek-arrow{transform:rotate(90deg)}.ek-col .ek-val{font-size:40px}}
 </style>
 </head>
 <body>
@@ -585,6 +599,40 @@ footer a:hover{color:var(--jade)}
     </div>
   </div>
 </div>
+
+<!-- ==================== WARUM IMMOBILIEN (Struktur-Vorschlag) ==================== -->
+<section class="why" id="warum">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Warum ich selbst überzeugt bin</span>
+      <h2>Die Anlage, in die ich selbst investiere.</h2>
+      <p><i>[Platzhalter – dein persönlicher Satz]</i> Ich bin ehrlich gesagt ein riesiger Fan der Kapitalanlage-Immobilie – weil hier gleich mehrere Kräfte gleichzeitig für Sie arbeiten. Drei Dinge machen den Unterschied:</p>
+    </div>
+    <div class="usp-grid">
+      <div class="usp">
+        <svg viewBox="0 0 48 48"><path d="M8 32h10v8H8zM19 24h10v16H19zM30 14h10v26H30z"/></svg>
+        <h3>Die Bank hebelt Ihre Rendite</h3>
+        <p><i>[Platzhalter]</i> Sie setzen wenig Eigenkapital ein – Ihre Rendite läuft aber auf den vollen Kaufpreis. Und Ihr Mieter tilgt Monat für Monat mit.</p>
+      </div>
+      <div class="usp">
+        <svg viewBox="0 0 48 48"><path d="M12 8h24v32H12z"/><path d="M18 16h12M18 23h12M18 30h6"/></svg>
+        <h3>Das Finanzamt zahlt mit</h3>
+        <p><i>[Platzhalter]</i> Über Abschreibung (AfA) und absetzbare Kosten beteiligt sich der Staat spürbar an Ihrer Investition – Jahr für Jahr.</p>
+      </div>
+      <div class="usp">
+        <svg viewBox="0 0 48 48"><path d="M10 38V24m9 14V14m9 24V26m9 12V8"/><path d="M8 40h32"/></svg>
+        <h3>Es zählt die EK-Rendite</h3>
+        <p><i>[Platzhalter]</i> Nicht die Mietrendite ist entscheidend, sondern was <b>Ihr</b> eingesetztes Eigenkapital erwirtschaftet – durch den Hebel oft ein Vielfaches.</p>
+      </div>
+    </div>
+    <div class="ek-highlight">
+      <div class="ek-col"><span class="ek-label">Mietrendite</span><span class="ek-val">≈ 4 %</span><span class="ek-sub">klingt unspektakulär</span></div>
+      <div class="ek-arrow">→</div>
+      <div class="ek-col win"><span class="ek-label">Eigenkapital-Rendite</span><span class="ek-val">10 %+</span><span class="ek-sub">worauf es wirklich ankommt</span></div>
+    </div>
+    <p class="why-caption"><i>[Platzhalter]</i> Weil die Bank den Großteil finanziert, wird aus einer unscheinbaren Mietrendite schnell eine zweistellige Rendite auf Ihr Eigenkapital. Genau diese Zahl rechne ich Ihnen ehrlich vor – nicht schöngerechnet.</p>
+  </div>
+</section>
 
 <!-- ==================== AUSWAHL ==================== -->
 <section class="chooser" id="start">
