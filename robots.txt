@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /formular.php
+
+Sitemap: https://meine-kapitalanlage-immobilie.de/sitemap.xml
