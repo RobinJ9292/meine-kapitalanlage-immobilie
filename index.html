@@ -480,6 +480,18 @@ footer a:hover{color:var(--jade)}
   .hp-name{font-size:19px}
   .hp-role{font-size:12.5px}
 }
+
+/* ---------- Chatbot: Freitext-Eingabe ---------- */
+.chat-input{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--line);background:#fff;flex:none;align-items:center}
+.chat-input input{flex:1;min-width:0;padding:11px 15px;border:1.5px solid var(--line);border-radius:999px;font-family:var(--sans);font-size:14px;outline:none;background:var(--paper)}
+.chat-input input:focus{border-color:var(--true-blue);background:#fff}
+.chat-input button{flex:0 0 auto;width:42px;height:42px;border:none;border-radius:50%;background:var(--grad-cta);color:var(--blue-deep);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .15s}
+.chat-input button:hover{transform:scale(1.06)}
+.msg.typing{opacity:.65;font-style:italic}
+.msg .cta-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.msg .cta-row a,.msg .cta-row button{display:inline-flex;align-items:center;gap:5px;font-family:var(--sans);font-size:12.5px;font-weight:800;border-radius:999px;padding:8px 13px;cursor:pointer;text-decoration:none;border:1px solid var(--line);background:var(--paper);color:var(--true-blue)}
+.msg .cta-row a.wa{background:#25D366;color:#fff;border-color:#25D366}
+.msg .cta-row .prim{background:var(--true-blue);color:#fff;border-color:var(--true-blue)}
 </style>
 </head>
 <body>
@@ -955,6 +967,10 @@ footer a:hover{color:var(--jade)}
     <button class="x" id="chatClose" type="button" aria-label="Schließen">×</button>
   </div>
   <div class="chat-body" id="chatBody"></div>
+  <form class="chat-input" id="chatForm" autocomplete="off">
+    <input id="chatText" type="text" placeholder="Ihre Frage eingeben …" aria-label="Ihre Frage an Robins Assistent">
+    <button type="submit" aria-label="Frage senden">➤</button>
+  </form>
 </div>
 
 <div class="mcta">
@@ -1236,6 +1252,97 @@ document.getElementById("loadCal").addEventListener("click",function(){
     if(chat.classList.contains("open"))start();
   });
   document.getElementById("chatClose").addEventListener("click",function(){chat.classList.remove("open");});
+
+  /* ===== Freitext-Wissensdatenbank (im Hintergrund, nicht als Buttons sichtbar) ===== */
+  var WA="https://wa.me/4916092085192?text=Hallo%20Herr%20J%C3%A4nicke%2C%20ich%20habe%20eine%20Frage%20zur%20Kapitalanlageimmobilie.";
+  var actRueckruf=(MENU.filter(function(m){return m.t==="Rückruf vereinbaren";})[0]||{}).a;
+  var actTermin=(MENU.filter(function(m){return m.t==="Termin direkt buchen";})[0]||{}).a;
+  function ctaRow(){
+    var row=el("div","cta-row");
+    var wa=el("a","wa","WhatsApp"); wa.href=WA; wa.target="_blank"; wa.rel="noopener"; row.appendChild(wa);
+    var rb=el("button",null,"Rückruf"); rb.type="button"; rb.addEventListener("click",function(){clearQr();if(actRueckruf)actRueckruf();}); row.appendChild(rb);
+    var tb=el("button","prim","Termin buchen"); tb.type="button"; tb.addEventListener("click",function(){if(actTermin)actTermin();}); row.appendChild(tb);
+    return row;
+  }
+  function norm(s){return (" "+s.toLowerCase()+" ").replace(/ä/g,"a").replace(/ö/g,"o").replace(/ü/g,"u").replace(/ß/g,"ss").replace(/[^a-z0-9]+/g," ");}
+  var KB=[
+    {k:"hallo|hi|hey|guten tag|guten morgen|guten abend|servus|moin",a:"Hallo! 👋 Fragen Sie mich gern etwas rund um Kapitalanlage-Immobilien – z. B. zu Rendite, Eigenkapital, Steuer oder Ablauf. Für alles Persönliche verbinde ich Sie mit Robin."},
+    {k:"danke|vielen dank|dankeschon",a:"Sehr gern! 😊 Haben Sie noch eine Frage – oder soll Robin sich direkt bei Ihnen melden?",c:1},
+    {k:"wer bist du|bist du ein bot|bist du echt|roboter|kunstliche intelligenz",a:"Ich bin Robins digitaler Assistent und beantworte die häufigsten Fragen sofort. Sobald es persönlich wird, übernimmt Robin selbst – kostenfrei und unverbindlich."},
+    {k:"rendite|ek rendite|eigenkapitalrendite|wie viel gewinn|wie viel verdiene|ertrag",a:"Bei Kapitalanlage-Immobilien wirken drei Hebel zusammen: die <b>Bank</b> finanziert (Ihre Rendite läuft auf den vollen Kaufpreis), das <b>Finanzamt</b> beteiligt sich über Abschreibung &amp; absetzbare Kosten, und Ihr <b>Mieter</b> tilgt mit der Miete Ihr Darlehen. So sind in unseren Modellrechnungen oft 10 %+ Eigenkapitalrendite p. a. möglich – abhängig von Objekt, Finanzierung und Steuersituation."},
+    {k:"mietrendite|bruttomietrendite|nettomietrendite",a:"Die <b>Bruttomietrendite</b> = Jahreskaltmiete ÷ Kaufpreis. Aussagekräftiger ist die Nettomietrendite (nach nicht umlagefähigen Kosten) und am Ende die Eigenkapitalrendite inkl. Finanzierung &amp; Steuer. Genau das rechnen wir für jedes Objekt gemeinsam durch."},
+    {k:"eigenkapital|wie viel geld brauche|wieviel eigenkapital|ersparnisse|anzahlung|startkapital",a:"Oft reichen die <b>Kaufnebenkosten</b> als Eigenkapital – je nach Objekt ca. 10.000–20.000 €. Den Kaufpreis finanziert in der Regel die Bank. Wie viel bei Ihnen sinnvoll ist, klären wir im kostenfreien Erstgespräch.",c:1},
+    {k:"kaufnebenkosten|nebenkosten beim kauf|erwerbsnebenkosten|kaufkosten",a:"Die Kaufnebenkosten liegen meist bei ca. <b>10–15 %</b> des Kaufpreises: Grunderwerbsteuer (in Hessen 6 %), Notar &amp; Grundbuch (ca. 1,5–2 %) und ggf. Maklercourtage. Bei unseren Portfolio-Objekten ist das transparent ausgewiesen."},
+    {k:"grunderwerbsteuer|grunderwerb|grest",a:"Die Grunderwerbsteuer zahlt der Käufer einmalig beim Kauf; sie ist je Bundesland unterschiedlich – in <b>Hessen 6 %</b> des Kaufpreises. Sie zählt zu den Kaufnebenkosten."},
+    {k:"notar|grundbuch|beurkundung",a:"Der Kauf wird notariell beurkundet und im Grundbuch eingetragen. Notar &amp; Grundbuch liegen zusammen bei ca. <b>1,5–2 %</b> des Kaufpreises und gehören zu den Kaufnebenkosten."},
+    {k:"finanzierung|darlehen|kredit|zins|zinsen|baufinanzierung|annuitat",a:"Die Bank finanziert in der Regel den Kaufpreis; Sie bringen meist nur die Nebenkosten mit. Konditionen (Zins, Tilgung, Laufzeit) hängen von Objekt, Bonität und Zinsmarkt ab. Als Bonnfinanz-Berater vergleiche ich Finanzierungen für Sie – das schauen wir konkret an."},
+    {k:"tilgung|tilgen|abbezahlen|restschuld",a:"Einen großen Teil der Tilgung übernimmt Ihr <b>Mieter</b> über die Miete – Sie bauen so mit fremdem Geld Vermögen auf. Die passende Anfangstilgung (oft 1–2 %) stimmen wir auf Ihre Ziele ab."},
+    {k:"afa|abschreibung|abschreiben|steuervorteil|steuer sparen|steuerlich absetzen|absetzen",a:"Als Vermieter können Sie das <b>Gebäude abschreiben</b> (AfA, meist 2 % p. a. auf den Gebäudeanteil, bei Neubau ggf. mehr) sowie Zinsen und viele Kosten geltend machen. Das senkt Ihre Steuerlast. Wie stark der Effekt bei Ihnen ist, hängt von Ihrem Steuersatz ab – das rechnen wir individuell durch."},
+    {k:"steuer|steuern|finanzamt|versteuern|mieteinnahmen versteuern",a:"Mieteinnahmen werden versteuert – gleichzeitig mindern AfA, Zinsen und Kosten den zu versteuernden Überschuss, oft entsteht sogar ein steuerlicher Verlust. Für Ihre konkrete Situation ist unser gemeinsames Gespräch (ggf. mit Steuerberater) der richtige Ort."},
+    {k:"denkmal|denkmalschutz|sonderabschreibung|sonder afa",a:"Bei Denkmalobjekten und teils bei Neubauten gibt es <b>erhöhte Abschreibungen</b> – steuerlich attraktiv, aber mit besonderen Voraussetzungen. Ob das für Sie passt, prüfen wir gemeinsam."},
+    {k:"mieteinnahmen|kaltmiete|mieteinnahme|was bringt die miete",a:"Die Kaltmiete ist Ihre laufende Einnahme; sie trägt Zins und Tilgung. Bei komplett gemanagten Objekten ist meist schon ein solventer Mieter vorhanden. Nicht umlagefähige Kosten ziehen wir in der Rechnung ab."},
+    {k:"mietausfall|mietnomaden|mieter zahlt nicht|mietausfallversicherung",a:"Das Risiko lässt sich stark reduzieren: Bonitätsprüfung des Mieters, Rücklagen und optional eine <b>Mietausfallversicherung</b>. Bei gemanagten Objekten kümmert sich die Verwaltung darum."},
+    {k:"leerstand|keine mieter|nicht vermietet|steht leer",a:"Leerstand ist das Hauptrisiko – deshalb zählt die <b>Lage</b> mit guter Mieternachfrage. Unsere Portfolio-Objekte sind meist bereits vermietet und liegen in nachgefragten Standorten."},
+    {k:"instandhaltung|reparatur|rucklage|hausgeld|reparaturen",a:"Für Instandhaltung bildet die Eigentümergemeinschaft eine <b>Rücklage</b> (Teil des Hausgeldes). Nicht umlagefähige Kosten rechnen wir von Anfang an mit ein, damit Ihre Kalkulation realistisch ist."},
+    {k:"verwaltung|hausverwaltung|verwalter|wer kummert sich",a:"Bei <b>komplett gemanagten</b> Objekten übernimmt eine Verwaltung Mietersuche, Abrechnung und Organisation – Sie haben kaum Aufwand. Ideal, wenn Sie sich um nichts kümmern möchten."},
+    {k:"komplett gemanagt|gemanagt|managed|rundum sorglos|sorglos",a:"„Komplett gemanagt“ heißt: Objekt, Mieter und Verwaltung stehen bereits – Sie kaufen eine weitgehend <b>schlüsselfertige Kapitalanlage</b> und kümmern sich im Alltag um fast nichts."},
+    {k:"lage|standort|wo kaufen|welche stadt|welche lage",a:"Die Lage entscheidet über Vermietbarkeit und Wertentwicklung – wir achten auf Mieternachfrage, Infrastruktur und Entwicklungspotenzial. Regional bin ich in Mittelhessen (Gießen, Marburg, Wetzlar) verwurzelt, arbeite aber deutschlandweit."},
+    {k:"neubau|bestand|alt oder neu|neu oder alt|bestandsimmobilie",a:"Beides hat Vorteile: <b>Bestand</b> ist oft günstiger und sofort vermietet, <b>Neubau</b> bietet weniger Instandhaltung und ggf. höhere Abschreibung. Was besser passt, hängt von Ihren Zielen ab."},
+    {k:"eigentumswohnung|wohnung oder haus|mehrfamilienhaus|haus kaufen",a:"Für den Einstieg sind <b>Eigentumswohnungen</b> beliebt: überschaubares Kapital, einfache Verwaltung. Mehrfamilienhäuser bieten mehr Ertrag, aber mehr Aufwand. Wir finden das passende Format für Sie."},
+    {k:"cashflow|monatlich draufzahlen|zuzahlung|kostet mich monatlich|eigenaufwand|drauflegen",a:"Je nach Objekt und Finanzierung tragen Sie anfangs einen kleinen monatlichen Eigenaufwand – oder das Objekt trägt sich selbst. In unseren Beispielen weisen wir den mtl. Eigenaufwand nach Steuern transparent aus."},
+    {k:"inflation|geldentwertung|inflationsschutz|wert erhalten",a:"Sachwerte wie Immobilien gelten als <b>Inflationsschutz</b>: Mieten und Werte steigen langfristig tendenziell mit, während Ihre Kreditschuld nominal gleich bleibt und real leichter wird."},
+    {k:"altersvorsorge|rente|vorsorge|passives einkommen|zusatzrente",a:"Eine vermietete Immobilie ist ein starker Baustein der Altersvorsorge: Der Mieter tilgt bis zur Rente Ihr Darlehen, danach bleibt die Miete als <b>passives Einkommen</b> – oder Sie verkaufen den dann schuldenfreien Wert."},
+    {k:"verkauf|verkaufen|spekulationssteuer|wieder verkaufen|10 jahre|zehn jahre|steuerfrei verkaufen",a:"Nach <b>10 Jahren</b> Haltedauer ist der Verkaufsgewinn bei privaten Immobilien in der Regel steuerfrei (Spekulationsfrist, § 23 EStG). Vorher kann Spekulationssteuer anfallen. Details je nach Fall gern im Gespräch."},
+    {k:"erben|vererben|erbschaft|schenkung|nachlass|an kinder",a:"Immobilien lassen sich gut übertragen – mit Freibeträgen bei Schenkung/Erbschaft und Gestaltungsmöglichkeiten. Das ist stark individuell; hier lohnt ein persönliches Gespräch (ggf. mit Steuerberater).",c:1},
+    {k:"mieterhohung|miete erhohen|indexmiete|staffelmiete|mietspiegel",a:"Mieterhöhungen sind im Rahmen der gesetzlichen Regeln möglich (Mietspiegel, Index- oder Staffelmiete). Das steigert langfristig Ihren Ertrag. Was zulässig ist, hängt von Mietvertrag und Standort ab."},
+    {k:"kundigung|eigenbedarf|mieter kundigen|mieterschutz|selbst einziehen",a:"Vermietete Kapitalanlagen sind auf Ertrag ausgelegt – nicht auf Selbstnutzung. Der Mieterschutz ist stark; eine Kündigung (z. B. Eigenbedarf) ist nur unter engen Voraussetzungen möglich. Für Ihren Fall beraten wir konkret."},
+    {k:"energieausweis|heizung|sanierungspflicht|geg|energetisch|warmepumpe",a:"Energetischer Zustand und Sanierungspflichten (GEG) beeinflussen Kosten und Wert. Wir achten bei der Auswahl auf einen soliden Zustand und rechnen mögliche Maßnahmen ein – keine Überraschungen."},
+    {k:"kfw|forderung|forderprogramm|zuschuss|forderkredit",a:"Für energieeffiziente Objekte oder Sanierungen gibt es teils <b>KfW-Förderungen</b> (zinsgünstige Kredite/Zuschüsse). Ob und welche für Ihr Vorhaben passen, prüfen wir gemeinsam."},
+    {k:"bonitat|schufa|selbststandig|bekomme ich einen kredit|finanzierung selbststandig",a:"Ob angestellt oder selbstständig: Entscheidend sind Einkommen, Bonität und das Objekt selbst. Auch als Selbstständiger ist eine Finanzierung gut möglich. Ihre konkreten Chancen schauen wir uns vertraulich an.",c:1},
+    {k:"wie viel kann ich mir leisten|was kann ich mir leisten|wie teuer|budget|leisten",a:"Das hängt von Einkommen, Eigenkapital und Zielen ab – oft ist mehr möglich als gedacht, weil Mieter und Finanzamt mittragen. Ihren realistischen Rahmen ermitteln wir unverbindlich im Erstgespräch.",c:1},
+    {k:"lohnt sich|lohnt es sich|ist das sinnvoll|gute rendite|gute idee|sinnvoll",a:"Für viele ja – vor allem wegen der Hebel aus Finanzierung, Steuer und Mieter. Ob es für <b>Sie</b> passt, hängt von Ihrer Situation ab. Genau das prüfen wir ehrlich und kostenfrei – ich rechne kein Objekt schön.",c:1},
+    {k:"risiko|risiken|gefahr|nachteile|was kann schiefgehen|verlust",a:"Die Hauptrisiken sind Leerstand/Mietausfall, Instandhaltung und Zinsänderung. Alle lassen sich durch gute Lage, Bonitätsprüfung, Rücklagen und passende Finanzierung deutlich reduzieren. Ich lege Chancen <b>und</b> Risiken transparent offen.",c:1},
+    {k:"etf|aktien|depot|sparbuch|besser als etf|borse",a:"ETFs sind gut – aber sie bieten keinen Kredithebel und keinen Mieter, der für Sie tilgt. Die Immobilie kombiniert Fremdkapital, Steuervorteil und Sachwert. Beides kann sich sinnvoll ergänzen; das ordne ich gern in Ihre Gesamtstrategie ein."},
+    {k:"immobilienfonds|reit|fonds|indirekt|ohne selbst zu kaufen",a:"Immobilienfonds/REITs sind bequem, aber ohne den steuerlichen Hebel und die Kontrolle des <b>Direktkaufs</b>. Für den Vermögensaufbau mit Finanzierung ist die eigene Immobilie meist wirkungsvoller."},
+    {k:"pflegeimmobilie|pflegeapartment|betreutes wohnen|pflegeheim",a:"Pflegeimmobilien sind eine Sonderform mit langen Pachtverträgen und wenig Verwaltungsaufwand – interessant, aber mit eigenen Chancen/Risiken. Ob das zu Ihnen passt, besprechen wir individuell."},
+    {k:"studentenapartment|mikroapartment|studenten|1 zimmer|apartment",a:"Kleine Apartments (z. B. für Studenten/Pendler) bieten oft hohe Mietrenditen und sind einsteigerfreundlich – gefragt in Uni- und Wirtschaftsstandorten wie Gießen oder Marburg."},
+    {k:"ferienwohnung|airbnb|kurzzeitvermietung|ferienimmobilie",a:"Ferien-/Kurzzeitvermietung kann hohe Erträge bringen, ist aber aufwändiger und stärker reguliert. Für planbaren, passiven Vermögensaufbau bevorzugen wir meist die klassische Langzeitvermietung."},
+    {k:"klumpenrisiko|diversifikation|streuung|nur eine immobilie",a:"Gute Frage – eine Immobilie ist ein Baustein, kein Gesamtdepot. Als Bonnfinanz-Berater schaue ich ganzheitlich, dass Ihre Immobilie sinnvoll zu Ihrer übrigen Vorsorge passt."},
+    {k:"ablauf|wie lauft das ab|prozess|erste schritte|vorgehen|wie funktioniert|wie geht es los",a:"In 3 Schritten: <b>1.</b> Kostenfreies Erstgespräch – ich zeige alle Wege neutral auf. <b>2.</b> Passende Objektvorschläge mit vollständiger Modellrechnung. <b>3.</b> Kauf &amp; Finanzierung begleitet – bis alles läuft. Am besten starten Sie unverbindlich mit dem Erstgespräch.",c:1},
+    {k:"zeitaufwand|wie viel zeit|aufwand|wie lange dauert",a:"Für Sie ist der Aufwand gering – besonders bei komplett gemanagten Objekten. Das Erstgespräch dauert 60 Minuten; Auswahl und Kaufabwicklung begleite ich für Sie."},
+    {k:"warum sie|serios|vertrauen|betrug|abzocke|warum bonnfinanz|erfahrung",a:"Ich bin selbstständiger Finanzberater für die <b>Bonnfinanz</b> (über 50 Jahre Allfinanz-Erfahrung) mit Schwerpunkt Kapitalanlage-Immobilien. Ich rechne jedes Objekt ehrlich durch – auch die Risiken – und verdiene nur, wenn es für Sie passt."},
+    {k:"deutschlandweit|online|per video|nur regional|muss ich kommen|vor ort|entfernung",a:"Beratung geht <b>deutschlandweit</b> – persönlich in Mittelhessen oder bequem online per Video. Die Immobilie selbst muss übrigens nicht in Ihrer Nähe liegen; bei gemanagten Objekten zählt allein die Rendite."},
+    {k:"kontakt|termin|anrufen|telefon|erreichen|sprechen|beratung vereinbaren",a:"Am schnellsten per WhatsApp oder Rückruf – oder buchen Sie direkt Ihr kostenfreies 60-Minuten-Erstgespräch:",c:1},
+    {k:"datenschutz|meine daten|dsgvo|daten sicher",a:"Ihre Angaben werden nur zur Bearbeitung Ihrer Anfrage genutzt und nicht weitergegeben – Details in der <a href='datenschutz.html' target='_blank'>Datenschutzerklärung</a>. Statistik-/Marketing-Cookies laden nur mit Ihrer Einwilligung."},
+    {k:"kostet die beratung|beratung kostenlos|was kostet|gebuhr|honorar",a:"Für Sie <b>kostenfrei</b> und unverbindlich – vergütet wird branchenüblich über Provisionen der Produktpartner, das lege ich transparent offen."}
+  ];
+  function findAnswer(text){
+    var ni=norm(text), best=null, bestScore=0;
+    KB.forEach(function(e){
+      var score=0;
+      e.k.split("|").forEach(function(key){
+        key=norm(key).trim(); if(!key) return;
+        if(key.indexOf(" ")>=0){ if(ni.indexOf(key)>=0) score+=key.replace(/ /g,"").length+2; }
+        else { if(ni.indexOf(" "+key+" ")>=0) score+=Math.max(4,key.length); }
+      });
+      if(score>bestScore){bestScore=score;best=e;}
+    });
+    return bestScore>=4 ? best : null;
+  }
+  document.getElementById("chatForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    var inp=document.getElementById("chatText"), q=inp.value.trim(); if(!q)return;
+    if(!started){started=true;} inp.value="";
+    user(q);
+    var typing=el("div","msg bot typing","schreibt …"); body.appendChild(typing); scrollDown();
+    setTimeout(function(){
+      typing.remove();
+      var found=findAnswer(q);
+      var m=el("div","msg bot", found ? found.a : "Das ist eine sehr gute Frage – und die Antwort hängt oft von Ihrer persönlichen Situation ab. Das bespreche ich am liebsten direkt mit Ihnen. Wie möchten Sie starten?");
+      if(!found || found.c){ m.appendChild(ctaRow()); }
+      body.appendChild(m); scrollDown();
+    },450);
+  });
 })();
 
 /* ---------- Quick-Lead im Hero ---------- */
