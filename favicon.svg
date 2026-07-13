@@ -1,5 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-<rect width="64" height="64" rx="13" fill="#0C3A6E"/>
-<rect y="52" width="64" height="4" fill="#c9a227"/>
-<text x="32" y="43" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="28" fill="#e3c25a">RJ</text>
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#B4D6D4"/><stop offset=".55" stop-color="#9FE8E2"/><stop offset="1" stop-color="#8CC7CF"/>
+</linearGradient></defs>
+<rect width="64" height="64" rx="14" fill="#0D1B2E"/>
+<polygon points="32,8 52,20 52,44 32,56 12,44 12,20" fill="none" stroke="url(#g)" stroke-width="3.5"/>
+<text x="32" y="41" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="22" fill="url(#g)">RJ</text>
 </svg>
