@@ -441,6 +441,45 @@ footer a:hover{color:var(--jade)}
   .cc-btns .cc-accept,.cc-btns .cc-necess{flex:1}
   .cc-set{order:3;width:100%}
 }
+
+/* ---------- Hero: Berater-Presenter (Avatar) ---------- */
+.hero-presenter{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.hp-avatar{position:relative;width:96px;height:96px;flex:0 0 auto;animation:hpfloat 5.5s ease-in-out infinite}
+.hp-avatar .ring{position:absolute;inset:-3px;border-radius:50%;
+  background:conic-gradient(from 0deg,#9FE8E2,#2C517F,#8CC7CF,#B4D6D4,#9FE8E2);
+  animation:ringspin 6s linear infinite;
+  box-shadow:0 0 36px rgba(159,232,226,.42),0 16px 42px rgba(13,27,46,.6)}
+.hp-avatar .ring::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--blue-deep)}
+.hp-avatar .photo{position:absolute;inset:4px;border-radius:50%;overflow:hidden;z-index:1;background:#122844}
+.hp-avatar .photo img,.hp-avatar .photo video{width:100%;height:100%;object-fit:cover;display:block}
+.hp-avatar .cam{position:absolute;right:-2px;bottom:-2px;z-index:2;width:30px;height:30px;border-radius:50%;
+  background:var(--grad-cta);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 14px rgba(13,27,46,.5);border:2px solid var(--blue-deep)}
+.hp-avatar .cam svg{width:15px;height:15px;fill:var(--blue-deep)}
+@keyframes ringspin{to{transform:rotate(360deg)}}
+@keyframes hpfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.hp-meta{display:flex;flex-direction:column;gap:3px;min-width:0}
+.hp-name{font-family:var(--serif);font-weight:700;color:#fff;font-size:21px;letter-spacing:-.01em;line-height:1.12}
+.hp-role{color:var(--t-on-dark-muted);font-size:13.5px;font-weight:600;line-height:1.35}
+.hp-badge{display:inline-flex;align-items:center;gap:7px;color:var(--jade);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-top:3px}
+.hp-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--jade-bright);box-shadow:0 0 10px var(--jade-bright);animation:pulse 2s infinite}
+
+/* ---------- Hero: Cursor-Spotlight + Text-Shimmer ---------- */
+.hero-spot{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(340px 340px at var(--mx,72%) var(--my,18%),rgba(159,232,226,.12),transparent 62%);
+  transition:background .12s ease}
+.hero h1 em{background-size:220% 100%;animation:shimmer 7s linear infinite}
+@keyframes shimmer{to{background-position:-220% 0}}
+
+@media (prefers-reduced-motion:reduce){
+  .hp-avatar,.hp-avatar .ring,.hero h1 em{animation:none}
+  .hero-spot{display:none}
+}
+@media(max-width:720px){
+  .hp-avatar{width:80px;height:80px}
+  .hp-name{font-size:19px}
+  .hp-role{font-size:12.5px}
+}
 </style>
 </head>
 <body>
@@ -463,8 +502,25 @@ footer a:hover{color:var(--jade)}
 <!-- ==================== HERO ==================== -->
 <div class="hero">
   <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="hero-spot"></div>
   <div class="hero-in">
     <div>
+      <div class="hero-presenter">
+        <div class="hp-avatar">
+          <div class="ring"></div>
+          <div class="photo">
+            <!-- Für Video später: <img> ersetzen durch
+                 <video autoplay muted loop playsinline poster="robin-avatar.jpg"><source src="robin.mp4" type="video/mp4"></video> -->
+            <img src="robin-avatar.jpg" alt="Robin Jänicke – Ihr persönlicher Berater für Kapitalanlage-Immobilien" width="96" height="96" loading="eager">
+          </div>
+          <div class="cam" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="hp-meta">
+          <span class="hp-name">Robin Jänicke</span>
+          <span class="hp-role">Ihr persönlicher Berater für Kapitalanlage-Immobilien</span>
+          <span class="hp-badge">Bonnfinanz · Mittelhessen</span>
+        </div>
+      </div>
       <span class="chip">Immer gut leben. · Kapitalanlage mit Konzept</span>
       <h1>Deutschlands stärkste Geldanlage – <em>wenn man das Spiel versteht</em>.</h1>
       <p class="lead">Kaum eine Anlageform baut so zuverlässig Vermögen auf wie die vermietete Immobilie.
@@ -1214,6 +1270,18 @@ document.getElementById("qleadForm").addEventListener("submit",function(e){
     });
   },{threshold:.12,rootMargin:"0px 0px -30px 0px"});
   els.forEach(function(el){io.observe(el)});
+})();
+
+/* ---------- Hero: Cursor-Spotlight ---------- */
+(function(){
+  if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+  var hero=document.querySelector(".hero"), spot=document.querySelector(".hero-spot");
+  if(!hero||!spot) return;
+  hero.addEventListener("pointermove",function(e){
+    var r=hero.getBoundingClientRect();
+    spot.style.setProperty("--mx",((e.clientX-r.left)/r.width*100)+"%");
+    spot.style.setProperty("--my",((e.clientY-r.top)/r.height*100)+"%");
+  });
 })();
 
 document.getElementById("leadForm").addEventListener("submit",function(e){
