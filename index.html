@@ -268,6 +268,8 @@ section{padding:84px 0;scroll-margin-top:76px}
 .qrow input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--true-blue);cursor:pointer;border:3px solid #fff;box-shadow:0 1px 4px rgba(13,27,46,.25)}
 .obj-ekr{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:12.5px;color:var(--muted);margin:4px 0 12px}
 .obj-ekr b{font-size:16px;color:#0f6b40;font-family:var(--serif,inherit)}
+#objCta{text-align:center;margin-top:24px;padding-top:8px}
+#objCta .obj-cta-lead{font-size:15px;color:var(--ink);margin-bottom:14px;font-weight:600}
 .qfield-fam .qcheck{flex-direction:row;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--ink);cursor:pointer}
 .qual-note{font-size:12px;color:var(--muted);margin-top:14px}
 .obj-amp{border-width:2px;border-style:solid}
@@ -880,6 +882,10 @@ footer a:hover{color:var(--jade)}
         <p>Die Objektdaten sind fest hinterlegt. Finanzierung und Ihre Steuerangaben können Sie frei anpassen – alles live.</p>
       </div>
       <div class="calc-frame-wrap" id="objCalcMount"></div>
+      <div id="objCta" style="display:none">
+        <p class="obj-cta-lead">Die Zahlen passen für Sie – oder Sie möchten sie gemeinsam einordnen?</p>
+        <a class="btn btn-jade btn-lg" href="#kontakt" id="objCtaBtn" data-tab="termin" data-thema="objekt">Lass uns über Ihre Immobilie sprechen</a>
+      </div>
     </div>
 
     <p class="model-note">* Modellrechnung, keine Anlage- oder Steuerberatung. Prognosewerte hängen von Annahmen ab und sind nicht garantiert.
@@ -1313,6 +1319,7 @@ function openTierCalc(key){
   var wrap=document.getElementById('objCalcWrap'), mount=document.getElementById('objCalcMount'), title=document.getElementById('objCalcTitle');
   if(title) title.textContent='Ihr Rechner — '+p.stufe+'-Objekt (Objektdaten fest vorgegeben)';
   wrap.style.display='block';
+  var cta0=document.getElementById('objCta'); if(cta0) cta0.style.display='none';  /* CTA erst nach Auswertung */
   var q=q_readForm();
   mount.innerHTML='';
   var f=document.createElement('iframe');
@@ -1353,7 +1360,12 @@ function openTierCalc(key){
         var toStart=function(){ var y=f.getBoundingClientRect().top+window.pageYOffset-90; if(y<0)y=0; window.scrollTo({top:y,behavior:'smooth'}); };
         var mo=new MutationObserver(function(muts){
           for(var i=0;i<muts.length;i++){ var t=muts[i].target;
-            if(t.classList && t.classList.contains('active')){ setTimeout(toStart,0); setTimeout(function(){ toStart(); fit(); },160); break; } }
+            if(t.classList && t.classList.contains('active')){
+              setTimeout(toStart,0); setTimeout(function(){ toStart(); fit(); },160);
+              var ap=[].indexOf.call(pages,t)+1;               // aktive Seite (1..3)
+              var cta=document.getElementById('objCta'); if(cta) cta.style.display=(ap===3)?'block':'none';
+              break;
+            } }
         });
         pages.forEach(function(pg){ mo.observe(pg,{attributes:true,attributeFilter:['class']}); });
       }
