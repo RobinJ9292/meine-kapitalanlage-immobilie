@@ -252,7 +252,7 @@ section{padding:84px 0;scroll-margin-top:76px}
 .model-note .ass{text-align:left;background:#fff;border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 20px;margin-top:10px}
 
 /* Eingebetteter Voll-Rechner (eigene Immobilie) */
-.calc-embed{max-width:1180px;margin:40px auto 0}
+.calc-embed{max-width:1180px;margin:40px auto 0;scroll-margin-top:84px}
 .calc-embed-head{text-align:center;margin-bottom:22px}
 .calc-embed-head h3{font-size:clamp(24px,2.6vw,30px);font-weight:800;margin-bottom:8px}
 .calc-embed-head p{color:var(--muted);font-size:15.5px;max-width:680px;margin:0 auto}
@@ -530,6 +530,7 @@ footer a:hover{color:var(--jade)}
       </span>
     </a>
     <nav>
+      <a class="btn btn-ghost btn-sm" href="#rechner" id="navRechner">Jetzt Immobilie durchrechnen</a>
       <a class="btn btn-blue btn-sm" href="#kontakt" data-tab="termin">Kostenfreies Erstgespräch</a>
     </nav>
   </div>
@@ -827,7 +828,7 @@ footer a:hover{color:var(--jade)}
     </div>
 
     <!-- Interaktiver Voll-Rechner (eingebettet) -->
-    <div class="calc-embed">
+    <div class="calc-embed" id="rechner">
       <div class="calc-embed-head">
         <span class="eyebrow">Rechnen Sie selbst</span>
         <h3>Ihr Kapitalanlage-Rechner</h3>
@@ -1205,7 +1206,7 @@ document.querySelectorAll("[data-tab]").forEach(function(a){
 var THEMA_MAP = { portfolio:"Erste Kapitalanlageimmobilie",
                   eigene:"Eigene Immobilie – Suche und Kauf begleiten",
                   unsicher:"Allgemeine Fragen" };
-function choosePath(p){
+function choosePath(p, scrollTarget){
   document.querySelectorAll(".choice").forEach(function(c){
     c.classList.toggle("active", c.getAttribute("data-choose")===p);
   });
@@ -1215,11 +1216,20 @@ function choosePath(p){
   });
   var t = document.getElementById("f-thema");
   if(THEMA_MAP[p]) t.value = THEMA_MAP[p];
-  var first = p==="unsicher" ? "sec-info" : "sec-vergleich";
+  var first = scrollTarget || (p==="unsicher" ? "sec-info" : "sec-vergleich");
   setTimeout(function(){
-    document.getElementById(first).scrollIntoView({behavior:"smooth",block:"start"});
+    var target = document.getElementById(first);
+    if(target) target.scrollIntoView({behavior:"smooth",block:"start"});
   }, 60);
 }
+/* Header-Link „Jetzt Immobilie durchrechnen": eigene-Pfad aktivieren + zum Rechner scrollen */
+(function(){
+  var navR = document.getElementById("navRechner");
+  if(navR) navR.addEventListener("click", function(e){
+    e.preventDefault();
+    choosePath("eigene", "rechner");
+  });
+})();
 document.querySelectorAll(".choice").forEach(function(c){
   c.addEventListener("click", function(){ choosePath(c.getAttribute("data-choose")); });
 });
