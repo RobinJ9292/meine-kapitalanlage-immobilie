@@ -251,6 +251,43 @@ section{padding:84px 0;scroll-margin-top:76px}
 .model-note summary{cursor:pointer;color:var(--true-blue);font-weight:700}
 .model-note .ass{text-align:left;background:#fff;border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 20px;margin-top:10px}
 
+/* Interaktiver Rechner (eigene Immobilie) */
+.calc-wrap{max-width:1000px;margin:44px auto 0}
+.calc-head{text-align:center;margin-bottom:26px}
+.calc-head .eyebrow{margin-bottom:12px}
+.calc-head h3{font-size:clamp(24px,2.6vw,30px);font-weight:800;margin-bottom:8px}
+.calc-head p{color:var(--muted);font-size:15.5px;max-width:640px;margin:0 auto}
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+.calc-panel{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px 26px 22px;box-shadow:var(--shadow-md)}
+.calc-panel > h4{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--true-blue);margin-bottom:18px}
+.calc-in{display:flex;flex-direction:column;gap:15px}
+.cf{display:flex;flex-direction:column;gap:6px}
+.cf label{font-size:12.5px;font-weight:800;color:var(--true-blue);letter-spacing:.02em}
+.cf .cf-in{position:relative;display:flex;align-items:center}
+.cf input{font-family:var(--sans);font-size:16px;font-weight:700;padding:12px 40px 12px 14px;border:1.5px solid var(--line);border-radius:12px;color:var(--ink);background:var(--paper);width:100%;transition:border-color .15s;-moz-appearance:textfield}
+.cf input::-webkit-outer-spin-button,.cf input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.cf input:focus{outline:none;border-color:var(--true-blue);background:#fff}
+.cf .unit{position:absolute;right:14px;font-size:14px;font-weight:700;color:var(--muted);pointer-events:none}
+.cf .hint{font-size:11.5px;color:var(--muted);line-height:1.4}
+.cf .hint a{color:var(--true-blue);display:inline;font-weight:700}
+.calc-out{background:linear-gradient(160deg,var(--blue-night),var(--true-blue));border:none;color:#fff}
+.calc-out > h4{color:var(--jade)}
+.calc-res{display:flex;flex-direction:column}
+.cr{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.cr:last-child{border-bottom:none}
+.cr .l{font-size:13.5px;color:var(--t-on-dark-muted)}
+.cr .l small{display:block;font-size:11px;opacity:.7;font-weight:400}
+.cr .v{font-family:var(--serif);font-weight:700;font-size:20px;color:#fff;white-space:nowrap;flex:none}
+.cr.hero-res{padding:16px 0}
+.cr.hero-res .v{font-size:26px;color:var(--jade-bright)}
+.cr .v.good{color:var(--jade-bright)}
+.cr .v.warn{color:#FFD08A}
+.calc-cta{margin-top:20px;text-align:center}
+.calc-cta .btn{width:100%}
+.calc-cta .note{font-size:11.5px;color:var(--muted);margin-top:12px;line-height:1.5}
+.calc-cta .note a{color:var(--true-blue);display:inline;font-weight:700}
+@media(max-width:800px){.calc{grid-template-columns:1fr}}
+
 /* Verkäufer-Banner */
 .sell{background:var(--blue-night);padding:44px 0;position:relative;overflow:hidden}
 .sell::before{content:"";position:absolute;left:-80px;bottom:-120px;width:280px;height:280px;border:1.5px solid rgba(180,214,212,.12);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
@@ -815,6 +852,68 @@ footer a:hover{color:var(--jade)}
         <p>Als eingetragener Immobilienmakler begleite ich Sie über den Kauf hinaus – bis zum gewinnbringenden Verkauf, wenn es so weit ist.</p>
       </div>
     </div>
+
+    <!-- Interaktiver Rechner -->
+    <div class="calc-wrap">
+      <div class="calc-head">
+        <span class="eyebrow">Rechnen Sie selbst</span>
+        <h3>Ihr Kapitalanlage-Rechner</h3>
+        <p>Tragen Sie die Eckdaten Ihres Wunschobjekts ein – Sie sehen sofort, wie sich Eigenaufwand, Steuereffekt und Eigenkapital-Rendite entwickeln. Alle Felder sind frei änderbar.</p>
+      </div>
+      <div class="calc">
+        <div class="calc-panel">
+          <h4>Ihre Eckdaten</h4>
+          <div class="calc-in">
+            <div class="cf">
+              <label for="ce-kp">Kaufpreis</label>
+              <div class="cf-in"><input id="ce-kp" type="text" inputmode="numeric" value="250000"><span class="unit">€</span></div>
+            </div>
+            <div class="cf">
+              <label for="ce-miete">Kaltmiete pro Monat</label>
+              <div class="cf-in"><input id="ce-miete" type="text" inputmode="numeric" value="850"><span class="unit">€</span></div>
+            </div>
+            <div class="cf">
+              <label for="ce-kosten">Nicht umlagefähige Kosten pro Monat</label>
+              <div class="cf-in"><input id="ce-kosten" type="text" inputmode="numeric" value="60"><span class="unit">€</span></div>
+              <span class="hint">Verwaltung &amp; Instandhaltungsrücklage – das, was nicht auf den Mieter umlegbar ist.</span>
+            </div>
+            <div class="cf">
+              <label for="ce-ek">Eingesetztes Eigenkapital</label>
+              <div class="cf-in"><input id="ce-ek" type="text" inputmode="numeric" value="18750"><span class="unit">€</span></div>
+              <span class="hint">Voreingestellt = Kaufnebenkosten (Kaufpreis voll finanziert). <a href="#" id="ce-ekreset">auf Nebenkosten zurücksetzen</a></span>
+            </div>
+            <div class="cf">
+              <label for="ce-zins">Sollzins p. a.</label>
+              <div class="cf-in"><input id="ce-zins" type="text" inputmode="decimal" value="4,0"><span class="unit">%</span></div>
+            </div>
+            <div class="cf">
+              <label for="ce-tilg">Anfängliche Tilgung p. a.</label>
+              <div class="cf-in"><input id="ce-tilg" type="text" inputmode="decimal" value="1,5"><span class="unit">%</span></div>
+            </div>
+            <div class="cf">
+              <label for="ce-steuer">Ihr Grenzsteuersatz</label>
+              <div class="cf-in"><input id="ce-steuer" type="text" inputmode="decimal" value="42"><span class="unit">%</span></div>
+              <span class="hint">Grob: 30 % bei mittlerem, 42 % bei höherem Einkommen. Den genauen Wert ermitteln wir gemeinsam.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-panel calc-out">
+          <h4>Ihr Ergebnis</h4>
+          <div class="calc-res">
+            <div class="cr"><span class="l">Kaufnebenkosten<small>Grunderwerbsteuer + Notar &amp; Grundbuch</small></span><span class="v" id="cr-nk">–</span></div>
+            <div class="cr"><span class="l">Darlehensbetrag</span><span class="v" id="cr-dar">–</span></div>
+            <div class="cr"><span class="l">Bruttomietrendite</span><span class="v" id="cr-rend">–</span></div>
+            <div class="cr hero-res"><span class="l" id="cr-cf-l">Ihr mtl. Eigenaufwand<small>Jahr 1, nach Steuern</small></span><span class="v" id="cr-cf">–</span></div>
+            <div class="cr hero-res"><span class="l">Prognose Eigenkapital-Rendite<small>p. a. über 10 Jahre, inkl. rechn. Verkauf</small></span><span class="v good" id="cr-irr">–</span></div>
+          </div>
+          <div class="calc-cta">
+            <a class="btn btn-jade btn-lg" href="#kontakt" data-tab="rueckruf" data-thema="eigene">Diese Rechnung gemeinsam prüfen</a>
+            <p class="note">Vereinfachte Modellrechnung mit festen Annahmen (AfA 2 % auf 85 % Gebäudeanteil, Miet-/Kosten-/Wertsteigerung 1,5 / 2,0 / 2,0 % p. a., Betrachtung 10 Jahre). Ihre individuellen Werte rechnen wir im <a href="#kontakt" data-tab="termin">Erstgespräch</a> exakt durch.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1142,6 +1241,89 @@ function renderObjekte(){
 }
 renderObjekte();
 
+/* ---------- Interaktiver Rechner: eigene Immobilie ---------- */
+(function(){
+  var el = {
+    kp: document.getElementById("ce-kp"), miete: document.getElementById("ce-miete"),
+    kosten: document.getElementById("ce-kosten"), ek: document.getElementById("ce-ek"),
+    zins: document.getElementById("ce-zins"), tilg: document.getElementById("ce-tilg"),
+    steuer: document.getElementById("ce-steuer")
+  };
+  if(!el.kp) return;
+  var out = {
+    nk: document.getElementById("cr-nk"), dar: document.getElementById("cr-dar"),
+    rend: document.getElementById("cr-rend"), cfL: document.getElementById("cr-cf-l"),
+    cf: document.getElementById("cr-cf"), irr: document.getElementById("cr-irr")
+  };
+  var ekTouched = false;
+
+  function num(v){ return parseFloat(String(v).replace(/\./g,"").replace(",",".")) || 0; }
+  function nkVon(kp){ return kp * (ANNAHMEN.grest + ANNAHMEN.notar); }
+
+  function rechneEigene(i){
+    var A = ANNAHMEN;
+    var nk = nkVon(i.kaufpreis);
+    var gesamt = i.kaufpreis + nk;
+    var ek = i.ek;
+    var darlehen = Math.max(0, gesamt - ek);
+    var rateJ = darlehen * (i.zins + i.tilgung);
+    var afa = i.kaufpreis * A.gebAnteil * A.afa;
+    var rest = darlehen, miete = i.miete*12, kosten = i.kosten*12;
+    var flows = [-ek], cf1 = 0;
+    for(var j=1;j<=A.jahre;j++){
+      var zinsJ = rest * i.zins;
+      var tilgJ = Math.min(rateJ - zinsJ, rest); if(tilgJ<0) tilgJ = 0;
+      rest -= tilgJ;
+      var steuer = (miete - kosten - zinsJ - afa) * i.steuersatz;
+      var cf = miete - kosten - (zinsJ + tilgJ) - steuer;
+      if(j===1) cf1 = cf;
+      flows.push(cf);
+      miete *= (1+A.mietSteig); kosten *= (1+A.kostenSteig);
+    }
+    var wert = i.kaufpreis * Math.pow(1+A.wertSteig, A.jahre);
+    flows[flows.length-1] += (wert - rest);
+    function npv(r){ var s=0; for(var k=0;k<flows.length;k++) s += flows[k]/Math.pow(1+r,k); return s; }
+    var lo=-0.9, hi=2.0, irr=null;
+    if(npv(lo)*npv(hi)<0){ irr=0; for(var k=0;k<100;k++){ irr=(lo+hi)/2; (npv(lo)*npv(irr)<=0)?hi=irr:lo=irr; } }
+    return { nk:nk, darlehen:darlehen, mietrendite:(i.miete*12)/i.kaufpreis, cf1Monat:cf1/12, irr:irr };
+  }
+
+  function update(){
+    var kp = num(el.kp.value);
+    if(!ekTouched){ el.ek.value = Math.round(nkVon(kp)); }
+    var i = {
+      kaufpreis: kp, miete: num(el.miete.value), kosten: num(el.kosten.value),
+      ek: num(el.ek.value), zins: num(el.zins.value)/100,
+      tilgung: num(el.tilg.value)/100, steuersatz: num(el.steuer.value)/100
+    };
+    var r = rechneEigene(i);
+    out.nk.textContent = fmtE(r.nk);
+    out.dar.textContent = fmtE(r.darlehen);
+    out.rend.textContent = kp>0 ? fmtP(r.mietrendite) : "–";
+    if(r.cf1Monat < 0){
+      out.cfL.innerHTML = 'Ihr mtl. Eigenaufwand<small>Jahr 1, nach Steuern</small>';
+      out.cf.textContent = "≈ " + fmtE(-r.cf1Monat);
+      out.cf.className = "v warn";
+    } else {
+      out.cfL.innerHTML = 'Ihr mtl. Überschuss<small>Jahr 1, nach Steuern</small>';
+      out.cf.textContent = "≈ +" + fmtE(r.cf1Monat);
+      out.cf.className = "v good";
+    }
+    out.irr.textContent = (r.irr===null) ? "n. v." : "≈ " + fmtP(r.irr);
+  }
+
+  Object.keys(el).forEach(function(k){
+    el[k].addEventListener("input", function(){
+      if(k==="ek") ekTouched = true;
+      update();
+    });
+  });
+  document.getElementById("ce-ekreset").addEventListener("click", function(e){
+    e.preventDefault(); ekTouched = false; el.ek.value = Math.round(nkVon(num(el.kp.value))); update();
+  });
+  update();
+})();
+
 /* ---------- Tabs ---------- */
 var tabR=document.getElementById("tabR"), tabT=document.getElementById("tabT"),
     panelR=document.getElementById("panelR"), panelT=document.getElementById("panelT");
@@ -1158,6 +1340,7 @@ document.querySelectorAll("[data-tab]").forEach(function(a){
     showTab(a.getAttribute("data-tab"));
     if(a.getAttribute("data-thema")==="verkaufen") document.getElementById("f-thema").value="Immobilie verkaufen";
     if(a.getAttribute("data-thema")==="objekt") document.getElementById("f-thema").value="Konkretes Objekt von dieser Seite";
+    if(a.getAttribute("data-thema")==="eigene") document.getElementById("f-thema").value="Eigene Immobilie – Suche und Kauf begleiten";
   });
 });
 
