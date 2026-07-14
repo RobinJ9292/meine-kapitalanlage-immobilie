@@ -250,6 +250,31 @@ section{padding:84px 0;scroll-margin-top:76px}
 .model-note details{margin-top:8px}
 .model-note summary{cursor:pointer;color:var(--true-blue);font-weight:700}
 .model-note .ass{text-align:left;background:#fff;border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 20px;margin-top:10px}
+/* Qualifizierungs-Formular + Ampel (Portfolio) */
+.qual-box{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-sm);padding:24px;margin-bottom:28px}
+.qual-head{margin-bottom:16px}
+.qual-head b{display:block;font-size:18px;color:var(--ink)}
+.qual-head span{font-size:13.5px;color:var(--muted)}
+.qual-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;align-items:start}
+.qfield{display:flex;flex-direction:column;gap:5px}
+.qfield label{font-size:13px;font-weight:700;color:var(--ink)}
+.qfield label span{color:var(--muted);font-weight:400}
+.qfield input[type=text]{padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;font-family:var(--sans);font-size:15px;background:#fff;color:var(--ink)}
+.qfield input[type=text]:focus{outline:none;border-color:var(--true-blue)}
+.qfield-fam .qcheck{flex-direction:row;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--ink);cursor:pointer}
+.qual-note{font-size:12px;color:var(--muted);margin-top:14px}
+.obj-amp{border-width:2px;border-style:solid}
+.obj-amp.amp-gruen{border-color:#1a9e5f;box-shadow:0 0 0 3px #1a9e5f1f}
+.obj-amp.amp-rot{border-color:#d64550;box-shadow:0 0 0 3px #d645501f}
+.obj-amp.amp-gelb{border-color:#e0a72e;box-shadow:0 0 0 3px #e0a72e1f}
+.obj-amp.amp-neutral,.obj-amp.amp-na{border-color:var(--line)}
+.obj-ampel{border-radius:10px;padding:10px 12px;margin:12px 0;font-size:12.5px;line-height:1.45}
+.obj-ampel b{display:block;margin-bottom:3px;font-size:13px}
+.obj-ampel.amp-gruen{background:#e9f7f0;color:#0f6b40}
+.obj-ampel.amp-rot{background:#fdeced;color:#8f1e27}
+.obj-ampel.amp-gelb{background:#fdf5e3;color:#8a5a0a}
+.obj-ampel.amp-neutral,.obj-ampel.amp-na{background:var(--paper);color:var(--muted)}
+.lp-locked{background:#eef2f6 !important;color:#64748b !important;cursor:not-allowed !important;border-style:dashed !important}
 
 /* Eingebetteter Voll-Rechner (eigene Immobilie) */
 .calc-embed{max-width:1180px;margin:40px auto 0;scroll-margin-top:84px}
@@ -820,7 +845,31 @@ footer a:hover{color:var(--jade)}
       <h2>Beispiele aus unserem Portfolio</h2>
       <p>Ein Auszug aktuell verfügbarer, komplett gemanagter Objekte – die Kennzahlen berechnet unser Kapitalanlage-Tool. Die vollständige Rechnung gehen wir gemeinsam im Erstgespräch durch.</p>
     </div>
+    <div class="qual-box">
+      <div class="qual-head"><b>Passt eine dieser Immobilien zu Ihnen?</b><span>Ein paar Angaben genügen – ich markiere die passenden Objekte und rechne sie für Sie durch. Unverbindlich, nichts wird gespeichert.</span></div>
+      <div class="qual-grid">
+        <div class="qfield"><label for="q-netto">Netto-Einkommen <span>€ / Monat</span></label><input type="text" inputmode="numeric" autocomplete="off" id="q-netto" placeholder="z. B. 2.800"></div>
+        <div class="qfield"><label for="q-zve">Zu versteuerndes Einkommen (ZVE) <span>€ / Jahr</span></label><input type="text" inputmode="numeric" autocomplete="off" id="q-zve" placeholder="z. B. 38.000"></div>
+        <div class="qfield"><label for="q-ek">Verfügbares Eigenkapital <span>€</span></label><input type="text" inputmode="numeric" autocomplete="off" id="q-ek" placeholder="z. B. 10.000"></div>
+        <div class="qfield"><label for="q-monat">Möglicher mtl. Eigenaufwand <span>€ / Monat</span></label><input type="text" inputmode="numeric" autocomplete="off" id="q-monat" placeholder="z. B. 150"></div>
+        <div class="qfield qfield-fam">
+          <label class="qcheck"><input type="checkbox" id="q-fam"> Unterstützung aus der Familie möglich?</label>
+          <div id="q-fam-wrap" style="display:none;margin-top:8px"><label for="q-fam-betrag">Voraussichtlich <span>€</span></label><input type="text" inputmode="numeric" autocomplete="off" id="q-fam-betrag" placeholder="z. B. 10.000"></div>
+        </div>
+      </div>
+      <p class="qual-note">Vorab-Einschätzung (vereinfacht) rein anhand Eigenkapital &amp; monatlichem Eigenaufwand – die genaue, persönliche Rechnung erfolgt im Rechner unten und im Erstgespräch.</p>
+    </div>
     <div class="obj-grid" id="objGrid"><!-- Karten werden per JS gerendert --></div>
+
+    <div id="objCalcWrap" class="calc-embed" style="display:none;margin-top:36px">
+      <div class="calc-embed-head">
+        <span class="eyebrow">Rechnen Sie mit</span>
+        <h3 id="objCalcTitle">Ihr Rechner</h3>
+        <p>Die Objektdaten sind fest hinterlegt. Finanzierung und Ihre Steuerangaben können Sie frei anpassen – alles live.</p>
+      </div>
+      <div class="calc-frame-wrap" id="objCalcMount"></div>
+    </div>
+
     <p class="model-note">* Modellrechnung, keine Anlage- oder Steuerberatung. Prognosewerte hängen von Annahmen ab und sind nicht garantiert.
       <details><summary>Annahmen der Modellrechnung anzeigen</summary>
         <div class="ass" id="assBox"></div>
@@ -1088,94 +1137,176 @@ var ANNAHMEN = {
 
 /* EDIT: Beispielobjekte – durch echte Objekte ersetzen.
    miete = Kaltmiete/Monat, kosten = nicht umlagefähige Kosten/Monat */
-var OBJEKTE = [
-  { badge:"Vermietet & verwaltet", titel:"2-Zimmer-Wohnung", ort:"Gießen · Bestand",
-    kaufpreis:189000, flaeche:54, baujahr:1996, miete:620, kosten:55 },
-  { badge:"Einsteiger-Objekt", titel:"1-Zimmer-Apartment", ort:"Marburg · Bestand",
-    kaufpreis:139000, flaeche:32, baujahr:2005, miete:480, kosten:45 },
-  { badge:"Familienfreundlich", titel:"3-Zimmer-Wohnung", ort:"Wetzlar · Bestand",
-    kaufpreis:249000, flaeche:78, baujahr:1999, miete:820, kosten:70 }
-];
 /* ===================================================================== */
+/* PORTFOLIO-STUFEN — Einsteiger fest & unveraenderbar, Rest folgt.        */
+/* EDIT: Fortgeschritten/Profi preset ergaenzen, sobald Daten vorliegen.  */
+var PORTFOLIO = [
+  { key:"einsteiger", stufe:"Einsteiger", titel:"Einsteiger-Objekt", ort:"Sachsen-Anhalt · Bestand", badge:"Einsteiger",
+    preset:{ name:"Einsteiger-Objekt", kaufpreis:120000, miete:375, kostenMtl:40,
+             gebAnteilPct:89, afaArt:"custom", afaSatzPct:3.4,
+             notarPct:1.7, notarWkPct:40, maklerPct:0, bundesland:"Sachsen-Anhalt",
+             sollzins:4.8 } },
+  { key:"fortgeschritten", stufe:"Fortgeschritten", titel:"Fortgeschritten-Objekt", ort:"Daten folgen", badge:"Fortgeschritten", preset:null },
+  { key:"profi", stufe:"Profi", titel:"Profi-Objekt", ort:"Daten folgen", badge:"Profi", preset:null }
+];
 
-var fmtE = function(n){ return Math.round(n).toLocaleString("de-DE") + " €"; };
-var fmtP = function(n,d){ return (n*100).toLocaleString("de-DE",{minimumFractionDigits:d===undefined?1:d,maximumFractionDigits:d===undefined?1:d}) + " %"; };
+/* Grunderwerbsteuer je Bundesland (wie im Rechner) */
+var Q_GREST = { 'Baden-Württemberg':0.050,'Bayern':0.035,'Berlin':0.060,'Brandenburg':0.065,
+  'Bremen':0.055,'Hamburg':0.055,'Hessen':0.060,'Mecklenburg-Vorpommern':0.060,
+  'Niedersachsen':0.050,'Nordrhein-Westfalen':0.065,'Rheinland-Pfalz':0.050,
+  'Saarland':0.065,'Sachsen':0.055,'Sachsen-Anhalt':0.050,'Schleswig-Holstein':0.065,'Thüringen':0.050 };
 
-/* Kompakte Modellrechnung (vereinfachte Version des Beratungsrechners) */
-function rechne(o){
-  var A = ANNAHMEN;
-  var nk = o.kaufpreis * (A.grest + A.notar);
-  var ek = nk;                       // Eigenkapital = Nebenkosten
-  var darlehen = o.kaufpreis;        // Kaufpreis voll finanziert
-  var rateJ = darlehen * (A.zins + A.tilgung);
-  var afa = o.kaufpreis * A.gebAnteil * A.afa;
+/* Annahmen fuer die Ampel-Vorabschaetzung (Feinheiten spaeter mit Robin).
+   Der eingebettete Rechner ist die genaue Quelle. */
+var Q_DEF = { tilgung:0.02, mietSteig:0.015, kostenSteig:0.02 };
 
-  var rest = darlehen, miete = o.miete*12, kosten = o.kosten*12;
-  var flows = [-ek], cf1 = 0;
-  for(var j=1;j<=A.jahre;j++){
-    var zinsJ = rest * A.zins;
-    var tilgJ = Math.min(rateJ - zinsJ, rest);
-    rest -= tilgJ;
+/* §32a EStG 2026 (aus dem Rechner) — v1: Grundtarif, ohne Splitting/Kirchensteuer */
+function q_estGrund(zvE){ var x=Math.floor(Math.max(0,zvE)),st;
+  if(x<=12348) st=0;
+  else if(x<=17799){var y=(x-12348)/1e4; st=(914.51*y+1400)*y;}
+  else if(x<=69878){var z=(x-17799)/1e4; st=(173.10*z+2397)*z+1034.87;}
+  else if(x<=277825) st=0.42*x-11135.63;
+  else st=0.45*x-19470.38;
+  return Math.floor(st); }
+function q_soli(s){ var fg=20350; return s<=fg?0:Math.min(0.055*s,0.119*(s-fg)); }
+function q_gesamtSteuer(zvE){ var e=q_estGrund(zvE); return e+q_soli(e); }
+function q_taxEffect(zvE,delta){ return q_gesamtSteuer(zvE+delta)-q_gesamtSteuer(zvE); }
+
+/* Vorabschaetzung: benoetigtes EK (=Kaufnebenkosten) + mtl. Eigenaufwand Jahr 2 nach Steuern */
+function q_tierRechnung(pr, zvE){
+  var grest = Q_GREST[pr.bundesland]!=null?Q_GREST[pr.bundesland]:0.06;
+  var nk = pr.kaufpreis*(grest + pr.notarPct/100 + pr.maklerPct/100);
+  var darlehen = pr.kaufpreis;
+  var zins = pr.sollzins/100, tilg = Q_DEF.tilgung;
+  var rate = darlehen*(zins+tilg);
+  var afa = pr.kaufpreis*(pr.gebAnteilPct/100)*(pr.afaSatzPct/100);
+  var rest=darlehen, miete=pr.miete*12, kosten=pr.kostenMtl*12, monat2=0;
+  for(var j=1;j<=2;j++){
+    var zinsJ=rest*zins; var tilgJ=Math.min(rate-zinsJ,rest); rest-=tilgJ;
     var steuerErg = miete - kosten - zinsJ - afa;      // steuerliches Ergebnis
-    var steuer = steuerErg * A.steuersatz;             // <0 = Erstattung
-    var cf = miete - kosten - (zinsJ + tilgJ) - steuer;
-    if(j===1) cf1 = cf;
-    flows.push(cf);
-    miete *= (1+A.mietSteig); kosten *= (1+A.kostenSteig);
+    var steuer = q_taxEffect(zvE, steuerErg);          // <0 = Ersparnis
+    var cf = miete - kosten - (zinsJ+tilgJ) - steuer;  // <0 = Eigenaufwand
+    if(j===2) monat2 = -cf/12;
+    miete*=(1+Q_DEF.mietSteig); kosten*=(1+Q_DEF.kostenSteig);
   }
-  var wert = o.kaufpreis * Math.pow(1+A.wertSteig, A.jahre);
-  flows[flows.length-1] += (wert - rest);
-
-  /* IRR per Bisektion */
-  function npv(r){ var s=0; for(var i=0;i<flows.length;i++) s += flows[i]/Math.pow(1+r,i); return s; }
-  var lo=-0.5, hi=1.0, irr=0;
-  if(npv(lo)*npv(hi)<0){ for(var k=0;k<80;k++){ irr=(lo+hi)/2; (npv(lo)*npv(irr)<=0)?hi=irr:lo=irr; } }
-
-  return {
-    ek: ek,
-    mietrendite: (o.miete*12)/o.kaufpreis,
-    aufwand: Math.max(0,-cf1/12),
-    ueberschuss: Math.max(0,cf1/12),
-    irr: irr
-  };
+  return { requiredEK: Math.round(nk), monthly2: monat2 };
 }
 
-function objIcon(){ return '<svg viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22 24 9l16 13"/><path d="M12 20v18h24V20"/><rect x="20" y="26" width="8" height="12"/></svg>'; }
+function q_readForm(){
+  function num(id){ var el=document.getElementById(id); if(!el) return null;
+    var v=(el.value||'').replace(/[^\d,.-]/g,'').replace(/\./g,'').replace(',','.');
+    v=parseFloat(v); return isNaN(v)?null:v; }
+  var fam=document.getElementById('q-fam');
+  return { netto:num('q-netto'), zve:num('q-zve'), ek:num('q-ek'), monat:num('q-monat'),
+    famJa:!!(fam&&fam.checked), famBetrag:num('q-fam-betrag')||0 };
+}
+
+function q_ampel(p,q){
+  if(!p.preset) return {status:'na', kurz:'Daten folgen', text:'Die Objektdaten fuer diese Stufe ergaenze ich in Kuerze.'};
+  if(q.zve==null||q.ek==null||q.monat==null)
+    return {status:'neutral', kurz:'Angaben oben ergaenzen', text:'Sobald ZVE, Eigenkapital und moeglicher mtl. Eigenaufwand oben eingetragen sind, pruefe ich diese Immobilie fuer Sie.'};
+  var r=q_tierRechnung(p.preset,q.zve);
+  var need=r.requiredEK, monat=Math.max(0,r.monthly2);
+  var ekOK=q.ek>=need, ekMitFamilie=!ekOK&&q.famJa&&(q.ek+q.famBetrag)>=need, monatOK=q.monat>=monat;
+  var fmtE=function(n){return Math.round(n).toLocaleString('de-DE')+' €';};
+  if(monatOK&&ekOK) return {status:'gruen', kurz:'Passt', r:r,
+    text:'Ihr Eigenkapital ('+fmtE(q.ek)+') deckt die Kaufnebenkosten ('+fmtE(need)+'), und der mtl. Eigenaufwand von ca. '+fmtE(monat)+' (Jahr 2, nach Steuern) liegt in Ihrem Rahmen ('+fmtE(q.monat)+').'};
+  if(monatOK&&!ekOK&&ekMitFamilie) return {status:'gelb', kurz:'Moeglich mit Familien-Unterstuetzung', r:r,
+    text:'Der laufende Aufwand (ca. '+fmtE(monat)+'/Monat) passt. Das Eigenkapital reicht allein nicht ('+fmtE(q.ek)+' von '+fmtE(need)+'), laesst sich aber mit der angegebenen Familien-Unterstuetzung darstellen.'};
+  var gr=[];
+  if(!monatOK) gr.push('der mtl. Eigenaufwand (ca. '+fmtE(monat)+', Jahr 2 nach Steuern) liegt ueber Ihrem Rahmen ('+fmtE(q.monat)+')');
+  if(!ekOK&&!ekMitFamilie) gr.push('das Eigenkapital reicht nicht fuer die Kaufnebenkosten ('+fmtE(q.ek)+(q.famJa?' + '+fmtE(q.famBetrag)+' Familie':'')+' von '+fmtE(need)+')');
+  return {status:'rot', kurz:'Aktuell nicht passend', r:r, text:'Aktuell nicht darstellbar: '+gr.join(' und ')+'. Im Erstgespraech finden wir die passende Loesung.'};
+}
+
+function q_objIcon(){ return '<svg viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22 24 9l16 13"/><path d="M12 20v18h24V20"/><rect x="20" y="26" width="8" height="12"/></svg>'; }
 
 function renderObjekte(){
-  var g = document.getElementById("objGrid");
-  g.innerHTML = OBJEKTE.map(function(o){
-    var r = rechne(o);
-    var aufwandRow = r.aufwand > 0
-      ? '<div class="kpi"><span class="l">Ihr mtl. Eigenaufwand (J. 1, nach Steuern)*</span><span class="v">≈ '+fmtE(r.aufwand)+'</span></div>'
-      : '<div class="kpi"><span class="l">Mtl. Überschuss (J. 1, nach Steuern)*</span><span class="v good">≈ +'+fmtE(r.ueberschuss)+'</span></div>';
-    return '<div class="obj">'+
-      '<div class="obj-img"><span class="obj-badge">'+o.badge+'</span>'+objIcon()+'</div>'+
-      '<div class="obj-body">'+
-        '<h3>'+o.titel+'</h3><div class="loc">'+o.ort+'</div>'+
-        '<div class="facts">'+
-          '<span class="fact">'+fmtE(o.kaufpreis)+'</span>'+
-          '<span class="fact">'+o.flaeche+' m²</span>'+
-          '<span class="fact">Bj. '+o.baujahr+'</span>'+
-          '<span class="fact">'+fmtE(o.miete)+' Kaltmiete/Mon.</span>'+
-        '</div>'+
-        '<div class="kpis">'+
-          '<div class="kpi"><span class="l">Mietrendite</span><span class="v">'+fmtP(r.mietrendite)+'</span></div>'+
-          aufwandRow+
-          '<div class="kpi"><span class="l">Prognose EK-Rendite p. a. ('+ANNAHMEN.jahre+' J.)*</span><span class="v good">≈ '+fmtP(r.irr)+'</span></div>'+
-          '<div class="kpi"><span class="l">Benötigtes Eigenkapital (Nebenkosten)</span><span class="v">≈ '+fmtE(r.ek)+'</span></div>'+
-        '</div>'+
-        '<a class="btn btn-jade btn-sm" href="#kontakt" data-tab="rueckruf" data-thema="objekt">Dieses Objekt durchrechnen</a>'+
-      '</div></div>';
-  }).join("");
-  document.getElementById("assBox").innerHTML =
-    "Vollfinanzierung des Kaufpreises (Eigenkapital = Kaufnebenkosten: "+fmtP(ANNAHMEN.grest+ANNAHMEN.notar,1)+"), Sollzins "+fmtP(ANNAHMEN.zins)+
-    ", anfängliche Tilgung "+fmtP(ANNAHMEN.tilgung)+", Grenzsteuersatz "+fmtP(ANNAHMEN.steuersatz,0)+
-    ", AfA "+fmtP(ANNAHMEN.afa,0)+" auf "+fmtP(ANNAHMEN.gebAnteil,0)+" Gebäudeanteil, Miet-/Kosten-/Wertsteigerung "+
-    fmtP(ANNAHMEN.mietSteig)+" / "+fmtP(ANNAHMEN.kostenSteig)+" / "+fmtP(ANNAHMEN.wertSteig)+" p. a., Betrachtung über "+ANNAHMEN.jahre+" Jahre inkl. rechnerischem Verkauf. "+
-    "Individuelle Werte (Ihr Steuersatz, Zins, Eigenkapital) verändern das Ergebnis – genau dafür ist das Erstgespräch da.";
+  var g=document.getElementById('objGrid'); if(!g) return;
+  var q=q_readForm();
+  var fmtE=function(n){return Math.round(n).toLocaleString('de-DE')+' €';};
+  g.innerHTML = PORTFOLIO.map(function(p){
+    var a=q_ampel(p,q), facts='', kpis='';
+    if(p.preset){
+      var pr=p.preset;
+      facts='<div class="facts"><span class="fact">'+fmtE(pr.kaufpreis)+'</span><span class="fact">'+pr.miete+' € Kaltmiete/Mon.</span><span class="fact">'+pr.bundesland+'</span></div>';
+      if(a.r) kpis='<div class="kpis"><div class="kpi"><span class="l">Benoetigtes Eigenkapital (Nebenkosten)</span><span class="v">≈ '+fmtE(a.r.requiredEK)+'</span></div><div class="kpi"><span class="l">Mtl. Eigenaufwand (J. 2, nach Steuern)*</span><span class="v">≈ '+fmtE(Math.max(0,a.r.monthly2))+'</span></div></div>';
+    } else { facts='<div class="facts"><span class="fact">Daten folgen</span></div>'; }
+    var btn = p.preset
+      ? '<button type="button" class="btn btn-jade btn-sm" data-tier="'+p.key+'">Diese Immobilie durchrechnen</button>'
+      : '<button type="button" class="btn btn-sm" disabled style="opacity:.5;cursor:not-allowed">Bald verfuegbar</button>';
+    var expl='<div class="obj-ampel amp-'+a.status+'"><b>'+a.kurz+'</b><span>'+a.text+'</span></div>';
+    return '<div class="obj obj-amp amp-'+a.status+'"><div class="obj-img"><span class="obj-badge">'+p.badge+'</span>'+q_objIcon()+'</div><div class="obj-body"><h3>'+p.titel+'</h3><div class="loc">'+p.ort+'</div>'+facts+kpis+expl+btn+'</div></div>';
+  }).join('');
+  g.querySelectorAll('[data-tier]').forEach(function(b){ b.addEventListener('click', function(){ openTierCalc(b.getAttribute('data-tier')); }); });
+  var ab=document.getElementById('assBox');
+  if(ab) ab.innerHTML='Vorab-Einschaetzung vereinfacht (v1): Eigenkapital = Kaufnebenkosten (Grunderwerbsteuer je Bundesland + Notar + Makler), Kaufpreis zu 100 % finanziert, anfaengliche Tilgung '+(Q_DEF.tilgung*100).toLocaleString('de-DE')+' %, Steuerwirkung nach § 32a EStG 2026 auf Ihr ZVE (Grundtarif). Mtl. Eigenaufwand: Jahr 2 nach Steuern. Die genaue, persoenliche Rechnung erfolgt im eingebetteten Rechner und im Erstgespraech.';
 }
+
+/* Formular-Eingaben -> Ampel live */
+(function(){
+  document.addEventListener('input', function(e){
+    if(e.target && /^(q-netto|q-zve|q-ek|q-monat|q-fam-betrag)$/.test(e.target.id)) renderObjekte();
+  });
+  document.addEventListener('change', function(e){
+    if(e.target && e.target.id==='q-fam'){
+      var w=document.getElementById('q-fam-wrap'); if(w) w.style.display=e.target.checked?'':'none';
+      renderObjekte();
+    }
+  });
+})();
+
 renderObjekte();
+
+/* ---------- Portfolio-Rechner: preset + gesperrt einbetten ---------- */
+function q_lockField(doc,key,val){
+  var el=doc.querySelector('[data-f="'+key+'"]'); if(!el) return;
+  el.value=val;
+  el.dispatchEvent(new Event('input',{bubbles:true}));
+  el.dispatchEvent(new Event('change',{bubbles:true}));
+  el.classList.add('lp-locked'); el.style.pointerEvents='none'; el.tabIndex=-1;
+  if(el.tagName!=='SELECT') el.setAttribute('readonly','readonly');
+}
+function openTierCalc(key){
+  var p=PORTFOLIO.filter(function(x){return x.key===key;})[0]; if(!p||!p.preset) return;
+  var wrap=document.getElementById('objCalcWrap'), mount=document.getElementById('objCalcMount'), title=document.getElementById('objCalcTitle');
+  if(title) title.textContent='Ihr Rechner — '+p.stufe+'-Objekt (Objektdaten fest vorgegeben)';
+  wrap.style.display='block';
+  var q=q_readForm();
+  mount.innerHTML='';
+  var f=document.createElement('iframe');
+  f.id='objRechnerFrame'; f.title='Rechner '+p.stufe; f.setAttribute('scrolling','no'); f.src='rechner.html';
+  mount.appendChild(f);
+  f.addEventListener('load', function(){
+    var doc; try{ doc=f.contentDocument; }catch(_){ doc=null; }
+    if(!doc||!doc.querySelector('[data-f]')) return;
+    if(!doc.getElementById('lp-hide')){ var st=doc.createElement('style'); st.id='lp-hide'; st.textContent='#dropZone,#dzStatus{display:none !important}'; (doc.head||doc.documentElement).appendChild(st); }
+    var pr=p.preset;
+    q_lockField(doc,'name',pr.name);
+    q_lockField(doc,'afaArt',pr.afaArt);
+    q_lockField(doc,'kaufpreis',pr.kaufpreis);
+    q_lockField(doc,'miete',pr.miete);
+    q_lockField(doc,'kostenMtl',pr.kostenMtl);
+    q_lockField(doc,'gebAnteilPct',pr.gebAnteilPct);
+    q_lockField(doc,'afaSatzPct',pr.afaSatzPct);
+    q_lockField(doc,'bundesland',pr.bundesland);
+    q_lockField(doc,'notarPct',pr.notarPct);
+    q_lockField(doc,'notarWkPct',pr.notarWkPct);
+    q_lockField(doc,'maklerPct',pr.maklerPct);
+    var zins=doc.getElementById('sollzins'); if(zins){ zins.value=pr.sollzins; zins.dispatchEvent(new Event('input',{bubbles:true})); zins.dispatchEvent(new Event('change',{bubbles:true})); }
+    if(q.zve!=null){
+      var zt=doc.getElementById('zvE'), zr=doc.getElementById('zvE_r');
+      if(zt){ zt.value=Math.round(q.zve); zt.dispatchEvent(new Event('input',{bubbles:true})); zt.dispatchEvent(new Event('change',{bubbles:true})); }
+      if(zr){ zr.value=Math.round(q.zve); zr.dispatchEvent(new Event('input',{bubbles:true})); }
+    }
+    function fit(){ try{ f.style.height=Math.max(400,Math.ceil(doc.body.scrollHeight))+'px'; }catch(_){} }
+    fit(); if(window.ResizeObserver){ try{ new ResizeObserver(fit).observe(doc.body); }catch(_){} }
+    doc.addEventListener('click',function(){ setTimeout(fit,60); setTimeout(fit,350); });
+    doc.addEventListener('input',function(){ setTimeout(fit,60); });
+    setInterval(fit,1000); setTimeout(fit,300);
+  });
+  setTimeout(function(){ wrap.scrollIntoView({behavior:'smooth',block:'start'}); }, 80);
+}
 
 /* ============================================================
    RECHNER-BRÜCKE  (Landingpage-Layer über dem eingebetteten Rechner)
