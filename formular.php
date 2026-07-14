@@ -47,6 +47,7 @@ $labels = [
     "nachricht" => "Nachricht",
     "quelle" => "Quelle",
     "form-name" => "Formular",
+    "rechner_zusammenfassung" => "Rechner-Eingaben des Kunden",
 ];
 
 $zeilen = [];

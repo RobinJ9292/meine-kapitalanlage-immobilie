@@ -1169,10 +1169,22 @@ function renderObjekte(){
 }
 renderObjekte();
 
-/* ---------- Eingebetteter Rechner: Höhe automatisch anpassen ---------- */
+/* ============================================================
+   RECHNER-BRÜCKE  (Landingpage-Layer über dem eingebetteten Rechner)
+   ------------------------------------------------------------
+   WICHTIG: rechner.html ist Robins Original – 1:1, UNVERÄNDERT.
+   Alle Landingpage-Anpassungen passieren hier von der Elternseite aus
+   (gleiche Domain = voller Zugriff aufs iframe-Dokument):
+     1) Dokumenten-Import (Drag&Drop) ausblenden
+     2) Höhe automatisch anpassen (kein Skript im Rechner nötig)
+     3) Eingegebene Kundendaten auslesen  ->  window.MKI_getRechnerDaten()
+   Künftiges Update des Rechners = einfach rechner.html ersetzen. Fertig.
+============================================================ */
 (function(){
   var frame = document.getElementById("rechnerFrame");
   if(!frame) return;
+
+  /* --- Fallback: alte postMessage-Höhenmeldung (falls je gebraucht) --- */
   window.addEventListener("message", function(e){
     if(e.source !== frame.contentWindow) return;
     var d = e.data;
@@ -1180,6 +1192,92 @@ renderObjekte();
       frame.style.height = Math.max(700, Math.ceil(d.height)) + "px";
     }
   });
+
+  /* --- Höhe direkt von der Elternseite steuern (same-origin) --- */
+  function fit(doc){
+    try{
+      var h = Math.max(
+        doc.documentElement.scrollHeight,
+        doc.body ? doc.body.scrollHeight : 0
+      );
+      frame.style.height = Math.max(700, Math.ceil(h)) + "px";
+    }catch(_){}
+  }
+
+  var resizeTimer = null;   // ein einziger Timer, egal wie oft attach() läuft
+
+  function attach(){
+    var doc;
+    try{ doc = frame.contentDocument || (frame.contentWindow && frame.contentWindow.document); }
+    catch(_){ doc = null; }          // cross-origin -> postMessage-Fallback greift
+    if(!doc || !doc.body) return;
+    /* Nur anhängen, wenn wirklich der Rechner geladen ist (nicht about:blank
+       beim Lazy-Loading) – sonst würden zwei Timer gegeneinander laufen. */
+    if(!doc.querySelector("[data-f]")) return;
+
+    /* 1) Dokumenten-Import / Drag & Drop ausblenden (statt Datei zu ändern) */
+    if(!doc.getElementById("lp-hide")){
+      var st = doc.createElement("style");
+      st.id = "lp-hide";
+      st.textContent = "#dropZone,#dzStatus{display:none !important}";
+      (doc.head || doc.documentElement).appendChild(st);
+    }
+
+    /* 2) Auto-Resize (idempotent: alten Timer stoppen, Listener nur einmal) */
+    fit(doc);
+    if(resizeTimer){ clearInterval(resizeTimer); }
+    resizeTimer = setInterval(function(){ fit(doc); }, 1000);
+    if(!doc.__mkiWired){
+      doc.__mkiWired = true;
+      if(window.ResizeObserver){ try{ new ResizeObserver(function(){ fit(doc); }).observe(doc.body); }catch(_){} }
+      doc.addEventListener("click", function(){ setTimeout(function(){fit(doc);},60); setTimeout(function(){fit(doc);},350); });
+      doc.addEventListener("input", function(){ setTimeout(function(){fit(doc);},60); });
+      window.addEventListener("resize", function(){ fit(doc); });
+    }
+    setTimeout(function(){ fit(doc); }, 200);
+    setTimeout(function(){ fit(doc); }, 600);
+  }
+
+  frame.addEventListener("load", attach);
+  /* Falls beim Laden der Seite schon fertig (aus dem Cache): der Guard oben
+     ignoriert leere about:blank-Dokumente automatisch. */
+  try{ attach(); }catch(_){}
+
+  /* 3) Kundendaten aus dem Rechner auslesen – für den Lead-Funnel.
+        Liest generisch ALLE [data-f]-Felder, damit es auch nach künftigen
+        Rechner-Updates weiter funktioniert. Gibt {} zurück, wenn (noch) leer. */
+  window.MKI_getRechnerDaten = function(){
+    var out = {};
+    var doc;
+    try{ doc = frame.contentDocument || frame.contentWindow.document; }catch(_){ return out; }
+    if(!doc) return out;
+    try{
+      doc.querySelectorAll("[data-f]").forEach(function(el){
+        var k = el.getAttribute("data-f");
+        if(!k) return;
+        var v = (el.type === "checkbox") ? (el.checked ? "ja" : "") : el.value;
+        if(v !== "" && v != null) out[k] = ("" + v).trim();
+      });
+    }catch(_){}
+    return out;
+  };
+
+  /* Menschlich lesbare Kurzfassung fürs Lead-Mail / den Funnel */
+  window.MKI_getRechnerText = function(){
+    var d = window.MKI_getRechnerDaten();
+    var LAB = {
+      name:"Objekt/Name", kaufpreis:"Kaufpreis (€)", miete:"Miete kalt mtl. (€)",
+      kostenMtl:"nicht umlegbare Kosten mtl. (€)", gebAnteilPct:"Gebäudeanteil (%)",
+      afaArt:"AfA-Art", afaSatzPct:"AfA-Satz (%)", bundesland:"Bundesland",
+      notarPct:"Notar (%)", notarWkPct:"Grundbuch/Notar WK (%)", maklerPct:"Makler (%)",
+      grEStPct:"Grunderwerbsteuer (%)", sanierung:"Sanierung (€)", sanJahre:"Sanierung Jahre",
+      eigenkapital:"Eigenkapital (€)", zinsPct:"Sollzins (%)", tilgungPct:"Tilgung (%)",
+      steuersatzPct:"Steuersatz (%)", zvE:"zu verst. Einkommen (€)"
+    };
+    var keys = Object.keys(d);
+    if(!keys.length) return "";
+    return keys.map(function(k){ return (LAB[k] || k) + ": " + d[k]; }).join("\n");
+  };
 })();
 
 /* ---------- Tabs ---------- */
@@ -1501,7 +1599,18 @@ document.getElementById("leadForm").addEventListener("submit",function(e){
     err.style.display="block"; return;
   }
   var btn=document.getElementById("submitBtn"); btn.disabled=true; btn.textContent="Wird gesendet …";
-  fetch("formular.php",{method:"POST",body:new FormData(f)})
+  var fd=new FormData(f);
+  /* Rechner-Eingaben des Kunden mit an den Lead hängen (falls vorhanden) */
+  try{
+    var rd = window.MKI_getRechnerDaten ? window.MKI_getRechnerDaten() : {};
+    if(rd && Object.keys(rd).length){
+      /* lesbare Kurzfassung -> landet direkt in der Lead-Mail */
+      fd.append("rechner_zusammenfassung", window.MKI_getRechnerText());
+      /* strukturierte Daten -> für Tracking / späteren Lead-Funnel */
+      if(window.dataLayer) dataLayer.push({event:"rechner_lead_daten", rechner:rd});
+    }
+  }catch(_){}
+  fetch("formular.php",{method:"POST",body:fd})
     .then(function(r){return r.json()})
     .then(function(j){
       if(j.ok){
