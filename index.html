@@ -306,11 +306,10 @@ section{padding:84px 0;scroll-margin-top:76px}
 .form-ok h3{margin-bottom:8px}
 .form-err{display:none;margin-top:14px;background:#FDECEE;border:1px solid var(--error);color:#8f1626;border-radius:12px;padding:12px 15px;font-size:13.5px}
 .cal-wrap{min-height:640px}
-/* Calendly fest verankert: hoch genug, damit der komplette Kalender ohne
-   internes Scrollen sichtbar ist (nur die Seite scrollt, nicht das Widget).
-   Wird per JS an die von Calendly gemeldete Höhe feinjustiert. */
-.calendly-inline-widget{width:100%;height:1040px;overflow:hidden}
-@media(max-width:640px){.calendly-inline-widget{height:1180px}}
+/* Calendly fest verankert: feste Höhe, damit der Kalender nicht springt/
+   kollabiert. Nur die Seite scrollt, nicht das Widget. */
+#calFrame{display:block;width:100%;height:1000px;border:0}
+@media(max-width:640px){#calFrame{height:1150px}}
 .cal-note{font-size:12px;color:var(--muted);text-align:center;margin:10px auto 0;max-width:520px}
 .cal-consent{text-align:center;padding:48px 20px}
 .cal-consent p{font-size:14px;color:var(--muted);max-width:440px;margin:0 auto 20px}
@@ -1200,14 +1199,17 @@ renderObjekte();
     }
   });
 
-  /* --- Höhe direkt von der Elternseite steuern (same-origin) --- */
+  /* --- Höhe direkt von der Elternseite steuern (same-origin) ---
+     WICHTIG: den INHALT über body messen, NICHT documentElement.scrollHeight.
+     Letzteres liefert die (bereits gesetzte) iframe-Höhe zurück und würde beim
+     Wechsel auf eine kürzere Seite (z. B. Schritt 2) nicht schrumpfen
+     -> großer Leerraum. body.scrollHeight/offsetHeight ist die echte Inhaltshöhe
+     und wächst wie schrumpft korrekt mit. */
   function fit(doc){
     try{
-      var h = Math.max(
-        doc.documentElement.scrollHeight,
-        doc.body ? doc.body.scrollHeight : 0
-      );
-      frame.style.height = Math.max(700, Math.ceil(h)) + "px";
+      var b = doc.body; if(!b) return;
+      var h = Math.max(b.scrollHeight, b.offsetHeight);
+      frame.style.height = Math.max(400, Math.ceil(h)) + "px";
     }catch(_){}
   }
 
@@ -1396,38 +1398,30 @@ document.querySelectorAll(".choice").forEach(function(c){
   } else { run(); }
 })();
 
-/* ---------- Calendly: automatisch & nur EINMAL laden ---------- */
+/* ---------- Calendly: automatisch & nur EINMAL laden ----------
+   Bewusst als schlichtes <iframe> mit FESTER Höhe – NICHT über Calendlys
+   widget.js. Grund: dessen Auto-Resize meldet im gerade eingeblendeten
+   Tab-Kontext fälschlich 2px und lässt den Kalender kollabieren (leer).
+   Feste Höhe = zuverlässiges Laden + fest verankert (kein internes
+   Scrollen/Springen). Der Kalender rendert direkt aus der Calendly-URL. */
 var calLoaded=false;
 function loadCalendly(){
   if(calLoaded) return;
   calLoaded=true;
   var cc=document.getElementById("calConsent");
   if(cc) cc.style.display="none";
-  var d=document.createElement("div");
-  d.id="calWidget";
-  d.className="calendly-inline-widget";
-  d.setAttribute("data-url",CAL_URL+"?hide_gdpr_banner=1&primary_color=2C517F");
-  d.style.minWidth="320px";           /* Höhe kommt aus dem CSS (fest verankert) */
-  document.getElementById("calMount").appendChild(d);
-  var s=document.createElement("script");
-  s.src="https://assets.calendly.com/assets/external/widget.js"; s.async=true;
-  document.body.appendChild(s);
+  var f=document.createElement("iframe");
+  f.id="calFrame";
+  f.title="Termin bei Robin Jänicke buchen";
+  f.setAttribute("loading","lazy");
+  f.src=CAL_URL+"?hide_gdpr_banner=1&primary_color=2C517F"
+       +"&embed_domain="+encodeURIComponent(location.hostname)
+       +"&embed_type=Inline";
+  document.getElementById("calMount").appendChild(f);
 }
 /* Manueller Button bleibt als Fallback erhalten */
 var _loadCalBtn=document.getElementById("loadCal");
 if(_loadCalBtn) _loadCalBtn.addEventListener("click",loadCalendly);
-
-/* Feinjustierung: falls Calendly seine Inhaltshöhe meldet, iframe exakt
-   darauf setzen -> nie internes Scrollen ("fest verankert"). Harmlos, wenn
-   das Event nicht kommt (dann greift die feste CSS-Höhe). */
-window.addEventListener("message",function(e){
-  if(typeof e.origin==="string" && e.origin.indexOf("calendly.com")===-1) return;
-  var d=e.data;
-  if(d && d.event==="calendly.page_height" && d.payload && d.payload.height){
-    var w=document.getElementById("calWidget");
-    if(w) w.style.height=d.payload.height;
-  }
-});
 
 /* ---------- Formular ---------- */
 (function(){
