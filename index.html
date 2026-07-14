@@ -259,8 +259,15 @@ section{padding:84px 0;scroll-margin-top:76px}
 .qfield{display:flex;flex-direction:column;gap:5px}
 .qfield label{font-size:13px;font-weight:700;color:var(--ink)}
 .qfield label span{color:var(--muted);font-weight:400}
-.qfield input[type=text]{padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;font-family:var(--sans);font-size:15px;background:#fff;color:var(--ink)}
+.qfield input[type=text]{padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;font-family:var(--sans);font-size:15px;background:#fff;color:var(--ink);width:100%}
 .qfield input[type=text]:focus{outline:none;border-color:var(--true-blue)}
+.qrow{display:flex;flex-direction:column;gap:8px}
+.qrow input[type=text]{max-width:150px}
+.qrow input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:999px;background:var(--jade-20,#e4eef0);outline:none;margin:2px 0}
+.qrow input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--true-blue);cursor:pointer;border:3px solid #fff;box-shadow:0 1px 4px rgba(13,27,46,.25)}
+.qrow input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--true-blue);cursor:pointer;border:3px solid #fff;box-shadow:0 1px 4px rgba(13,27,46,.25)}
+.obj-ekr{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:12.5px;color:var(--muted);margin:4px 0 12px}
+.obj-ekr b{font-size:16px;color:#0f6b40;font-family:var(--serif,inherit)}
 .qfield-fam .qcheck{flex-direction:row;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--ink);cursor:pointer}
 .qual-note{font-size:12px;color:var(--muted);margin-top:14px}
 .obj-amp{border-width:2px;border-style:solid}
@@ -848,16 +855,21 @@ footer a:hover{color:var(--jade)}
     <div class="qual-box">
       <div class="qual-head"><b>Passt eine dieser Immobilien zu Ihnen?</b><span>Ein paar Angaben genügen – ich markiere die passenden Objekte und rechne sie für Sie durch. Unverbindlich, nichts wird gespeichert.</span></div>
       <div class="qual-grid">
-        <div class="qfield"><label for="q-netto">Netto-Einkommen <span>€ / Monat</span></label><input type="text" inputmode="numeric" autocomplete="off" id="q-netto" placeholder="z. B. 2.800"></div>
-        <div class="qfield"><label for="q-zve">Zu versteuerndes Einkommen (ZVE) <span>€ / Jahr</span></label><input type="text" inputmode="numeric" autocomplete="off" id="q-zve" placeholder="z. B. 38.000"></div>
-        <div class="qfield"><label for="q-ek">Verfügbares Eigenkapital <span>€</span></label><input type="text" inputmode="numeric" autocomplete="off" id="q-ek" placeholder="z. B. 10.000"></div>
-        <div class="qfield"><label for="q-monat">Möglicher mtl. Eigenaufwand <span>€ / Monat</span></label><input type="text" inputmode="numeric" autocomplete="off" id="q-monat" placeholder="z. B. 150"></div>
+        <div class="qfield"><label for="q-netto">Monatliches Netto-Einkommen <span>€ / Monat</span></label>
+          <div class="qrow"><input type="text" inputmode="numeric" autocomplete="off" id="q-netto"><input type="range" id="q-netto-r"></div></div>
+        <div class="qfield"><label for="q-monat">Möglicher monatlicher Eigenaufwand <span>€ / Monat</span></label>
+          <div class="qrow"><input type="text" inputmode="numeric" autocomplete="off" id="q-monat"><input type="range" id="q-monat-r"></div></div>
+        <div class="qfield"><label for="q-ek">Eigenkapital <span>€</span></label>
+          <div class="qrow"><input type="text" inputmode="numeric" autocomplete="off" id="q-ek"><input type="range" id="q-ek-r"></div></div>
+        <div class="qfield"><label for="q-zve">Zu versteuerndes Einkommen (ZVE) <span>€ / Jahr</span></label>
+          <div class="qrow"><input type="text" inputmode="numeric" autocomplete="off" id="q-zve"><input type="range" id="q-zve-r"></div></div>
         <div class="qfield qfield-fam">
-          <label class="qcheck"><input type="checkbox" id="q-fam"> Unterstützung aus der Familie möglich?</label>
-          <div id="q-fam-wrap" style="display:none;margin-top:8px"><label for="q-fam-betrag">Voraussichtlich <span>€</span></label><input type="text" inputmode="numeric" autocomplete="off" id="q-fam-betrag" placeholder="z. B. 10.000"></div>
+          <label class="qcheck"><input type="checkbox" id="q-fam"> Können Eltern, Großeltern oder andere Verwandte finanziell unterstützen?</label>
+          <div id="q-fam-wrap" style="display:none;margin-top:10px"><label for="q-fam-betrag">Voraussichtliche Unterstützung <span>€</span></label>
+            <div class="qrow"><input type="text" inputmode="numeric" autocomplete="off" id="q-fam-betrag"><input type="range" id="q-fam-betrag-r"></div></div>
         </div>
       </div>
-      <p class="qual-note">Vorab-Einschätzung (vereinfacht) rein anhand Eigenkapital &amp; monatlichem Eigenaufwand – die genaue, persönliche Rechnung erfolgt im Rechner unten und im Erstgespräch.</p>
+      <p class="qual-note">Vorab-Einschätzung (vereinfacht): Eigenkapital ≥ Kaufnebenkosten und Ihr möglicher mtl. Eigenaufwand ≥ Eigenaufwand nach Steuern im 2. Jahr → grün. Reicht nur das Eigenkapital nicht, aber die Familie unterstützt → gelb. Sonst rot. Das ZVE bestimmt live den Steuereffekt – sinkt es, steigt der Eigenaufwand. Die genaue Rechnung erfolgt im Rechner unten.</p>
     </div>
     <div class="obj-grid" id="objGrid"><!-- Karten werden per JS gerendert --></div>
 
@@ -1141,13 +1153,13 @@ var ANNAHMEN = {
 /* PORTFOLIO-STUFEN — Einsteiger fest & unveraenderbar, Rest folgt.        */
 /* EDIT: Fortgeschritten/Profi preset ergaenzen, sobald Daten vorliegen.  */
 var PORTFOLIO = [
-  { key:"einsteiger", stufe:"Einsteiger", titel:"Einsteiger-Objekt", ort:"Sachsen-Anhalt · Bestand", badge:"Einsteiger",
+  { key:"einsteiger", stufe:"Einsteiger", preisRange:"100.000 – 150.000 €", badge:"Einsteiger",
     preset:{ name:"Einsteiger-Objekt", kaufpreis:120000, miete:375, kostenMtl:40,
              gebAnteilPct:89, afaArt:"custom", afaSatzPct:3.4,
              notarPct:1.7, notarWkPct:40, maklerPct:0, bundesland:"Sachsen-Anhalt",
              sollzins:4.8 } },
-  { key:"fortgeschritten", stufe:"Fortgeschritten", titel:"Fortgeschritten-Objekt", ort:"Daten folgen", badge:"Fortgeschritten", preset:null },
-  { key:"profi", stufe:"Profi", titel:"Profi-Objekt", ort:"Daten folgen", badge:"Profi", preset:null }
+  { key:"fortgeschritten", stufe:"Fortgeschritten", preisRange:"150.000 – 300.000 €", badge:"Fortgeschritten", preset:null },
+  { key:"profi", stufe:"Profi", preisRange:"ab 300.000 €", badge:"Profi", preset:null }
 ];
 
 /* Grunderwerbsteuer je Bundesland (wie im Rechner) */
@@ -1158,7 +1170,7 @@ var Q_GREST = { 'Baden-Württemberg':0.050,'Bayern':0.035,'Berlin':0.060,'Brande
 
 /* Annahmen fuer die Ampel-Vorabschaetzung (Feinheiten spaeter mit Robin).
    Der eingebettete Rechner ist die genaue Quelle. */
-var Q_DEF = { tilgung:0.02, mietSteig:0.015, kostenSteig:0.02 };
+var Q_DEF = { tilgung:0.02, mietSteig:0.015, kostenSteig:0.02, wertSteig:0.02, jahre:10 };
 
 /* §32a EStG 2026 (aus dem Rechner) — v1: Grundtarif, ohne Splitting/Kirchensteuer */
 function q_estGrund(zvE){ var x=Math.floor(Math.max(0,zvE)),st;
@@ -1172,24 +1184,32 @@ function q_soli(s){ var fg=20350; return s<=fg?0:Math.min(0.055*s,0.119*(s-fg));
 function q_gesamtSteuer(zvE){ var e=q_estGrund(zvE); return e+q_soli(e); }
 function q_taxEffect(zvE,delta){ return q_gesamtSteuer(zvE+delta)-q_gesamtSteuer(zvE); }
 
-/* Vorabschaetzung: benoetigtes EK (=Kaufnebenkosten) + mtl. Eigenaufwand Jahr 2 nach Steuern */
+/* Vorabschaetzung: benoetigtes EK (=Kaufnebenkosten), mtl. Eigenaufwand Jahr 2
+   nach Steuern und Prognose EK-Rendite p.a. (IRR ueber Q_DEF.jahre inkl. Verkauf) */
 function q_tierRechnung(pr, zvE){
   var grest = Q_GREST[pr.bundesland]!=null?Q_GREST[pr.bundesland]:0.06;
   var nk = pr.kaufpreis*(grest + pr.notarPct/100 + pr.maklerPct/100);
+  var ek = nk;
   var darlehen = pr.kaufpreis;
   var zins = pr.sollzins/100, tilg = Q_DEF.tilgung;
   var rate = darlehen*(zins+tilg);
   var afa = pr.kaufpreis*(pr.gebAnteilPct/100)*(pr.afaSatzPct/100);
-  var rest=darlehen, miete=pr.miete*12, kosten=pr.kostenMtl*12, monat2=0;
-  for(var j=1;j<=2;j++){
+  var rest=darlehen, miete=pr.miete*12, kosten=pr.kostenMtl*12, monat2=0, flows=[-ek];
+  for(var j=1;j<=Q_DEF.jahre;j++){
     var zinsJ=rest*zins; var tilgJ=Math.min(rate-zinsJ,rest); rest-=tilgJ;
     var steuerErg = miete - kosten - zinsJ - afa;      // steuerliches Ergebnis
     var steuer = q_taxEffect(zvE, steuerErg);          // <0 = Ersparnis
     var cf = miete - kosten - (zinsJ+tilgJ) - steuer;  // <0 = Eigenaufwand
     if(j===2) monat2 = -cf/12;
+    flows.push(cf);
     miete*=(1+Q_DEF.mietSteig); kosten*=(1+Q_DEF.kostenSteig);
   }
-  return { requiredEK: Math.round(nk), monthly2: monat2 };
+  var wert = pr.kaufpreis*Math.pow(1+Q_DEF.wertSteig, Q_DEF.jahre);
+  flows[flows.length-1] += (wert - rest);
+  function npv(r){ var s=0; for(var i=0;i<flows.length;i++) s+=flows[i]/Math.pow(1+r,i); return s; }
+  var lo=-0.5, hi=1.0, irr=0;
+  if(npv(lo)*npv(hi)<0){ for(var k=0;k<80;k++){ irr=(lo+hi)/2; (npv(lo)*npv(irr)<=0)?hi=irr:lo=irr; } }
+  return { requiredEK: Math.round(nk), monthly2: monat2, irr: irr };
 }
 
 function q_readForm(){
@@ -1225,35 +1245,53 @@ function renderObjekte(){
   var g=document.getElementById('objGrid'); if(!g) return;
   var q=q_readForm();
   var fmtE=function(n){return Math.round(n).toLocaleString('de-DE')+' €';};
+  var fmtP=function(n){return (n*100).toLocaleString('de-DE',{minimumFractionDigits:1,maximumFractionDigits:1})+' %';};
   g.innerHTML = PORTFOLIO.map(function(p){
-    var a=q_ampel(p,q), facts='', kpis='';
+    var a=q_ampel(p,q), facts='', kpis='', ekr='';
     if(p.preset){
       var pr=p.preset;
       facts='<div class="facts"><span class="fact">'+fmtE(pr.kaufpreis)+'</span><span class="fact">'+pr.miete+' € Kaltmiete/Mon.</span><span class="fact">'+pr.bundesland+'</span></div>';
-      if(a.r) kpis='<div class="kpis"><div class="kpi"><span class="l">Benoetigtes Eigenkapital (Nebenkosten)</span><span class="v">≈ '+fmtE(a.r.requiredEK)+'</span></div><div class="kpi"><span class="l">Mtl. Eigenaufwand (J. 2, nach Steuern)*</span><span class="v">≈ '+fmtE(Math.max(0,a.r.monthly2))+'</span></div></div>';
+      if(a.r){
+        kpis='<div class="kpis"><div class="kpi"><span class="l">Benoetigtes Eigenkapital (Nebenkosten)</span><span class="v">≈ '+fmtE(a.r.requiredEK)+'</span></div><div class="kpi"><span class="l">Mtl. Eigenaufwand (J. 2, nach Steuern)*</span><span class="v">≈ '+fmtE(Math.max(0,a.r.monthly2))+'</span></div></div>';
+        ekr='<div class="obj-ekr">Prognose EK-Rendite p. a. ('+Q_DEF.jahre+' J.)*<b>≈ '+fmtP(a.r.irr)+'</b></div>';
+      }
     } else { facts='<div class="facts"><span class="fact">Daten folgen</span></div>'; }
     var btn = p.preset
       ? '<button type="button" class="btn btn-jade btn-sm" data-tier="'+p.key+'">Diese Immobilie durchrechnen</button>'
       : '<button type="button" class="btn btn-sm" disabled style="opacity:.5;cursor:not-allowed">Bald verfuegbar</button>';
     var expl='<div class="obj-ampel amp-'+a.status+'"><b>'+a.kurz+'</b><span>'+a.text+'</span></div>';
-    return '<div class="obj obj-amp amp-'+a.status+'"><div class="obj-img"><span class="obj-badge">'+p.badge+'</span>'+q_objIcon()+'</div><div class="obj-body"><h3>'+p.titel+'</h3><div class="loc">'+p.ort+'</div>'+facts+kpis+expl+btn+'</div></div>';
+    return '<div class="obj obj-amp amp-'+a.status+'"><div class="obj-img"><span class="obj-badge">'+p.badge+'</span>'+q_objIcon()+'</div><div class="obj-body"><h3>'+p.stufe+'</h3><div class="loc">'+p.preisRange+'</div>'+facts+kpis+expl+ekr+btn+'</div></div>';
   }).join('');
   g.querySelectorAll('[data-tier]').forEach(function(b){ b.addEventListener('click', function(){ openTierCalc(b.getAttribute('data-tier')); }); });
   var ab=document.getElementById('assBox');
   if(ab) ab.innerHTML='Vorab-Einschaetzung vereinfacht (v1): Eigenkapital = Kaufnebenkosten (Grunderwerbsteuer je Bundesland + Notar + Makler), Kaufpreis zu 100 % finanziert, anfaengliche Tilgung '+(Q_DEF.tilgung*100).toLocaleString('de-DE')+' %, Steuerwirkung nach § 32a EStG 2026 auf Ihr ZVE (Grundtarif). Mtl. Eigenaufwand: Jahr 2 nach Steuern. Die genaue, persoenliche Rechnung erfolgt im eingebetteten Rechner und im Erstgespraech.';
 }
 
-/* Formular-Eingaben -> Ampel live */
+/* Freifeld + Schieberegler koppeln (Standardwerte + Schrittweiten) */
+function q_bindSlider(txtId, rngId, def, min, max, step){
+  var t=document.getElementById(txtId), r=document.getElementById(rngId);
+  if(!t||!r) return;
+  r.min=min; r.max=max; r.step=step; r.value=def;
+  t.value=def.toLocaleString('de-DE');
+  function parseT(){ var v=(t.value||'').replace(/[^\d,.-]/g,'').replace(/\./g,'').replace(',','.'); v=parseFloat(v); return isNaN(v)?null:v; }
+  r.addEventListener('input', function(){ t.value=(+r.value).toLocaleString('de-DE'); renderObjekte(); });
+  t.addEventListener('input', function(){ var v=parseT(); if(v!=null){ r.value=v; } renderObjekte(); });
+  t.addEventListener('blur', function(){ var v=parseT(); if(v!=null) t.value=v.toLocaleString('de-DE'); });
+}
+
+/* Formular-Eingaben (Familie) -> Ampel live */
 (function(){
-  document.addEventListener('input', function(e){
-    if(e.target && /^(q-netto|q-zve|q-ek|q-monat|q-fam-betrag)$/.test(e.target.id)) renderObjekte();
-  });
   document.addEventListener('change', function(e){
     if(e.target && e.target.id==='q-fam'){
       var w=document.getElementById('q-fam-wrap'); if(w) w.style.display=e.target.checked?'':'none';
       renderObjekte();
     }
   });
+  q_bindSlider('q-netto','q-netto-r', 2500, 0, 10000, 100);
+  q_bindSlider('q-monat','q-monat-r', 200, 0, 2000, 10);
+  q_bindSlider('q-ek','q-ek-r', 10000, 0, 100000, 1000);
+  q_bindSlider('q-zve','q-zve-r', 40000, 0, 200000, 1000);
+  q_bindSlider('q-fam-betrag','q-fam-betrag-r', 10000, 0, 100000, 1000);
 })();
 
 renderObjekte();
