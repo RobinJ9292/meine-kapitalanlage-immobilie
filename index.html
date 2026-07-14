@@ -1233,6 +1233,36 @@ renderObjekte();
       doc.addEventListener("click", function(){ setTimeout(function(){fit(doc);},60); setTimeout(function(){fit(doc);},350); });
       doc.addEventListener("input", function(){ setTimeout(function(){fit(doc);},60); });
       window.addEventListener("resize", function(){ fit(doc); });
+
+      /* 3) Schrittwechsel (Weiter/Zurück/Tabs) -> Elternseite an den Rechner-
+            Anfang scrollen. Der Rechner ruft intern window.scrollTo(0) auf,
+            das aber nur sein eigenes iframe-Fenster meint (wirkungslos, weil
+            volle Höhe). Wir erkennen den Wechsel an der aktiv werdenden
+            .page und scrollen die echte (Eltern-)Seite. Kein Eingriff in die
+            Rechner-Logik. */
+      try{
+        var pages = doc.querySelectorAll(".page");
+        if(pages.length && window.MutationObserver){
+          var scrollToStart = function(){
+            var frm = document.getElementById("rechnerFrame");
+            if(!frm) return;
+            var y = frm.getBoundingClientRect().top + window.pageYOffset - 90; // fixierter Header
+            if(y < 0) y = 0;
+            window.scrollTo({ top: y, behavior: "smooth" });
+          };
+          var mo = new MutationObserver(function(muts){
+            for(var i=0;i<muts.length;i++){
+              var t = muts[i].target;
+              if(t.classList && t.classList.contains("active")){
+                setTimeout(scrollToStart, 0);
+                setTimeout(scrollToStart, 140);  // nach Resize/Layout nachziehen
+                break;
+              }
+            }
+          });
+          pages.forEach(function(p){ mo.observe(p, { attributes:true, attributeFilter:["class"] }); });
+        }
+      }catch(_){}
     }
     setTimeout(function(){ fit(doc); }, 200);
     setTimeout(function(){ fit(doc); }, 600);
