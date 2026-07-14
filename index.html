@@ -857,11 +857,11 @@ footer a:hover{color:var(--jade)}
       <div class="qual-grid">
         <div class="qfield"><label for="q-netto">Monatliches Netto-Einkommen <span>€ / Monat</span></label>
           <div class="qrow"><input type="text" inputmode="numeric" autocomplete="off" id="q-netto"><input type="range" id="q-netto-r"></div></div>
-        <div class="qfield"><label for="q-monat">Möglicher monatlicher Eigenaufwand <span>€ / Monat</span></label>
+        <div class="qfield"><label for="q-monat">Möglicher monatlicher Eigenaufwand</label>
           <div class="qrow"><input type="text" inputmode="numeric" autocomplete="off" id="q-monat"><input type="range" id="q-monat-r"></div></div>
         <div class="qfield"><label for="q-ek">Eigenkapital <span>€</span></label>
           <div class="qrow"><input type="text" inputmode="numeric" autocomplete="off" id="q-ek"><input type="range" id="q-ek-r"></div></div>
-        <div class="qfield"><label for="q-zve">Zu versteuerndes Einkommen (ZVE) <span>€ / Jahr</span></label>
+        <div class="qfield"><label for="q-zve">Zu versteuerndes Einkommen (ZVE)</label>
           <div class="qrow"><input type="text" inputmode="numeric" autocomplete="off" id="q-zve"><input type="range" id="q-zve-r"></div></div>
         <div class="qfield qfield-fam">
           <label class="qcheck"><input type="checkbox" id="q-fam"> Können Eltern, Großeltern oder andere Verwandte finanziell unterstützen?</label>
@@ -1247,20 +1247,23 @@ function renderObjekte(){
   var fmtE=function(n){return Math.round(n).toLocaleString('de-DE')+' €';};
   var fmtP=function(n){return (n*100).toLocaleString('de-DE',{minimumFractionDigits:1,maximumFractionDigits:1})+' %';};
   g.innerHTML = PORTFOLIO.map(function(p){
-    var a=q_ampel(p,q), facts='', kpis='', ekr='';
+    var a=q_ampel(p,q), facts='', kpis='';
     if(p.preset){
       var pr=p.preset;
       facts='<div class="facts"><span class="fact">'+fmtE(pr.kaufpreis)+'</span><span class="fact">'+pr.miete+' € Kaltmiete/Mon.</span><span class="fact">'+pr.bundesland+'</span></div>';
       if(a.r){
-        kpis='<div class="kpis"><div class="kpi"><span class="l">Benoetigtes Eigenkapital (Nebenkosten)</span><span class="v">≈ '+fmtE(a.r.requiredEK)+'</span></div><div class="kpi"><span class="l">Mtl. Eigenaufwand (J. 2, nach Steuern)*</span><span class="v">≈ '+fmtE(Math.max(0,a.r.monthly2))+'</span></div></div>';
-        ekr='<div class="obj-ekr">Prognose EK-Rendite p. a. ('+Q_DEF.jahre+' J.)*<b>≈ '+fmtP(a.r.irr)+'</b></div>';
+        kpis='<div class="kpis">'+
+          '<div class="kpi"><span class="l">Benoetigtes Eigenkapital (Nebenkosten)</span><span class="v">≈ '+fmtE(a.r.requiredEK)+'</span></div>'+
+          '<div class="kpi"><span class="l">Mtl. Eigenaufwand (J. 2, nach Steuern)*</span><span class="v">≈ '+fmtE(Math.max(0,a.r.monthly2))+'</span></div>'+
+          '<div class="kpi"><span class="l">Prognose EK-Rendite p. a. ('+Q_DEF.jahre+' J.)*</span><span class="v good">≈ '+fmtP(a.r.irr)+'</span></div>'+
+        '</div>';
       }
     } else { facts='<div class="facts"><span class="fact">Daten folgen</span></div>'; }
     var btn = p.preset
       ? '<button type="button" class="btn btn-jade btn-sm" data-tier="'+p.key+'">Diese Immobilie durchrechnen</button>'
       : '<button type="button" class="btn btn-sm" disabled style="opacity:.5;cursor:not-allowed">Bald verfuegbar</button>';
     var expl='<div class="obj-ampel amp-'+a.status+'"><b>'+a.kurz+'</b><span>'+a.text+'</span></div>';
-    return '<div class="obj obj-amp amp-'+a.status+'"><div class="obj-img"><span class="obj-badge">'+p.badge+'</span>'+q_objIcon()+'</div><div class="obj-body"><h3>'+p.stufe+'</h3><div class="loc">'+p.preisRange+'</div>'+facts+kpis+expl+ekr+btn+'</div></div>';
+    return '<div class="obj obj-amp amp-'+a.status+'"><div class="obj-img"><span class="obj-badge">'+p.badge+'</span>'+q_objIcon()+'</div><div class="obj-body"><h3>'+p.stufe+'</h3><div class="loc">'+p.preisRange+'</div>'+facts+kpis+expl+btn+'</div></div>';
   }).join('');
   g.querySelectorAll('[data-tier]').forEach(function(b){ b.addEventListener('click', function(){ openTierCalc(b.getAttribute('data-tier')); }); });
   var ab=document.getElementById('assBox');
@@ -1288,7 +1291,7 @@ function q_bindSlider(txtId, rngId, def, min, max, step){
     }
   });
   q_bindSlider('q-netto','q-netto-r', 2500, 0, 10000, 100);
-  q_bindSlider('q-monat','q-monat-r', 200, 0, 2000, 10);
+  q_bindSlider('q-monat','q-monat-r', 250, 0, 2000, 10);
   q_bindSlider('q-ek','q-ek-r', 10000, 0, 100000, 1000);
   q_bindSlider('q-zve','q-zve-r', 40000, 0, 200000, 1000);
   q_bindSlider('q-fam-betrag','q-fam-betrag-r', 10000, 0, 100000, 1000);
@@ -1342,6 +1345,19 @@ function openTierCalc(key){
     doc.addEventListener('click',function(){ setTimeout(fit,60); setTimeout(fit,350); });
     doc.addEventListener('input',function(){ setTimeout(fit,60); });
     setInterval(fit,1000); setTimeout(fit,300);
+    /* Schrittwechsel (Weiter: Annahmen / Zur Auswertung / Zurueck / Tabs) ->
+       Elternseite an den Rechner-Anfang scrollen, damit man nicht im Leerraum landet. */
+    try{
+      var pages=doc.querySelectorAll('.page');
+      if(pages.length && window.MutationObserver){
+        var toStart=function(){ var y=f.getBoundingClientRect().top+window.pageYOffset-90; if(y<0)y=0; window.scrollTo({top:y,behavior:'smooth'}); };
+        var mo=new MutationObserver(function(muts){
+          for(var i=0;i<muts.length;i++){ var t=muts[i].target;
+            if(t.classList && t.classList.contains('active')){ setTimeout(toStart,0); setTimeout(function(){ toStart(); fit(); },160); break; } }
+        });
+        pages.forEach(function(pg){ mo.observe(pg,{attributes:true,attributeFilter:['class']}); });
+      }
+    }catch(_){}
   });
   setTimeout(function(){ wrap.scrollIntoView({behavior:'smooth',block:'start'}); }, 80);
 }
