@@ -971,7 +971,7 @@ function parseImmoText(roh) {
   const grestBetrag = geldNach(['Grunderwerbsteuer'], 80);
   if (grestBetrag && F.kaufpreis) {
     const satz = Math.round(grestBetrag / F.kaufpreis * 200) / 2 / 100; // auf 0,5 % runden
-    const kandidaten = Object.keys(GREST).filter(b => Math.abs(GREST[b] - satz) < 0.0026);
+    const kandidaten = Object.keys(GREST).filter(b => GREST[b] > 0 && Math.abs(GREST[b] - satz) < 0.0026);
     if (kandidaten.length && (!F.bundesland || !kandidaten.includes(F.bundesland))) {
       if (!F.bundesland) F.bundesland = kandidaten[0];
     }
@@ -1053,7 +1053,8 @@ const GREST = {
   'Bremen': 0.055, 'Hamburg': 0.055, 'Hessen': 0.060, 'Mecklenburg-Vorpommern': 0.060,
   'Niedersachsen': 0.050, 'Nordrhein-Westfalen': 0.065, 'Rheinland-Pfalz': 0.050,
   'Saarland': 0.065, 'Sachsen': 0.055, 'Sachsen-Anhalt': 0.050,
-  'Schleswig-Holstein': 0.065, 'Thüringen': 0.050
+  'Schleswig-Holstein': 0.065, 'Thüringen': 0.050,
+  'Keine Grunderwerbsteuer': 0
 };
 function nebenkosten(prop) {
   const grest = GREST[prop.bundesland] != null ? GREST[prop.bundesland] : 0.06;
@@ -1580,7 +1581,7 @@ function onChange() {
 
 /* ---------------- Objektkarte (Seite 1) ---------------- */
 const BL_OPTS = Object.keys(GREST).map(b =>
-  `<option value="${esc(b)}">${esc(b)} (${(GREST[b] * 100).toLocaleString('de-DE')} %)</option>`).join('');
+  `<option value="${esc(b)}">${esc(b)}${GREST[b] > 0 ? ` (${(GREST[b] * 100).toLocaleString('de-DE')} %)` : ''}</option>`).join('');
 function renderObject() {
   const o = OBJ;
   $('objList').innerHTML = `<div class="objcard">
@@ -1687,7 +1688,6 @@ function renderObjMeta() {
   const ueber = sanNetto > maxN + 0.5;
   $('objFoot').innerHTML =
     `<span>Nebenkosten <b>${euro(nk)}</b></span><span>Gesamtinvestition <b>${euro(invest + nk)}</b></span>` +
-    `<span>Mietrendite brutto <b>${pct(rendite, 2)}</b></span>` +
     `<span>${esc(afaTxt)}</span>` +
     (san > 0 ? `<span>Sanierung <b>${euro(san)}</b> brutto ${ueber ? '(→ HK/AfA)' : '(Erhaltungsaufwand)'}</span>` : '');
   if ($('sanHint')) {
@@ -2264,10 +2264,9 @@ function erstelleHandout() {
 
   sec('Das Objekt');
   kvZeile('Kaufpreis', euro(p.kaufpreis), 'Kaltmiete', euro(p.miete) + ' / Monat');
-  kvZeile('Mietrendite brutto', pct(p.kaufpreis + p.sanierung > 0 ? p.miete * 12 / (p.kaufpreis + p.sanierung) : 0, 2), 'Bundesland', OBJ.bundesland);
-  kvZeile('Kaufnebenkosten', euro(B.nk), 'Gesamtinvestition', euro(B.gesamtkosten));
+  kvZeile('Bundesland', OBJ.bundesland, 'Kaufnebenkosten', euro(B.nk));
+  kvZeile('Gesamtinvestition', euro(B.gesamtkosten), 'AfA', OBJ.afaArt === 'custom' ? (OBJ.afaSatzPct || 0).toLocaleString('de-DE') + ' % (Gutachten)' : AFA_LABEL[OBJ.afaArt]);
   if (B.sanierung > 0) kvZeile('Sanierung (brutto, mitfinanziert)', euro(B.sanierung), 'steuerlicher Ansatz', B.sanAlsHK ? 'über AfA' : (OBJ.sanJahre > 1 ? 'verteilt auf ' + OBJ.sanJahre + ' Jahre' : 'voll im 1. Jahr'));
-  kvZeile('AfA', OBJ.afaArt === 'custom' ? (OBJ.afaSatzPct || 0).toLocaleString('de-DE') + ' % (Gutachten)' : AFA_LABEL[OBJ.afaArt]);
   y -= 4;
 
   sec('Ihre Steuersituation');
