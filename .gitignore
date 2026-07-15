@@ -3,3 +3,6 @@ _to_delete/
 PROJEKT-HANDOFF.md
 # Zwischengespeicherte, unbestaetigte Leads nicht ins Repo
 _leads/*.json
+
+# Grosse Foto-Originale nicht deployen
+6G5A*.jpg

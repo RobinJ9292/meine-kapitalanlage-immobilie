@@ -32,9 +32,19 @@ Du musst hier nichts mehr tun. (Falls du das Formular je löschst/neu anlegst, h
 
 Tipp: Damit bestätigte Leads sofort als qualifiziert erscheinen, kannst du im HubSpot-Formular unter „Automatisierung" die Lifecycle-Stage auf „Lead" setzen. Die Detail-Antworten aus dem Quiz landen im Feld **Nachricht**.
 
-## 3 · E-Mail-Zustellbarkeit
+## 3 · E-Mail-Zustellbarkeit (SPF + DKIM einrichten)
 
-Die Bestätigungsmail geht von `info@meine-kapitalanlage-immobilie.de`. Damit sie nicht im Spam landet: In Hostinger für die Domain **SPF** und **DKIM** aktiviert lassen (Standard bei Hostinger-Mail). Absender/Empfänger stehen oben in `_lead-lib.php` und lassen sich dort ändern.
+Die Bestätigungsmail geht von `info@meine-kapitalanlage-immobilie.de` über den Hostinger-Mailserver. Damit sie zuverlässig im Postfach landet (nicht Spam), muss die Domain **SPF + DKIM** haben:
+
+1. hPanel → **Domains** → deine Domain → **DNS-Zone** (bzw. **E-Mails** → Domain → E-Mail-Konfiguration).
+2. Hostinger bietet oft eine **automatische Einrichtung** an, die MX + SPF + DKIM in einem Rutsch setzt („Für Hostinger-E-Mail einrichten" / „automatisch verbinden"). Das ist der einfachste Weg.
+3. Prüfen:
+   - **SPF**: nur **ein** TXT-Record `v=spf1 …`. Falls schon einer existiert, nicht doppeln, sondern zusammenführen.
+   - **DKIM**: wird als **CNAME** angelegt (nicht TXT). Wenn es als TXT oder mit Tippfehler drin steht → Signatur schlägt fehl.
+   - **DMARC** (empfohlen, manuell): TXT-Record auf `_dmarc` mit `v=DMARC1; p=none; rua=mailto:info@meine-kapitalanlage-immobilie.de` — startet im „nur beobachten"-Modus.
+4. Nach dem Setzen bis zu 24 h Propagation. Danach **testen**: eine Bestätigungsmail an dich selbst schicken und die Adresse bei **mail-tester.com** prüfen (Ziel: 9–10/10).
+
+Absender/Empfänger stehen oben in `_lead-lib.php` und lassen sich dort ändern. (Von einer fremden Adresse wie `…@bonnfinanz.de` über Hostinger zu senden würde SPF/DKIM brechen → mehr Spam; dafür bräuchte es echten Versand über den Bonnfinanz-SMTP-Server.)
 
 ## 4 · Testen
 
