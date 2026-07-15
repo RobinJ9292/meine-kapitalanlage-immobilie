@@ -185,7 +185,7 @@ section{padding:84px 0;scroll-margin-top:76px}
 /* Auswahl */
 .gated{display:none}
 .chooser{padding:76px 0 64px;background:#fff}
-.choose-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.choose-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:840px;margin:0 auto}
 .choice{position:relative;background:#fff;border:1.5px solid var(--line);border-radius:var(--r);padding:30px 26px 24px;cursor:pointer;text-align:left;font-family:var(--sans);transition:transform .2s,border-color .2s,box-shadow .2s;display:flex;flex-direction:column;gap:9px;overflow:hidden}
 .choice::before{content:"";position:absolute;inset:0 0 auto 0;height:5px;background:var(--grad-cta);opacity:0;transition:opacity .2s}
 .choice:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:var(--jade)}
@@ -206,6 +206,18 @@ section{padding:84px 0;scroll-margin-top:76px}
 .cmp-row:nth-child(odd):not(.head){background:var(--jade-20)}
 .cmp-cell{padding:16px 20px;font-size:14px;border-left:1px solid var(--line);line-height:1.55}
 .cmp-cell:first-child{border-left:none;font-weight:800;color:var(--true-blue);font-size:13.5px}
+.cmp2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+.cmp2-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;box-shadow:0 1px 3px rgba(13,27,46,.05)}
+.cmp2-crit{font-weight:800;color:var(--true-blue);font-size:15.5px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.cmp2-opt{display:flex;gap:11px;margin-top:12px;font-size:14px;line-height:1.5}
+.cmp2-badge{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-weight:800;font-size:14px;flex-shrink:0;color:#fff;margin-top:1px}
+.cmp2-badge.p{background:#1a9e5f}
+.cmp2-badge.o{background:#e0a72e}
+.cmp2-badge.m{background:#d64550}
+.cmp2-body{flex:1}
+.cmp2-tag{display:block;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.cmp2-txt{color:var(--ink)}
+@media(max-width:720px){.cmp2{grid-template-columns:1fr}}
 .pm{display:inline-block;font-weight:800;border-radius:7px;padding:1px 9px;margin-right:8px;font-size:11.5px;vertical-align:1px}
 .pm.p{background:#DFF5E4;color:#177A46}.pm.m{background:#FDE8EC;color:#B01230}.pm.o{background:var(--jade-60);color:var(--true-blue)}
 .same-box{max-width:1020px;margin:26px auto 0;background:var(--blue-night);color:var(--t-on-dark);border-radius:var(--r);padding:30px 34px;position:relative;overflow:hidden}
@@ -595,33 +607,34 @@ footer a:hover{color:var(--jade)}
         <div class="hp-meta">
           <span class="hp-name">Robin Jänicke</span>
           <span class="hp-role">Ihr persönlicher Berater für Kapitalanlage-Immobilien</span>
-          <span class="hp-badge">Bonnfinanz · Mittelhessen · Deutschlandweit</span>
+          <span class="hp-badge">Persönlich vor Ort oder digital · deutschlandweit</span>
         </div>
       </div>
-      <span class="chip">Immer gut leben. · Kapitalanlage mit Konzept</span>
-      <h1>Deutschlands stärkste Geldanlage – <em>wenn man das Spiel versteht</em>.</h1>
-      <p class="lead">Kaum eine Anlageform baut so zuverlässig Vermögen auf wie die vermietete Immobilie.
-      Der Grund: Drei Hebel arbeiten gleichzeitig für Sie – das Fremdkapital der Bank, das Finanzamt
-      und Ihr Mieter, der Monat für Monat Ihr Darlehen tilgt. Das schafft kein ETF bei vergleichbarem Risiko.</p>
+      <span class="chip">Kapitalanlage mit Konzept</span>
+      <h1>Echtes Vermögen entsteht dort, wo andere <em>jeden Monat Miete zahlen</em>.</h1>
+      <p class="lead">Wohnraum wird immer gebraucht – in Deutschland fehlen rund 1,4 Millionen Wohnungen. Genau das macht die vermietete Immobilie so besonders:
+      ein Sachwert mit stabiler Nachfrage, bei dem Bank, Finanzamt und Ihr Mieter gemeinsam an Ihrem Vermögen mitarbeiten.
+      Ob sich ein Objekt für Ihre Situation wirklich rechnet, zeige ich Ihnen ehrlich – mit Zahlen, nicht mit Versprechen.</p>
       <div class="hero-stats">
-        <div class="hstat"><div class="hv">10 %+</div><div class="hl">EK-Rendite p. a. möglich*</div></div>
-        <div class="hstat"><div class="hv">10+ Jahre</div><div class="hl">Anlagehorizont</div></div>
-        <div class="hstat"><div class="hv">3 Hebel</div><div class="hl">Bank · Finanzamt · Mieter</div></div>
+        <div class="hstat"><div class="hv">1,4 Mio.</div><div class="hl">fehlende Wohnungen in Deutschland*</div></div>
+        <div class="hstat"><div class="hv">52,8 %</div><div class="hl">wohnen zur Miete – Mieterland Nr. 1 der EU*</div></div>
+        <div class="hstat"><div class="hv">400.000</div><div class="hl">nötige neue Wohnungen/Jahr – nie erreicht*</div></div>
       </div>
       <div class="hero-ctas">
-        <a class="btn btn-jade btn-lg" href="#kontakt" data-tab="termin">60-Minuten-Erstgespräch buchen</a>
-        <a class="btn btn-ghost btn-lg" href="#kontakt" data-tab="rueckruf">Rückruf anfordern</a>
+        <a class="btn btn-jade btn-lg" href="#rechner">Jetzt Immobilie durchrechnen</a>
+        <a class="btn btn-ghost btn-lg" href="#kontakt" data-tab="rueckruf">Jetzt Rückruf vereinbaren</a>
       </div>
       <div class="hero-micro">
         <span><span class="tick">✓</span>Kostenfrei &amp; unverbindlich</span>
         <span><span class="tick">✓</span>Geprüfte, komplett gemanagte Objekte</span>
         <span><span class="tick">✓</span>Regional verwurzelt, digital möglich</span>
       </div>
-      <p class="hero-note">*Prognose der Eigenkapitalrendite auf Basis unserer Modellrechnung über 10 Jahre
-      (Annahmen siehe Objektbeispiele). Ergebnisse hängen von Objekt, Finanzierung und Ihrer Steuersituation ab – keine Garantie.</p>
+      <p class="hero-note">Ehrliche Modellrechnung statt Renditeversprechen: Was eine Immobilie für Sie leistet, hängt von Objekt,
+      Finanzierung und Ihrer Steuersituation ab – genau das rechnen wir gemeinsam durch, bevor Sie entscheiden.</p>
+      <details class="hero-note" style="margin-top:6px"><summary style="cursor:pointer;color:var(--jade-bright);font-weight:700">Quellen einblenden</summary><span style="display:block;margin-top:4px;opacity:.85">*Zahlen oben: Wohnungsdefizit – Pestel-Institut 2026; Mieterquote &amp; Neubaubedarf – Statistisches Bundesamt / BBSR 2025.</span></details>
     </div>
     <div class="hero-card">
-      <h3>Die drei Hebel Ihrer Rendite</h3>
+      <h3>Die vier Hebel Ihrer Rendite</h3>
       <p>Was kein Sparbuch und kein Depot kann:</p>
       <div class="lever">
         <div class="ic"><svg viewBox="0 0 48 48"><path d="M8 32h10v8H8zM19 24h10v16H19zM30 14h10v26H30z"/></svg></div>
@@ -635,18 +648,10 @@ footer a:hover{color:var(--jade)}
         <div class="ic"><svg viewBox="0 0 48 48"><circle cx="24" cy="16" r="6"/><path d="M12 38c1-7 5-11 12-11s11 4 12 11"/></svg></div>
         <div><b>Ihr Mieter</b><span>Die Miete tilgt Monat für Monat Ihr Darlehen.</span></div>
       </div>
-      <div class="etf-line">Diese Kombination schafft <em>kein ETF</em> – nicht bei vergleichbarem Risiko.</div>
-      <form class="qlead" id="qleadForm" novalidate>
-        <label>⚡ Schnell-Check: Wir rufen Sie zurück</label>
-        <div class="qrow">
-          <input type="text" name="name" id="q-name" placeholder="Ihr Name" autocomplete="name" required>
-          <input type="tel" name="phone" id="q-phone" placeholder="Ihre Telefonnummer" autocomplete="tel" required>
-        </div>
-        <p class="hp"><label>Bitte leer lassen<input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-        <button class="btn btn-jade" type="submit" id="q-btn">Kostenfreien Rückruf sichern →</button>
-        <div class="qnote">Unverbindlich &amp; DSGVO-konform gemäß <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a></div>
-        <div class="q-ok" id="q-ok">✓ Angekommen! Robin meldet sich schnellstmöglich.</div>
-      </form>
+      <div class="lever">
+        <div class="ic"><svg viewBox="0 0 48 48"><path d="M8 40L20 26l8 8 12-16"/><path d="M32 18h8v8"/></svg></div>
+        <div><b>Die Inflation</b><span>Als Sachwert steigen Miete und Wert mit der Inflation – sie arbeitet für Sie.</span></div>
+      </div>
     </div>
   </div>
 </div>
@@ -661,20 +666,40 @@ footer a:hover{color:var(--jade)}
       <span class="eyebrow">Über mich</span>
       <h2>In der Schule lernt man nichts über Geld, Immobilien und Steuern.</h2>
       <p>Und genau das lässt mich nicht los. Die wichtigsten Hebel für ein finanziell selbstbestimmtes Leben werden nirgends erklärt – dabei entscheiden sie über enorm viel. Mein Ansporn ist deshalb ganz einfach: dass so viele Menschen wie möglich <b>frei entscheiden</b> können, ob eine Kapitalanlage-Immobilie das Richtige für sie ist. Und das geht nur, wenn man es wirklich verstanden hat – nicht, wenn man überredet wurde.</p>
-      <p>Darum erkläre ich, statt zu verkaufen: Als selbstständiger Finanzberater für die Bonnfinanz rechne ich jedes Objekt ehrlich durch – mit Chancen <b>und</b> Risiken. Und ich lebe das selbst. Gemeinsam mit meiner Partnerin habe ich in den letzten zwei Jahren <b>sechs eigene Wohnungen</b> gekauft – getreu meinem Grundsatz:</p>
-      <p class="claim">„Ich verkaufe nur das, was ich selbst für mich auch kaufen würde.“<span style="display:block;font-family:var(--sans);font-size:14px;font-weight:700;color:var(--muted);margin-top:8px;">— Robin Jänicke</span></p>
+      <p>Darum erkläre ich, statt zu verkaufen: Als selbstständiger Finanzberater rechne ich jedes Objekt ehrlich durch – mit Chancen <b>und</b> Risiken. Und ich lebe das selbst: Ich investiere in genau das, was ich empfehle – mit 33 habe ich mein erstes <b>Mehrfamilienhaus mit drei Wohnungen</b> gekauft. Getreu meinem Grundsatz:</p>
+      <p class="claim">„Ich empfehle Ihnen nur ein Restaurant, in dem ich selbst war – und in dem es besonders gut war.“<span style="display:block;font-family:var(--sans);font-size:14px;font-weight:700;color:var(--muted);margin-top:8px;">— Robin Jänicke</span></p>
+      <p class="creds" style="font-size:15.5px;color:var(--muted);border-left:3px solid var(--jade);padding-left:16px;margin:2px 0 8px;line-height:1.65">Ich weiß, wovon ich rede: Ich habe früher <b>Lehramt Mathematik</b> studiert – da ging es um Zahlen, aber nicht um die, die fürs Leben wirklich zählen. Gelernt habe ich dort vor allem eins: wie man Dinge <b>erklärt</b>, nicht wie man sie verkauft.</p>
+      <p style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:16px 0 10px">Die Leuchttürme meiner Beratung</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:6px">
+        <div style="flex:1;min-width:180px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px"><b style="color:var(--true-blue);font-size:15px">Ehrlichkeit</b><span style="display:block;font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5">Chancen und Risiken kommen auf den Tisch – inklusive einem ehrlichen „Nein", wenn es nicht passt.</span></div>
+        <div style="flex:1;min-width:180px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px"><b style="color:var(--true-blue);font-size:15px">Transparenz</b><span style="display:block;font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5">Jede Zahl offengelegt, jede Annahme nachvollziehbar – auch meine Vergütung.</span></div>
+        <div style="flex:1;min-width:180px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px"><b style="color:var(--true-blue);font-size:15px">Zuverlässigkeit</b><span style="display:block;font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5">Was ich zusage, halte ich – und bleibe an Ihrer Seite, über den Kauf hinaus.</span></div>
+      </div>
       <div class="stats" id="stats">
-        <div class="stat"><div class="sv" data-count="6" data-suffix="">0</div><div class="sl">eigene Wohnungen in 2 Jahren</div></div>
-        <div class="stat"><div class="sv" data-count="1000" data-suffix="+">0</div><div class="sl">Beratungsgespräche</div></div>
-        <div class="stat"><div class="sv" data-count="100" data-suffix="+">0</div><div class="sl">vermittelte Kapitalanlage&shy;immobilien</div></div>
+        <div class="stat"><div class="sv" data-count="3" data-suffix="">0</div><div class="sl">eigene Wohnungen – mit 33 gekauft</div></div>
+        <div class="stat"><div class="sv" data-count="0" data-suffix=" €">0</div><div class="sl">kostet Sie Beratung &amp; Erstgespräch</div></div>
+        <div class="stat"><div class="sv" data-count="100" data-suffix=" %">0</div><div class="sl">ehrliche Modellrechnung zu jedem Objekt</div></div>
         <div class="stat"><div class="sv" data-count="8" data-suffix="">0</div><div class="sl">Jahre Erfahrung &amp; Spezialisierung</div></div>
       </div>
-      <ul class="tick-list">
-        <li>Ehrliche Modellrechnungen statt Hochglanz-Versprechen</li>
-        <li>Ganzheitliche Beratung: Immobilie, Finanzierung, Absicherung, Vorsorge</li>
-        <li>Persönlich vor Ort oder digital – deutschlandweit</li>
-      </ul>
     </div>
+  </div>
+</section>
+
+<!-- ==================== WAS SIE NICHT BEKOMMEN (Trust) ==================== -->
+<section class="nope" id="nicht" style="background:var(--blue-deep);color:#fff">
+  <div class="wrap" style="max-width:900px">
+    <span class="eyebrow" style="color:var(--jade-bright);background:rgba(159,232,226,.08);border-color:rgba(159,232,226,.28)">Klartext</span>
+    <h2 style="color:#fff;font-family:var(--serif);font-size:30px;line-height:1.25;margin:8px 0 14px">Was Sie bei mir <em style="font-style:italic;color:var(--jade-bright)">nicht</em> bekommen</h2>
+    <p style="color:rgba(255,255,255,.82);max-width:680px;margin-bottom:22px">Eine Beratung zeigt sich auch daran, was sie ablehnt. Deshalb vorweg – klar und ohne Kleingedrucktes:</p>
+    <ul style="list-style:none;margin:0;padding:0;display:grid;gap:14px;font-size:16px">
+      <li style="padding-left:32px;position:relative;color:rgba(255,255,255,.92)"><span style="position:absolute;left:0;top:0;color:var(--jade-bright);font-weight:800">✕</span><b>Keine Renditeversprechen.</b> Ich rechne – ich verspreche nicht.</li>
+      <li style="padding-left:32px;position:relative;color:rgba(255,255,255,.92)"><span style="position:absolute;left:0;top:0;color:var(--jade-bright);font-weight:800">✕</span><b>Kein Druck, keine künstliche Verknappung.</b> Die richtige Immobilie läuft Ihnen nicht weg.</li>
+      <li style="padding-left:32px;position:relative;color:rgba(255,255,255,.92)"><span style="position:absolute;left:0;top:0;color:var(--jade-bright);font-weight:800">✕</span><b>Kein „steuerfrei“-Marketing.</b> Steuern sind ein Baustein der Rechnung, kein Lockmittel.</li>
+      <li style="padding-left:32px;position:relative;color:rgba(255,255,255,.92)"><span style="position:absolute;left:0;top:0;color:var(--jade-bright);font-weight:800">✕</span><b>Kein Objekt, das Sie nicht verstanden haben.</b> Erst verstehen, dann entscheiden.</li>
+      <li style="padding-left:32px;position:relative;color:rgba(255,255,255,.92)"><span style="position:absolute;left:0;top:0;color:var(--jade-bright);font-weight:800">✕</span><b>Kein Schönrechnen.</b> Wenn Lage oder Zahlen nicht tragen, sage ich ab – auch wenn ein Abschluss möglich wäre.</li>
+      <li style="padding-left:32px;position:relative;color:rgba(255,255,255,.92)"><span style="position:absolute;left:0;top:0;color:var(--jade-bright);font-weight:800">✕</span><b>Kein Kauf um jeden Preis.</b> Bei Immobilien liegt der Gewinn im Einkauf – stimmt der Preis nicht, sage ich ab. Genau darauf achte ich besonders.</li>
+    </ul>
+    <p style="color:rgba(255,255,255,.6);font-size:14.5px;margin-top:22px">Klingt selbstverständlich? Ist es in dieser Branche leider nicht. Genau deshalb sage ich es.</p>
   </div>
 </section>
 
@@ -684,31 +709,131 @@ footer a:hover{color:var(--jade)}
     <div class="sec-head">
       <span class="eyebrow">Warum ich selbst überzeugt bin</span>
       <h2>Die Anlage, in die ich selbst investiere.</h2>
-      <p><i>[Platzhalter – dein persönlicher Satz]</i> Ich bin ehrlich gesagt ein riesiger Fan der Kapitalanlage-Immobilie – weil hier gleich mehrere Kräfte gleichzeitig für Sie arbeiten. Drei Dinge machen den Unterschied:</p>
+      <p>Ich sage es offen: Ich bin selbst überzeugter Immobilien-Investor – nicht, weil es sich gut verkauft, sondern weil hier gleich <b>vier Kräfte</b> gleichzeitig für Sie arbeiten:</p>
     </div>
     <div class="usp-grid">
       <div class="usp">
         <svg viewBox="0 0 48 48"><path d="M8 32h10v8H8zM19 24h10v16H19zM30 14h10v26H30z"/></svg>
         <h3>Die Bank hebelt Ihre Rendite</h3>
-        <p><i>[Platzhalter]</i> Sie setzen wenig Eigenkapital ein – Ihre Rendite läuft aber auf den vollen Kaufpreis. Und Ihr Mieter tilgt Monat für Monat mit.</p>
+        <p>Sie setzen wenig Eigenkapital ein – Ihre Rendite läuft aber auf den vollen Kaufpreis der Immobilie.</p>
       </div>
       <div class="usp">
         <svg viewBox="0 0 48 48"><path d="M12 8h24v32H12z"/><path d="M18 16h12M18 23h12M18 30h6"/></svg>
         <h3>Das Finanzamt zahlt mit</h3>
-        <p><i>[Platzhalter]</i> Über Abschreibung (AfA) und absetzbare Kosten beteiligt sich der Staat spürbar an Ihrer Investition – Jahr für Jahr.</p>
+        <p>Über Abschreibung (AfA) und absetzbare Kosten beteiligt sich der Staat spürbar an Ihrer Investition – Jahr für Jahr.</p>
       </div>
       <div class="usp">
-        <svg viewBox="0 0 48 48"><path d="M10 38V24m9 14V14m9 24V26m9 12V8"/><path d="M8 40h32"/></svg>
-        <h3>Es zählt die EK-Rendite</h3>
-        <p><i>[Platzhalter]</i> Nicht die Mietrendite ist entscheidend, sondern was <b>Ihr</b> eingesetztes Eigenkapital erwirtschaftet – durch den Hebel oft ein Vielfaches.</p>
+        <svg viewBox="0 0 48 48"><circle cx="24" cy="16" r="6"/><path d="M12 40c1-8 5-12 12-12s11 4 12 12"/></svg>
+        <h3>Ihr Mieter tilgt für Sie</h3>
+        <p>Monat für Monat zahlt Ihr Mieter die Miete – und tilgt damit Ihr Darlehen. Sie bauen Eigentum auf, ohne es selbst abzuzahlen.</p>
+      </div>
+      <div class="usp">
+        <svg viewBox="0 0 48 48"><path d="M8 40L20 26l8 8 12-16"/><path d="M32 18h8v8"/></svg>
+        <h3>Die Inflation arbeitet mit</h3>
+        <p>Als Sachwert steigen Miete und Immobilienwert mit der Inflation. Was Erspartes auf dem Konto entwertet, wirkt bei der Immobilie für Sie.</p>
       </div>
     </div>
-    <div class="ek-highlight">
-      <div class="ek-col"><span class="ek-label">Mietrendite</span><span class="ek-val">≈ 4 %</span><span class="ek-sub">klingt unspektakulär</span></div>
-      <div class="ek-arrow">→</div>
-      <div class="ek-col win"><span class="ek-label">Eigenkapital-Rendite</span><span class="ek-val">10 %+</span><span class="ek-sub">worauf es wirklich ankommt</span></div>
+    <div class="ek-highlight" style="flex-direction:column;text-align:center;gap:12px">
+      <span class="ek-label" style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--true-blue)">Das Fazit</span>
+      <p style="font-size:19px;line-height:1.5;max-width:720px;margin:0"><b>Am Ende zählt die Eigenkapital-Rendite.</b> Die durchschnittliche Wertsteigerung deutscher Immobilien liegt langfristig bei rund <b>2 % pro Jahr</b> – klingt unspektakulär. Aber weil Bank, Finanzamt, Mieter und Inflation zusammenwirken, wird daraus bei guten Objekten oft eine Eigenkapital-Rendite von <b>über 10 %</b>. Das schafft <em style="font-style:normal;color:var(--true-blue)">kein ETF</em> und keine andere Anlageform mit vergleichbarem Risiko.</p>
+      <p style="font-size:14.5px;color:var(--muted);max-width:720px;margin:0">Kein Versprechen – der Beweis steht unten: Rechnen Sie es in 2 Minuten selbst nach. <span style="opacity:.8">(Wertsteigerung: Deutsche Bundesbank, 1970–2024.)</span></p>
     </div>
-    <p class="why-caption"><i>[Platzhalter]</i> Weil die Bank den Großteil finanziert, wird aus einer unscheinbaren Mietrendite schnell eine zweistellige Rendite auf Ihr Eigenkapital. Genau diese Zahl rechne ich Ihnen ehrlich vor – nicht schöngerechnet.</p>
+  </div>
+</section>
+
+<!-- ==================== MEINE LEISTUNG ==================== -->
+<section class="leistung" id="leistung" style="background:#fff">
+  <div class="wrap">
+    <div class="same-box">
+      <h3>Meine Leistung: alles aus einer Hand</h3>
+      <p style="font-size:14.5px;margin-bottom:12px">Welchen Weg Sie auch gehen – bei mir bekommen Sie die komplette Wertschöpfungskette aus einer Hand: <b>Beratung → Suche → Kauf → Finanzierung → Begleitung → Verkauf.</b></p>
+      <ul>
+        <li>Suche &amp; Marktzugang: in Mittelhessen über mein regionales Maklernetzwerk – deutschlandweit über <b>400 vernetzte Kollegen</b>, die Sie vor Ort unterstützen</li>
+        <li>Finanzierung: passende Bank, beste Struktur, komplette Abwicklung – dank über <b>55 Jahren Bankennetzwerk</b>, auch zu regionalen Banken</li>
+        <li>Notar &amp; Kaufabwicklung – ich bin bei jedem Schritt dabei</li>
+        <li>Ehrliche Modellrechnung mit meinem Kapitalanlage-Tool – vor der Entscheidung</li>
+        <li>Späterer Verkauf: als eingetragener Immobilienmakler mit großem Interessenten-Pool – oft sogar off-market</li>
+      </ul>
+      <div style="text-align:center;margin-top:22px;position:relative;z-index:1"><a class="btn btn-jade" href="#kontakt" data-tab="rueckruf">Lernen wir uns unverbindlich kennen</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== RISIKEN (ehrlich) ==================== -->
+<section class="risks" id="risiken" style="background:var(--paper)">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Ehrlich über Risiken</span>
+      <h2>Ja, eine Immobilie hat Risiken – die meisten lassen sich entschärfen.</h2>
+      <p>Nicht wegreden, sondern einordnen: Wenn das Konzept stimmt, bleibt wenig dem Zufall überlassen – und wenn die Zahlen nicht tragen, sage ich ab.</p>
+    </div>
+    <div class="usp-grid">
+      <div class="usp">
+        <span style="display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#d64550;background:rgba(214,69,80,.09);border-radius:999px;padding:3px 11px;margin-bottom:10px">Risiko</span>
+        <h3>Mietausfall</h3>
+        <p><b style="color:#1a9e5f">✓ So entschärfen wir es:</b> Über einen Mietpool und eine geprüfte Mieterstruktur bleiben Ihre Einnahmen auch bei Mieterwechsel planbar.</p>
+      </div>
+      <div class="usp">
+        <span style="display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#d64550;background:rgba(214,69,80,.09);border-radius:999px;padding:3px 11px;margin-bottom:10px">Risiko</span>
+        <h3>Instandhaltung</h3>
+        <p><b style="color:#1a9e5f">✓ So entschärfen wir es:</b> Eine ausreichend gefüllte Instandhaltungsrücklage und vorab geprüfte Substanz fangen unerwartete Kosten ab.</p>
+      </div>
+      <div class="usp">
+        <span style="display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#d64550;background:rgba(214,69,80,.09);border-radius:999px;padding:3px 11px;margin-bottom:10px">Risiko</span>
+        <h3>Wertentwicklung</h3>
+        <p><b style="color:#1a9e5f">✓ So entschärfen wir es:</b> Sorgfältige Vorqualifizierung von Lage, Nachfrage und Objekt – gerechnet wird konservativ, nicht schöngerechnet.</p>
+      </div>
+      <div class="usp">
+        <span style="display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#d64550;background:rgba(214,69,80,.09);border-radius:999px;padding:3px 11px;margin-bottom:10px">Risiko</span>
+        <h3>Klumpenrisiko</h3>
+        <p><b style="color:#1a9e5f">✓ So entschärfen wir es:</b> Eine Immobilie ist ein Baustein, kein Gesamtdepot. Ich schaue ganzheitlich, dass sie zu Ihrer übrigen Vorsorge passt – und Sie stellen Ihr Vermögen Schritt für Schritt breiter auf.</p>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:15px;color:var(--muted);max-width:760px;margin:22px auto 0;line-height:1.6">Kein Konzept eliminiert jedes Risiko vollständig. Aber wenn Lage, Rechnung und Finanzierung zusammenpassen, ist das Meiste kalkulierbar – genau das prüfen wir gemeinsam, bevor Sie entscheiden.</p>
+    <div style="text-align:center;margin-top:26px"><a class="btn btn-blue" href="#kontakt" data-tab="rueckruf" style="border-radius:10px">Offene Fragen ehrlich klären</a></div>
+  </div>
+</section>
+
+<!-- ==================== VERGLEICH ==================== -->
+<section id="sec-vergleich" style="background:var(--jade-20);padding-top:58px">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Ehrlich verglichen</span>
+      <h2>Portfolio-Immobilie oder selbst gefunden?</h2>
+      <p>Beide Wege können sich rechnen – sie haben nur unterschiedliche Stärken. Hier der ehrliche Vergleich:</p>
+    </div>
+    <div class="cmp2">
+      <div class="cmp2-card">
+        <div class="cmp2-crit">Kaufpreis</div>
+        <div class="cmp2-opt"><span class="cmp2-badge o">±</span><div class="cmp2-body"><span class="cmp2-tag">Komplett gemanagt</span><span class="cmp2-txt">Etwas höher – im Preis steckt das Komplettpaket: geprüfte Substanz, Vermietung, Verwaltung</span></div></div>
+        <div class="cmp2-opt"><span class="cmp2-badge p">+</span><div class="cmp2-body"><span class="cmp2-tag">Selbst gefunden</span><span class="cmp2-txt">Oft günstiger – Verhandlungsspielraum am freien Markt</span></div></div>
+      </div>
+      <div class="cmp2-card">
+        <div class="cmp2-crit">Steuern</div>
+        <div class="cmp2-opt"><span class="cmp2-badge o">±</span><div class="cmp2-body"><span class="cmp2-tag">Komplett gemanagt</span><span class="cmp2-txt">Feste, planbare Steuervorteile (AfA &amp; Werbungskosten) – klar kalkulierbar</span></div></div>
+        <div class="cmp2-opt"><span class="cmp2-badge p">+</span><div class="cmp2-body"><span class="cmp2-tag">Selbst gefunden</span><span class="cmp2-txt">Zusätzliche Optimierung möglich: Sanierungskosten als Erhaltungsaufwand, Förderprogramme, höhere AfA-Modelle</span></div></div>
+      </div>
+      <div class="cmp2-card">
+        <div class="cmp2-crit">Mietausfall</div>
+        <div class="cmp2-opt"><span class="cmp2-badge p">+</span><div class="cmp2-body"><span class="cmp2-tag">Komplett gemanagt</span><span class="cmp2-txt">Über den Mietpool abgesichert – planbare Einnahmen auch bei Mieterwechsel</span></div></div>
+        <div class="cmp2-opt"><span class="cmp2-badge m">−</span><div class="cmp2-body"><span class="cmp2-tag">Selbst gefunden</span><span class="cmp2-txt">Leerstandsrisiko bei Mieterwechsel tragen Sie selbst</span></div></div>
+      </div>
+      <div class="cmp2-card">
+        <div class="cmp2-crit">Verwaltungsaufwand</div>
+        <div class="cmp2-opt"><span class="cmp2-badge p">+</span><div class="cmp2-body"><span class="cmp2-tag">Komplett gemanagt</span><span class="cmp2-txt">Praktisch keiner: Mietersuche, Abrechnungen und Instandhaltung übernimmt die Verwaltung</span></div></div>
+        <div class="cmp2-opt"><span class="cmp2-badge m">−</span><div class="cmp2-body"><span class="cmp2-tag">Selbst gefunden</span><span class="cmp2-txt">Mieterwechsel, Handwerker, Nebenkostenabrechnung – liegt bei Ihnen (oder einer selbst beauftragten Verwaltung)</span></div></div>
+      </div>
+      <div class="cmp2-card">
+        <div class="cmp2-crit">Objektqualität</div>
+        <div class="cmp2-opt"><span class="cmp2-badge p">+</span><div class="cmp2-body"><span class="cmp2-tag">Komplett gemanagt</span><span class="cmp2-txt">Vorqualifiziert: Lage, Zustand, Mieterstruktur und Unterlagen sind geprüft</span></div></div>
+        <div class="cmp2-opt"><span class="cmp2-badge m">−</span><div class="cmp2-body"><span class="cmp2-tag">Selbst gefunden</span><span class="cmp2-txt">Prüfung liegt bei Ihnen – Risiko versteckter Mängel. Mein Part: Ich prüfe und rechne jedes Objekt mit Ihnen durch</span></div></div>
+      </div>
+      <div class="cmp2-card">
+        <div class="cmp2-crit">Zeit bis zum Start</div>
+        <div class="cmp2-opt"><span class="cmp2-badge p">+</span><div class="cmp2-body"><span class="cmp2-tag">Komplett gemanagt</span><span class="cmp2-txt">Schnell startklar – Objekt, Mieter und Verwaltung stehen bereits</span></div></div>
+        <div class="cmp2-opt"><span class="cmp2-badge o">±</span><div class="cmp2-body"><span class="cmp2-tag">Selbst gefunden</span><span class="cmp2-txt">Suche und Kaufabwicklung brauchen Zeit – dafür maximale Freiheit bei Lage und Objekt</span></div></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -733,83 +858,8 @@ footer a:hover{color:var(--jade)}
         <p>Sie sind bereit, Zeit zu investieren, wollen dafür Ihre Rendite maximieren – und die Immobilie soll in Ihrer Nähe sein?</p>
         <span class="go">Diesen Weg wählen →</span>
       </button>
-      <button class="choice" type="button" data-choose="unsicher">
-        <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="15"/><path d="M20 19c0-2.5 2-4 4-4s4 1.5 4 4c0 2.8-4 3-4 6"/><circle cx="24" cy="31.5" r=".8" fill="currentColor"/></svg>
-        <h3>Ich weiß es noch nicht – erst einmal informieren</h3>
-        <p>Kein Problem: Wir finden gemeinsam heraus, ob und welche Immobilie zu Ihren Zielen passt.</p>
-        <span class="go">Diesen Weg wählen →</span>
-      </button>
     </div>
-  </div>
-</section>
-
-<!-- ==================== VERKÄUFER (direkt unter der Auswahl) ==================== -->
-<div class="sell" id="verkaufen">
-  <div class="sell-in">
-    <div>
-      <h3>Ich habe eine Immobilie und möchte sie verkaufen</h3>
-      <p>Ich habe einen großen Käufer-Pool für Wohnungen und Häuser – viele Objekte vermittle ich <b>off-market</b>, ohne den offenen Markt. Gerade nach rund 10 Jahren lohnt sich der Verkauf oft: Rendite am Höhepunkt, Gewinn meist steuerfrei.</p>
-    </div>
-    <a class="btn btn-blue btn-sm" href="#kontakt" data-tab="rueckruf" data-thema="verkaufen">Objekt anbieten</a>
-  </div>
-</div>
-
-<!-- ==================== VERGLEICH ==================== -->
-<section class="gated" id="sec-vergleich" data-paths="portfolio eigene" style="background:var(--jade-20);padding-top:58px">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">Ehrlich verglichen</span>
-      <h2>Portfolio-Immobilie oder selbst gefunden?</h2>
-      <p>Beide Wege können sich rechnen – sie haben nur unterschiedliche Stärken. Hier der ehrliche Vergleich:</p>
-    </div>
-    <div class="cmp">
-      <div class="cmp-row head">
-        <div class="cmp-cell"></div>
-        <div class="cmp-cell">Komplett gemanagt (Portfolio)</div>
-        <div class="cmp-cell">Selbst gefunden (freier Markt)</div>
-      </div>
-      <div class="cmp-row">
-        <div class="cmp-cell">Kaufpreis</div>
-        <div class="cmp-cell" data-col="Portfolio"><span class="pm o">±</span>Etwas höher – im Preis steckt das Komplettpaket: geprüfte Substanz, Vermietung, Verwaltung</div>
-        <div class="cmp-cell" data-col="Selbst gefunden"><span class="pm p">+</span>Oft günstiger – Verhandlungsspielraum am freien Markt</div>
-      </div>
-      <div class="cmp-row">
-        <div class="cmp-cell">Steuern</div>
-        <div class="cmp-cell" data-col="Portfolio"><span class="pm o">±</span>Feste, planbare Steuervorteile (AfA &amp; Werbungskosten) – klar kalkulierbar</div>
-        <div class="cmp-cell" data-col="Selbst gefunden"><span class="pm p">+</span>Zusätzliche Optimierung möglich: Sanierungskosten als Erhaltungsaufwand, Förderprogramme, höhere AfA-Modelle</div>
-      </div>
-      <div class="cmp-row">
-        <div class="cmp-cell">Mietausfall</div>
-        <div class="cmp-cell" data-col="Portfolio"><span class="pm p">+</span>Über den Mietpool abgesichert – planbare Einnahmen auch bei Mieterwechsel</div>
-        <div class="cmp-cell" data-col="Selbst gefunden"><span class="pm m">−</span>Leerstandsrisiko bei Mieterwechsel tragen Sie selbst</div>
-      </div>
-      <div class="cmp-row">
-        <div class="cmp-cell">Verwaltungsaufwand</div>
-        <div class="cmp-cell" data-col="Portfolio"><span class="pm p">+</span>Praktisch keiner: Mietersuche, Abrechnungen und Instandhaltung übernimmt die Verwaltung</div>
-        <div class="cmp-cell" data-col="Selbst gefunden"><span class="pm m">−</span>Mieterwechsel, Handwerker, Nebenkostenabrechnung – liegt bei Ihnen (oder einer selbst beauftragten Verwaltung)</div>
-      </div>
-      <div class="cmp-row">
-        <div class="cmp-cell">Objektqualität</div>
-        <div class="cmp-cell" data-col="Portfolio"><span class="pm p">+</span>Vorqualifiziert: Lage, Zustand, Mieterstruktur und Unterlagen sind geprüft</div>
-        <div class="cmp-cell" data-col="Selbst gefunden"><span class="pm m">−</span>Prüfung liegt bei Ihnen – Risiko versteckter Mängel. Mein Part: Ich prüfe und rechne jedes Objekt mit Ihnen durch</div>
-      </div>
-      <div class="cmp-row">
-        <div class="cmp-cell">Zeit bis zum Start</div>
-        <div class="cmp-cell" data-col="Portfolio"><span class="pm p">+</span>Schnell startklar – Objekt, Mieter und Verwaltung stehen bereits</div>
-        <div class="cmp-cell" data-col="Selbst gefunden"><span class="pm o">±</span>Suche und Kaufabwicklung brauchen Zeit – dafür maximale Freiheit bei Lage und Objekt</div>
-      </div>
-    </div>
-    <div class="same-box">
-      <h3>Und was ist bei beiden gleich? Ich.</h3>
-      <p style="font-size:14.5px;color:var(--anthrazit);margin-bottom:12px">Egal welchen Weg Sie wählen – Sie bekommen die komplette Wertschöpfungskette aus einer Hand: <b>Beratung → Suche → Kauf → Finanzierung → Begleitung → Verkauf.</b></p>
-      <ul>
-        <li>Suche &amp; Marktzugang: in Mittelhessen über mein regionales Maklernetzwerk – deutschlandweit über <b>400 vernetzte Kollegen</b>, die Sie vor Ort unterstützen</li>
-        <li>Finanzierung: passende Bank, beste Struktur, komplette Abwicklung – dank über <b>55 Jahren Bankennetzwerk</b>, auch zu regionalen Banken</li>
-        <li>Notar &amp; Kaufabwicklung – ich bin bei jedem Schritt dabei</li>
-        <li>Ehrliche Modellrechnung mit meinem Kapitalanlage-Tool – vor der Entscheidung</li>
-        <li>Späterer Verkauf: als eingetragener Immobilienmakler mit großem Interessenten-Pool – oft sogar off-market</li>
-      </ul>
-    </div>
+    <div style="text-align:center;margin-top:20px"><button type="button" onclick="choosePath('unsicher')" style="background:none;border:none;cursor:pointer;font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--muted);text-decoration:underline;text-underline-offset:3px">Noch unsicher? Erst einmal ganz unverbindlich informieren →</button></div>
   </div>
 </section>
 
@@ -819,7 +869,7 @@ footer a:hover{color:var(--jade)}
     <div class="sec-head">
       <span class="eyebrow">Warum mit uns</span>
       <h2>Kapitalanlage ohne Vermieter-Stress</h2>
-      <p>Als Bonnfinanz Finanzberater kombiniere ich geprüfte Objekte mit ganzheitlicher Finanzberatung – seit über 50 Jahren steht Bonnfinanz für Allfinanzberatung in Deutschland.</p>
+      <p>Ich kombiniere geprüfte Objekte mit ganzheitlicher Finanzberatung – von der Immobilie über die Finanzierung bis zur Absicherung, alles aus einer Hand.</p>
     </div>
     <div class="usp-grid">
       <div class="usp">
@@ -986,14 +1036,9 @@ footer a:hover{color:var(--jade)}
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow" style="color:var(--jade)">Jetzt starten</span>
-      <h2>Kostenfreies Erstgespräch sichern</h2>
-      <p>Wählen Sie, was Ihnen lieber ist: Wir rufen Sie zurück – oder Sie buchen direkt Ihren Wunschtermin (60 Minuten, online oder vor Ort).</p>
+      <h2>Kostenfreien Rückruf anfordern</h2>
+      <p>Hinterlassen Sie kurz Ihre Daten – ich melde mich persönlich, kostenfrei und ohne Verkaufsdruck. Auf Wunsch wählen Sie im Anschluss direkt einen Wunschtermin (60 Minuten, online oder vor Ort), den ich vorab telefonisch bestätige.</p>
     </div>
-    <div class="tabs">
-      <button class="tab active" id="tabR" type="button">📞 Rückruf anfordern</button>
-      <button class="tab" id="tabT" type="button">📅 Termin direkt buchen</button>
-    </div>
-
     <!-- Rückruf-Formular -->
     <div class="panel" id="panelR">
       <form id="leadForm" novalidate>
@@ -1035,9 +1080,20 @@ footer a:hover{color:var(--jade)}
         <p class="hp"><label>Bitte leer lassen<input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
         <input type="hidden" name="form-name" value="kapitalanlage-landingpage">
         <input type="hidden" name="quelle" id="f-quelle" value="kapitalanlage-lp">
+      <input type="hidden" name="terminwunsch" id="f-terminwunsch" value="nein">
         <label class="consent"><input type="checkbox" id="f-consent" required>
           <span>Ich bin einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verwendet werden. Details in der <a href="datenschutz.html" target="_blank" style="display:inline;color:var(--true-blue)">Datenschutzerklärung</a>.*</span></label>
-        <button class="btn btn-blue btn-lg" type="submit" id="submitBtn">Rückruf anfordern</button>
+        <div class="cta-row" id="ctaRow" style="display:flex;flex-direction:column;align-items:center;gap:12px">
+          <button class="btn btn-blue btn-lg" type="submit" id="submitBtn" style="width:100%">Rückruf anfordern</button>
+        </div>
+        <div id="terminChoice" style="display:none;text-align:center;margin-top:8px;background:var(--jade-20);border:1px solid var(--jade-60);border-radius:14px;padding:20px">
+          <p style="font-weight:800;color:var(--ink);margin-bottom:4px">Möchten Sie zusätzlich direkt einen Wunschtermin buchen?</p>
+          <p style="font-size:13.5px;color:var(--muted);margin-bottom:14px">Ihre Rückrufbitte geht in beiden Fällen an mich – ich bestätige den Termin vorab telefonisch.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;align-items:center">
+            <button type="button" class="btn btn-blue btn-lg" id="choiceJa" style="width:100%">Ja, Wunschtermin wählen</button>
+            <button type="button" id="choiceNein" style="background:none;border:none;cursor:pointer;font-family:var(--sans);font-size:14px;font-weight:700;color:var(--true-blue);text-decoration:underline;text-underline-offset:3px;padding:4px">Nein, ich möchte nur einen Rückruf</button>
+          </div>
+        </div>
         <div class="form-err" id="formErr">Das hat leider nicht geklappt. Bitte prüfen Sie die Pflichtfelder – oder rufen Sie mich direkt an: <a href="tel:+4916092085192" style="display:inline">0160 92085192</a>.</div>
       </form>
       <div class="form-ok" id="formOk">
@@ -1049,8 +1105,8 @@ footer a:hover{color:var(--jade)}
 
     <!-- Terminbuchung -->
     <div class="panel cal-wrap" id="panelT" style="display:none">
-      <h3>60-Minuten-Erstgespräch buchen</h3>
-      <p class="sub">Kostenfrei &amp; unverbindlich – online per Video oder vor Ort. Wählen Sie einfach Ihren Wunschtermin.</p>
+      <h3>Fast geschafft – wählen Sie Ihren Wunschtermin</h3>
+      <p class="sub">Ihre Daten sind bei mir. Suchen Sie sich einfach einen Termin aus – ich rufe Sie vorab kurz an und bestätige ihn. Kostenfrei &amp; unverbindlich, online per Video oder vor Ort.</p>
       <div class="cal-consent" id="calConsent">
         <p>Zur Terminbuchung wird der Dienst <strong>Calendly</strong> geladen (Datenübertragung in die USA möglich, Details in der <a href="datenschutz.html" target="_blank" style="display:inline;color:var(--true-blue)">Datenschutzerklärung</a>).</p>
         <button class="btn btn-blue btn-lg" type="button" id="loadCal">Kalender laden &amp; Termin wählen</button>
@@ -1071,10 +1127,22 @@ footer a:hover{color:var(--jade)}
       <details><summary>Muss die Immobilie in meiner Nähe sein?</summary><p>Ganz klar: Nein. Eine Kapitalanlageimmobilie ist etwas anderes als das selbst genutzte Eigenheim – hier zählt allein die Rendite: Kaufpreis, Mieteinnahmen, Mieternachfrage und Entwicklungspotenzial des Standorts. Kaum jemand kauft eine Kapitalanlage, um irgendwann selbst darin zu wohnen. Entscheidend ist also nicht, ob Sie in 10 Minuten vor der Tür stehen können, sondern ob die Zahlen und die Lage aus Anlegersicht stimmen. Bei komplett gemanagten Objekten kümmert sich ohnehin die Verwaltung vor Ort um alles. Nähe wird erst dann zum Vorteil, wenn Sie bewusst selbst verwalten und anpacken möchten – das ist der Weg „eigene Immobilie", den wir gern gemeinsam durchrechnen. Und egal, wo Sie wohnen: In Mittelhessen bin ich mit meinem regionalen Maklernetzwerk direkt für Sie da – in Ihrer eigenen Region unterstützt Sie zusätzlich mein Netzwerk aus <b>über 400 Kollegen vor Ort</b>, von der Suche bis zu einem späteren Verkauf.</p></details>
       <details><summary>Was heißt „komplett gemanagt" genau?</summary><p>Vermietung, Mietverwaltung, Abrechnung und Instandhaltungsorganisation übernimmt eine professionelle Verwaltung. Sie müssen sich weder um Mietersuche noch um tropfende Wasserhähne kümmern – Ihre Immobilie bleibt eine Kapitalanlage, kein Nebenjob.</p></details>
       <details><summary>Ist eine Immobilie nicht riskant?</summary><p>Jede Kapitalanlage hat Risiken – die entscheidenden lassen sich aber gezielt entschärfen: <b>Mietausfall</b> fangen wir über einen <b>Mietpool</b> ab, sodass Ihre Einnahmen auch bei Mieterwechsel planbar bleiben. Für die <b>Instandhaltung</b> sorgt eine ausreichend gefüllte Instandhaltungsrücklage – und jedes Objekt ist vorab qualifiziert und geprüft. Die <b>Wertentwicklung</b> sichern wir durch sorgfältige Vorqualifizierung und eine exakte Objektanalyse ab. Dazu rechnen wir konservativ, zeigen alle Kosten offen und prüfen, ob die Finanzierung auch in schwierigen Phasen zu Ihrem Budget passt. Und manchmal ist das ehrliche Ergebnis auch: „Noch nicht."</p></details>
-      <details><summary>Was kostet mich die Beratung?</summary><p>Das Erstgespräch und die Beratung sind für Sie kostenfrei. Bonnfinanz Finanzberater werden – wie in der Branche üblich – über Provisionen der Produktpartner vergütet. Das legen wir transparent offen.</p></details>
+      <details><summary>Was kostet mich die Beratung?</summary><p>Das Erstgespräch und die Beratung sind für Sie kostenfrei. Ich werde – wie in der Branche üblich – über Provisionen der Produktpartner vergütet. Das legen wir transparent offen.</p></details>
     </div>
+    <div style="text-align:center;margin-top:28px;padding:26px 24px;background:#fff;border:1px solid var(--jade-60);border-radius:16px"><p style="font-weight:800;font-size:17px;color:var(--ink);margin-bottom:12px">Ihre Frage war nicht dabei?</p><a class="btn btn-blue btn-lg" href="#kontakt" data-tab="rueckruf" style="border-radius:14px">Stellen Sie sie mir direkt</a></div>
   </div>
 </section>
+
+<!-- ==================== VERKÄUFER (Objekt anbieten) ==================== -->
+<div class="sell" id="verkaufen">
+  <div class="sell-in" style="flex-direction:column;align-items:center;text-align:center;gap:16px">
+    <div>
+      <h3>Ich habe eine Immobilie und möchte sie verkaufen</h3>
+      <p>Ich habe einen großen Pool an potenziellen Käufern für Wohnungen und Häuser und ein Netzwerk aus Maklern und Vermittlern in ganz Deutschland – viele Objekte vermitteln wir <b>off-market</b>.</p>
+    </div>
+    <a class="btn btn-blue btn-sm" href="#kontakt" data-tab="rueckruf" data-thema="verkaufen">Objekt anbieten</a>
+  </div>
+</div>
 
 <footer>
   <div class="foot-grid">
@@ -1083,9 +1151,8 @@ footer a:hover{color:var(--jade)}
       <h5>Robin Jänicke · Spezialist für Kapitalanlageimmobilien</h5>
       <p>Finanzberatung – persönlich, digital und ohne Umwege.<br>Selbstständiger Finanzberater für die Bonnfinanz.</p>
       <div class="socials">
-        <a href="https://www.linkedin.com/in/robin-j%C3%A4nicke-89255a1ab" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
-        <a href="https://www.instagram.com/robin_jaenicke" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-        <a href="https://wa.me/4916092085192" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.7 6L4 29l8.2-1.6c1.2.6 2.5.9 3.8.9 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 22c-1.2 0-2.4-.3-3.5-.8l-.5-.3-4.9 1 1-4.7-.3-.5C6.6 18.1 6 16.6 6 15 6 9.5 10.5 5 16 5s10 4.5 10 10-4.5 10-10 10zm5.5-7.5c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"/></svg></a>
+        <a href="https://www.linkedin.com/in/robin-j%C3%A4nicke-89255a1ab" target="_blank" rel="noopener" aria-label="LinkedIn" style="background:#0A66C2;border-color:#0A66C2;color:#fff"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
+        <a href="https://www.instagram.com/robin_jaenicke" target="_blank" rel="noopener" aria-label="Instagram" style="background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%);border-color:transparent;color:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg></a>
       </div>
     </div>
     <div>
@@ -1104,31 +1171,8 @@ footer a:hover{color:var(--jade)}
   <div class="foot-bottom">© 2026 Robin Jänicke · Selbstständiger Handelsvertreter der Bonnfinanz GmbH · Immobiliardarlehensvermittler gem. § 34i GewO, Reg.-Nr. D-W-146-Q1J8-14 · Immobilienmakler gem. § 34c GewO</div>
 </footer>
 
-<div class="fabs">
-  <button class="fab bot" id="fabBot" type="button" aria-label="Chat öffnen">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12c0 4-4 7-9 7-1 0-2-.1-2.9-.4L4 20l1.3-3.1C4.5 15.5 3 13.9 3 12c0-4 4-7 9-7s9 3 9 7z"/><circle cx="8.5" cy="12" r=".9" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r=".9" fill="currentColor" stroke="none"/><circle cx="15.5" cy="12" r=".9" fill="currentColor" stroke="none"/></svg>
-  </button>
-  <a class="fab wa" href="https://wa.me/4916092085192?text=Hallo%20Herr%20J%C3%A4nicke%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Kapitalanlageimmobilie." target="_blank" rel="noopener" aria-label="Per WhatsApp schreiben">
-    <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.7 6L4 29l8.2-1.6c1.2.6 2.5.9 3.8.9 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 22c-1.2 0-2.4-.3-3.5-.8l-.5-.3-4.9 1 1-4.7-.3-.5C6.6 18.1 6 16.6 6 15 6 9.5 10.5 5 16 5s10 4.5 10 10-4.5 10-10 10zm5.5-7.5c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"/></svg>
-  </a>
-</div>
-
-<div class="chat" id="chat" role="dialog" aria-label="Chat mit Robins Assistent">
-  <div class="chat-head">
-    <div class="av">RJ</div>
-    <div><b>Robins Assistent</b><small>Antwortet sofort · kein Bot-Blabla</small></div>
-    <button class="x" id="chatClose" type="button" aria-label="Schließen">×</button>
-  </div>
-  <div class="chat-body" id="chatBody"></div>
-  <form class="chat-input" id="chatForm" autocomplete="off">
-    <input id="chatText" type="text" placeholder="Ihre Frage eingeben …" aria-label="Ihre Frage an Robins Assistent">
-    <button type="submit" aria-label="Frage senden">➤</button>
-  </form>
-</div>
-
 <div class="mcta">
-  <a class="btn btn-jade" href="#kontakt" data-tab="rueckruf">Rückruf</a>
-  <a class="btn btn-blue" href="#kontakt" data-tab="termin">Termin buchen</a>
+  <a class="btn btn-blue" href="#kontakt" data-tab="rueckruf">Rückruf vereinbaren</a>
 </div>
 
 <script>
@@ -1319,6 +1363,7 @@ function openTierCalc(key){
   var wrap=document.getElementById('objCalcWrap'), mount=document.getElementById('objCalcMount'), title=document.getElementById('objCalcTitle');
   if(title) title.textContent='Ihr Rechner — '+p.stufe+'-Objekt (Objektdaten fest vorgegeben)';
   wrap.style.display='block';
+  setTimeout(function(){ wrap.scrollIntoView({behavior:'smooth',block:'start'}); }, 80);
   var cta0=document.getElementById('objCta'); if(cta0) cta0.style.display='none';  /* CTA erst nach Auswertung */
   var q=q_readForm();
   mount.innerHTML='';
@@ -1518,24 +1563,25 @@ function openTierCalc(key){
   };
 })();
 
-/* ---------- Tabs ---------- */
-var tabR=document.getElementById("tabR"), tabT=document.getElementById("tabT"),
-    panelR=document.getElementById("panelR"), panelT=document.getElementById("panelT");
-function showTab(t){
-  var termin = t==="termin";
-  tabR.classList.toggle("active",!termin); tabT.classList.toggle("active",termin);
-  panelR.style.display = termin?"none":""; panelT.style.display = termin?"":"none";
-  if(termin && typeof loadCalendly==="function") loadCalendly();  /* automatisch laden */
+/* ---------- Kontakt: Formular-first, Termin optional nach Absenden ---------- */
+var panelR=document.getElementById("panelR"), panelT=document.getElementById("panelT");
+function contactShowForm(){
+  if(panelR) panelR.style.display="";
+  if(panelT) panelT.style.display="none";
 }
-tabR.addEventListener("click",function(){showTab("rueckruf")});
-tabT.addEventListener("click",function(){showTab("termin")});
+/* Kompatibilitaet: alte showTab-Aufrufe (Chat/Buttons) oeffnen jetzt das Formular */
+function showTab(t){
+  var k=document.getElementById("kontakt"); if(k) k.classList.remove("gated");
+  contactShowForm();
+}
 document.querySelectorAll("[data-tab]").forEach(function(a){
   a.addEventListener("click",function(){
     document.getElementById("kontakt").classList.remove("gated");
-    showTab(a.getAttribute("data-tab"));
-    if(a.getAttribute("data-thema")==="verkaufen") document.getElementById("f-thema").value="Immobilie verkaufen";
-    if(a.getAttribute("data-thema")==="objekt") document.getElementById("f-thema").value="Konkretes Objekt von dieser Seite";
-    if(a.getAttribute("data-thema")==="eigene") document.getElementById("f-thema").value="Eigene Immobilie – Suche und Kauf begleiten";
+    contactShowForm();
+    var th=a.getAttribute("data-thema");
+    if(th==="verkaufen") document.getElementById("f-thema").value="Immobilie verkaufen";
+    if(th==="objekt") document.getElementById("f-thema").value="Konkretes Objekt von dieser Seite";
+    if(th==="eigene") document.getElementById("f-thema").value="Eigene Immobilie – Suche und Kauf begleiten";
   });
 });
 
@@ -1628,189 +1674,7 @@ if(_loadCalBtn) _loadCalBtn.addEventListener("click",loadCalendly);
   var src=["utm_source","utm_medium","utm_campaign"].map(function(k){return p.get(k)}).filter(Boolean).join(" / ");
   if(src) document.getElementById("f-quelle").value="kapitalanlage-lp ("+src+")";
 })();
-/* ---------- Chat-Widget (regelbasiert, ohne externe Dienste) ---------- */
-(function(){
-  var chat=document.getElementById("chat"), body=document.getElementById("chatBody"), started=false;
-  function el(tag,cls,html){var d=document.createElement(tag);if(cls)d.className=cls;if(html!==undefined)d.innerHTML=html;return d;}
-  function scrollDown(){body.scrollTop=body.scrollHeight;}
-  function bot(html){body.appendChild(el("div","msg bot",html));scrollDown();}
-  function user(txt){body.appendChild(el("div","msg user",txt));scrollDown();}
-  function clearQr(){var q=body.querySelector(".qr");if(q)q.remove();}
-
-  var MENU=[
-    {t:"Wie funktioniert das mit der Rendite?",a:function(){
-      bot("Drei Hebel arbeiten für Sie: <b>1.</b> Die Bank finanziert den Kaufpreis – Ihre Rendite läuft aber auf das ganze Objekt. <b>2.</b> Das Finanzamt beteiligt sich über Abschreibung &amp; absetzbare Kosten. <b>3.</b> Ihr Mieter tilgt mit der Miete Ihr Darlehen. In unseren Modellrechnungen ergibt das oft 10 %+ Eigenkapitalrendite pro Jahr – die Beispiele finden Sie oben bei den Objekten.");
-    }},
-    {t:"Wie viel Eigenkapital brauche ich?",a:function(){
-      bot("Oft reichen die Kaufnebenkosten – je nach Objekt ca. <b>10.000 bis 20.000 €</b>. Den Rest finanziert die Bank. Ob und wie viel bei Ihnen sinnvoll ist, klären wir im kostenfreien Erstgespräch.");
-    }},
-    {t:"Was kostet die Beratung?",a:function(){
-      bot("Für Sie: <b>nichts</b>. Erstgespräch und Beratung sind kostenfrei und unverbindlich – vergütet wird, wie branchenüblich, über Provisionen der Produktpartner. Das lege ich transparent offen.");
-    }},
-    {t:"Aktuelle Objekte ansehen",a:function(){
-      chat.classList.remove("open");
-      choosePath("portfolio");
-      setTimeout(function(){document.getElementById("objekte").scrollIntoView({behavior:"smooth"});},400);
-    },silent:true},
-    {t:"Rückruf vereinbaren",a:function(){
-      var box=el("div","msg bot","Gern! Wie darf ich Sie nennen und unter welcher Nummer erreicht Robin Sie?"+
-        '<div class="chat-mini"><input id="cbName" placeholder="Ihr Name" autocomplete="name">'+
-        '<input id="cbPhone" placeholder="Ihre Telefonnummer" autocomplete="tel">'+
-        '<button id="cbSend" type="button">Rückruf anfordern</button>'+
-        '<div style="font-size:11px;color:var(--anthrazit);margin-top:6px">Mit dem Absenden stimmen Sie der Verarbeitung gemäß <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> zu.</div></div>');
-      body.appendChild(box);scrollDown();
-      box.querySelector("#cbSend").addEventListener("click",function(){
-        var n=box.querySelector("#cbName").value.trim(), t=box.querySelector("#cbPhone").value.trim();
-        if(!n||!t){bot("Bitte Name <b>und</b> Telefonnummer angeben – sonst kann Robin Sie nicht erreichen. 😊");menu();return;}
-        var fd=new FormData();fd.append("form-name","chatbot-rueckruf");fd.append("name",n);fd.append("phone",t);
-        fd.append("quelle","kapitalanlage-lp chatbot");
-        fetch("formular.php",{method:"POST",body:fd}).then(function(r){return r.json()}).then(function(j){
-          if(j.ok){bot("<b>Erledigt, "+n.split(" ")[0]+"!</b> Robin meldet sich schnellstmöglich bei Ihnen. ✓");}
-          else{throw 0;}
-          menu();
-        }).catch(function(){bot("Das hat technisch nicht geklappt. Rufen Sie gern direkt an: <a href='tel:+4916092085192'>0160 92085192</a>");menu();});
-      });
-    },silent:true},
-    {t:"Per WhatsApp schreiben",a:function(){
-      bot('Alles klar – hier geht es direkt zum Chat: <a href="https://wa.me/4916092085192?text=Hallo%20Herr%20J%C3%A4nicke%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Kapitalanlageimmobilie." target="_blank" rel="noopener">WhatsApp öffnen →</a>');
-    }},
-    {t:"Termin direkt buchen",a:function(){
-      chat.classList.remove("open");
-      document.getElementById("kontakt").classList.remove("gated");
-      showTab("termin");
-      document.getElementById("kontakt").scrollIntoView({behavior:"smooth"});
-    },silent:true}
-  ];
-
-  function menu(){
-    clearQr();
-    var q=el("div","qr");
-    MENU.forEach(function(m){
-      var b=el("button","",m.t);
-      b.addEventListener("click",function(){clearQr();if(!m.silent)user(m.t);m.a();if(!m.silent)menu();});
-      q.appendChild(b);
-    });
-    body.appendChild(q);scrollDown();
-  }
-  function start(){
-    if(started)return;started=true;
-    bot("Hallo! 👋 Ich bin Robins digitaler Assistent und beantworte die häufigsten Fragen sofort. Was interessiert Sie?");
-    menu();
-  }
-  document.getElementById("fabBot").addEventListener("click",function(){
-    chat.classList.toggle("open");
-    if(chat.classList.contains("open"))start();
-  });
-  document.getElementById("chatClose").addEventListener("click",function(){chat.classList.remove("open");});
-
-  /* ===== Freitext-Wissensdatenbank (im Hintergrund, nicht als Buttons sichtbar) ===== */
-  var WA="https://wa.me/4916092085192?text=Hallo%20Herr%20J%C3%A4nicke%2C%20ich%20habe%20eine%20Frage%20zur%20Kapitalanlageimmobilie.";
-  var actRueckruf=(MENU.filter(function(m){return m.t==="Rückruf vereinbaren";})[0]||{}).a;
-  var actTermin=(MENU.filter(function(m){return m.t==="Termin direkt buchen";})[0]||{}).a;
-  function ctaRow(){
-    var row=el("div","cta-row");
-    var wa=el("a","wa","WhatsApp"); wa.href=WA; wa.target="_blank"; wa.rel="noopener"; row.appendChild(wa);
-    var rb=el("button",null,"Rückruf"); rb.type="button"; rb.addEventListener("click",function(){clearQr();if(actRueckruf)actRueckruf();}); row.appendChild(rb);
-    var tb=el("button","prim","Termin buchen"); tb.type="button"; tb.addEventListener("click",function(){if(actTermin)actTermin();}); row.appendChild(tb);
-    return row;
-  }
-  function norm(s){return (" "+s.toLowerCase()+" ").replace(/ä/g,"a").replace(/ö/g,"o").replace(/ü/g,"u").replace(/ß/g,"ss").replace(/[^a-z0-9]+/g," ");}
-  var KB=[
-    {k:"hallo|hi|hey|guten tag|guten morgen|guten abend|servus|moin",a:"Hallo! 👋 Fragen Sie mich gern etwas rund um Kapitalanlage-Immobilien – z. B. zu Rendite, Eigenkapital, Steuer oder Ablauf. Für alles Persönliche verbinde ich Sie mit Robin."},
-    {k:"danke|vielen dank|dankeschon",a:"Sehr gern! 😊 Haben Sie noch eine Frage – oder soll Robin sich direkt bei Ihnen melden?",c:1},
-    {k:"wer bist du|bist du ein bot|bist du echt|roboter|kunstliche intelligenz",a:"Ich bin Robins digitaler Assistent und beantworte die häufigsten Fragen sofort. Sobald es persönlich wird, übernimmt Robin selbst – kostenfrei und unverbindlich."},
-    {k:"rendite|ek rendite|eigenkapitalrendite|wie viel gewinn|wie viel verdiene|ertrag",a:"Bei Kapitalanlage-Immobilien wirken drei Hebel zusammen: die <b>Bank</b> finanziert (Ihre Rendite läuft auf den vollen Kaufpreis), das <b>Finanzamt</b> beteiligt sich über Abschreibung &amp; absetzbare Kosten, und Ihr <b>Mieter</b> tilgt mit der Miete Ihr Darlehen. So sind in unseren Modellrechnungen oft 10 %+ Eigenkapitalrendite p. a. möglich – abhängig von Objekt, Finanzierung und Steuersituation."},
-    {k:"mietrendite|bruttomietrendite|nettomietrendite",a:"Die <b>Bruttomietrendite</b> = Jahreskaltmiete ÷ Kaufpreis. Aussagekräftiger ist die Nettomietrendite (nach nicht umlagefähigen Kosten) und am Ende die Eigenkapitalrendite inkl. Finanzierung &amp; Steuer. Genau das rechnen wir für jedes Objekt gemeinsam durch."},
-    {k:"eigenkapital|wie viel geld brauche|wieviel eigenkapital|ersparnisse|anzahlung|startkapital|kein geld|schenkung|generationenberater",a:"Oft reichen die <b>Kaufnebenkosten</b> als Eigenkapital (je nach Objekt ca. 10.000–20.000 €) – manchmal geht es sogar mit weniger, denn ich kenne Objekte und Banken, die auch mit geringem Eigenkapital finanzieren. <b>Kein Eigenkapital?</b> Viele Kunden nutzen eine frühzeitige Schenkung von Eltern/Großeltern oder einen Privatkredit – als zertifizierter Generationenberater unterstütze ich Sie dabei. Was für Sie passt, klären wir im kostenfreien Erstgespräch.",c:1},
-    {k:"kaufnebenkosten|nebenkosten beim kauf|erwerbsnebenkosten|kaufkosten",a:"Die Kaufnebenkosten liegen meist bei ca. <b>10–15 %</b> des Kaufpreises: Grunderwerbsteuer (in Hessen 6 %), Notar &amp; Grundbuch (ca. 1,5–2 %) und ggf. Maklercourtage. Bei unseren Portfolio-Objekten ist das transparent ausgewiesen."},
-    {k:"grunderwerbsteuer|grunderwerb|grest",a:"Die Grunderwerbsteuer zahlt der Käufer einmalig beim Kauf; sie ist je Bundesland unterschiedlich – in <b>Hessen 6 %</b> des Kaufpreises. Sie zählt zu den Kaufnebenkosten."},
-    {k:"notar|grundbuch|beurkundung",a:"Der Kauf wird notariell beurkundet und im Grundbuch eingetragen. Notar &amp; Grundbuch liegen zusammen bei ca. <b>1,5–2 %</b> des Kaufpreises und gehören zu den Kaufnebenkosten."},
-    {k:"finanzierung|darlehen|kredit|zins|zinsen|baufinanzierung|annuitat",a:"Die Bank finanziert in der Regel den Kaufpreis; Sie bringen meist nur die Nebenkosten mit. Konditionen (Zins, Tilgung, Laufzeit) hängen von Objekt, Bonität und Zinsmarkt ab. Als Bonnfinanz-Berater vergleiche ich Finanzierungen für Sie – das schauen wir konkret an."},
-    {k:"tilgung|tilgen|abbezahlen|restschuld",a:"Einen großen Teil der Tilgung übernimmt Ihr <b>Mieter</b> über die Miete – Sie bauen so mit fremdem Geld Vermögen auf. Die passende Anfangstilgung (oft 1–2 %) stimmen wir auf Ihre Ziele ab."},
-    {k:"afa|abschreibung|abschreiben|steuervorteil|steuer sparen|steuerlich absetzen|absetzen",a:"Als Vermieter können Sie das <b>Gebäude abschreiben</b> (AfA, meist 2 % p. a. auf den Gebäudeanteil, bei Neubau ggf. mehr) sowie Zinsen und viele Kosten geltend machen. Das senkt Ihre Steuerlast. Wie stark der Effekt bei Ihnen ist, hängt von Ihrem Steuersatz ab – das rechnen wir individuell durch."},
-    {k:"steuer|steuern|finanzamt|versteuern|mieteinnahmen versteuern",a:"Mieteinnahmen werden versteuert – gleichzeitig mindern AfA, Zinsen und Kosten den zu versteuernden Überschuss, oft entsteht sogar ein steuerlicher Verlust. Für Ihre konkrete Situation ist unser gemeinsames Gespräch (ggf. mit Steuerberater) der richtige Ort."},
-    {k:"denkmal|denkmalschutz|sonderabschreibung|sonder afa",a:"Bei Denkmalobjekten und teils bei Neubauten gibt es <b>erhöhte Abschreibungen</b> – steuerlich attraktiv, aber mit besonderen Voraussetzungen. Ob das für Sie passt, prüfen wir gemeinsam."},
-    {k:"mieteinnahmen|kaltmiete|mieteinnahme|was bringt die miete",a:"Die Kaltmiete ist Ihre laufende Einnahme; sie trägt Zins und Tilgung. Bei komplett gemanagten Objekten ist meist schon ein solventer Mieter vorhanden. Nicht umlagefähige Kosten ziehen wir in der Rechnung ab."},
-    {k:"mietausfall|mietnomaden|mieter zahlt nicht|mietausfallversicherung",a:"Das Risiko lässt sich stark reduzieren: Bonitätsprüfung des Mieters, Rücklagen und optional eine <b>Mietausfallversicherung</b>. Bei gemanagten Objekten kümmert sich die Verwaltung darum."},
-    {k:"leerstand|keine mieter|nicht vermietet|steht leer",a:"Leerstand ist das Hauptrisiko – deshalb zählt die <b>Lage</b> mit guter Mieternachfrage. Unsere Portfolio-Objekte sind meist bereits vermietet und liegen in nachgefragten Standorten."},
-    {k:"instandhaltung|reparatur|rucklage|hausgeld|reparaturen",a:"Für Instandhaltung bildet die Eigentümergemeinschaft eine <b>Rücklage</b> (Teil des Hausgeldes). Nicht umlagefähige Kosten rechnen wir von Anfang an mit ein, damit Ihre Kalkulation realistisch ist."},
-    {k:"verwaltung|hausverwaltung|verwalter|wer kummert sich",a:"Bei <b>komplett gemanagten</b> Objekten übernimmt eine Verwaltung Mietersuche, Abrechnung und Organisation – Sie haben kaum Aufwand. Ideal, wenn Sie sich um nichts kümmern möchten."},
-    {k:"komplett gemanagt|gemanagt|managed|rundum sorglos|sorglos",a:"„Komplett gemanagt“ heißt: Objekt, Mieter und Verwaltung stehen bereits – Sie kaufen eine weitgehend <b>schlüsselfertige Kapitalanlage</b> und kümmern sich im Alltag um fast nichts."},
-    {k:"lage|standort|wo kaufen|welche stadt|welche lage",a:"Die Lage entscheidet über Vermietbarkeit und Wertentwicklung – wir achten auf Mieternachfrage, Infrastruktur und Entwicklungspotenzial. Regional bin ich in Mittelhessen (Gießen, Marburg, Wetzlar) verwurzelt, arbeite aber deutschlandweit."},
-    {k:"neubau|bestand|alt oder neu|neu oder alt|bestandsimmobilie",a:"Beides hat Vorteile: <b>Bestand</b> ist oft günstiger und sofort vermietet, <b>Neubau</b> bietet weniger Instandhaltung und ggf. höhere Abschreibung. Was besser passt, hängt von Ihren Zielen ab."},
-    {k:"eigentumswohnung|wohnung oder haus|mehrfamilienhaus|haus kaufen",a:"Für den Einstieg sind <b>Eigentumswohnungen</b> beliebt: überschaubares Kapital, einfache Verwaltung. Mehrfamilienhäuser bieten mehr Ertrag, aber mehr Aufwand. Wir finden das passende Format für Sie."},
-    {k:"cashflow|monatlich draufzahlen|zuzahlung|kostet mich monatlich|eigenaufwand|drauflegen",a:"Je nach Objekt und Finanzierung tragen Sie anfangs einen kleinen monatlichen Eigenaufwand – oder das Objekt trägt sich selbst. In unseren Beispielen weisen wir den mtl. Eigenaufwand nach Steuern transparent aus."},
-    {k:"inflation|geldentwertung|inflationsschutz|wert erhalten",a:"Sachwerte wie Immobilien gelten als <b>Inflationsschutz</b>: Mieten und Werte steigen langfristig tendenziell mit, während Ihre Kreditschuld nominal gleich bleibt und real leichter wird."},
-    {k:"altersvorsorge|rente|vorsorge|passives einkommen|zusatzrente",a:"Eine vermietete Immobilie ist ein starker Baustein der Altersvorsorge: Der Mieter tilgt bis zur Rente Ihr Darlehen, danach bleibt die Miete als <b>passives Einkommen</b> – oder Sie verkaufen den dann schuldenfreien Wert."},
-    {k:"verkauf|verkaufen|spekulationssteuer|wieder verkaufen|10 jahre|zehn jahre|steuerfrei verkaufen|anbieten|off market",a:"Nach <b>10 Jahren</b> Haltedauer ist der Verkaufsgewinn bei privaten Immobilien meist steuerfrei (§ 23 EStG). In unseren Modellrechnungen ist die Eigenkapitalrendite rund um das 10. Jahr am größten – oft ein guter Moment, Gewinne mitzunehmen und in die nächste Immobilie zu reinvestieren. Für den Verkauf habe ich einen großen Interessenten-Pool und vermittle viele Objekte sogar <b>off-market</b>.",c:1},
-    {k:"erben|vererben|erbschaft|schenkung|nachlass|an kinder",a:"Immobilien lassen sich gut übertragen – mit Freibeträgen bei Schenkung/Erbschaft und Gestaltungsmöglichkeiten. Das ist stark individuell; hier lohnt ein persönliches Gespräch (ggf. mit Steuerberater).",c:1},
-    {k:"mieterhohung|miete erhohen|indexmiete|staffelmiete|mietspiegel",a:"Mieterhöhungen sind im Rahmen der gesetzlichen Regeln möglich (Mietspiegel, Index- oder Staffelmiete). Das steigert langfristig Ihren Ertrag. Was zulässig ist, hängt von Mietvertrag und Standort ab."},
-    {k:"kundigung|eigenbedarf|mieter kundigen|mieterschutz|selbst einziehen",a:"Vermietete Kapitalanlagen sind auf Ertrag ausgelegt – nicht auf Selbstnutzung. Der Mieterschutz ist stark; eine Kündigung (z. B. Eigenbedarf) ist nur unter engen Voraussetzungen möglich. Für Ihren Fall beraten wir konkret."},
-    {k:"energieausweis|heizung|sanierungspflicht|geg|energetisch|warmepumpe",a:"Energetischer Zustand und Sanierungspflichten (GEG) beeinflussen Kosten und Wert. Wir achten bei der Auswahl auf einen soliden Zustand und rechnen mögliche Maßnahmen ein – keine Überraschungen."},
-    {k:"kfw|forderung|forderprogramm|zuschuss|forderkredit",a:"Für energieeffiziente Objekte oder Sanierungen gibt es teils <b>KfW-Förderungen</b> (zinsgünstige Kredite/Zuschüsse). Ob und welche für Ihr Vorhaben passen, prüfen wir gemeinsam."},
-    {k:"bonitat|schufa|selbststandig|bekomme ich einen kredit|finanzierung selbststandig",a:"Ob angestellt oder selbstständig: Entscheidend sind Einkommen, Bonität und das Objekt selbst. Auch als Selbstständiger ist eine Finanzierung gut möglich. Ihre konkreten Chancen schauen wir uns vertraulich an.",c:1},
-    {k:"wie viel kann ich mir leisten|was kann ich mir leisten|wie teuer|budget|leisten",a:"Das hängt von Einkommen, Eigenkapital und Zielen ab – oft ist mehr möglich als gedacht, weil Mieter und Finanzamt mittragen. Ihren realistischen Rahmen ermitteln wir unverbindlich im Erstgespräch.",c:1},
-    {k:"lohnt sich|lohnt es sich|ist das sinnvoll|gute rendite|gute idee|sinnvoll",a:"Für viele ja – vor allem wegen der Hebel aus Finanzierung, Steuer und Mieter. Ob es für <b>Sie</b> passt, hängt von Ihrer Situation ab. Genau das prüfen wir ehrlich und kostenfrei – ich rechne kein Objekt schön.",c:1},
-    {k:"risiko|risiken|riskant|gefahr|nachteile|was kann schiefgehen|verlust|zu gefahrlich",a:"Die Hauptrisiken lassen sich gezielt entschärfen: <b>Mietausfall</b> über einen Mietpool (planbare Einnahmen auch bei Mieterwechsel), <b>Instandhaltung</b> über eine ausreichende Rücklage bei vorab geprüften Objekten, und die <b>Wertentwicklung</b> über sorgfältige Vorqualifizierung und exakte Objektanalyse. Ich lege Chancen <b>und</b> Risiken transparent offen.",c:1},
-    {k:"etf|aktien|depot|sparbuch|besser als etf|borse",a:"ETFs sind gut – aber sie bieten keinen Kredithebel und keinen Mieter, der für Sie tilgt. Die Immobilie kombiniert Fremdkapital, Steuervorteil und Sachwert. Beides kann sich sinnvoll ergänzen; das ordne ich gern in Ihre Gesamtstrategie ein."},
-    {k:"immobilienfonds|reit|fonds|indirekt|ohne selbst zu kaufen",a:"Immobilienfonds/REITs sind bequem, aber ohne den steuerlichen Hebel und die Kontrolle des <b>Direktkaufs</b>. Für den Vermögensaufbau mit Finanzierung ist die eigene Immobilie meist wirkungsvoller."},
-    {k:"pflegeimmobilie|pflegeapartment|betreutes wohnen|pflegeheim",a:"Pflegeimmobilien sind eine Sonderform mit langen Pachtverträgen und wenig Verwaltungsaufwand – interessant, aber mit eigenen Chancen/Risiken. Ob das zu Ihnen passt, besprechen wir individuell."},
-    {k:"studentenapartment|mikroapartment|studenten|1 zimmer|apartment",a:"Kleine Apartments (z. B. für Studenten/Pendler) bieten oft hohe Mietrenditen und sind einsteigerfreundlich – gefragt in Uni- und Wirtschaftsstandorten wie Gießen oder Marburg."},
-    {k:"ferienwohnung|airbnb|kurzzeitvermietung|ferienimmobilie",a:"Ferien-/Kurzzeitvermietung kann hohe Erträge bringen, ist aber aufwändiger und stärker reguliert. Für planbaren, passiven Vermögensaufbau bevorzugen wir meist die klassische Langzeitvermietung."},
-    {k:"klumpenrisiko|diversifikation|streuung|nur eine immobilie",a:"Gute Frage – eine Immobilie ist ein Baustein, kein Gesamtdepot. Als Bonnfinanz-Berater schaue ich ganzheitlich, dass Ihre Immobilie sinnvoll zu Ihrer übrigen Vorsorge passt."},
-    {k:"ablauf|wie lauft das ab|prozess|erste schritte|vorgehen|wie funktioniert|wie geht es los",a:"In 3 Schritten: <b>1.</b> Kostenfreies Erstgespräch – ich zeige alle Wege neutral auf. <b>2.</b> Passende Objektvorschläge mit vollständiger Modellrechnung. <b>3.</b> Kauf &amp; Finanzierung begleitet – bis alles läuft. Am besten starten Sie unverbindlich mit dem Erstgespräch.",c:1},
-    {k:"zeitaufwand|wie viel zeit|aufwand|wie lange dauert",a:"Für Sie ist der Aufwand gering – besonders bei komplett gemanagten Objekten. Das Erstgespräch dauert 60 Minuten; Auswahl und Kaufabwicklung begleite ich für Sie."},
-    {k:"warum sie|serios|vertrauen|betrug|abzocke|warum bonnfinanz|erfahrung",a:"Ich bin selbstständiger Finanzberater für die <b>Bonnfinanz</b> (über 50 Jahre Allfinanz-Erfahrung) mit Schwerpunkt Kapitalanlage-Immobilien. Ich rechne jedes Objekt ehrlich durch – auch die Risiken – und verdiene nur, wenn es für Sie passt."},
-    {k:"deutschlandweit|online|per video|nur regional|muss ich kommen|muss ich anreisen|entfernung",a:"Beratung geht <b>deutschlandweit</b> – persönlich in Mittelhessen oder bequem online per Video. Die Immobilie selbst muss übrigens nicht in Ihrer Nähe liegen; bei gemanagten Objekten zählt allein die Rendite."},
-    {k:"netzwerk|makler|maklernetzwerk|kollegen|400 kollegen|ganze kette|wertschopfungskette|marktzugang",a:"Ich arbeite mit einem starken regionalen Maklernetzwerk in Mittelhessen und bin deutschlandweit mit über <b>400 Kollegen</b> vernetzt, die Sie in Ihrer eigenen Region vor Ort unterstützen – von der Suche über den Kauf bis zu einem späteren Verkauf. So bekommen Sie die ganze Kette aus einer Hand: Beratung, Suche, Kauf, Finanzierung, Begleitung, Verkauf.",c:1},
-    {k:"kontakt|termin|anrufen|telefon|erreichen|sprechen|beratung vereinbaren",a:"Am schnellsten per WhatsApp oder Rückruf – oder buchen Sie direkt Ihr kostenfreies 60-Minuten-Erstgespräch:",c:1},
-    {k:"datenschutz|meine daten|dsgvo|daten sicher",a:"Ihre Angaben werden nur zur Bearbeitung Ihrer Anfrage genutzt und nicht weitergegeben – Details in der <a href='datenschutz.html' target='_blank'>Datenschutzerklärung</a>. Statistik-/Marketing-Cookies laden nur mit Ihrer Einwilligung."},
-    {k:"kostet die beratung|beratung kostenlos|was kostet|gebuhr|honorar",a:"Für Sie <b>kostenfrei</b> und unverbindlich – vergütet wird branchenüblich über Provisionen der Produktpartner, das lege ich transparent offen."}
-  ];
-  function findAnswer(text){
-    var ni=norm(text), best=null, bestScore=0;
-    KB.forEach(function(e){
-      var score=0;
-      e.k.split("|").forEach(function(key){
-        key=norm(key).trim(); if(!key) return;
-        if(key.indexOf(" ")>=0){ if(ni.indexOf(key)>=0) score+=key.replace(/ /g,"").length+2; }
-        else { if(ni.indexOf(" "+key+" ")>=0) score+=Math.max(4,key.length); }
-      });
-      if(score>bestScore){bestScore=score;best=e;}
-    });
-    return bestScore>=4 ? best : null;
-  }
-  document.getElementById("chatForm").addEventListener("submit",function(e){
-    e.preventDefault();
-    var inp=document.getElementById("chatText"), q=inp.value.trim(); if(!q)return;
-    if(!started){started=true;} inp.value="";
-    user(q);
-    var typing=el("div","msg bot typing","schreibt …"); body.appendChild(typing); scrollDown();
-    setTimeout(function(){
-      typing.remove();
-      var found=findAnswer(q);
-      var m=el("div","msg bot", found ? found.a : "Das ist eine sehr gute Frage – und die Antwort hängt oft von Ihrer persönlichen Situation ab. Das bespreche ich am liebsten direkt mit Ihnen. Wie möchten Sie starten?");
-      if(!found || found.c){ m.appendChild(ctaRow()); }
-      body.appendChild(m); scrollDown();
-    },450);
-  });
-})();
-
-/* ---------- Quick-Lead im Hero ---------- */
-document.getElementById("qleadForm").addEventListener("submit",function(e){
-  e.preventDefault();
-  var f=e.target,n=document.getElementById("q-name"),t=document.getElementById("q-phone"),b=document.getElementById("q-btn");
-  if(!n.value.trim()||!t.value.trim()){n.style.borderColor=t.style.borderColor="#EB2747";return;}
-  b.disabled=true;b.textContent="Wird gesendet …";
-  var fd=new FormData();fd.append("form-name","quick-rueckruf");fd.append("name",n.value);fd.append("phone",t.value);
-  fd.append("quelle",document.getElementById("f-quelle").value+" hero-quicklead");
-  fetch("formular.php",{method:"POST",body:fd}).then(function(r){return r.json()}).then(function(j){
-    if(j.ok){f.querySelector(".qrow").style.display="none";b.style.display="none";
-      f.querySelector(".qnote").style.display="none";document.getElementById("q-ok").style.display="block";
-      if(window.mkiTrackLead) mkiTrackLead("hero-quicklead");
-    } else { throw 0; }
-  }).catch(function(){b.disabled=false;b.textContent="Kostenfreien Rückruf sichern →";});
-});
+/* Quick-Lead im Hero entfernt */
 
 /* ---------- Scroll-Reveal ---------- */
 (function(){
@@ -1842,35 +1706,58 @@ document.getElementById("qleadForm").addEventListener("submit",function(e){
   });
 })();
 
-document.getElementById("leadForm").addEventListener("submit",function(e){
-  e.preventDefault();
-  var f=e.target, err=document.getElementById("formErr");
+var _leadForm=document.getElementById("leadForm");
+function _contactValid(f){
+  return f.name.value.trim() && f.phone.value.trim() && document.getElementById("f-consent").checked;
+}
+function _sendLead(mode){
+  var f=_leadForm, err=document.getElementById("formErr");
   err.style.display="none";
-  if(!f.name.value.trim()||!f.phone.value.trim()||!document.getElementById("f-consent").checked){
-    err.style.display="block"; return;
-  }
-  var btn=document.getElementById("submitBtn"); btn.disabled=true; btn.textContent="Wird gesendet …";
+  var tw=document.getElementById("f-terminwunsch"); if(tw) tw.value=(mode==="termin"?"ja":"nein");
   var fd=new FormData(f);
-  /* Rechner-Eingaben des Kunden mit an den Lead hängen (falls vorhanden) */
   try{
     var rd = window.MKI_getRechnerDaten ? window.MKI_getRechnerDaten() : {};
     if(rd && Object.keys(rd).length){
-      /* lesbare Kurzfassung -> landet direkt in der Lead-Mail */
       fd.append("rechner_zusammenfassung", window.MKI_getRechnerText());
-      /* strukturierte Daten -> für Tracking / späteren Lead-Funnel */
       if(window.dataLayer) dataLayer.push({event:"rechner_lead_daten", rechner:rd});
     }
   }catch(_){}
+  var ja=document.getElementById("choiceJa"), nein=document.getElementById("choiceNein");
+  var active=(mode==="termin")?ja:nein, prev=active?active.textContent:"";
+  if(ja) ja.disabled=true; if(nein) nein.disabled=true;
+  if(active) active.textContent="Wird gesendet …";
   fetch("formular.php",{method:"POST",body:fd})
     .then(function(r){return r.json()})
     .then(function(j){
       if(j.ok){
-        f.style.display="none"; document.getElementById("formOk").style.display="block";
-        if(window.mkiTrackLead) mkiTrackLead("kontaktformular");
+        if(window.mkiTrackLead) mkiTrackLead(mode==="termin"?"kontakt-termin":"kontaktformular");
+        var tc=document.getElementById("terminChoice"); if(tc) tc.style.display="none";
+        if(mode==="termin"){
+          var pR=document.getElementById("panelR"), pT=document.getElementById("panelT");
+          if(pR) pR.style.display="none";
+          if(pT){ pT.style.display=""; if(typeof loadCalendly==="function") loadCalendly(); pT.scrollIntoView({behavior:"smooth",block:"start"}); }
+        } else {
+          f.style.display="none"; document.getElementById("formOk").style.display="block";
+        }
       } else { throw 0; }
     })
-    .catch(function(){ err.style.display="block"; btn.disabled=false; btn.textContent="Rückruf anfordern"; });
+    .catch(function(){
+      err.style.display="block";
+      if(ja){ja.disabled=false;} if(nein){nein.disabled=false;}
+      if(active) active.textContent=prev;
+    });
+}
+_leadForm.addEventListener("submit",function(e){
+  e.preventDefault();
+  var f=e.target, err=document.getElementById("formErr");
+  err.style.display="none";
+  if(!_contactValid(f)){ err.style.display="block"; return; }
+  document.getElementById("ctaRow").style.display="none";
+  var tc=document.getElementById("terminChoice"); tc.style.display="block";
+  tc.scrollIntoView({behavior:"smooth",block:"center"});
 });
+document.getElementById("choiceJa").addEventListener("click",function(){ _sendLead("termin"); });
+document.getElementById("choiceNein").addEventListener("click",function(){ _sendLead("rueckruf"); });
 </script>
 
 <!-- ============================================================
