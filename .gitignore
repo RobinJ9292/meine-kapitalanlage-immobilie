@@ -1,3 +1,5 @@
 .DS_Store
 _to_delete/
 PROJEKT-HANDOFF.md
+# Zwischengespeicherte, unbestaetigte Leads nicht ins Repo
+_leads/*.json

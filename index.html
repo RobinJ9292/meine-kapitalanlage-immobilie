@@ -325,6 +325,28 @@ section{padding:84px 0;scroll-margin-top:76px}
 #sec-info{background:var(--paper)!important}
 .sell-mini{max-width:760px;margin:28px auto 0;text-align:center;font-size:14.5px;color:var(--muted)}
 .sell-mini a{color:var(--true-blue);font-weight:800;text-decoration:underline}
+.vquiz{background:var(--paper)}
+.vq-card{max-width:640px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px 26px 28px;box-shadow:var(--shadow-md)}
+.vq-progress{margin-bottom:22px}
+.vq-bar{height:8px;background:var(--jade-20);border-radius:999px;overflow:hidden}
+.vq-bar span{display:block;height:100%;width:14%;background:var(--grad-cta);border-radius:999px;transition:width .3s ease}
+.vq-count{font-size:12.5px;font-weight:800;color:var(--muted);margin-top:8px;text-align:right;letter-spacing:.03em}
+.vq-step h3{font-size:20px;font-weight:800;color:var(--ink);margin-bottom:18px;line-height:1.3}
+.vq-choices{display:grid;gap:12px}
+.vq-choice{text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:16px 18px;font-family:var(--sans);font-size:15.5px;font-weight:700;color:var(--ink);cursor:pointer;transition:border-color .2s,background .2s,transform .15s}
+.vq-choice:hover{border-color:var(--jade);transform:translateY(-1px)}
+.vq-choice.active{border-color:var(--true-blue);background:var(--jade-20)}
+.vq-field{margin-bottom:12px}
+.vq-field label{display:block;font-size:13px;font-weight:800;color:var(--ink);margin-bottom:7px}
+.vq-field input{width:100%;padding:13px 15px;border:1.5px solid var(--line);border-radius:12px;font-family:var(--sans);font-size:15px}
+.vq-field input:focus{outline:2px solid var(--jade);border-color:transparent}
+.vq-ort{font-weight:700;color:var(--true-blue);min-height:20px;font-size:13.5px}
+.vq-slider-out{font-size:30px;font-weight:700;color:var(--true-blue);text-align:center;font-family:var(--serif);margin-bottom:12px}
+.vq-slider{width:100%;accent-color:var(--true-blue)}
+.vq-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:24px}
+.vq-back{background:none;border:none;color:var(--muted);font-weight:700;cursor:pointer;text-decoration:underline;font-family:var(--sans);font-size:14px;padding:6px 2px}
+.vq-err{display:none;color:#d64550;font-size:13.5px;font-weight:700;margin-top:12px}
+.vq-fielderr{display:none;color:#d64550;font-size:12.5px;font-weight:700;margin:-6px 0 10px}
 
 /* Kontakt */
 .contact{background:radial-gradient(900px 500px at 20% -10%,#254a77 0%,transparent 55%),linear-gradient(160deg,#0D1B2E 0%,#122844 60%,#173252 100%)!important;color:var(--t-on-dark);position:relative;overflow:hidden}
@@ -754,7 +776,7 @@ footer a:hover{color:var(--jade)}
         <li>Ehrliche Modellrechnung mit meinem Kapitalanlage-Tool – vor der Entscheidung</li>
         <li>Späterer Verkauf: als eingetragener Immobilienmakler mit großem Interessenten-Pool – oft sogar off-market</li>
       </ul>
-      <div style="text-align:center;margin-top:22px;position:relative;z-index:1"><a class="btn btn-jade" href="#kontakt" data-tab="rueckruf">Lernen wir uns unverbindlich kennen</a></div>
+      <div style="text-align:center;margin-top:22px;position:relative;z-index:1"><a class="btn btn-jade" href="#kontakt" data-tab="rueckruf" style="padding:12px 22px;font-size:14px">Lernen wir uns unverbindlich kennen</a></div>
     </div>
   </div>
 </section>
@@ -790,7 +812,6 @@ footer a:hover{color:var(--jade)}
       </div>
     </div>
     <p style="text-align:center;font-size:15px;color:var(--muted);max-width:760px;margin:22px auto 0;line-height:1.6">Kein Konzept eliminiert jedes Risiko vollständig. Aber wenn Lage, Rechnung und Finanzierung zusammenpassen, ist das Meiste kalkulierbar – genau das prüfen wir gemeinsam, bevor Sie entscheiden.</p>
-    <div style="text-align:center;margin-top:26px"><a class="btn btn-blue" href="#kontakt" data-tab="rueckruf" style="border-radius:10px">Offene Fragen ehrlich klären</a></div>
   </div>
 </section>
 
@@ -1012,7 +1033,7 @@ footer a:hover{color:var(--jade)}
       <a class="btn btn-blue btn-lg" href="#kontakt" data-tab="termin">Kostenfreie Erstberatung sichern</a>
     </div>
     <p class="sell-mini">Sie möchten eigentlich gar nicht kaufen, sondern <strong>Ihre Immobilie verkaufen</strong>?
-      <a href="#kontakt" data-tab="rueckruf" data-thema="verkaufen">Hier direkt Verkauf anfragen →</a></p>
+      <a href="#verkauf-quiz">Hier direkt Verkauf anfragen →</a></p>
   </div>
 </section>
 
@@ -1047,7 +1068,7 @@ footer a:hover{color:var(--jade)}
         <div class="fgrid">
           <div class="field"><label for="f-name">Name*</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
           <div class="field"><label for="f-phone">Telefon*</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" required></div>
-          <div class="field"><label for="f-email">E-Mail <span class="opt">(optional)</span></label><input id="f-email" name="email" type="email" autocomplete="email"></div>
+          <div class="field"><label for="f-email">E-Mail*</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
           <div class="field"><label for="f-time">Beste Erreichbarkeit</label>
             <select id="f-time" name="time"><option>Egal / jederzeit</option><option>Vormittags</option><option>Mittags</option><option>Nachmittags</option><option>Abends (nach 18 Uhr)</option></select></div>
           <div class="field"><label for="f-thema">Worum geht es?</label>
@@ -1140,9 +1161,218 @@ footer a:hover{color:var(--jade)}
       <h3>Ich habe eine Immobilie und möchte sie verkaufen</h3>
       <p>Ich habe einen großen Pool an potenziellen Käufern für Wohnungen und Häuser und ein Netzwerk aus Maklern und Vermittlern in ganz Deutschland – viele Objekte vermitteln wir <b>off-market</b>.</p>
     </div>
-    <a class="btn btn-blue btn-sm" href="#kontakt" data-tab="rueckruf" data-thema="verkaufen">Objekt anbieten</a>
+    <a class="btn btn-blue btn-sm" href="#verkauf-quiz">Objekt anbieten</a>
   </div>
 </div>
+
+<!-- ==================== VERKAUFS-QUIZ ==================== -->
+<section class="vquiz" id="verkauf-quiz" style="display:none">
+  <div class="wrap">
+    <div class="sec-head" style="margin-bottom:22px">
+      <span class="eyebrow">Objekt anbieten</span>
+      <h2>Was ist Ihre Immobilie wert?</h2>
+      <p>In 7 kurzen Schritten – danach melde ich mich mit einer ersten Einschätzung. Unverbindlich.</p>
+    </div>
+    <div class="vq-card" id="vqCard">
+      <div id="vqInner">
+        <div class="vq-progress">
+          <div class="vq-bar"><span id="vqBar"></span></div>
+          <div class="vq-count" id="vqCount">Schritt 1 von 7</div>
+        </div>
+        <form id="vqForm" novalidate>
+          <div class="vq-step" data-step="1">
+            <h3>Was für eine Immobilie möchten Sie verkaufen?</h3>
+            <div class="vq-choices">
+              <button type="button" class="vq-choice" data-field="immobilientyp" data-val="Einfamilienhaus" data-advance>Einfamilienhaus</button>
+              <button type="button" class="vq-choice" data-field="immobilientyp" data-val="Mehrfamilienhaus" data-advance>Mehrfamilienhaus</button>
+              <button type="button" class="vq-choice" data-field="immobilientyp" data-val="Eigentumswohnung" data-advance>Eigentumswohnung</button>
+              <button type="button" class="vq-choice" data-field="immobilientyp" data-val="Etwas anderes" data-advance>Etwas anderes</button>
+            </div>
+          </div>
+          <div class="vq-step" data-step="2" hidden>
+            <h3>Wo steht Ihre Immobilie?</h3>
+            <div class="vq-field"><label for="vqPlz">Postleitzahl</label><input type="text" id="vqPlz" inputmode="numeric" maxlength="5" placeholder="z. B. 35390"></div>
+            <div class="vq-field" id="vqOrtField" hidden><label for="vqOrtVal">Ort</label><input type="text" id="vqOrtVal" placeholder="wird automatisch ermittelt"></div>
+            <div class="vq-ort" id="vqOrtHint"></div>
+            <div class="vq-err" id="vqErr2">Bitte eine gültige 5-stellige PLZ und den Ort angeben.</div>
+            <div class="vq-nav"><button type="button" class="vq-back" data-nav="back">← Zurück</button><button type="button" class="btn btn-blue" data-nav="next" style="padding:12px 26px">Weiter</button></div>
+          </div>
+          <div class="vq-step" data-step="3" data-require="nutzung" hidden>
+            <h3>Ist die Immobilie eigengenutzt oder vermietet?</h3>
+            <div class="vq-choices">
+              <button type="button" class="vq-choice" data-field="nutzung" data-val="Eigengenutzt">Eigengenutzt</button>
+              <button type="button" class="vq-choice" data-field="nutzung" data-val="Vermietet">Vermietet</button>
+            </div>
+            <div class="vq-field" id="vqKaltmiete" hidden style="margin-top:16px"><label for="vqKaltmieteInput">Aktuelle Kaltmiete (€ / Monat)</label><input type="text" id="vqKaltmieteInput" inputmode="numeric" placeholder="z. B. 850"></div>
+            <div class="vq-err" id="vqErr3">Bitte wählen Sie eine Option.</div>
+            <div class="vq-nav"><button type="button" class="vq-back" data-nav="back">← Zurück</button><button type="button" class="btn btn-blue" data-nav="next" style="padding:12px 26px">Weiter</button></div>
+          </div>
+          <div class="vq-step" data-step="4" hidden>
+            <h3>Was ist Ihr Wunschpreis?</h3>
+            <div class="vq-slider-out" id="vqPreisOut">300.000 €</div>
+            <input type="range" class="vq-slider" id="vqPreis" min="50000" max="2000000" step="10000" value="300000">
+            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:6px"><span>50.000 €</span><span>2 Mio. €+</span></div>
+            <div class="vq-nav"><button type="button" class="vq-back" data-nav="back">← Zurück</button><button type="button" class="btn btn-blue" data-nav="next" style="padding:12px 26px">Weiter</button></div>
+          </div>
+          <div class="vq-step" data-step="5" hidden>
+            <h3>Wann haben Sie die Immobilie gekauft?</h3>
+            <div class="vq-choices">
+              <button type="button" class="vq-choice" data-field="kaufzeitpunkt" data-val="Vor über 10 Jahren" data-advance>Vor über 10 Jahren</button>
+              <button type="button" class="vq-choice" data-field="kaufzeitpunkt" data-val="Vor 5–10 Jahren" data-advance>Vor 5–10 Jahren</button>
+              <button type="button" class="vq-choice" data-field="kaufzeitpunkt" data-val="Vor weniger als 5 Jahren" data-advance>Vor weniger als 5 Jahren</button>
+            </div>
+            <div class="vq-nav"><button type="button" class="vq-back" data-nav="back">← Zurück</button></div>
+          </div>
+          <div class="vq-step" data-step="6" hidden>
+            <h3>Wann möchten Sie verkaufen?</h3>
+            <div class="vq-choices">
+              <button type="button" class="vq-choice" data-field="verkaufszeitpunkt" data-val="Am liebsten sofort" data-advance>Am liebsten sofort</button>
+              <button type="button" class="vq-choice" data-field="verkaufszeitpunkt" data-val="Zeitnah" data-advance>Zeitnah</button>
+              <button type="button" class="vq-choice" data-field="verkaufszeitpunkt" data-val="Hat noch Zeit" data-advance>Hat noch Zeit</button>
+            </div>
+            <div class="vq-nav"><button type="button" class="vq-back" data-nav="back">← Zurück</button></div>
+          </div>
+          <div class="vq-step" data-step="7" hidden>
+            <h3>Fast geschafft – wohin darf ich mich melden?</h3>
+            <div class="vq-field"><label for="vqName">Name*</label><input type="text" id="vqName" autocomplete="name"></div>
+            <div class="vq-field"><label for="vqEmail">E-Mail*</label><input type="email" id="vqEmail" autocomplete="email"></div>
+            <div class="vq-fielderr" id="vqEmailErr">Diese E-Mail-Adresse sieht nicht gültig aus – bitte prüfen.</div>
+            <div class="vq-field"><label for="vqPhone">Telefon*</label><input type="tel" id="vqPhone" autocomplete="tel"></div>
+            <div class="vq-fielderr" id="vqPhoneErr">Diese Telefonnummer sieht nicht vollständig aus – bitte prüfen.</div>
+            <p class="hp"><label>Bitte leer lassen<input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+            <label style="display:flex;gap:10px;align-items:flex-start;margin:6px 0 2px;font-size:13px;color:var(--muted)"><input type="checkbox" id="vqConsent" style="margin-top:3px"><span>Ich bin einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verwendet werden. Details in der <a href="datenschutz.html" target="_blank" style="display:inline;color:var(--true-blue)">Datenschutzerklärung</a>.</span></label>
+            <div class="vq-err" id="vqFinalErr">Bitte Name, E-Mail, Telefon ausfüllen und der Verarbeitung zustimmen.</div>
+            <div class="vq-nav"><button type="button" class="vq-back" data-nav="back">← Zurück</button><button type="submit" class="btn btn-blue btn-lg" id="vqSubmit">Jetzt Rückruf anfordern</button></div>
+          </div>
+        </form>
+      </div>
+      <div class="vq-ok" id="vqOk" hidden style="text-align:center;padding:20px">
+        <div style="font-size:44px;color:var(--info);line-height:1">✓</div>
+        <h3 style="margin:8px 0 6px">Vielen Dank!</h3>
+        <p style="color:var(--muted)">Ihre Angaben sind bei mir – ich melde mich schnellstmöglich mit einer ersten Einschätzung.<br>Sie möchten nicht warten? <a href="tel:+4916092085192" style="display:inline;color:var(--true-blue);font-weight:800">0160 92085192</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var form=document.getElementById('vqForm'); if(!form) return;
+  var steps=[].slice.call(form.querySelectorAll('.vq-step'));
+  var total=steps.length, cur=0;
+  var bar=document.getElementById('vqBar'), count=document.getElementById('vqCount');
+  var data={};
+  document.querySelectorAll('a[href="#verkauf-quiz"]').forEach(function(a){
+    a.addEventListener("click",function(e){
+      e.preventDefault();
+      var sec=document.getElementById("verkauf-quiz"); if(!sec) return;
+      sec.style.display="block";
+      sec.scrollIntoView({behavior:"smooth",block:"start"});
+    });
+  });
+  function render(scroll){
+    steps.forEach(function(s,i){ s.hidden=(i!==cur); });
+    if(bar) bar.style.width=Math.round(((cur+1)/total)*100)+'%';
+    if(count) count.textContent='Schritt '+(cur+1)+' von '+total;
+    if(scroll){ var c=document.getElementById('vqCard'); if(c) c.scrollIntoView({behavior:'smooth',block:'start'}); }
+  }
+  function go(n){ cur=Math.max(0,Math.min(total-1,n)); render(true); }
+  form.querySelectorAll('.vq-choice').forEach(function(b){
+    b.addEventListener('click',function(){
+      var f=b.getAttribute('data-field'), v=b.getAttribute('data-val');
+      data[f]=v;
+      form.querySelectorAll('.vq-choice[data-field="'+f+'"]').forEach(function(x){ x.classList.toggle('active', x===b); });
+      if(f==='nutzung'){ var km=document.getElementById('vqKaltmiete'); if(km) km.hidden=(v!=='Vermietet'); }
+      if(b.hasAttribute('data-advance')){ setTimeout(function(){ go(cur+1); },160); }
+    });
+  });
+  form.querySelectorAll('[data-nav]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      if(btn.getAttribute('data-nav')==='back'){ go(cur-1); return; }
+      if(validate(cur)) go(cur+1);
+    });
+  });
+  function validate(i){
+    var step=steps[i], ok=true;
+    var req=step.getAttribute('data-require');
+    if(req && !data[req]) ok=false;
+    if(step.getAttribute('data-step')==='2'){
+      var plz=document.getElementById('vqPlz').value.trim();
+      var ort=document.getElementById('vqOrtVal').value.trim();
+      if(!/^\d{5}$/.test(plz) || !ort){ ok=false; } else { data.plz=plz; data.ort=ort; }
+    }
+    var err=step.querySelector('.vq-err'); if(err) err.style.display= ok?'none':'block';
+    return ok;
+  }
+  var plzIn=document.getElementById('vqPlz');
+  if(plzIn){
+    function vqOrtEls(){ return { hint:document.getElementById('vqOrtHint'), ort:document.getElementById('vqOrtVal'), field:document.getElementById('vqOrtField') }; }
+    function vqShow(name){ var e=vqOrtEls(); if(e.ort) e.ort.value=name; if(e.field) e.field.hidden=false; if(e.hint) e.hint.textContent='📍 '+name+' erkannt'; }
+    function vqUnknown(){ var e=vqOrtEls(); if(e.field) e.field.hidden=true; if(e.ort) e.ort.value=''; if(e.hint) e.hint.textContent='Diese Postleitzahl kenne ich nicht – bitte prüfen Sie Ihre Eingabe.'; }
+    function vqManual(){ var e=vqOrtEls(); if(e.field) e.field.hidden=false; if(e.hint) e.hint.textContent='Ort automatisch nicht ermittelbar – bitte manuell eingeben.'; }
+    function vqZippo(v){ return fetch('https://api.zippopotam.us/de/'+v).then(function(r){ return r.ok?r.json():null; }).then(function(j){ return (j&&j.places&&j.places[0])?j.places[0]['place name']:null; }); }
+    var vqLast='';
+    plzIn.addEventListener('input',function(){
+      var v=plzIn.value.replace(/\D/g,'').slice(0,5); plzIn.value=v; vqLast=v;
+      var e=vqOrtEls();
+      if(v.length<5){ if(e.field) e.field.hidden=true; if(e.ort) e.ort.value=''; if(e.hint) e.hint.textContent=''; return; }
+      if(e.hint) e.hint.textContent='Ort wird ermittelt …';
+      /* Primaer: offizielle OpenPLZ-API, Fallback: zippopotam */
+      fetch('https://openplzapi.org/de/Localities?postalCode='+v).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(a){
+        if(v!==vqLast) return;
+        if(a && a.length && a[0] && a[0].name){ vqShow(a[0].name); return; }
+        vqZippo(v).then(function(n){ if(v!==vqLast) return; if(n) vqShow(n); else vqUnknown(); }).catch(function(){ if(v===vqLast) vqManual(); });
+      }).catch(function(){
+        vqZippo(v).then(function(n){ if(v!==vqLast) return; if(n) vqShow(n); else vqManual(); }).catch(function(){ if(v===vqLast) vqManual(); });
+      });
+    });
+  }
+  var sl=document.getElementById('vqPreis'), out=document.getElementById('vqPreisOut');
+  function updSl(){ data.wunschpreis=sl.value; out.textContent=Number(sl.value).toLocaleString('de-DE')+' €'; }
+  if(sl){ sl.addEventListener('input',updSl); updSl(); }
+  function vqValidEmail(x){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(x); }
+  function vqValidPhone(x){ x=(x||'').trim(); if(!/^[+0-9 ()\/.\-]{6,}$/.test(x)) return false; var dg=x.replace(/\D/g,''); return dg.length>=7 && dg.length<=15; }
+  var vqEmailIn=document.getElementById('vqEmail'), vqPhoneIn=document.getElementById('vqPhone');
+  if(vqEmailIn){ vqEmailIn.addEventListener('blur',function(){ document.getElementById('vqEmailErr').style.display=(vqEmailIn.value.trim() && !vqValidEmail(vqEmailIn.value.trim()))?'block':'none'; });
+    vqEmailIn.addEventListener('input',function(){ if(vqValidEmail(vqEmailIn.value.trim())) document.getElementById('vqEmailErr').style.display='none'; }); }
+  if(vqPhoneIn){ vqPhoneIn.addEventListener('blur',function(){ document.getElementById('vqPhoneErr').style.display=(vqPhoneIn.value.trim() && !vqValidPhone(vqPhoneIn.value.trim()))?'block':'none'; });
+    vqPhoneIn.addEventListener('input',function(){ if(vqValidPhone(vqPhoneIn.value.trim())) document.getElementById('vqPhoneErr').style.display='none'; }); }
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=document.getElementById('vqName').value.trim();
+    var email=document.getElementById('vqEmail').value.trim();
+    var phone=document.getElementById('vqPhone').value.trim();
+    var consent=document.getElementById('vqConsent').checked;
+    var err=document.getElementById('vqFinalErr');
+    var eOk=vqValidEmail(email), pOk=vqValidPhone(phone);
+    document.getElementById('vqEmailErr').style.display=(email&&!eOk)?'block':'none';
+    document.getElementById('vqPhoneErr').style.display=(phone&&!pOk)?'block':'none';
+    if(!name||!email||!phone||!consent){ err.style.display='block'; return; }
+    err.style.display='none';
+    if(!eOk){ document.getElementById('vqEmailErr').style.display='block'; document.getElementById('vqEmail').focus(); return; }
+    if(!pOk){ document.getElementById('vqPhoneErr').style.display='block'; document.getElementById('vqPhone').focus(); return; }
+    var kmi=document.getElementById('vqKaltmieteInput'); var kmw=document.getElementById('vqKaltmiete');
+    if(kmi && kmw && !kmw.hidden && kmi.value.trim()) data.kaltmiete=kmi.value.trim();
+    var btn=document.getElementById('vqSubmit'); btn.disabled=true; btn.textContent='Wird gesendet …';
+    var fd=new FormData();
+    fd.append('form-name','objekt-verkauf'); fd.append('terminwunsch','nein'); fd.append('thema','Immobilie verkaufen'); fd.append('quelle','objekt-verkauf-quiz');
+    fd.append('name',name); fd.append('email',email); fd.append('phone',phone); fd.append('bot-field','');
+    Object.keys(data).forEach(function(k){ if(data[k]) fd.append(k,data[k]); });
+    fetch('lead-intake.php',{method:'POST',body:fd}).then(function(r){ return r.json(); }).then(function(j){
+      if(j && j.ok){
+        var ok=document.getElementById('vqOk');
+        ok.innerHTML = (j.confirm===false)
+          ? '<div style="font-size:44px;color:var(--info);line-height:1">✓</div><h3 style="margin:8px 0 6px">Vielen Dank!</h3><p style="color:var(--muted)">Ihre Angaben sind bei mir – ich melde mich schnellstmöglich. Sie möchten nicht warten? <a href="tel:+4916092085192" style="display:inline;color:var(--true-blue);font-weight:800">0160 92085192</a></p>'
+          : '<div style="font-size:44px;line-height:1">✉️</div><h3 style="margin:8px 0 6px">Fast geschafft – bitte E-Mail bestätigen</h3><p style="color:var(--muted)">Ich habe Ihnen eine E-Mail geschickt. Bestätigen Sie darin kurz Ihre Rückrufbitte – danach melde ich mich persönlich. Bitte ggf. auch den Spam-Ordner prüfen.</p>';
+        document.getElementById('vqInner').style.display='none'; ok.hidden=false;
+        if(window.mkiTrackLead) mkiTrackLead('objekt-verkauf');
+        var c=document.getElementById('vqCard'); if(c) c.scrollIntoView({behavior:'smooth',block:'start'});
+      }
+      else { throw 0; }
+    }).catch(function(){ err.textContent='Das hat nicht geklappt – bitte prüfen Sie Ihre Angaben oder rufen Sie mich direkt an: 0160 92085192.'; err.style.display='block'; btn.disabled=false; btn.textContent='Jetzt Rückruf anfordern'; });
+  });
+  render(false);
+})();
+</script>
 
 <footer>
   <div class="foot-grid">
@@ -1708,7 +1938,8 @@ if(_loadCalBtn) _loadCalBtn.addEventListener("click",loadCalendly);
 
 var _leadForm=document.getElementById("leadForm");
 function _contactValid(f){
-  return f.name.value.trim() && f.phone.value.trim() && document.getElementById("f-consent").checked;
+  var em=(f.email&&f.email.value||"").trim();
+  return f.name.value.trim() && f.phone.value.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em) && document.getElementById("f-consent").checked;
 }
 function _sendLead(mode){
   var f=_leadForm, err=document.getElementById("formErr");
@@ -1726,7 +1957,7 @@ function _sendLead(mode){
   var active=(mode==="termin")?ja:nein, prev=active?active.textContent:"";
   if(ja) ja.disabled=true; if(nein) nein.disabled=true;
   if(active) active.textContent="Wird gesendet …";
-  fetch("formular.php",{method:"POST",body:fd})
+  fetch("lead-intake.php",{method:"POST",body:fd})
     .then(function(r){return r.json()})
     .then(function(j){
       if(j.ok){
@@ -1737,7 +1968,11 @@ function _sendLead(mode){
           if(pR) pR.style.display="none";
           if(pT){ pT.style.display=""; if(typeof loadCalendly==="function") loadCalendly(); pT.scrollIntoView({behavior:"smooth",block:"start"}); }
         } else {
-          f.style.display="none"; document.getElementById("formOk").style.display="block";
+          var fo=document.getElementById("formOk");
+          fo.innerHTML = (j.confirm===false)
+            ? '<div class="big">✓</div><h3>Vielen Dank!</h3><p>Ihre Anfrage ist angekommen – ich melde mich schnellstmöglich bei Ihnen.<br>Sie möchten nicht warten? <a href="tel:+4916092085192" style="display:inline;color:var(--true-blue);font-weight:700">0160 92085192</a></p>'
+            : '<div class="big">✉️</div><h3>Fast geschafft – bitte E-Mail bestätigen</h3><p>Ich habe Ihnen eine E-Mail geschickt. Bestätigen Sie darin kurz Ihre Rückrufbitte – danach melde ich mich persönlich. Bitte ggf. auch den Spam-Ordner prüfen.</p>';
+          f.style.display="none"; fo.style.display="block";
         }
       } else { throw 0; }
     })
