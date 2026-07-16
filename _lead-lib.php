@@ -12,14 +12,15 @@ const LEAD_STORE      = __DIR__ . "/_leads";
 
 // HubSpot (EU-Portal). Formular-GUID nach dem Anlegen des HubSpot-Formulars eintragen:
 const HUBSPOT_PORTAL_ID = "148893059";
-const HUBSPOT_FORM_GUID = "4e5bb7a8-b68e-40a3-8311-f9c3c0bad78a"; // HubSpot-Formular "Neues leeres Formular" (EU-Portal), Felder: firstname, lastname, email, phone, message
+const HUBSPOT_FORM_GUID = "4e5bb7a8-b68e-40a3-8311-f9c3c0bad78a"; // HubSpot-Formular (EU-Portal). Felder: firstname, lastname, email, phone, message, bewertung_kapitalanlage, score_kapitalanlage, nettoeinkommen_mtl, zu_versteuerndes_einkommen_zve_pa, eigenkapital, alter, beschaftigungsart
 
 // Lesbare Feld-Bezeichnungen fuer die Lead-Mail
 function lead_labels() {
     return [
         "name" => "Name", "phone" => "Telefon", "email" => "E-Mail",
         "time" => "Beste Erreichbarkeit", "thema" => "Thema", "status" => "Aktuelle Situation",
-        "einkommen" => "Nettoeinkommen", "eigenkapital" => "Eigenkapital", "nachricht" => "Nachricht",
+        "einkommen" => "Nettoeinkommen mtl.", "eigenkapital" => "Verfuegbares Eigenkapital", "nachricht" => "Nachricht",
+        "zve" => "Zu versteuerndes Einkommen (ZVE)", "familie" => "Familien-Unterstuetzung moeglich", "familie_ek" => "Voraussichtliche Familien-Unterstuetzung",
         "quelle" => "Quelle", "form-name" => "Formular", "terminwunsch" => "Terminwunsch",
         "rechner_zusammenfassung" => "Rechner-Eingaben des Kunden",
         "immobilientyp" => "Immobilientyp", "plz" => "PLZ", "ort" => "Ort",
@@ -27,6 +28,34 @@ function lead_labels() {
         "wunschpreis" => "Wunschpreis (€)", "kaufzeitpunkt" => "Gekauft",
         "verkaufszeitpunkt" => "Verkaufswunsch",
     ];
+}
+
+// Zahl aus formatiertem String ("3.000 EUR") -> reine Ziffern ("3000")
+function lead_num($s) {
+    $s = preg_replace('/[^\d]/', '', (string)$s);
+    return $s === "" ? "" : $s;
+}
+
+// Lead-Qualitaet: Punktesystem -> Ampel (Gruen/Gelb/Rot)
+function lead_score($data) {
+    $netto  = (int) lead_num($data["einkommen"] ?? "0");
+    $ek     = (int) lead_num($data["eigenkapital"] ?? "0");
+    $zve    = (int) lead_num($data["zve"] ?? "0");
+    $status = mb_strtolower(trim($data["status"] ?? ""));
+    $thema  = mb_strtolower(trim($data["thema"] ?? ""));
+    $fam    = strtolower(trim($data["familie"] ?? "")) === "ja";
+    $s = 0;
+    if ($netto > 5000) $s += 3; elseif ($netto >= 3500) $s += 2; elseif ($netto >= 2500) $s += 1;
+    if ($ek > 60000) $s += 3; elseif ($ek >= 30000) $s += 2; elseif ($ek >= 10000) $s += 1;
+    if ($zve > 60000) $s += 2; elseif ($zve >= 40000) $s += 1;
+    if (strpos($status, "angestellt") !== false || strpos($status, "beamt") !== false) $s += 2;
+    elseif (strpos($status, "selbst") !== false) $s += 1;
+    if (strpos($thema, "konkretes objekt") !== false) $s += 3;
+    elseif (strpos($thema, "erste") !== false || strpos($thema, "weitere") !== false) $s += 2;
+    elseif (strpos($thema, "eigene immobilie") !== false) $s += 1;
+    if ($fam) $s += 1;
+    $ampel = $s >= 9 ? "Grün" : ($s >= 5 ? "Gelb" : "Rot");
+    return ["score" => $s, "ampel" => $ampel];
 }
 
 function lead_headers($replyTo = "") {
@@ -51,8 +80,11 @@ function lead_notify_robin($data, $zusatz = "") {
     }
     $name = isset($data["name"]) ? $data["name"] : "";
     $form = isset($data["form-name"]) ? $data["form-name"] : "anfrage";
-    $betreff = "Neuer Kapitalanlage-Lead (" . $form . ")" . $zusatz . " - " . $name;
+    $sc = lead_score($data);
+    $betreff = "[" . mb_strtoupper($sc["ampel"]) . "] Neuer Lead (" . $form . ")" . $zusatz . " - " . $name;
     $text = "Neue Anfrage ueber meine-kapitalanlage-immobilie.de\n"
+          . "==================================================\n"
+          . "LEAD-AMPEL: " . $sc["ampel"] . "   (Score " . $sc["score"] . ")\n"
           . "==================================================\n\n"
           . implode("\n", $zeilen)
           . "\n\nGesendet am " . date("d.m.Y") . " um " . date("H:i") . " Uhr";
@@ -86,6 +118,34 @@ function lead_to_hubspot($data) {
     if (!empty($data["email"])) $fields[] = ["name" => "email", "value" => $data["email"]];
     if (!empty($data["phone"])) $fields[] = ["name" => "phone", "value" => $data["phone"]];
 
+    // Lead-Score/Ampel berechnen (fliesst in strukturierte Felder + Nachricht + Lead-Mail).
+    $sc = lead_score($data);
+
+    // --- Strukturierte HubSpot-Felder (fuer Filtern / Ampel / Lead-Scoring) ---
+    // Diese Properties sind im HubSpot-Formular (GUID oben) als Felder angelegt.
+    // Ampel (Dropdown Gruen/Gelb/Rot) + Score (Zahl)
+    $fields[] = ["name" => "bewertung_kapitalanlage", "value" => $sc["ampel"]];
+    $fields[] = ["name" => "score_kapitalanlage", "value" => (string)$sc["score"]];
+    // Zahlen-Felder (formatiert "3.000 EUR" -> reine Ziffern)
+    $netto = lead_num($data["einkommen"] ?? "");
+    if ($netto !== "") $fields[] = ["name" => "nettoeinkommen_mtl", "value" => $netto];
+    $zve = lead_num($data["zve"] ?? "");
+    if ($zve !== "") $fields[] = ["name" => "zu_versteuerndes_einkommen_zve_pa", "value" => $zve];
+    $ek = lead_num($data["eigenkapital"] ?? "");
+    if ($ek !== "") $fields[] = ["name" => "eigenkapital", "value" => $ek];
+    $alter = lead_num($data["alter"] ?? "");
+    if ($alter !== "") $fields[] = ["name" => "alter", "value" => $alter];
+    // Beschaeftigungsart: Quiz-Antwort -> HubSpot-Dropdown-Wert mappen
+    $stat = mb_strtolower(trim($data["status"] ?? ""));
+    if ($stat !== "") {
+        if (strpos($stat, "beamt") !== false)            $besch = "Beamter";
+        elseif (strpos($stat, "selbst") !== false)       $besch = "Selbstständig";
+        elseif (strpos($stat, "angestellt") !== false)   $besch = "Angestellt";
+        else                                             $besch = "Sonstiges"; // Ausbildung/Studium/Sonstiges
+        $fields[] = ["name" => "beschaftigungsart", "value" => $besch];
+    }
+
+    // --- Volltext als Referenz ---
     $labels = lead_labels();
     $skip = ["name","email","phone","bot-field","form-name","quelle"];
     $msg = [];
@@ -94,6 +154,7 @@ function lead_to_hubspot($data) {
         $v = trim((string)$v); if ($v === "") continue;
         $msg[] = ($labels[$k] ?? ucfirst($k)) . ": " . $v;
     }
+    $msg[] = "Lead-Ampel: " . $sc["ampel"] . " (Score " . $sc["score"] . ")";
     $msg[] = "Double-Opt-In: bestaetigt";
     if ($msg) $fields[] = ["name" => "message", "value" => implode("\n", $msg)];
 
