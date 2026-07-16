@@ -6,3 +6,6 @@ _leads/*.json
 
 # Grosse Foto-Originale nicht deployen
 6G5A*.jpg
+
+# Interner Handoff, nicht deployen
+HANDOFF.md
