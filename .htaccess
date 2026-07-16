@@ -4,6 +4,10 @@ DirectoryIndex index.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # www -> non-www (Canonical-Host, verhindert Duplicate Content)
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
   # Alte Pfade dauerhaft auf neue umleiten (Linkkraft/SEO erhalten, alte Lesezeichen funktionieren)
   RewriteRule ^lexikon/(.*)$ /ratgeber/$1 [R=301,L]
   RewriteRule ^lexikon/?$ /ratgeber/ [R=301,L]
