@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://meine-kapitalanlage-immobilie.de/</loc><lastmod>2026-07-13</lastmod></url>
+  <url><loc>https://meine-kapitalanlage-immobilie.de/</loc><lastmod>2026-07-16</lastmod><priority>1.0</priority></url>
+  <url><loc>https://meine-kapitalanlage-immobilie.de/lexikon/</loc><lastmod>2026-07-16</lastmod><priority>0.9</priority></url>
+  <url><loc>https://meine-kapitalanlage-immobilie.de/beratung</loc><lastmod>2026-07-16</lastmod><priority>0.8</priority></url>
+  <url><loc>https://meine-kapitalanlage-immobilie.de/lexikon/grundlagen/</loc><lastmod>2026-07-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://meine-kapitalanlage-immobilie.de/lexikon/mythen/</loc><lastmod>2026-07-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://meine-kapitalanlage-immobilie.de/lexikon/indirekt/</loc><lastmod>2026-07-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://meine-kapitalanlage-immobilie.de/lexikon/finanzierung/</loc><lastmod>2026-07-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://meine-kapitalanlage-immobilie.de/lexikon/kauf/</loc><lastmod>2026-07-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://meine-kapitalanlage-immobilie.de/lexikon/steuer/</loc><lastmod>2026-07-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://meine-kapitalanlage-immobilie.de/lexikon/steuerstrategie/</loc><lastmod>2026-07-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://meine-kapitalanlage-immobilie.de/lexikon/lage/</loc><lastmod>2026-07-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://meine-kapitalanlage-immobilie.de/lexikon/pruefung/</loc><lastmod>2026-07-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://meine-kapitalanlage-immobilie.de/lexikon/risiken/</loc><lastmod>2026-07-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://meine-kapitalanlage-immobilie.de/lexikon/vermietung/</loc><lastmod>2026-07-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://meine-kapitalanlage-immobilie.de/lexikon/energie/</loc><lastmod>2026-07-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://meine-kapitalanlage-immobilie.de/lexikon/rendite/</loc><lastmod>2026-07-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://meine-kapitalanlage-immobilie.de/lexikon/strategie/</loc><lastmod>2026-07-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://meine-kapitalanlage-immobilie.de/lexikon/vererbung/</loc><lastmod>2026-07-16</lastmod><priority>0.7</priority></url>
 </urlset>
