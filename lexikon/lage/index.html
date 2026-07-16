@@ -192,6 +192,22 @@ gtag('consent','default',{
   .sources a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
   .sources a:hover{color:#0f4aa0;text-decoration:underline}
   .sources .srcstand{color:#857b6a}
+
+  /* Kurzbox, Tipps, Seiten-TOC, Diagramme, Icons */
+  .kurzbox{background:#f2f7f2;border:1px solid #cfe3d2;border-left:4px solid var(--green);border-radius:12px;padding:16px 20px;margin:6px 0 18px;max-width:860px}
+  .kurzbox h2{font-size:14px;margin:0 0 8px;color:var(--green);text-transform:uppercase;letter-spacing:.6px}
+  .kurzbox ul{margin:0;padding-left:20px}
+  .kurzbox li{font-size:14.5px;color:#39483c;margin:5px 0;line-height:1.5}
+  .pagetoc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px;max-width:900px}
+  .pagetoc a{font-size:12.5px;color:#5a5344;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:5px 12px;transition:.13s}
+  .pagetoc a:hover{border-color:#d2c19a;color:#241f18}
+  .tipp{margin:14px 0 4px;background:#fdf6e3;border:1px solid #eeddb0;border-left:4px solid var(--gold);border-radius:10px;padding:13px 16px;font-size:13.8px;color:#4a3f28;line-height:1.55}
+  .tipp .tiptag{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--gold);margin-right:8px}
+  .diagramm{margin:16px 0 6px;background:#fbf8f1;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .diagramm img{width:100%;height:auto;display:block}
+  .diagramm figcaption{font-size:12.3px;color:var(--muted);margin-top:8px}
+  .clicon{flex:none;vertical-align:-6px;margin-right:10px}
+  .cpage-hero h1 .clicon{width:34px;height:34px;vertical-align:-4px}
 </style>
 </head>
 <body>
@@ -210,9 +226,12 @@ gtag('consent','default',{
 <section class="lexhero" style="background:transparent;border:0;padding-top:8px"><div class="wrap">
   <div class="cpage-hero">
     <p class="eyebrow" style="color:var(--green)">D · LAGE &amp; OBJEKT</p>
-    <h1>Lage &amp; Objekt</h1>
+    <h1><svg class="clicon" width="34" height="34" viewBox="0 0 26 26" fill="none" stroke="var(--gold)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 23s-8-7-8-13a8 8 0 0116 0c0 6-8 13-8 13z"/><circle cx="13" cy="10" r="3"/></svg>Lage &amp; Objekt</h1>
     <p class="lexlead">Lage und Objektart bestimmen über Jahrzehnte, wie leicht sich eine Immobilie vermieten, halten und wieder verkaufen lässt. Wer hier ungenau prüft, kann spätere Renditeprobleme kaum noch durch Finanzierung oder Steuergestaltung ausgleichen.</p>
   </div>
+  <div class="kurzbox"><h2>Das Wichtigste in K&uuml;rze</h2><ul><li>Lage schl&auml;gt Objekt: Makro- und Mikrolage bestimmen Wertentwicklung und Vermietbarkeit st&auml;rker als die Ausstattung.</li><li>B- und C-St&auml;dte (Bulwiengesa-Systematik) bieten oft das bessere Rendite-Risiko-Verh&auml;ltnis als die teuren A-Metropolen.</li><li>Pr&uuml;fe die Mieterbrille: Wer soll hier wohnen wollen &mdash; und warum dauerhaft?</li></ul></div>
+<nav class="pagetoc" aria-label="Auf dieser Seite"><a href="#makrolage">Makrolage</a><a href="#mikrolage">Mikrolage</a><a href="#neubau-vs-bestand">Neubau vs. Bestand</a><a href="#objekttypen">Objekttypen: Eigentumswohnung, Einfamilienhaus, Mehrfamilienhaus</a><a href="#gewerbeimmobilie">Gewerbeimmobilie</a><a href="#sonderformen">Sonderformen: Pflegeapartment, Studentenapartment, Ferienimmobilie</a><a href="#a-b-c-staedte-lagen">A-/B-/C-Städte &amp; Lagen</a></nav>
+
 </div></section>
 <div class="wrap"><main class="content">
 <article class="entry" id="makrolage">
@@ -220,9 +239,10 @@ gtag('consent','default',{
     <p class="short"><strong>Kurz:</strong> Die Makrolage beschreibt das großräumige Umfeld einer Immobilie – Stadt oder Region – samt ihrer wirtschaftlichen, demografischen und infrastrukturellen Verfassung.</p>
     <div class="deep">
       <p>Zur Makrolage zählen Bevölkerungsentwicklung, Arbeitsmarktstruktur, Kaufkraft, Verkehrsanbindung (Fernverkehr, Flughafen), Hochschulen und Forschungseinrichtungen sowie die Frage, ob eine Wirtschaft breit diversifiziert ist oder von wenigen Arbeitgebern abhängt. Sie wirkt langfristiger als die Mikrolage und beeinflusst Vermietbarkeit und Wertentwicklung stärker als kurzfristige Modetrends einzelner Viertel.</p>
-      <p>Häufig unterschätzt wird das Klumpenrisiko einer einseitigen Regionalwirtschaft: Fällt ein dominierender Industriezweig oder Arbeitgeber weg, wirkt sich das über Jahre auf Nachfrage und Mietniveau aus. Wer eine Immobilie als Kapitalanlage prüft, sollte Bevölkerungsprognosen, Leerstandsquoten und die Entwicklung des Mietspiegels über mehrere Jahre betrachten – nicht nur die aktuelle Momentaufnahme im Exposé.</p>
+      <p>Häufig unterschätzt wird das Klumpenrisiko einer einseitigen Regionalwirtschaft: Fällt ein dominierender Industriezweig oder Arbeitgeber weg, wirkt sich das über Jahre auf Nachfrage und Mietniveau aus. Wer eine Immobilie als Kapitalanlage prüft, sollte Bevölkerungsprognosen, Leerstandsquoten und die Entwicklung des Mietspiegels über mehrere Jahre betrachten – nicht nur die aktuelle Momentaufnahme im Exposé.<p><strong>Einordnung nach A/B/C-St&auml;dten:</strong> Die Branche (Systematik von Bulwiengesa) unterscheidet A-St&auml;dte (Metropolen wie M&uuml;nchen, Hamburg, Berlin), B-St&auml;dte (250.000&ndash;650.000 Einwohner, z.&nbsp;B. Bonn, Ingolstadt) und C-/D-St&auml;dte. F&uuml;r Kapitalanleger sind B- und C-St&auml;dte mit Universit&auml;ten und starken Arbeitgebern oft attraktiv: &auml;hnlich stabile Nachfrage wie in A-Lagen, aber deutlich niedrigere Kaufpreisfaktoren. Vorsicht dagegen bei strukturschwachen l&auml;ndlichen Regionen ohne Anbindung.</p></p>
     </div>
-      <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.bodenrichtwerte-boris.de/" target="_blank" rel="noopener">BORIS-D (Bodenrichtwerte)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
+      <div class="tipp"><span class="tiptag">&#128161; Tipp f&uuml;r deine Kapitalanlage</span>Schau auf B- und C-St&auml;dte mit Universit&auml;t oder starken Arbeitgebern: &auml;hnliche Nachfrage-Stabilit&auml;t wie A-St&auml;dte, aber niedrigere Einstiegsfaktoren &mdash; oft das bessere Rendite-Risiko-Verh&auml;ltnis.</div>
+  <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.bodenrichtwerte-boris.de/" target="_blank" rel="noopener">BORIS-D (Bodenrichtwerte)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
   <p class="related"><span class="reltag">Verwandt:</span> Mikrolage, A-/B-/C-Städte &amp; Lagen, Wertentwicklungsrisiko</p>
   </article>
 

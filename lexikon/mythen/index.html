@@ -186,6 +186,22 @@ gtag('consent','default',{
   .hubcard ul li a:hover{color:#241f18;border-color:#ddceac}
   @media(max-width:900px){.hubgrid{grid-template-columns:1fr 1fr}}
   @media(max-width:600px){.hubgrid{grid-template-columns:1fr}}
+
+  /* Kurzbox, Tipps, Seiten-TOC, Diagramme, Icons */
+  .kurzbox{background:#f2f7f2;border:1px solid #cfe3d2;border-left:4px solid var(--green);border-radius:12px;padding:16px 20px;margin:6px 0 18px;max-width:860px}
+  .kurzbox h2{font-size:14px;margin:0 0 8px;color:var(--green);text-transform:uppercase;letter-spacing:.6px}
+  .kurzbox ul{margin:0;padding-left:20px}
+  .kurzbox li{font-size:14.5px;color:#39483c;margin:5px 0;line-height:1.5}
+  .pagetoc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px;max-width:900px}
+  .pagetoc a{font-size:12.5px;color:#5a5344;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:5px 12px;transition:.13s}
+  .pagetoc a:hover{border-color:#d2c19a;color:#241f18}
+  .tipp{margin:14px 0 4px;background:#fdf6e3;border:1px solid #eeddb0;border-left:4px solid var(--gold);border-radius:10px;padding:13px 16px;font-size:13.8px;color:#4a3f28;line-height:1.55}
+  .tipp .tiptag{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--gold);margin-right:8px}
+  .diagramm{margin:16px 0 6px;background:#fbf8f1;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .diagramm img{width:100%;height:auto;display:block}
+  .diagramm figcaption{font-size:12.3px;color:var(--muted);margin-top:8px}
+  .clicon{flex:none;vertical-align:-6px;margin-right:10px}
+  .cpage-hero h1 .clicon{width:34px;height:34px;vertical-align:-4px}
 </style>
 </head>
 <body>
@@ -204,9 +220,12 @@ gtag('consent','default',{
 <section class="lexhero" style="background:transparent;border:0;padding-top:8px"><div class="wrap">
   <div class="cpage-hero">
     <p class="eyebrow" style="color:var(--green)">REALITÄTSCHECK</p>
-    <h1>Mythen &amp; Irrtümer</h1>
+    <h1><svg class="clicon" width="34" height="34" viewBox="0 0 26 26" fill="none" stroke="var(--gold)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h18v12H10l-6 5z"/><path d="M13 10v4M13 17h.01"/></svg>Mythen &amp; Irrtümer</h1>
     <p class="lexlead">Um Immobilien als Kapitalanlage ranken sich hartnäckige Vereinfachungen, die im Verkaufsgespräch gut klingen, der Realität aber selten standhalten. Dieser Bereich räumt mit den gängigsten Irrtümern auf — sachlich, mit Chancen und Risiken auf beiden Seiten.</p>
   </div>
+  <div class="kurzbox"><h2>Das Wichtigste in K&uuml;rze</h2><ul><li>&bdquo;Steuerfrei&ldquo;, &bdquo;Selbstl&auml;ufer&ldquo;, &bdquo;Betongold kann nicht fallen&ldquo; &mdash; die h&auml;ufigsten Verspr&echen halten einer sauberen Rechnung nicht stand.</li><li>Jeder Mythos wird hier gegen die Rechtslage (Stand 2026) und eine ehrliche Kalkulation gepr&uuml;ft.</li><li>Faustregel: Wer dir keine Risiken nennt, verkauft dir etwas &mdash; kein Konzept.</li></ul></div>
+<nav class="pagetoc" aria-label="Auf dieser Seite"><a href="#mythos-immobilien-sind-immer-sicher">„Immobilien sind immer sicher"</a><a href="#mythos-staat-zahlt-mit">„Der Staat zahlt mit / steuerfrei"</a><a href="#mythos-laeuft-von-allein">„Läuft von allein"</a><a href="#mythos-betongold">„Betongold — Wert steigt immer"</a><a href="#verknappungsrhetorik-erkennen">Verknappungs- und Verkäufer-Rhetorik erkennen</a></nav>
+
 </div></section>
 <div class="wrap"><main class="content">
 <article class="entry" id="mythos-immobilien-sind-immer-sicher">

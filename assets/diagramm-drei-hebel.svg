@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" role="img" aria-label="Diagramm: Die drei Hebel der Anlageimmobilie - Bank, Finanzamt, Mieter">
+<rect x="0" y="0" width="760" height="330" fill="none"/>
+<g font-family="Segoe UI,Roboto,Arial,sans-serif">
+<!-- Zentrum Haus -->
+<g>
+<rect x="300" y="112" width="160" height="106" rx="12" fill="#f5e2ac" stroke="#b07d12" stroke-width="2.5"/>
+<polygon points="290,116 380,62 470,116" fill="#b07d12"/>
+<text x="380" y="158" text-anchor="middle" font-size="17" font-weight="700" fill="#2b2620">Deine</text>
+<text x="380" y="182" text-anchor="middle" font-size="17" font-weight="700" fill="#2b2620">Anlageimmobilie</text>
+</g>
+<!-- Bank -->
+<g>
+<rect x="20" y="20" width="200" height="74" rx="12" fill="#fffdf9" stroke="#1a66c9" stroke-width="2.5"/>
+<text x="120" y="50" text-anchor="middle" font-size="16" font-weight="700" fill="#1a66c9">1 &#183; Die Bank</text>
+<text x="120" y="74" text-anchor="middle" font-size="13" fill="#6b6357">Fremdkapital hebelt die Rendite</text>
+<path d="M 190 98 Q 250 120 296 132" fill="none" stroke="#1a66c9" stroke-width="3" marker-end="url(#ab)"/>
+</g>
+<!-- Finanzamt -->
+<g>
+<rect x="280" y="252" width="200" height="66" rx="12" fill="#fffdf9" stroke="#12876a" stroke-width="2.5"/>
+<text x="380" y="278" text-anchor="middle" font-size="16" font-weight="700" fill="#12876a">2 &#183; Das Finanzamt</text>
+<text x="380" y="300" text-anchor="middle" font-size="13" fill="#6b6357">AfA &amp; Kosten senken die Steuer</text>
+<path d="M 380 248 L 380 226" fill="none" stroke="#12876a" stroke-width="3" marker-end="url(#ag)"/>
+</g>
+<!-- Mieter -->
+<g>
+<rect x="540" y="20" width="200" height="74" rx="12" fill="#fffdf9" stroke="#b07d12" stroke-width="2.5"/>
+<text x="640" y="50" text-anchor="middle" font-size="16" font-weight="700" fill="#b07d12">3 &#183; Dein Mieter</text>
+<text x="640" y="74" text-anchor="middle" font-size="13" fill="#6b6357">Die Miete tilgt das Darlehen</text>
+<path d="M 570 98 Q 510 120 464 132" fill="none" stroke="#b07d12" stroke-width="3" marker-end="url(#ao)"/>
+</g>
+<defs>
+<marker id="ab" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#1a66c9"/></marker>
+<marker id="ag" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#12876a"/></marker>
+<marker id="ao" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#b07d12"/></marker>
+</defs>
+</g>
+</svg>

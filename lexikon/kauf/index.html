@@ -192,6 +192,22 @@ gtag('consent','default',{
   .sources a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
   .sources a:hover{color:#0f4aa0;text-decoration:underline}
   .sources .srcstand{color:#857b6a}
+
+  /* Kurzbox, Tipps, Seiten-TOC, Diagramme, Icons */
+  .kurzbox{background:#f2f7f2;border:1px solid #cfe3d2;border-left:4px solid var(--green);border-radius:12px;padding:16px 20px;margin:6px 0 18px;max-width:860px}
+  .kurzbox h2{font-size:14px;margin:0 0 8px;color:var(--green);text-transform:uppercase;letter-spacing:.6px}
+  .kurzbox ul{margin:0;padding-left:20px}
+  .kurzbox li{font-size:14.5px;color:#39483c;margin:5px 0;line-height:1.5}
+  .pagetoc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px;max-width:900px}
+  .pagetoc a{font-size:12.5px;color:#5a5344;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:5px 12px;transition:.13s}
+  .pagetoc a:hover{border-color:#d2c19a;color:#241f18}
+  .tipp{margin:14px 0 4px;background:#fdf6e3;border:1px solid #eeddb0;border-left:4px solid var(--gold);border-radius:10px;padding:13px 16px;font-size:13.8px;color:#4a3f28;line-height:1.55}
+  .tipp .tiptag{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--gold);margin-right:8px}
+  .diagramm{margin:16px 0 6px;background:#fbf8f1;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .diagramm img{width:100%;height:auto;display:block}
+  .diagramm figcaption{font-size:12.3px;color:var(--muted);margin-top:8px}
+  .clicon{flex:none;vertical-align:-6px;margin-right:10px}
+  .cpage-hero h1 .clicon{width:34px;height:34px;vertical-align:-4px}
 </style>
 </head>
 <body>
@@ -210,9 +226,12 @@ gtag('consent','default',{
 <section class="lexhero" style="background:transparent;border:0;padding-top:8px"><div class="wrap">
   <div class="cpage-hero">
     <p class="eyebrow" style="color:var(--green)">KAUF</p>
-    <h1>Kauf &amp; Recht</h1>
+    <h1><svg class="clicon" width="34" height="34" viewBox="0 0 26 26" fill="none" stroke="var(--gold)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h10l4 4v16H6z"/><path d="M9 12h8M9 16h8"/></svg>Kauf &amp; Recht</h1>
     <p class="lexlead">Der Immobilienkauf ist in Deutschland streng formalisiert: Notarpflicht, Grundbuch und ein mehrstufiger rechtlicher Ablauf sollen beide Seiten schützen. Wer die Abfolge, die Beteiligten und die Kostenstruktur kennt, erkennt auch, wo typische Stolperstellen liegen — von der unverbindlichen Reservierung bis zur Auflassung.</p>
   </div>
+  <div class="kurzbox"><h2>Das Wichtigste in K&uuml;rze</h2><ul><li>Kaufnebenkosten von grob 9&ndash;12 % (Grunderwerbsteuer, Notar, Makler) solltest du aus Eigenkapital zahlen &mdash; sie sind kein Teil des Objektwerts.</li><li>Der notarielle Kaufvertrag startet die 10-Jahres-Frist des &sect; 23 EStG &mdash; das Datum hat sp&auml;ter steuerliche Bedeutung.</li><li>Grundbuch, Aufl&auml;ssungsvormerkung und Teilungserkl&auml;rung sind Pflichtlekt&uuml;re vor der Unterschrift.</li></ul></div>
+<nav class="pagetoc" aria-label="Auf dieser Seite"><a href="#ablauf-immobilienkauf">Ablauf des Immobilienkaufs</a><a href="#kaufvertrag">Kaufvertrag</a><a href="#notar">Notar</a><a href="#grundbuch">Grundbuch</a><a href="#auflassung-auflassungsvormerkung">Auflassung &amp; Auflassungsvormerkung</a><a href="#grundschuld-hypothek">Grundschuld vs. Hypothek</a><a href="#kaufnebenkosten">Kaufnebenkosten</a><a href="#grunderwerbsteuer">Grunderwerbsteuer</a><a href="#maklercourtage">Maklercourtage</a><a href="#reservierungsvereinbarung">Reservierungsvereinbarung</a></nav>
+
 </div></section>
 <div class="wrap"><main class="content">
 <article class="entry" id="ablauf-immobilienkauf">
@@ -305,7 +324,8 @@ gtag('consent','default',{
       </ul>
       <p>Ob und in welcher Höhe eine Maklercourtage anfällt, hängt vom Einzelfall ab; die übrigen Posten fallen praktisch immer an.</p>
     </div>
-    <div class="example"><span class="extag">Rechenbeispiel</span> Kaufpreis 300.000 €, Objekt in Nordrhein-Westfalen (Grunderwerbsteuer 6,5 %) mit Makler: Grunderwerbsteuer 19.500 € + Notar/Grundbuch (ca. 1,75 %) 5.250 € + Maklercourtage-Anteil Käufer (3,57 %) 10.710 € = 35.460 € Kaufnebenkosten, entsprechend rund 11,8 % des Kaufpreises. In Bayern oder Sachsen (Grunderwerbsteuer 3,5 %) ohne Makler wären es dagegen nur rund 15.750 € bzw. 5,25 % — die Spanne ist also erheblich.</div>
+    <figure class="diagramm"><img src="/assets/diagramm-kaufnebenkosten.svg" alt="Diagramm: Zusammensetzung der Kaufnebenkosten" width="760" height="330" loading="lazy"><figcaption>Grunderwerbsteuer, Notar/Grundbuch und Makler summieren sich auf grob 9&ndash;12 % des Kaufpreises.</figcaption></figure>
+  <div class="example"><span class="extag">Rechenbeispiel</span> Kaufpreis 300.000 €, Objekt in Nordrhein-Westfalen (Grunderwerbsteuer 6,5 %) mit Makler: Grunderwerbsteuer 19.500 € + Notar/Grundbuch (ca. 1,75 %) 5.250 € + Maklercourtage-Anteil Käufer (3,57 %) 10.710 € = 35.460 € Kaufnebenkosten, entsprechend rund 11,8 % des Kaufpreises. In Bayern oder Sachsen (Grunderwerbsteuer 3,5 %) ohne Makler wären es dagegen nur rund 15.750 € bzw. 5,25 % — die Spanne ist also erheblich.</div>
       <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.gesetze-im-internet.de/grestg_1983/" target="_blank" rel="noopener">Grunderwerbsteuergesetz</a> &middot; <a href="https://www.gesetze-im-internet.de/betrkv/" target="_blank" rel="noopener">Betriebskostenverordnung</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
   <p class="related"><span class="reltag">Verwandt:</span> Grunderwerbsteuer, Maklercourtage, Notar, Eigenkapitalrendite</p>
   </article>
@@ -316,9 +336,10 @@ gtag('consent','default',{
     <div class="deep">
       <p>Die Grunderwerbsteuer ist eine Ländersteuer; jedes Bundesland legt den Steuersatz eigenständig fest, weshalb identische Kaufpreise je nach Standort unterschiedlich hohe Steuerlasten auslösen. Am niedrigsten liegt der Satz aktuell in Bayern und Sachsen mit 3,5 %. Am oberen Ende mit 6,5 % liegen unter anderem Nordrhein-Westfalen, Schleswig-Holstein, Brandenburg und das Saarland. Thüringen liegt mit 5,0 % im Mittelfeld.</p>
       <p>Bemessungsgrundlage ist grundsätzlich der vollständige Kaufpreis inklusive Grundstücksanteil — anders als bei der AfA, die nur auf den Gebäudeanteil anwendbar ist. Die Steuer wird nach Abschluss des Kaufvertrags vom Finanzamt festgesetzt und muss bezahlt sein, bevor die sogenannte Unbedenklichkeitsbescheinigung erteilt wird — diese ist wiederum Voraussetzung für die endgültige Eigentumsumschreibung im Grundbuch.</p>
-      <p>Weil die Grunderwerbsteuer nicht verhandelbar und in voller Höhe aus Eigenkapital zu tragen ist, sollte sie bei jeder Standortentscheidung explizit in die Nebenkostenkalkulation einbezogen werden — bei größeren Kaufpreisen macht allein die Differenz zwischen 3,5 % und 6,5 % mehrere Tausend Euro aus.</p>
+      <p>Weil die Grunderwerbsteuer nicht verhandelbar und in voller Höhe aus Eigenkapital zu tragen ist, sollte sie bei jeder Standortentscheidung explizit in die Nebenkostenkalkulation einbezogen werden — bei größeren Kaufpreisen macht allein die Differenz zwischen 3,5 % und 6,5 % mehrere Tausend Euro aus.<p><strong>Ausblick (Stand Juli 2026):</strong> Politisch diskutiert wird ein Freibetrag f&uuml;r den Ersterwerb selbstgenutzten Wohneigentums (im Koalitionsvertrag: bis 250.000&nbsp;&euro;) &mdash; umgesetzt ist er bislang nicht, da die Grunderwerbsteuer L&auml;ndersache ist. F&uuml;r vermietete Kapitalanlagen w&auml;re er ohnehin nicht anwendbar.</p></p>
     </div>
-      <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.gesetze-im-internet.de/grestg_1983/" target="_blank" rel="noopener">Grunderwerbsteuergesetz</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
+      <div class="tipp"><span class="tiptag">&#128161; Tipp f&uuml;r deine Kapitalanlage</span>Bewegliches Inventar (Einbauk&uuml;che, Sauna, Markisen) im Kaufvertrag separat ausweisen: Darauf f&auml;llt keine Grunderwerbsteuer an &mdash; bei 10.000 &euro; Inventar sparst du je nach Land 350&ndash;650 &euro;. Realistisch bleiben, Belege bereithalten.</div>
+  <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.gesetze-im-internet.de/grestg_1983/" target="_blank" rel="noopener">Grunderwerbsteuergesetz</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
   <p class="related"><span class="reltag">Verwandt:</span> Kaufnebenkosten, Notar, AfA, Ablauf des Immobilienkaufs</p>
   </article>
 

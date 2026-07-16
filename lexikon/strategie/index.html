@@ -192,6 +192,22 @@ gtag('consent','default',{
   .sources a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
   .sources a:hover{color:#0f4aa0;text-decoration:underline}
   .sources .srcstand{color:#857b6a}
+
+  /* Kurzbox, Tipps, Seiten-TOC, Diagramme, Icons */
+  .kurzbox{background:#f2f7f2;border:1px solid #cfe3d2;border-left:4px solid var(--green);border-radius:12px;padding:16px 20px;margin:6px 0 18px;max-width:860px}
+  .kurzbox h2{font-size:14px;margin:0 0 8px;color:var(--green);text-transform:uppercase;letter-spacing:.6px}
+  .kurzbox ul{margin:0;padding-left:20px}
+  .kurzbox li{font-size:14.5px;color:#39483c;margin:5px 0;line-height:1.5}
+  .pagetoc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px;max-width:900px}
+  .pagetoc a{font-size:12.5px;color:#5a5344;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:5px 12px;transition:.13s}
+  .pagetoc a:hover{border-color:#d2c19a;color:#241f18}
+  .tipp{margin:14px 0 4px;background:#fdf6e3;border:1px solid #eeddb0;border-left:4px solid var(--gold);border-radius:10px;padding:13px 16px;font-size:13.8px;color:#4a3f28;line-height:1.55}
+  .tipp .tiptag{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--gold);margin-right:8px}
+  .diagramm{margin:16px 0 6px;background:#fbf8f1;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .diagramm img{width:100%;height:auto;display:block}
+  .diagramm figcaption{font-size:12.3px;color:var(--muted);margin-top:8px}
+  .clicon{flex:none;vertical-align:-6px;margin-right:10px}
+  .cpage-hero h1 .clicon{width:34px;height:34px;vertical-align:-4px}
 </style>
 </head>
 <body>
@@ -210,9 +226,12 @@ gtag('consent','default',{
 <section class="lexhero" style="background:transparent;border:0;padding-top:8px"><div class="wrap">
   <div class="cpage-hero">
     <p class="eyebrow" style="color:var(--green)">H · STRATEGIE</p>
-    <h1>Strategie &amp; Exit</h1>
+    <h1><svg class="clicon" width="34" height="34" viewBox="0 0 26 26" fill="none" stroke="var(--gold)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22V3h12l-3 4 3 4H6"/></svg>Strategie &amp; Exit</h1>
     <p class="lexlead">Eine Immobilie kaufen ist der einfache Teil. Die eigentliche Strategie entscheidet sich bei der Frage, wie lange gehalten, wann verkauft, wann nachfinanziert und wie skaliert wird — und wo steuerliche Fallstricke lauern, die aus einem privaten Investment unversehens ein gewerbliches machen.</p>
   </div>
+  <div class="kurzbox"><h2>Das Wichtigste in K&uuml;rze</h2><ul><li>Buy &amp; Hold nutzt alle drei Hebel &uuml;ber Jahrzehnte &mdash; der steuerfreie Verkauf nach 10 Jahren bleibt als Option.</li><li>Refinanzierung setzt gebundenes Eigenkapital f&uuml;r das n&auml;chste Objekt frei, ohne zu verkaufen.</li><li>Vorsicht Drei-Objekt-Grenze: Mehr als 3 Verk&auml;ufe in 5 Jahren k&ouml;nnen als gewerblicher Grundst&uuml;ckshandel gelten.</li></ul></div>
+<nav class="pagetoc" aria-label="Auf dieser Seite"><a href="#buy-and-hold">Buy &amp; Hold</a><a href="#verkauf-nach-spekulationsfrist">Verkauf nach Spekulationsfrist</a><a href="#refinanzierung-aufstockung">Refinanzierung / Aufstockung</a><a href="#portfolioaufbau-skalierung">Portfolioaufbau &amp; Skalierung</a><a href="#fix-and-flip">Fix &amp; Flip</a><a href="#gewerblicher-grundstueckshandel">Gewerblicher Grundstückshandel &amp; Drei-Objekte-Grenze</a></nav>
+
 </div></section>
 <div class="wrap"><main class="content">
 <article class="entry" id="buy-and-hold">

@@ -33,6 +33,8 @@ gtag('consent','default',{
 <meta property="og:title" content="Immobilie als Kapitalanlage – Das Lexikon von A bis Z">
 <meta property="og:description" content="Von den Grundlagen bis zur Vererbung: das sachliche Nachschlagewerk für die Immobilie als Kapitalanlage.">
 <meta property="og:url" content="https://meine-kapitalanlage-immobilie.de/">
+<meta property="og:image" content="https://meine-kapitalanlage-immobilie.de/assets/og-lexikon.jpg">
+<meta name="twitter:card" content="summary_large_image">
 
 <!-- ============ SCHEMA / STRUCTURED DATA (Beispiel-Markup für SEO) ============ -->
 <script type="application/ld+json">
@@ -327,6 +329,20 @@ gtag('consent','default',{
   .cc-btns .cc-accept,.cc-btns .cc-necess{flex:1}
   .cc-set{order:3;width:100%}
 }
+  /* ---------- CTA & Hero-Grid & Diagramme ---------- */
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center}
+  .hero-art img{width:100%;height:auto;display:block}
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin:4px 0 24px}
+  .btn-cta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#d99a1b,#b07d12);color:#fff;
+    border-radius:12px;padding:14px 24px;font-weight:800;font-size:15.5px;box-shadow:0 8px 20px rgba(176,125,18,.28);transition:.15s}
+  .btn-cta:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(176,125,18,.36)}
+  .btn-cta.sec{background:#fffdf9;color:#8a6410;border:2px solid #e6cf93;box-shadow:none}
+  .btn-cta.sec:hover{background:#faf1d9}
+  .cta-note{font-size:12px;color:#857b6a;margin:-14px 0 20px}
+  .diagramm{margin:26px 0 6px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .diagramm img{width:100%;height:auto;display:block}
+  .diagramm figcaption{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-art{order:-1;max-width:420px}}
 </style>
 </head>
 <body>
@@ -355,24 +371,31 @@ gtag('consent','default',{
 
 <!-- ================= HERO ================= -->
 <section class="hero">
-  <div class="wrap">
+  <div class="wrap"><div class="hero-grid"><div>
     <span class="pill"><span class="dot" style="background:var(--gold)"></span> Nachschlagewerk · sachlich · ohne Verkaufsdruck</span>
     <h1>Immobilie als Kapitalanlage — <span class="hl">von der ersten Frage bis zur Vererbung</span> verständlich erklärt.</h1>
     <p class="sub">Das unabhängige Lexikon rund um die Anlageimmobilie: Grundlagen, Finanzierung, Steuer &amp; AfA, Rendite, Vermietung, Verkauf und Nachlass. Jeder Begriff von der Oberfläche in die Tiefe — begreifbar erklärt, ohne Renditeversprechen und ohne Verknappung.</p>
+    <div class="cta-row">
+      <a class="btn-cta" href="/beratung#kontakt">Kostenloses Erstgespr&auml;ch sichern &rarr;</a>
+      <a class="btn-cta sec" href="/beratung#kontakt">&#128222; R&uuml;ckruf anfordern</a>
+    </div>
+    <p class="cta-note">Unverbindlich &middot; ohne Verkaufsdruck &middot; 60 Minuten, online oder vor Ort</p>
     <form class="heroSearch" onsubmit="return false;">
       <input type="text" placeholder="Wonach suchst du? z. B. Eigenkapitalrendite, AfA, Kaufpreisfaktor …" aria-label="Lexikon durchsuchen">
       <button type="submit">Im Lexikon suchen</button>
     </form>
     <div class="heroTags">
       <span>Häufig gesucht:</span>
-      <a href="/lexikon/">AfA</a>
-      <a href="/lexikon/">Eigenkapitalrendite</a>
-      <a href="/lexikon/">Kaufpreisfaktor</a>
-      <a href="/lexikon/">Spekulationsfrist</a>
-      <a href="/lexikon/">Cashflow</a>
+      <a href="/lexikon/steuer/#afa">AfA</a>
+      <a href="/lexikon/rendite/#eigenkapitalrendite">Eigenkapitalrendite</a>
+      <a href="/lexikon/rendite/#kaufpreisfaktor">Kaufpreisfaktor</a>
+      <a href="/lexikon/steuer/#spekulationsfrist">Spekulationsfrist</a>
+      <a href="/lexikon/rendite/#cashflow">Cashflow</a>
     </div>
-    <p class="noteflag">Entwurf v0.1 · Beispieltexte &amp; Platzhalter-Zahlen — Inhalte werden schrittweise ausgebaut und mit Quellen belegt.</p>
-  </div>
+    <p class="noteflag">Stand: Juli 2026 &middot; Zahlen &amp; Rechtsst&auml;nde mit amtlichen Quellen belegt &middot; regelm&auml;&szlig;ig aktualisiert</p>
+    </div>
+    <div class="hero-art"><img src="/assets/hero-altbau.jpg" alt="Klassisches Altbau-Mehrfamilienhaus im warmen Abendlicht &mdash; die Anlageimmobilie" width="1264" height="848" loading="eager" style="border-radius:16px;box-shadow:0 18px 44px rgba(60,45,20,.18)"></div>
+  </div></div>
 </section>
 
 <!-- ================= RELEVANZ & ZAHLEN ================= -->
@@ -391,6 +414,10 @@ gtag('consent','default',{
     <div class="thesisbox">
       <p><strong>Die These:</strong> Wer gut verdient, zahlt viel Steuern — und trotzdem bleibt am Monatsende wenig hängen. Die Anlageimmobilie ist einer der wenigen Wege, bei dem sich Steuerhebel, Fremdkapital und realer Sachwert kombinieren lassen. Aber nur, wenn man versteht, was man tut. Genau dafür ist dieses Lexikon da — <strong>erklären statt verkaufen</strong>.</p>
     </div>
+    <figure class="diagramm" style="margin-top:22px">
+      <img src="/assets/diagramm-drei-hebel.svg" alt="Diagramm: Die drei Hebel der Anlageimmobilie &mdash; Bank (Fremdkapital), Finanzamt (AfA und Kosten), Mieter (Tilgung)" width="760" height="330" loading="lazy">
+      <figcaption>Die drei Hebel, die bei der vermieteten Immobilie gleichzeitig arbeiten &mdash; und die dieses Lexikon St&uuml;ck f&uuml;r St&uuml;ck erkl&auml;rt.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -454,46 +481,46 @@ gtag('consent','default',{
 
     <div class="clustergrid">
       <div class="cluster"><span class="ctag">Einstieg</span><h4>Grundlagen &amp; Konzept</h4>
-        <ul><li><a href="/lexikon/">Anlageimmobilie</a></li><li><a href="/lexikon/">Kapitalanlage vs. Eigennutzung</a></li><li><a href="/lexikon/">Immobilie vs. Aktien/ETF</a></li><li><a href="/lexikon/">Hebelwirkung</a></li><li><a href="/lexikon/">Sachwert &amp; Inflation</a></li><li><a href="/lexikon/">Mythen &amp; Irrtümer</a></li></ul></div>
+        <ul><li><a href="/lexikon/grundlagen/#anlageimmobilie">Anlageimmobilie</a></li><li><a href="/lexikon/grundlagen/#kapitalanlage-vs-eigennutzung">Kapitalanlage vs. Eigennutzung</a></li><li><a href="/lexikon/grundlagen/#immobilie-vs-aktien-etf">Immobilie vs. Aktien/ETF</a></li><li><a href="/lexikon/grundlagen/#hebelwirkung-leverage">Hebelwirkung</a></li><li><a href="/lexikon/grundlagen/#sachwert-inflationsschutz">Sachwert &amp; Inflation</a></li><li><a href="/lexikon/grundlagen/">Mythen &amp; Irrtümer</a></li></ul></div>
 
       <div class="cluster"><span class="ctag">A · Finanzierung</span><h4>Finanzierung</h4>
-        <ul><li><a href="/lexikon/">Eigenkapital</a></li><li><a href="/lexikon/">Annuitätendarlehen</a></li><li><a href="/lexikon/">Zins &amp; Tilgung</a></li><li><a href="/lexikon/">Zinsbindung</a></li><li><a href="/lexikon/">Beleihungswert</a></li><li><a href="/lexikon/">Bonität &amp; Schufa</a></li><li><a href="/lexikon/">KfW-Programme</a></li></ul></div>
+        <ul><li><a href="/lexikon/finanzierung/#eigenkapital">Eigenkapital</a></li><li><a href="/lexikon/finanzierung/#annuitaetendarlehen">Annuitätendarlehen</a></li><li><a href="/lexikon/finanzierung/#zins-und-tilgung">Zins &amp; Tilgung</a></li><li><a href="/lexikon/finanzierung/#zinsbindung-und-anschlussfinanzierung">Zinsbindung</a></li><li><a href="/lexikon/finanzierung/#beleihungswert-und-beleihungsauslauf">Beleihungswert</a></li><li><a href="/lexikon/finanzierung/#bonitaet-und-schufa">Bonität &amp; Schufa</a></li><li><a href="/lexikon/finanzierung/">KfW-Programme</a></li></ul></div>
 
       <div class="cluster"><span class="ctag">B · Steuer</span><h4>Steuer &amp; AfA</h4>
-        <ul><li><a href="/lexikon/">Abschreibung (AfA)</a></li><li><a href="/lexikon/">Werbungskosten</a></li><li><a href="/lexikon/">Sonder-AfA</a></li><li><a href="/lexikon/">Denkmal-AfA</a></li><li><a href="/lexikon/">Spekulationsfrist</a></li><li><a href="/lexikon/">Vermögensverwaltende GmbH</a></li></ul></div>
+        <ul><li><a href="/lexikon/steuer/">Abschreibung (AfA)</a></li><li><a href="/lexikon/steuer/#werbungskosten">Werbungskosten</a></li><li><a href="/lexikon/steuer/#sonder-afa-7b">Sonder-AfA</a></li><li><a href="/lexikon/steuer/#denkmal-afa">Denkmal-AfA</a></li><li><a href="/lexikon/steuer/#spekulationsfrist">Spekulationsfrist</a></li><li><a href="/lexikon/steuer/#vermoegensverwaltende-gmbh">Vermögensverwaltende GmbH</a></li></ul></div>
 
       <div class="cluster"><span class="ctag">Strategie · „Steuern steuern"</span><h4>Steuerstrategie &amp; Gestaltung</h4>
         <ul><li><a href="/lexikon/steuerstrategie/#immobilien-gmbh-holding">Immobilien-GmbH</a></li><li><a href="/lexikon/steuerstrategie/#erweiterte-kuerzung">Erweiterte Kürzung</a></li><li><a href="/lexikon/steuerstrategie/#anschaffungsnahe-herstellungskosten">15-%-Falle</a></li><li><a href="/lexikon/steuerstrategie/#restnutzungsdauer-gutachten">Restnutzungsdauer</a></li><li><a href="/lexikon/steuerstrategie/#familienpool">Familienpool</a></li><li><a href="/lexikon/steuerstrategie/#familienstiftung">Familienstiftung</a></li><li><a href="/lexikon/steuerstrategie/#share-deal">Share Deal</a></li></ul></div>
 
       <div class="cluster"><span class="ctag">C · Rendite</span><h4>Rendite &amp; Cashflow</h4>
-        <ul><li><a href="/lexikon/">Bruttomietrendite</a></li><li><a href="/lexikon/">Nettomietrendite</a></li><li><a href="/lexikon/">Eigenkapitalrendite</a></li><li><a href="/lexikon/">Cashflow</a></li><li><a href="/lexikon/">Kaufpreisfaktor</a></li></ul></div>
+        <ul><li><a href="/lexikon/rendite/#bruttomietrendite">Bruttomietrendite</a></li><li><a href="/lexikon/rendite/#nettomietrendite">Nettomietrendite</a></li><li><a href="/lexikon/rendite/#eigenkapitalrendite">Eigenkapitalrendite</a></li><li><a href="/lexikon/rendite/#cashflow">Cashflow</a></li><li><a href="/lexikon/rendite/#kaufpreisfaktor">Kaufpreisfaktor</a></li></ul></div>
 
       <div class="cluster"><span class="ctag">D · Lage &amp; Objekt</span><h4>Lage &amp; Objekt</h4>
-        <ul><li><a href="/lexikon/">Makrolage</a></li><li><a href="/lexikon/">Mikrolage</a></li><li><a href="/lexikon/">Neubau vs. Bestand</a></li><li><a href="/lexikon/">ETW / Haus / MFH</a></li><li><a href="/lexikon/">Gewerbeimmobilie</a></li><li><a href="/lexikon/">Pflege- &amp; Studentenapartment</a></li></ul></div>
+        <ul><li><a href="/lexikon/lage/#makrolage">Makrolage</a></li><li><a href="/lexikon/lage/#mikrolage">Mikrolage</a></li><li><a href="/lexikon/lage/#neubau-vs-bestand">Neubau vs. Bestand</a></li><li><a href="/lexikon/lage/">ETW / Haus / MFH</a></li><li><a href="/lexikon/lage/#gewerbeimmobilie">Gewerbeimmobilie</a></li><li><a href="/lexikon/lage/">Pflege- &amp; Studentenapartment</a></li></ul></div>
 
       <div class="cluster"><span class="ctag">Prüfung</span><h4>Objektprüfung &amp; Bewertung</h4>
         <ul><li><a href="/lexikon/">Due Diligence</a></li><li><a href="/lexikon/">Teilungserklärung</a></li><li><a href="/lexikon/">WEG-Protokolle</a></li><li><a href="/lexikon/">Ertragswertverfahren</a></li><li><a href="/lexikon/">Sachwertverfahren</a></li><li><a href="/lexikon/">Instandhaltungsstau</a></li></ul></div>
 
       <div class="cluster"><span class="ctag">Kauf</span><h4>Kauf &amp; Recht</h4>
-        <ul><li><a href="/lexikon/">Kaufvertrag</a></li><li><a href="/lexikon/">Notar &amp; Ablauf</a></li><li><a href="/lexikon/">Grundbuch</a></li><li><a href="/lexikon/">Kaufnebenkosten</a></li><li><a href="/lexikon/">Grunderwerbsteuer</a></li><li><a href="/lexikon/">Auflassungsvormerkung</a></li></ul></div>
+        <ul><li><a href="/lexikon/kauf/#kaufvertrag">Kaufvertrag</a></li><li><a href="/lexikon/kauf/">Notar &amp; Ablauf</a></li><li><a href="/lexikon/kauf/#grundbuch">Grundbuch</a></li><li><a href="/lexikon/kauf/#kaufnebenkosten">Kaufnebenkosten</a></li><li><a href="/lexikon/kauf/#grunderwerbsteuer">Grunderwerbsteuer</a></li><li><a href="/lexikon/kauf/#auflassung-auflassungsvormerkung">Auflassungsvormerkung</a></li></ul></div>
 
       <div class="cluster"><span class="ctag">F · Vermietung</span><h4>Vermietung &amp; Verwaltung</h4>
-        <ul><li><a href="/lexikon/">Mietersuche &amp; Bonität</a></li><li><a href="/lexikon/">Mietvertrag</a></li><li><a href="/lexikon/">Mietpreisbremse</a></li><li><a href="/lexikon/">Index- &amp; Staffelmiete</a></li><li><a href="/lexikon/">Hausverwaltung / WEG</a></li><li><a href="/lexikon/">Instandhaltungsrücklage</a></li><li><a href="/lexikon/">Versicherungen</a></li></ul></div>
+        <ul><li><a href="/lexikon/vermietung/#mietersuche-bonitaetspruefung">Mietersuche &amp; Bonität</a></li><li><a href="/lexikon/vermietung/#mietvertrag">Mietvertrag</a></li><li><a href="/lexikon/vermietung/#mietpreisbremse">Mietpreisbremse</a></li><li><a href="/lexikon/vermietung/">Index- &amp; Staffelmiete</a></li><li><a href="/lexikon/vermietung/">Hausverwaltung / WEG</a></li><li><a href="/lexikon/vermietung/#instandhaltungsruecklage">Instandhaltungsrücklage</a></li><li><a href="/lexikon/vermietung/#versicherungen-vermietung">Versicherungen</a></li></ul></div>
 
       <div class="cluster"><span class="ctag">E · Risiken</span><h4>Risiken</h4>
-        <ul><li><a href="/lexikon/">Mietausfall &amp; Leerstand</a></li><li><a href="/lexikon/">Zinsänderungsrisiko</a></li><li><a href="/lexikon/">Instandhaltung</a></li><li><a href="/lexikon/">Wertentwicklung</a></li><li><a href="/lexikon/">Klumpenrisiko</a></li></ul></div>
+        <ul><li><a href="/lexikon/risiken/#mietausfall-leerstand">Mietausfall &amp; Leerstand</a></li><li><a href="/lexikon/risiken/#zinsaenderungsrisiko">Zinsänderungsrisiko</a></li><li><a href="/lexikon/energie/#modernisierung-instandhaltung">Instandhaltung</a></li><li><a href="/lexikon/risiken/#wertentwicklungsrisiko">Wertentwicklung</a></li><li><a href="/lexikon/risiken/#klumpenrisiko">Klumpenrisiko</a></li></ul></div>
 
       <div class="cluster"><span class="ctag">Bewirtschaftung</span><h4>Modernisierung &amp; Energie</h4>
-        <ul><li><a href="/lexikon/">Energetische Sanierung</a></li><li><a href="/lexikon/">GEG (Heizungsgesetz)</a></li><li><a href="/lexikon/">Modernisierungsumlage</a></li><li><a href="/lexikon/">Energieausweis</a></li><li><a href="/lexikon/">ESG &amp; Immobilie</a></li></ul></div>
+        <ul><li><a href="/lexikon/energie/#energetische-sanierung">Energetische Sanierung</a></li><li><a href="/lexikon/energie/#geg-heizungsgesetz">GEG (Heizungsgesetz)</a></li><li><a href="/lexikon/energie/#modernisierungsumlage">Modernisierungsumlage</a></li><li><a href="/lexikon/energie/#energieausweis">Energieausweis</a></li><li><a href="/lexikon/energie/#esg-immobilie">ESG &amp; Immobilie</a></li></ul></div>
 
       <div class="cluster"><span class="ctag">H · Strategie</span><h4>Strategie &amp; Exit</h4>
-        <ul><li><a href="/lexikon/">Buy &amp; Hold</a></li><li><a href="/lexikon/">Verkauf n. Spekulationsfrist</a></li><li><a href="/lexikon/">Refinanzierung</a></li><li><a href="/lexikon/">Portfolioaufbau</a></li><li><a href="/lexikon/">Skalierung</a></li></ul></div>
+        <ul><li><a href="/lexikon/strategie/#buy-and-hold">Buy &amp; Hold</a></li><li><a href="/lexikon/strategie/">Verkauf n. Spekulationsfrist</a></li><li><a href="/lexikon/strategie/#refinanzierung-aufstockung">Refinanzierung</a></li><li><a href="/lexikon/strategie/#portfolioaufbau-skalierung">Portfolioaufbau</a></li><li><a href="/lexikon/strategie/#portfolioaufbau-skalierung">Skalierung</a></li></ul></div>
 
       <div class="cluster"><span class="ctag">Nachlass</span><h4>Vererbung &amp; Nachlass</h4>
-        <ul><li><a href="/lexikon/">Schenkung zu Lebzeiten</a></li><li><a href="/lexikon/">Nießbrauch</a></li><li><a href="/lexikon/">Erbschaftsteuer</a></li><li><a href="/lexikon/">Freibeträge</a></li><li><a href="/lexikon/">Testament &amp; Erbengemeinschaft</a></li></ul></div>
+        <ul><li><a href="/lexikon/vererbung/#schenkung-zu-lebzeiten">Schenkung zu Lebzeiten</a></li><li><a href="/lexikon/vererbung/#niessbrauch-und-wohnrecht">Nießbrauch</a></li><li><a href="/lexikon/vererbung/">Erbschaftsteuer</a></li><li><a href="/lexikon/vererbung/">Freibeträge</a></li><li><a href="/lexikon/vererbung/#testament-und-erbengemeinschaft">Testament &amp; Erbengemeinschaft</a></li></ul></div>
 
       <div class="cluster"><span class="ctag">Abgrenzung</span><h4>Indirekte Immobilienanlagen</h4>
-        <ul><li><a href="/lexikon/">REITs</a></li><li><a href="/lexikon/">Offene Immobilienfonds</a></li><li><a href="/lexikon/">Crowdinvesting</a></li><li><a href="/lexikon/">Immobilien-Tokenisierung</a></li></ul></div>
+        <ul><li><a href="/lexikon/indirekt/#reits">REITs</a></li><li><a href="/lexikon/indirekt/#offene-immobilienfonds">Offene Immobilienfonds</a></li><li><a href="/lexikon/indirekt/#immobilien-crowdinvesting">Crowdinvesting</a></li><li><a href="/lexikon/indirekt/#immobilien-tokenisierung">Immobilien-Tokenisierung</a></li></ul></div>
     </div>
 
     <p class="lead" style="margin:26px 0 0;font-size:14px">Oder direkt alphabetisch stöbern:</p>
@@ -559,6 +586,8 @@ gtag('consent','default',{
     </div>
 
     <!-- Dezenter Erstgespräch-Hinweis (bewusst zurückhaltend, kein Formular) -->
+    <figure class="diagramm" style="max-width:640px;margin:30px 0 0"><img src="/assets/hero-illustration.svg" alt="Illustration: Bestand, Mehrfamilienhaus und Neubau" width="640" height="440" loading="lazy"></figure>
+
     <div class="contactsoft">
       <p>Bleibt nach dem Lesen eine persönliche Frage offen? Ein unverbindliches Erstgespräch ist möglich — ohne Verkaufsdruck.</p>
       <a class="softlink" href="/beratung">Kontakt aufnehmen →</a>
@@ -576,11 +605,11 @@ gtag('consent','default',{
       </div>
       <div class="fcol">
         <h5>Die Reise</h5>
-        <a href="/lexikon/">Grundlagen &amp; Einstieg</a>
-        <a href="/lexikon/">Finanzierung</a>
-        <a href="/lexikon/">Steuer &amp; AfA</a>
-        <a href="/lexikon/">Vermietung</a>
-        <a href="/lexikon/">Verkauf &amp; Vererbung</a>
+        <a href="/lexikon/grundlagen/">Grundlagen &amp; Einstieg</a>
+        <a href="/lexikon/finanzierung/">Finanzierung</a>
+        <a href="/lexikon/steuer/">Steuer &amp; AfA</a>
+        <a href="/lexikon/vermietung/">Vermietung</a>
+        <a href="/lexikon/vererbung/">Verkauf &amp; Vererbung</a>
       </div>
       <div class="fcol">
         <h5>Entdecken</h5>
@@ -600,7 +629,7 @@ gtag('consent','default',{
       </div>
     </div>
     <div class="fbottom">
-      <span>© 2026 Kapitalanlage-Immobilie · Lexikon-Entwurf v0.1</span>
+      <span>© 2026 Kapitalanlage-Immobilie · Das unabh&auml;ngige Lexikon &middot; Stand Juli 2026</span>
       <span>Keine individuelle Anlageberatung · Alle Angaben ohne Gewähr</span>
     </div>
   </div>

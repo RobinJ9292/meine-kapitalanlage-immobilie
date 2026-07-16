@@ -186,6 +186,22 @@ gtag('consent','default',{
   .hubcard ul li a:hover{color:#241f18;border-color:#ddceac}
   @media(max-width:900px){.hubgrid{grid-template-columns:1fr 1fr}}
   @media(max-width:600px){.hubgrid{grid-template-columns:1fr}}
+
+  /* Kurzbox, Tipps, Seiten-TOC, Diagramme, Icons */
+  .kurzbox{background:#f2f7f2;border:1px solid #cfe3d2;border-left:4px solid var(--green);border-radius:12px;padding:16px 20px;margin:6px 0 18px;max-width:860px}
+  .kurzbox h2{font-size:14px;margin:0 0 8px;color:var(--green);text-transform:uppercase;letter-spacing:.6px}
+  .kurzbox ul{margin:0;padding-left:20px}
+  .kurzbox li{font-size:14.5px;color:#39483c;margin:5px 0;line-height:1.5}
+  .pagetoc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px;max-width:900px}
+  .pagetoc a{font-size:12.5px;color:#5a5344;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:5px 12px;transition:.13s}
+  .pagetoc a:hover{border-color:#d2c19a;color:#241f18}
+  .tipp{margin:14px 0 4px;background:#fdf6e3;border:1px solid #eeddb0;border-left:4px solid var(--gold);border-radius:10px;padding:13px 16px;font-size:13.8px;color:#4a3f28;line-height:1.55}
+  .tipp .tiptag{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--gold);margin-right:8px}
+  .diagramm{margin:16px 0 6px;background:#fbf8f1;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .diagramm img{width:100%;height:auto;display:block}
+  .diagramm figcaption{font-size:12.3px;color:var(--muted);margin-top:8px}
+  .clicon{flex:none;vertical-align:-6px;margin-right:10px}
+  .cpage-hero h1 .clicon{width:34px;height:34px;vertical-align:-4px}
 </style>
 </head>
 <body>
@@ -204,9 +220,12 @@ gtag('consent','default',{
 <section class="lexhero" style="background:transparent;border:0;padding-top:8px"><div class="wrap">
   <div class="cpage-hero">
     <p class="eyebrow" style="color:var(--green)">C · RENDITE</p>
-    <h1>Rendite &amp; Cashflow</h1>
+    <h1><svg class="clicon" width="34" height="34" viewBox="0 0 26 26" fill="none" stroke="var(--gold)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h20M5 21V11M10 21V7M15 21v-8M20 21V4"/></svg>Rendite &amp; Cashflow</h1>
     <p class="lexlead">Eine Immobilie wirft selten die Rendite ab, die im ersten Exposé steht. Erst wenn Kaufnebenkosten, nicht umlagefähige Bewirtschaftungskosten und Finanzierung eingerechnet sind, entsteht eine belastbare Zahl. Dieser Bereich zeigt die gängigen Kennziffern und wie sie zusammenhängen.</p>
   </div>
+  <div class="kurzbox"><h2>Das Wichtigste in K&uuml;rze</h2><ul><li>Die Eigenkapitalrendite ist die Kennzahl der Kapitalanleger &mdash; der Hebel macht aus ~4 % Objektrendite oft ~8&ndash;10 % auf dein EK.</li><li>Benchmark: 4&ndash;5 % Nettomietrendite gelten klassisch als solide; Kaufpreisfaktor 20&ndash;25 als normal, in Toplagen auch 30+.</li><li>Cashflow nach Steuern z&auml;hlt: Nicht umlagef&auml;hige Kosten und R&uuml;cklagen geh&ouml;ren in jede Rechnung.</li></ul></div>
+<nav class="pagetoc" aria-label="Auf dieser Seite"><a href="#bruttomietrendite">Bruttomietrendite</a><a href="#nettomietrendite">Nettomietrendite</a><a href="#eigenkapitalrendite">Eigenkapitalrendite</a><a href="#cashflow">Cashflow</a><a href="#kaufpreisfaktor">Kaufpreisfaktor</a><a href="#gesamtkapitalrendite-roi">Gesamtkapitalrendite / ROI</a><a href="#nicht-umlagefaehige-kosten-liquiditaetsreserve">Nicht umlagefähige Kosten &amp; Liquiditätsreserve</a></nav>
+
 </div></section>
 <div class="wrap"><main class="content">
 <article class="entry" id="bruttomietrendite">
@@ -239,7 +258,8 @@ gtag('consent','default',{
       <p>Die Eigenkapitalrendite ist die Kennzahl, die den Unterschied zwischen Immobilie und den meisten anderen Kapitalanlagen ausmacht: die Fremdfinanzierung. Solange die Objektrendite (Nettomietrendite) höher ist als der Zinssatz des Darlehens, steigert jeder zusätzliche Euro Fremdkapital die Rendite auf das eingesetzte Eigenkapital — das ist der positive Leverage- bzw. Hebel-Effekt. Liegt der Zinssatz jedoch über der Objektrendite, kehrt sich der Effekt um: Die Eigenkapitalrendite fällt unter die Objektrendite und kann negativ werden. Der Hebel wirkt in beide Richtungen und ist damit zugleich Chance und Risiko der fremdfinanzierten Immobilie. Wichtig: In die Eigenkapitalrendite fließen nur die Zinsen als Kosten ein, nicht die Tilgung — die Tilgung ist Vermögensbildung, kein Aufwand.</p>
       <p>Formel: Eigenkapitalrendite = (Nettoertrag − Zinskosten) ÷ eingesetztes Eigenkapital × 100.</p>
     </div>
-    <div class="example"><span class="extag">Rechenbeispiel</span> Gesamtinvestition 330.000 € (Kaufpreis 300.000 € + Kaufnebenkosten 30.000 €), Nettoertrag nach Bewirtschaftungskosten 12.750 €/Jahr (Nettomietrendite 3,9 %). Finanzierung: Eigenkapital 90.000 €, Fremdkapital 240.000 € zu 3,5 % Sollzins.<br>
+    <figure class="diagramm"><img src="/assets/diagramm-hebel-effekt.svg" alt="Diagramm: Leverage-Effekt auf die Eigenkapitalrendite" width="760" height="330" loading="lazy"><figcaption>Der Hebel verst&auml;rkt beide Richtungen &mdash; deshalb geh&ouml;ren Zinsbindung und Puffer in jede Rechnung.</figcaption></figure>
+  <div class="example"><span class="extag">Rechenbeispiel</span> Gesamtinvestition 330.000 € (Kaufpreis 300.000 € + Kaufnebenkosten 30.000 €), Nettoertrag nach Bewirtschaftungskosten 12.750 €/Jahr (Nettomietrendite 3,9 %). Finanzierung: Eigenkapital 90.000 €, Fremdkapital 240.000 € zu 3,5 % Sollzins.<br>
     Zinskosten Jahr 1 = 240.000 € × 3,5 % = 8.400 €. Ertrag nach Zinsen = 12.750 € − 8.400 € = 4.350 €. Eigenkapitalrendite = 4.350 € ÷ 90.000 € = 4,83 % — höher als die Objektrendite von 3,9 %, weil der Darlehenszins (3,5 %) darunter liegt: positiver Hebel.<br>
     Zum Vergleich mit höherem Zins (6,0 % statt 3,5 %): Zinskosten = 14.400 €, Ertrag nach Zinsen = 12.750 € − 14.400 € = −1.650 €, Eigenkapitalrendite = −1,83 %. Derselbe Hebel, der die Rendite steigert, kann sie bei steigenden Zinsen ins Negative drehen.</div>
     <p class="related"><span class="reltag">Verwandt:</span> Nettomietrendite, Cashflow, Gesamtkapitalrendite/ROI, Finanzierung</p>
@@ -254,7 +274,8 @@ gtag('consent','default',{
     </div>
     <div class="example"><span class="extag">Rechenbeispiel</span> Nettokaltmiete nach Kosten 12.750 €/Jahr. Kapitaldienst: Zins 8.400 € + Tilgung (2 % anfänglich auf 240.000 €) 4.800 € = 13.200 €. Cashflow vor Steuer = 12.750 € − 13.200 € = −450 €/Jahr (≈ −37,50 €/Monat).<br>
     Steuerlich: zu versteuerndes Ergebnis = Miete 15.000 € − Zinsen 8.400 € − AfA 4.800 € (2 % auf 240.000 € Gebäudeanteil) − sonstige Werbungskosten 2.250 € = −450 €. Bei 42 % Grenzsteuersatz ergibt das eine Steuererstattung von 189 €. Cashflow nach Steuer = −450 € + 189 € = −261 €/Jahr (≈ −22 €/Monat) — ein monatlicher Zuschuss trotz solider Objektrendite, weil die Tilgung mitgerechnet wird.</div>
-    <p class="related"><span class="reltag">Verwandt:</span> Eigenkapitalrendite, AfA, Finanzierung, Liquiditätsreserve</p>
+    <div class="tipp"><span class="tiptag">&#128161; Tipp f&uuml;r deine Kapitalanlage</span>Kalkuliere konservativ: 2 Monatsmieten p. a. f&uuml;r R&uuml;cklage und Verwaltung, 1 Monat Mietausfallwagnis. Ein Objekt, das nur in der Sch&ouml;nwetter-Rechnung tr&auml;gt, tr&auml;gt nicht.</div>
+  <p class="related"><span class="reltag">Verwandt:</span> Eigenkapitalrendite, AfA, Finanzierung, Liquiditätsreserve</p>
   </article>
 
   <article class="entry" id="kaufpreisfaktor">
@@ -267,10 +288,11 @@ gtag('consent','default',{
         <li>Faktor 20–25: als normal eingestuft</li>
         <li>Faktor über 25–30: als teuer eingestuft</li>
       </ul>
-      <p>Diese Faustzahlen sind stark lageabhängig. In gefragten Großstadtlagen sind Faktoren von 30 und mehr seit Jahren die Regel, ohne dass dies allein ein Kaufsignal oder Warnsignal wäre.</p>
+      <p>Diese Faustzahlen sind stark lageabhängig. In gefragten Großstadtlagen sind Faktoren von 30 und mehr seit Jahren die Regel, ohne dass dies allein ein Kaufsignal oder Warnsignal wäre.<p><strong>Marktkontext:</strong> In A-Lagen sind Faktoren von 30&ndash;35 keine Seltenheit und k&ouml;nnen dort angesichts der Wertstabilit&auml;t vertretbar sein; in Regionen mit sinkender Bev&ouml;lkerung kann schon ein Faktor von 15 zu hoch sein. Der Faktor ist ein Einordnungswert &mdash; kein Urteil ohne Lagebezug.</p></p>
     </div>
     <div class="example"><span class="extag">Rechenbeispiel</span> Kaufpreis 300.000 €, Jahresnettokaltmiete 15.000 €. Kaufpreisfaktor = 300.000 € ÷ 15.000 € = 20 — an der Grenze zwischen „günstig“ und „normal“.</div>
-    <p class="related"><span class="reltag">Verwandt:</span> Bruttomietrendite, Nettomietrendite</p>
+    <div class="tipp"><span class="tiptag">&#128161; Tipp f&uuml;r deine Kapitalanlage</span>Rechne den Faktor immer selbst nach (Kaufpreis &divide; Jahresnettokaltmiete) &mdash; mit der IST-Miete, nicht der versprochenen Zielmiete. Differenzen zwischen beiden sind ein Verhandlungsargument.</div>
+  <p class="related"><span class="reltag">Verwandt:</span> Bruttomietrendite, Nettomietrendite</p>
   </article>
 
   <article class="entry" id="gesamtkapitalrendite-roi">

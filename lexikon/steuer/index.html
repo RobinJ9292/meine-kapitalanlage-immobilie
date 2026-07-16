@@ -192,6 +192,22 @@ gtag('consent','default',{
   .sources a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
   .sources a:hover{color:#0f4aa0;text-decoration:underline}
   .sources .srcstand{color:#857b6a}
+
+  /* Kurzbox, Tipps, Seiten-TOC, Diagramme, Icons */
+  .kurzbox{background:#f2f7f2;border:1px solid #cfe3d2;border-left:4px solid var(--green);border-radius:12px;padding:16px 20px;margin:6px 0 18px;max-width:860px}
+  .kurzbox h2{font-size:14px;margin:0 0 8px;color:var(--green);text-transform:uppercase;letter-spacing:.6px}
+  .kurzbox ul{margin:0;padding-left:20px}
+  .kurzbox li{font-size:14.5px;color:#39483c;margin:5px 0;line-height:1.5}
+  .pagetoc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px;max-width:900px}
+  .pagetoc a{font-size:12.5px;color:#5a5344;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:5px 12px;transition:.13s}
+  .pagetoc a:hover{border-color:#d2c19a;color:#241f18}
+  .tipp{margin:14px 0 4px;background:#fdf6e3;border:1px solid #eeddb0;border-left:4px solid var(--gold);border-radius:10px;padding:13px 16px;font-size:13.8px;color:#4a3f28;line-height:1.55}
+  .tipp .tiptag{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--gold);margin-right:8px}
+  .diagramm{margin:16px 0 6px;background:#fbf8f1;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .diagramm img{width:100%;height:auto;display:block}
+  .diagramm figcaption{font-size:12.3px;color:var(--muted);margin-top:8px}
+  .clicon{flex:none;vertical-align:-6px;margin-right:10px}
+  .cpage-hero h1 .clicon{width:34px;height:34px;vertical-align:-4px}
 </style>
 </head>
 <body>
@@ -210,9 +226,12 @@ gtag('consent','default',{
 <section class="lexhero" style="background:transparent;border:0;padding-top:8px"><div class="wrap">
   <div class="cpage-hero">
     <p class="eyebrow" style="color:var(--green)">B · STEUER</p>
-    <h1>Steuer &amp; AfA</h1>
+    <h1><svg class="clicon" width="34" height="34" viewBox="0 0 26 26" fill="none" stroke="var(--gold)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3c-3 0-5 2-5 4.5S10 11 13 11s5 2 5 4.5S16 20 13 20"/><path d="M13 3v20" stroke-dasharray="0"/></svg>Steuer &amp; AfA</h1>
     <p class="lexlead">Der steuerliche Rahmen entscheidet oft mehr über den Erfolg einer Kapitalanlage-Immobilie als die Miethöhe selbst. Wer Abschreibung, Werbungskosten und Fristen nicht versteht, verschenkt Vorteile oder überschätzt sie — dieser Cluster ordnet die wichtigsten Mechanismen sachlich ein, ohne eine individuelle Steuerberatung zu ersetzen.</p>
   </div>
+  <div class="kurzbox"><h2>Das Wichtigste in K&uuml;rze</h2><ul><li>Die AfA ist der Kernhebel: 2&ndash;3 % der Geb&auml;udekosten pro Jahr mindern dein zu versteuerndes Einkommen &mdash; ohne dass Geld abflie&szlig;t.</li><li>Zinsen, Verwaltung, Instandhaltung: Fast alle laufenden Kosten der vermieteten Immobilie sind Werbungskosten.</li><li>Nach 10 Jahren ist der Verkaufsgewinn im Privatverm&ouml;gen steuerfrei (&sect; 23 EStG) &mdash; einer der st&auml;rksten legalen Steuervorteile &uuml;berhaupt.</li></ul></div>
+<nav class="pagetoc" aria-label="Auf dieser Seite"><a href="#afa">AfA – Abschreibung für Abnutzung</a><a href="#kaufpreisaufteilung">Kaufpreisaufteilung Grund und Gebäude</a><a href="#bemessungsgrundlage">Bemessungsgrundlage (AfA-Basis)</a><a href="#werbungskosten">Werbungskosten bei Vermietung</a><a href="#sonder-afa-7b">Sonder-AfA § 7b EStG</a><a href="#denkmal-afa">Denkmal-AfA § 7i / § 7h EStG</a><a href="#spekulationsfrist">Spekulationsfrist § 23 EStG</a><a href="#steuerhebel">Steuerhebel auf das zu versteuernde Einkommen</a><a href="#verlustverrechnung">Verlustverrechnung</a><a href="#vermoegensverwaltende-gmbh">Vermögensverwaltende GmbH / Immobilien-GmbH</a><a href="#grundsteuer">Grundsteuer</a></nav>
+
 </div></section>
 <div class="wrap"><main class="content">
 <article class="entry" id="afa">
@@ -228,8 +247,10 @@ gtag('consent','default',{
       <p>Zusätzlich existiert seit der Wachstumschancengesetz-Reform eine degressive AfA (§ 7 Abs. 5a EStG): 5 % vom jeweiligen Restwert, anwendbar auf Neubauten mit Baubeginn zwischen Oktober 2023 und September 2029. Die degressive Variante führt anfangs zu höheren Abschreibungsbeträgen, die mit der Zeit sinken; ein einmaliger Wechsel zur linearen AfA ist möglich und kann sinnvoll sein, sobald die lineare Rate den degressiven Restwert-Betrag übersteigt.</p>
       <p>Wichtig: Die AfA mindert nicht die tatsächliche Liquidität, sondern nur das zu versteuernde Einkommen aus Vermietung und Verpachtung. Sie ist eine rein rechnerische, aber steuerlich hochwirksame Größe.</p>
     </div>
-    <div class="example"><span class="extag">Rechenbeispiel</span> Eine Bestandswohnung (Baujahr 1990) wird für 400.000 € gekauft. Laut Kaufpreisaufteilung entfallen 280.000 € auf das Gebäude und 120.000 € auf den Grundstücksanteil. Abschreibungsfähig ist nur der Gebäudeanteil: 280.000 € × 2 % = 5.600 € AfA pro Jahr, über 50 Jahre. Bei einem Neubau mit Fertigstellung 2026 und identischem Gebäudeanteil läge die lineare AfA bei 280.000 € × 3 % = 8.400 € pro Jahr.</div>
-      <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.gesetze-im-internet.de/estg/__7.html" target="_blank" rel="noopener">&sect;&nbsp;7 EStG (AfA)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
+    <figure class="diagramm"><img src="/assets/diagramm-afa-verlauf.svg" alt="Diagramm: AfA-Verlauf degressiv 5 Prozent vom Restwert vs. linear 2 Prozent" width="760" height="330" loading="lazy"><figcaption>Degressiv bringt fr&uuml;h mehr Abzug, linear bleibt konstant &mdash; entscheidend ist deine Liquidit&auml;tsplanung.</figcaption></figure>
+  <div class="example"><span class="extag">Rechenbeispiel</span> Eine Bestandswohnung (Baujahr 1990) wird für 400.000 € gekauft. Laut Kaufpreisaufteilung entfallen 280.000 € auf das Gebäude und 120.000 € auf den Grundstücksanteil. Abschreibungsfähig ist nur der Gebäudeanteil: 280.000 € × 2 % = 5.600 € AfA pro Jahr, über 50 Jahre. Bei einem Neubau mit Fertigstellung 2026 und identischem Gebäudeanteil läge die lineare AfA bei 280.000 € × 3 % = 8.400 € pro Jahr.</div>
+      <div class="tipp"><span class="tiptag">&#128161; Tipp f&uuml;r deine Kapitalanlage</span>Pr&uuml;fe vor dem Kauf die Kaufpreisaufteilung: Je h&ouml;her der (realistische) Geb&auml;udeanteil im Kaufvertrag, desto gr&ouml;&szlig;er deine j&auml;hrliche AfA &mdash; über 30+ Jahre summiert sich das erheblich.</div>
+  <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.gesetze-im-internet.de/estg/__7.html" target="_blank" rel="noopener">&sect;&nbsp;7 EStG (AfA)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
   <p class="related"><span class="reltag">Verwandt:</span> Kaufpreisaufteilung, Sonder-AfA § 7b, Denkmal-AfA, Werbungskosten</p>
   </article>
 
@@ -302,8 +323,10 @@ gtag('consent','default',{
       <p>Eine Ausnahme gilt bei Eigennutzung: Wurde die Immobilie im Verkaufsjahr und den beiden vorangegangenen Jahren durchgehend selbst bewohnt (oder im Jahr der Veräußerung sowie den zwei vorangegangenen Kalenderjahren), entfällt die Spekulationssteuer auch bei einem Verkauf innerhalb von 10 Jahren.</p>
       <p>Die Spekulationsfrist ist einer der zentralen Vorteile der Immobilie im Privatvermögen gegenüber anderen Haltestrukturen wie einer GmbH, in der Grundstücksverkäufe unabhängig von der Haltedauer stets steuerpflichtig bleiben.</p>
     </div>
-    <div class="example"><span class="extag">Rechenbeispiel</span> Kauf einer Wohnung für 300.000 € im Jahr 2019, Verkauf 2026 (nach 7 Jahren) für 380.000 €. Der Veräußerungsgewinn von vereinfacht 80.000 € (ohne Berücksichtigung von Anschaffungsnebenkosten und AfA-Korrektur) ist voll steuerpflichtig, da innerhalb der 10-Jahres-Frist verkauft. Bei einem Verkauf erst 2030 (nach 11 Jahren) wäre derselbe Gewinn vollständig steuerfrei.</div>
-      <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.gesetze-im-internet.de/estg/__23.html" target="_blank" rel="noopener">&sect;&nbsp;23 EStG (Spekulationsfrist)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
+    <figure class="diagramm"><img src="/assets/diagramm-spekulationsfrist.svg" alt="Zeitstrahl: Spekulationsfrist 10 Jahre nach Paragraf 23 EStG" width="760" height="330" loading="lazy"><figcaption>Taggenau ab notariellem Kaufvertrag &mdash; danach ist der Gewinn im Privatverm&ouml;gen steuerfrei.</figcaption></figure>
+  <div class="example"><span class="extag">Rechenbeispiel</span> Kauf einer Wohnung für 300.000 € im Jahr 2019, Verkauf 2026 (nach 7 Jahren) für 380.000 €. Der Veräußerungsgewinn von vereinfacht 80.000 € (ohne Berücksichtigung von Anschaffungsnebenkosten und AfA-Korrektur) ist voll steuerpflichtig, da innerhalb der 10-Jahres-Frist verkauft. Bei einem Verkauf erst 2030 (nach 11 Jahren) wäre derselbe Gewinn vollständig steuerfrei.</div>
+      <div class="tipp"><span class="tiptag">&#128161; Tipp f&uuml;r deine Kapitalanlage</span>Notiere das Datum des notariellen Kaufvertrags: Die 10-Jahres-Frist l&auml;uft taggenau. Ein Verkauf wenige Wochen zu fr&uuml;h kann den gesamten Wertzuwachs steuerpflichtig machen &mdash; Vermarktung rechtzeitig planen, Beurkundung nach Fristablauf legen.</div>
+  <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.gesetze-im-internet.de/estg/__23.html" target="_blank" rel="noopener">&sect;&nbsp;23 EStG (Spekulationsfrist)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
   <p class="related"><span class="reltag">Verwandt:</span> Veräußerungsgewinn, Eigennutzung, Vermögensverwaltende GmbH</p>
   </article>
 

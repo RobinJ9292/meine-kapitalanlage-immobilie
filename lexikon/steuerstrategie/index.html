@@ -192,6 +192,22 @@ gtag('consent','default',{
   .sources a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
   .sources a:hover{color:#0f4aa0;text-decoration:underline}
   .sources .srcstand{color:#857b6a}
+
+  /* Kurzbox, Tipps, Seiten-TOC, Diagramme, Icons */
+  .kurzbox{background:#f2f7f2;border:1px solid #cfe3d2;border-left:4px solid var(--green);border-radius:12px;padding:16px 20px;margin:6px 0 18px;max-width:860px}
+  .kurzbox h2{font-size:14px;margin:0 0 8px;color:var(--green);text-transform:uppercase;letter-spacing:.6px}
+  .kurzbox ul{margin:0;padding-left:20px}
+  .kurzbox li{font-size:14.5px;color:#39483c;margin:5px 0;line-height:1.5}
+  .pagetoc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px;max-width:900px}
+  .pagetoc a{font-size:12.5px;color:#5a5344;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:5px 12px;transition:.13s}
+  .pagetoc a:hover{border-color:#d2c19a;color:#241f18}
+  .tipp{margin:14px 0 4px;background:#fdf6e3;border:1px solid #eeddb0;border-left:4px solid var(--gold);border-radius:10px;padding:13px 16px;font-size:13.8px;color:#4a3f28;line-height:1.55}
+  .tipp .tiptag{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--gold);margin-right:8px}
+  .diagramm{margin:16px 0 6px;background:#fbf8f1;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .diagramm img{width:100%;height:auto;display:block}
+  .diagramm figcaption{font-size:12.3px;color:var(--muted);margin-top:8px}
+  .clicon{flex:none;vertical-align:-6px;margin-right:10px}
+  .cpage-hero h1 .clicon{width:34px;height:34px;vertical-align:-4px}
 </style>
 </head>
 <body>
@@ -210,9 +226,12 @@ gtag('consent','default',{
 <section class="lexhero" style="background:transparent;border:0;padding-top:8px"><div class="wrap">
   <div class="cpage-hero">
     <p class="eyebrow" style="color:var(--green)">Strategie · nach dem Ansatz von „Steuern steuern"</p>
-    <h1>Steuerstrategie &amp; Gestaltung</h1>
+    <h1><svg class="clicon" width="34" height="34" viewBox="0 0 26 26" fill="none" stroke="var(--gold)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3l3 5h-6zM8 21h10M9 18h8M11 8v10h4V8"/></svg>Steuerstrategie &amp; Gestaltung</h1>
     <p class="lexlead">Dieser Bereich orientiert sich am Denkansatz des Standardwerks „Steuern steuern mit Immobilien" von Johann C. Köber: Steuern sind kein festes Schicksal, sondern eine legal gestaltbare Größe. Wer die einzelnen Steuerarten und die passende Struktur versteht, macht aus Steuerlast Vermögen. Alle Inhalte sind eigenständig formuliert, allgemeinbildend und ersetzen keine Beratung.</p>
   </div>
+  <div class="kurzbox"><h2>Das Wichtigste in K&uuml;rze</h2><ul><li>Steuern lassen sich legal gestalten: vermeiden, verschieben, verlagern &mdash; die Systematik hinter &bdquo;Steuern steuern&ldquo;.</li><li>Die vv-GmbH senkt die Steuer auf thesaurierte Miet&uuml;bersch&uuml;sse auf ~15,8 % &mdash; lohnt aber nur beim langfristigen Portfolioaufbau.</li><li>Timing schl&auml;gt H&ouml;he: 15-%-Grenze, &sect; 82b EStDV und Kaufpreisaufteilung entscheiden, WANN deine Kosten steuerlich wirken.</li></ul></div>
+<nav class="pagetoc" aria-label="Auf dieser Seite"><a href="#steuern-als-renditehebel">Steuern als Renditehebel</a><a href="#immobilien-gmbh-holding">Immobilien im GmbH-Mantel (die Kern-Strategie)</a><a href="#erweiterte-kuerzung">Erweiterte Gewerbesteuerkürzung (§ 9 Nr. 1 S. 2 GewStG)</a><a href="#thesaurierung">Thesaurierung &amp; Steuerstundung</a><a href="#gmbh-vs-privat">GmbH vs. Privatvermögen — der Gesamtvergleich</a><a href="#erhaltungsaufwand-herstellungskosten">Erhaltungsaufwand vs. Herstellungskosten</a><a href="#anschaffungsnahe-herstellungskosten">Anschaffungsnahe Herstellungskosten — die 15-%-Falle</a><a href="#erhaltungsaufwand-verteilen">Größeren Erhaltungsaufwand verteilen (§ 82b EStDV)</a><a href="#restnutzungsdauer-gutachten">Kürzere Restnutzungsdauer per Gutachten</a><a href="#kaufpreisaufteilung-optimieren">Kaufpreisaufteilung optimieren</a><a href="#disagio-finanzierungsgestaltung">Disagio &amp; Finanzierungsgestaltung</a><a href="#familienpool">Familienpool / Familiengesellschaft</a><a href="#familienstiftung">Familienstiftung</a><a href="#share-deal">Share Deal vs. Asset Deal &amp; Grunderwerbsteuer</a><a href="#umsatzsteueroption">Umsatzsteueroption bei Gewerbeimmobilien (§ 9 UStG)</a></nav>
+
 </div></section>
 <div class="wrap"><main class="content">
 <article class="entry" id="steuern-als-renditehebel">
@@ -235,7 +254,8 @@ gtag('consent','default',{
       <p>Der Preis dafür: laufende Kosten (Buchführung, Jahresabschluss, Notar/Gründung), strengere Formalien, und die zweite Steuerebene bei der Ausschüttung. Die GmbH lohnt sich vor allem beim langfristigen Portfolioaufbau mit Thesaurierung — nicht, wenn die Mieten ohnehin sofort für den privaten Konsum entnommen werden müssen.</p>
     </div>
     <div class="example"><span class="extag">Rechenbeispiel</span> 40.000 € Mietüberschuss/Jahr. Privat bei 42 % Grenzsteuer: ca. 16.800 € Steuer → 23.200 € bleiben. In der vv-GmbH mit erweiterter Kürzung (~15,8 %): ca. 6.330 € → rund 33.670 € bleiben zum Reinvestieren. Unterschied: über 10.000 € pro Jahr, die weiterarbeiten.</div>
-      <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.gesetze-im-internet.de/gewstg/__9.html" target="_blank" rel="noopener">&sect;&nbsp;9 Nr.1 GewStG</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
+      <div class="tipp"><span class="tiptag">&#128161; Tipp f&uuml;r deine Kapitalanlage</span>Die vv-GmbH lohnt fr&uuml;hestens, wenn du dauerhaft thesaurierst und weiter kaufst. Rechne die Schwelle ehrlich: laufende Kosten (Abschluss, Steuerberater) von mehreren tausend Euro j&auml;hrlich m&uuml;ssen erst einmal verdient sein.</div>
+  <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.gesetze-im-internet.de/gewstg/__9.html" target="_blank" rel="noopener">&sect;&nbsp;9 Nr.1 GewStG</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
   <p class="related"><span class="reltag">Verwandt:</span> Erweiterte Gewerbesteuerkürzung, Thesaurierung, GmbH vs. Privatvermögen, Vermögensverwaltende GmbH</p>
   </article>
 
@@ -294,7 +314,8 @@ gtag('consent','default',{
       <p>Wichtig: Die 15 % beziehen sich nur auf den <em>Gebäudeanteil</em>, nicht auf den Grund und Boden — weshalb eine günstige, aber realistische Kaufpreisaufteilung hier zusätzlich hilft.</p>
     </div>
     <div class="example"><span class="extag">Rechenbeispiel</span> Gebäude-Anschaffungskosten 250.000 €. Grenze = 37.500 € netto in 3 Jahren. Renovierung für 50.000 € im ersten Jahr → Grenze gerissen, alles wird AfA (nur ~2–3 %/Jahr abziehbar). Aufteilung auf 30.000 € (Jahr 1) und 30.000 € nach Ablauf der Dreijahresfrist hält den Sofortabzug.</div>
-      <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.gesetze-im-internet.de/estg/__6.html" target="_blank" rel="noopener">&sect;&nbsp;6 Abs.1 Nr.1a EStG</a> &middot; <a href="https://www.gesetze-im-internet.de/estg/__9.html" target="_blank" rel="noopener">&sect;&nbsp;9 EStG (Werbungskosten)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
+      <div class="tipp"><span class="tiptag">&#128161; Tipp f&uuml;r deine Kapitalanlage</span>Plane gr&ouml;&szlig;ere Renovierungen VOR dem Kauf durch: Bleibst du in den ersten 3 Jahren unter 15 % der Geb&auml;ude-Anschaffungskosten (netto), bleibt der Sofortabzug erhalten &mdash; notfalls Ma&szlig;nahmen &uuml;ber die Frist strecken.</div>
+  <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.gesetze-im-internet.de/estg/__6.html" target="_blank" rel="noopener">&sect;&nbsp;6 Abs.1 Nr.1a EStG</a> &middot; <a href="https://www.gesetze-im-internet.de/estg/__9.html" target="_blank" rel="noopener">&sect;&nbsp;9 EStG (Werbungskosten)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
   <p class="related"><span class="reltag">Verwandt:</span> Erhaltungsaufwand vs. Herstellungskosten, Kaufpreisaufteilung, AfA</p>
   </article>
 
@@ -306,7 +327,8 @@ gtag('consent','default',{
       <p>Umgekehrt gilt: Wer in diesem Jahr einen besonders hohen Steuersatz hat (z. B. wegen einer Bonuszahlung), zieht den vollen Betrag lieber sofort ab. Das Wahlrecht macht die Steuerersparnis <em>planbar</em> — man legt sie gezielt in das Jahr mit der größten Wirkung.</p>
       <p>Das Wahlrecht gilt für Gebäude im Privatvermögen, die überwiegend Wohnzwecken dienen. Bei Verkauf oder Ende der Vermietung innerhalb des Verteilungszeitraums ist der Restbetrag in einer Summe abzuziehen.</p>
     </div>
-      <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.gesetze-im-internet.de/estdv_1955/__82b.html" target="_blank" rel="noopener">&sect;&nbsp;82b EStDV</a> &middot; <a href="https://www.gesetze-im-internet.de/estg/__9.html" target="_blank" rel="noopener">&sect;&nbsp;9 EStG (Werbungskosten)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
+      <div class="tipp"><span class="tiptag">&#128161; Tipp f&uuml;r deine Kapitalanlage</span>Hast du ein Jahr mit ungew&ouml;hnlich hohem Einkommen (Bonus, Abfindung), zieh gro&szlig;en Erhaltungsaufwand voll ab; sonst kann die Verteilung auf 2&ndash;5 Jahre (&sect; 82b EStDV) die Steuerwirkung in H&ouml;chststeuerjahre legen.</div>
+  <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.gesetze-im-internet.de/estdv_1955/__82b.html" target="_blank" rel="noopener">&sect;&nbsp;82b EStDV</a> &middot; <a href="https://www.gesetze-im-internet.de/estg/__9.html" target="_blank" rel="noopener">&sect;&nbsp;9 EStG (Werbungskosten)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
   <p class="related"><span class="reltag">Verwandt:</span> Erhaltungsaufwand vs. Herstellungskosten, Steuerhebel auf das zvE, Werbungskosten</p>
   </article>
 
@@ -318,7 +340,8 @@ gtag('consent','default',{
       <p>Besonders relevant ist das bei älteren Bestandsobjekten mit sanierungsbedürftiger Substanz. Die Finanzverwaltung stellt Anforderungen an die Gutachtenmethodik; ein sauberes, nachvollziehbares Restnutzungsdauer-Gutachten ist daher entscheidend, damit das Finanzamt mitzieht.</p>
     </div>
     <div class="example"><span class="extag">Rechenbeispiel</span> Gebäudewert 300.000 €. Standard-AfA 2 % = 6.000 €/Jahr. Gutachten weist 25 Jahre Restnutzungsdauer nach → 4 % = 12.000 €/Jahr. Bei 42 % Grenzsteuer sind das rund 2.520 € mehr Steuerersparnis pro Jahr.</div>
-      <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.gesetze-im-internet.de/estg/__7.html" target="_blank" rel="noopener">&sect;&nbsp;7 EStG (AfA)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
+      <div class="tipp"><span class="tiptag">&#128161; Tipp f&uuml;r deine Kapitalanlage</span>Bei Objekten &auml;lter als ~40 Jahre fast immer pr&uuml;fenswert: Ein Restnutzungsdauer-Gutachten (wenige hundert Euro) kann die AfA von 2 % auf 3&ndash;5 % heben &mdash; das Vielfache der Gutachtenkosten pro Jahr.</div>
+  <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.gesetze-im-internet.de/estg/__7.html" target="_blank" rel="noopener">&sect;&nbsp;7 EStG (AfA)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
   <p class="related"><span class="reltag">Verwandt:</span> AfA, Kaufpreisaufteilung, Neubau vs. Bestand</p>
   </article>
 
@@ -330,7 +353,8 @@ gtag('consent','default',{
       <p>Die Finanzverwaltung nutzt gern eine eigene Arbeitshilfe zur Aufteilung, die den Gebäudeanteil tendenziell niedrig ansetzt. Der Bundesfinanzhof hat entschieden, dass diese Arbeitshilfe nicht bindend ist: Eine im Kaufvertrag sachgerecht vereinbarte oder durch Gutachten belegte Aufteilung kann Vorrang haben. Eine plausible, dokumentierte Aufteilung — idealerweise schon im Kaufvertrag — schützt vor einer nachträglichen Kürzung durch das Finanzamt.</p>
       <p>Grenze: Die Aufteilung muss den realen Wertverhältnissen entsprechen. Ein künstlich überhöhter Gebäudeanteil hält einer Prüfung nicht stand.</p>
     </div>
-      <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.bundesfinanzministerium.de/Content/DE/Downloads/Steuern/Berechnung-Aufteilung-Grundstueckskaufpreis.html" target="_blank" rel="noopener">BMF-Arbeitshilfe Kaufpreisaufteilung</a> &middot; <a href="https://www.gesetze-im-internet.de/estg/__7.html" target="_blank" rel="noopener">&sect;&nbsp;7 EStG (AfA)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
+      <div class="tipp"><span class="tiptag">&#128161; Tipp f&uuml;r deine Kapitalanlage</span>Halte die Aufteilung Grundst&uuml;ck/Geb&auml;ude schon im notariellen Kaufvertrag fest &mdash; sachgerecht begr&uuml;ndet. Das hat vor dem Finanzamt deutlich mehr Gewicht als eine nachtr&auml;gliche Sch&auml;tzung.</div>
+  <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.bundesfinanzministerium.de/Content/DE/Downloads/Steuern/Berechnung-Aufteilung-Grundstueckskaufpreis.html" target="_blank" rel="noopener">BMF-Arbeitshilfe Kaufpreisaufteilung</a> &middot; <a href="https://www.gesetze-im-internet.de/estg/__7.html" target="_blank" rel="noopener">&sect;&nbsp;7 EStG (AfA)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
   <p class="related"><span class="reltag">Verwandt:</span> AfA, Anschaffungsnahe Herstellungskosten, Restnutzungsdauer-Gutachten</p>
   </article>
 
@@ -342,7 +366,8 @@ gtag('consent','default',{
       <p>Ein <em>Disagio</em> (Damnum) ist ein bei Auszahlung einbehaltener Zinsvorab: Statt z. B. 100.000 € werden nur 96.000 € ausgezahlt, der Zinssatz ist dafür niedriger. Ist das Disagio marktüblich (Orientierung: bis rund 5 % bei mindestens fünfjähriger Zinsbindung), kann es im Jahr der Zahlung sofort als Werbungskosten abgezogen werden — man zieht damit Steuerwirkung gezielt in ein Jahr mit hohem Einkommen vor.</p>
       <p>Auch Finanzierungsnebenkosten, Bereitstellungszinsen und die Kosten der Grundschuldbestellung sind grundsätzlich abziehbar. Tilgung dagegen nie — sie ist Vermögensbildung, kein Aufwand.</p>
     </div>
-    <p class="related"><span class="reltag">Verwandt:</span> Zins &amp; Tilgung, Werbungskosten, Zinsbindung &amp; Anschlussfinanzierung</p>
+    <div class="tipp"><span class="tiptag">&#128161; Tipp f&uuml;r deine Kapitalanlage</span>Eigenkapital geh&ouml;rt strategisch ins Eigenheim, Fremdkapital in die vermietete Immobilie &mdash; dort sind die Zinsen absetzbar. Wer beides besitzt, sollte die Darlehen entsprechend verteilen.</div>
+  <p class="related"><span class="reltag">Verwandt:</span> Zins &amp; Tilgung, Werbungskosten, Zinsbindung &amp; Anschlussfinanzierung</p>
   </article>
 
   <article class="entry" id="familienpool">

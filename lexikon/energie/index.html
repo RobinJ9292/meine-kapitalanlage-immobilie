@@ -192,6 +192,22 @@ gtag('consent','default',{
   .sources a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
   .sources a:hover{color:#0f4aa0;text-decoration:underline}
   .sources .srcstand{color:#857b6a}
+
+  /* Kurzbox, Tipps, Seiten-TOC, Diagramme, Icons */
+  .kurzbox{background:#f2f7f2;border:1px solid #cfe3d2;border-left:4px solid var(--green);border-radius:12px;padding:16px 20px;margin:6px 0 18px;max-width:860px}
+  .kurzbox h2{font-size:14px;margin:0 0 8px;color:var(--green);text-transform:uppercase;letter-spacing:.6px}
+  .kurzbox ul{margin:0;padding-left:20px}
+  .kurzbox li{font-size:14.5px;color:#39483c;margin:5px 0;line-height:1.5}
+  .pagetoc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px;max-width:900px}
+  .pagetoc a{font-size:12.5px;color:#5a5344;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:5px 12px;transition:.13s}
+  .pagetoc a:hover{border-color:#d2c19a;color:#241f18}
+  .tipp{margin:14px 0 4px;background:#fdf6e3;border:1px solid #eeddb0;border-left:4px solid var(--gold);border-radius:10px;padding:13px 16px;font-size:13.8px;color:#4a3f28;line-height:1.55}
+  .tipp .tiptag{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--gold);margin-right:8px}
+  .diagramm{margin:16px 0 6px;background:#fbf8f1;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .diagramm img{width:100%;height:auto;display:block}
+  .diagramm figcaption{font-size:12.3px;color:var(--muted);margin-top:8px}
+  .clicon{flex:none;vertical-align:-6px;margin-right:10px}
+  .cpage-hero h1 .clicon{width:34px;height:34px;vertical-align:-4px}
 </style>
 </head>
 <body>
@@ -210,9 +226,12 @@ gtag('consent','default',{
 <section class="lexhero" style="background:transparent;border:0;padding-top:8px"><div class="wrap">
   <div class="cpage-hero">
     <p class="eyebrow" style="color:var(--green)">BEWIRTSCHAFTUNG</p>
-    <h1>Modernisierung &amp; Energie</h1>
+    <h1><svg class="clicon" width="34" height="34" viewBox="0 0 26 26" fill="none" stroke="var(--gold)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2L5 15h6l-2 9 9-13h-6z"/></svg>Modernisierung &amp; Energie</h1>
     <p class="lexlead">Bewirtschaftung heißt: die Bausubstanz erhalten, gesetzliche Vorgaben erfüllen und die Immobilie zukunftsfähig halten. Modernisierung und Energie sind durch die Klimadebatte und schärfere Regulierung zu einem zentralen Kosten- und Wertfaktor zugleich geworden.</p>
   </div>
+  <div class="kurzbox"><h2>Das Wichtigste in K&uuml;rze</h2><ul><li>Das Geb&auml;udemodernisierungsgesetz (2026) hat die 65-%-Pflicht abgel&ouml;st &mdash; Technologieoffenheit statt Heizungszwang.</li><li>Energetischer Zustand wird zum Preisfaktor: Effizienzklasse beeinflusst Finanzierung, Miete und Wiederverkauf.</li><li>F&ouml;rderung (KfW/BAFA) vor der Sanierung beantragen &mdash; die Konditionen werden ab 21.07.2026 schrittweise umgestellt.</li></ul></div>
+<nav class="pagetoc" aria-label="Auf dieser Seite"><a href="#modernisierung-instandhaltung">Modernisierung vs. Instandhaltung</a><a href="#modernisierungsumlage">Modernisierungsumlage</a><a href="#energetische-sanierung">Energetische Sanierung</a><a href="#geg-heizungsgesetz">GEG / Heizungsgesetz</a><a href="#energieausweis">Energieausweis</a><a href="#foerderung-beg">Förderung (BEG)</a><a href="#esg-immobilie">ESG &amp; Immobilie</a></nav>
+
 </div></section>
 <div class="wrap"><main class="content">
 <article class="entry" id="modernisierung-instandhaltung">
@@ -245,9 +264,10 @@ gtag('consent','default',{
     <div class="deep">
       <p>Typische Maßnahmen sind die Dämmung von Fassade, Dach und oberster Geschossdecke, der Austausch alter Fenster, der Einbau moderner Lüftungstechnik sowie der Heizungstausch – etwa auf Wärmepumpen, Fernwärme oder Hybridlösungen. Treiber sind gesetzliche Vorgaben (siehe GEG / Heizungsgesetz), Förderprogramme, der Erhalt der Vermietbarkeit sowie die wachsende Bedeutung der Energieeffizienz für Mieter und Käufer.</p>
       <p>Die Kosten lassen sich teils über die Modernisierungsumlage refinanzieren, teils über Förderprogramme (siehe Förderung/BEG) reduzieren; steuerlich handelt es sich für vermietete Objekte in der Regel um Herstellungskosten, die über die AfA verteilt werden (die einkommensteuerliche Sonderabschreibung nach § 35c EStG für energetische Maßnahmen gilt dagegen nur für selbstgenutzte Gebäude, nicht für Vermieter).</p>
-      <p>Das zentrale Risiko liegt in den hohen Vorlaufkosten und einem oft über Jahrzehnte aufgeschobenen Sanierungsstau bei älterem Bestand. Gebäude mit besonders schlechter Energiebilanz – gelegentlich als „Worst Performing Buildings“ bezeichnet – geraten zunehmend unter regulatorischen und marktseitigen Druck, was sowohl ein Risiko als auch eine Chance für Investoren mit Sanierungskompetenz darstellen kann.</p>
+      <p>Das zentrale Risiko liegt in den hohen Vorlaufkosten und einem oft über Jahrzehnte aufgeschobenen Sanierungsstau bei älterem Bestand. Gebäude mit besonders schlechter Energiebilanz – gelegentlich als „Worst Performing Buildings“ bezeichnet – geraten zunehmend unter regulatorischen und marktseitigen Druck, was sowohl ein Risiko als auch eine Chance für Investoren mit Sanierungskompetenz darstellen kann.<p><strong>Aktuell (Stand Juli 2026):</strong> Die BEG-Heizungsf&ouml;rderung mit bis zu 70&nbsp;% Zuschuss gilt in dieser Form nur noch bis zum 21.07.2026; danach werden die Boni schrittweise abgesenkt. Wer eine Sanierung plant, sollte die aktuellen Konditionen direkt bei KfW/BAFA pr&uuml;fen &mdash; und F&ouml;rderung grunds&auml;tzlich vor Vorhabensbeginn beantragen.</p></p>
     </div>
-      <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.kfw.de/inlandsfoerderung/Privatpersonen/" target="_blank" rel="noopener">KfW-F&ouml;rderung</a> &middot; <a href="https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/effiziente_gebaeude_node.html" target="_blank" rel="noopener">BAFA (BEG)</a> &middot; <a href="https://www.gesetze-im-internet.de/geg/" target="_blank" rel="noopener">Geb&auml;udeenergiegesetz (GEG)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
+      <div class="tipp"><span class="tiptag">&#128161; Tipp f&uuml;r deine Kapitalanlage</span>Energetische Ma&szlig;nahmen doppelt rechnen: einmal als Steuerabzug (Erhaltungsaufwand/AfA), einmal &uuml;ber F&ouml;rderung &mdash; und die Modernisierungsumlage (&sect; 559 BGB) erlaubt bis zu 8 % der Kosten auf die Jahresmiete.</div>
+  <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.kfw.de/inlandsfoerderung/Privatpersonen/" target="_blank" rel="noopener">KfW-F&ouml;rderung</a> &middot; <a href="https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/effiziente_gebaeude_node.html" target="_blank" rel="noopener">BAFA (BEG)</a> &middot; <a href="https://www.gesetze-im-internet.de/geg/" target="_blank" rel="noopener">Geb&auml;udeenergiegesetz (GEG)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
   <p class="related"><span class="reltag">Verwandt:</span> GEG / Heizungsgesetz, Modernisierungsumlage, Förderung (BEG)</p>
   </article>
 

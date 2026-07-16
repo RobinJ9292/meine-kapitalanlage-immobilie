@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" role="img" aria-label="Diagramm: Leverage-Effekt - Objektrendite vs. Eigenkapitalrendite">
+<g font-family="Segoe UI,Roboto,Arial,sans-serif">
+<text x="30" y="34" font-size="17" font-weight="700" fill="#2b2620">Der Hebel-Effekt (vereinfachtes Beispiel)</text>
+<line x1="80" y1="270" x2="720" y2="270" stroke="#e8e1d3" stroke-width="2"/>
+<rect x="140" y="182" width="90" height="88" rx="6" fill="#6b6357" opacity=".75"/>
+<text x="185" y="172" text-anchor="middle" font-size="15" font-weight="700" fill="#2b2620">~4 %</text>
+<text x="185" y="292" text-anchor="middle" font-size="13" fill="#6b6357">Objektrendite (ohne Kredit)</text>
+<rect x="360" y="72" width="90" height="198" rx="6" fill="#12876a" opacity=".9"/>
+<text x="405" y="62" text-anchor="middle" font-size="15" font-weight="700" fill="#12876a">~9 %</text>
+<text x="405" y="292" text-anchor="middle" font-size="13" fill="#6b6357">EK-Rendite bei Zins &lt; Rendite</text>
+<rect x="580" y="248" width="90" height="22" rx="6" fill="#c0392b" opacity=".85"/>
+<text x="625" y="238" text-anchor="middle" font-size="15" font-weight="700" fill="#c0392b">&lt; 0 % m&#246;glich</text>
+<text x="625" y="292" text-anchor="middle" font-size="13" fill="#6b6357">bei Zins &gt; Rendite</text>
+<text x="30" y="314" font-size="12.5" fill="#6b6357">Der Hebel wirkt in beide Richtungen: Fremdkapital verst&#228;rkt Gewinne wie Verluste.</text>
+</g>
+</svg>

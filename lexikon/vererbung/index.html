@@ -192,6 +192,22 @@ gtag('consent','default',{
   .sources a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
   .sources a:hover{color:#0f4aa0;text-decoration:underline}
   .sources .srcstand{color:#857b6a}
+
+  /* Kurzbox, Tipps, Seiten-TOC, Diagramme, Icons */
+  .kurzbox{background:#f2f7f2;border:1px solid #cfe3d2;border-left:4px solid var(--green);border-radius:12px;padding:16px 20px;margin:6px 0 18px;max-width:860px}
+  .kurzbox h2{font-size:14px;margin:0 0 8px;color:var(--green);text-transform:uppercase;letter-spacing:.6px}
+  .kurzbox ul{margin:0;padding-left:20px}
+  .kurzbox li{font-size:14.5px;color:#39483c;margin:5px 0;line-height:1.5}
+  .pagetoc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px;max-width:900px}
+  .pagetoc a{font-size:12.5px;color:#5a5344;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:5px 12px;transition:.13s}
+  .pagetoc a:hover{border-color:#d2c19a;color:#241f18}
+  .tipp{margin:14px 0 4px;background:#fdf6e3;border:1px solid #eeddb0;border-left:4px solid var(--gold);border-radius:10px;padding:13px 16px;font-size:13.8px;color:#4a3f28;line-height:1.55}
+  .tipp .tiptag{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--gold);margin-right:8px}
+  .diagramm{margin:16px 0 6px;background:#fbf8f1;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .diagramm img{width:100%;height:auto;display:block}
+  .diagramm figcaption{font-size:12.3px;color:var(--muted);margin-top:8px}
+  .clicon{flex:none;vertical-align:-6px;margin-right:10px}
+  .cpage-hero h1 .clicon{width:34px;height:34px;vertical-align:-4px}
 </style>
 </head>
 <body>
@@ -210,9 +226,12 @@ gtag('consent','default',{
 <section class="lexhero" style="background:transparent;border:0;padding-top:8px"><div class="wrap">
   <div class="cpage-hero">
     <p class="eyebrow" style="color:var(--green)">NACHLASS</p>
-    <h1>Verkauf, Nachfolge &amp; Vererbung</h1>
+    <h1><svg class="clicon" width="34" height="34" viewBox="0 0 26 26" fill="none" stroke="var(--gold)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="6" r="3"/><path d="M13 9v5M6 22v-3a5 5 0 015-5h4a5 5 0 015 5v3"/></svg>Verkauf, Nachfolge &amp; Vererbung</h1>
     <p class="lexlead">Jede Immobilie endet irgendwann in einem von drei Wegen: Verkauf, Schenkung oder Erbfall. Wer diesen Bereich früh durchdenkt, vermeidet nicht nur unnötige Steuerlast, sondern auch die Streitigkeiten, an denen Erbengemeinschaften regelmäßig zerbrechen.</p>
   </div>
+  <div class="kurzbox"><h2>Das Wichtigste in K&uuml;rze</h2><ul><li>Freibetr&auml;ge (500.000 &euro; Ehepartner, 400.000 &euro; je Kind und Elternteil) lassen sich alle 10 Jahre erneut nutzen &mdash; fr&uuml;h planen lohnt.</li><li>Nie&szlig;brauch dr&uuml;ckt den steuerpflichtigen Schenkungswert und sichert dir die Mieteinnahmen lebenslang.</li><li>Ohne Testament entsteht eine Erbengemeinschaft &mdash; f&uuml;r Immobilien oft die teuerste aller L&ouml;sungen.</li></ul></div>
+<nav class="pagetoc" aria-label="Auf dieser Seite"><a href="#immobilienverkauf">Immobilienverkauf</a><a href="#schenkung-zu-lebzeiten">Schenkung zu Lebzeiten</a><a href="#niessbrauch-und-wohnrecht">Nießbrauch &amp; Wohnrecht</a><a href="#erbschaft-und-schenkungsteuer">Erbschaft- &amp; Schenkungsteuer</a><a href="#familienheim-privileg">Familienheim-Privileg</a><a href="#testament-und-erbengemeinschaft">Testament &amp; Erbengemeinschaft</a><a href="#vorweggenommene-erbfolge">Vorweggenommene Erbfolge</a></nav>
+
 </div></section>
 <div class="wrap"><main class="content">
 <article class="entry" id="immobilienverkauf">
@@ -234,7 +253,8 @@ gtag('consent','default',{
       <p>Diese Zehn-Jahres-Regel gilt für Schenkungen zwischen denselben Personen (etwa Elternteil an Kind). Wird beispielsweise eine Immobilie in zwei Tranchen im Abstand von mehr als zehn Jahren übertragen, steht der Freibetrag zweimal zur Verfügung. Bei größeren Vermögen ist eine frühzeitige, mehrstufige Planung deshalb oft steuerlich vorteilhafter als das Abwarten des Erbfalls.</p>
       <p>Der Nachteil: Wer schenkt, gibt Eigentum und damit Kontrolle ab. Dagegen lässt sich mit Nießbrauch oder Wohnrecht gegensteuern, die den Wert der Schenkung mindern und dem Schenker zugleich wirtschaftliche Vorteile sichern. Schenkungen sollten notariell und mit klaren Regelungen zu Widerruf, Rückforderung und Ausgleich unter Geschwistern gestaltet werden, um spätere Konflikte zu vermeiden.</p>
     </div>
-      <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.gesetze-im-internet.de/erbstg_1974/__16.html" target="_blank" rel="noopener">&sect;&nbsp;16 ErbStG (Freibetr&auml;ge)</a> &middot; <a href="https://www.gesetze-im-internet.de/bgb/__1030.html" target="_blank" rel="noopener">&sect;&nbsp;1030 BGB (Nie&szlig;brauch)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
+      <div class="tipp"><span class="tiptag">&#128161; Tipp f&uuml;r deine Kapitalanlage</span>Denk in 10-Jahres-Zyklen: Wer mit 50 statt mit 70 beginnt, kann die Freibetr&auml;ge zwei- bis dreimal aussch&ouml;pfen &mdash; bei einem Mehrfamilienhaus macht das schnell sechsstellige Steuerunterschiede.</div>
+  <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.gesetze-im-internet.de/erbstg_1974/__16.html" target="_blank" rel="noopener">&sect;&nbsp;16 ErbStG (Freibetr&auml;ge)</a> &middot; <a href="https://www.gesetze-im-internet.de/bgb/__1030.html" target="_blank" rel="noopener">&sect;&nbsp;1030 BGB (Nie&szlig;brauch)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
   <p class="related"><span class="reltag">Verwandt:</span> Erbschaft- &amp; Schenkungsteuer, Nießbrauch &amp; Wohnrecht, Vorweggenommene Erbfolge</p>
   </article>
 

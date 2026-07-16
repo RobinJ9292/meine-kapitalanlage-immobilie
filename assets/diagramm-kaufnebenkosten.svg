@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 240" role="img" aria-label="Diagramm: Kaufnebenkosten - Grunderwerbsteuer, Notar und Grundbuch, Makler">
+<g font-family="Segoe UI,Roboto,Arial,sans-serif">
+<text x="30" y="36" font-size="17" font-weight="700" fill="#2b2620">Kaufnebenkosten: grob 9&#8211;12 % zus&#228;tzlich zum Kaufpreis</text>
+<rect x="30" y="70" width="330" height="54" rx="8" fill="#1a66c9" opacity=".85"/>
+<rect x="364" y="70" width="120" height="54" rx="8" fill="#12876a" opacity=".85"/>
+<rect x="488" y="70" width="222" height="54" rx="8" fill="#b07d12" opacity=".9"/>
+<text x="195" y="102" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">Grunderwerbsteuer</text>
+<text x="424" y="102" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">Notar+GB</text>
+<text x="599" y="102" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">Makler (h&#228;lftig)</text>
+<text x="195" y="150" text-anchor="middle" font-size="13" fill="#6b6357">3,5&#8211;6,5 % je Bundesland</text>
+<text x="424" y="150" text-anchor="middle" font-size="13" fill="#6b6357">ca. 1,5&#8211;2 %</text>
+<text x="599" y="150" text-anchor="middle" font-size="13" fill="#6b6357">oft ~3,57 % inkl. USt</text>
+<text x="30" y="200" font-size="13" fill="#6b6357">Beispiel: 300.000 &#8364; Kaufpreis &#8594; je nach Bundesland rund 27.000&#8211;36.000 &#8364; Nebenkosten &#8212; idealerweise aus Eigenkapital.</text>
+</g>
+</svg>

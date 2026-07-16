@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" role="img" aria-label="Illustration: Wohnhäuser als Kapitalanlage">
+<circle cx="500" cy="90" r="52" fill="#f5e2ac"/>
+<circle cx="500" cy="90" r="34" fill="#f0d284"/>
+<g stroke="#e8e1d3" stroke-width="2"><line x1="20" y1="392" x2="620" y2="392"/></g>
+<!-- Altbau -->
+<g>
+<rect x="60" y="150" width="150" height="242" rx="6" fill="#f4ead4" stroke="#e8e1d3" stroke-width="2"/>
+<rect x="60" y="150" width="150" height="34" rx="6" fill="#f5e2ac"/>
+<polygon points="52,152 135,108 218,152" fill="#b07d12" opacity=".85"/>
+<rect x="80" y="200" width="26" height="34" rx="3" fill="#fdf7ea" stroke="#b07d12" stroke-width="2"/><rect x="126" y="200" width="26" height="34" rx="3" fill="#fdf7ea" stroke="#b07d12" stroke-width="2"/><rect x="172" y="200" width="26" height="34" rx="3" fill="#fdf7ea" stroke="#b07d12" stroke-width="2"/><rect x="80" y="252" width="26" height="34" rx="3" fill="#fdf7ea" stroke="#b07d12" stroke-width="2"/><rect x="126" y="252" width="26" height="34" rx="3" fill="#fdf7ea" stroke="#b07d12" stroke-width="2"/><rect x="172" y="252" width="26" height="34" rx="3" fill="#fdf7ea" stroke="#b07d12" stroke-width="2"/><rect x="80" y="304" width="26" height="34" rx="3" fill="#fdf7ea" stroke="#b07d12" stroke-width="2"/><rect x="126" y="304" width="26" height="34" rx="3" fill="#fdf7ea" stroke="#b07d12" stroke-width="2"/><rect x="172" y="304" width="26" height="34" rx="3" fill="#fdf7ea" stroke="#b07d12" stroke-width="2"/>
+<rect x="118" y="352" width="34" height="40" rx="3" fill="#b07d12"/>
+</g>
+<!-- MFH modern -->
+<g>
+<rect x="248" y="110" width="170" height="282" rx="6" fill="#efe3c8" stroke="#e8e1d3" stroke-width="2"/>
+<rect x="248" y="110" width="170" height="16" rx="6" fill="#b07d12"/>
+<rect x="268" y="146" width="30" height="36" rx="3" fill="#fdf7ea" stroke="#6b6357" stroke-width="2"/><rect x="320" y="146" width="30" height="36" rx="3" fill="#fdf7ea" stroke="#6b6357" stroke-width="2"/><rect x="372" y="146" width="30" height="36" rx="3" fill="#fdf7ea" stroke="#6b6357" stroke-width="2"/><rect x="268" y="202" width="30" height="36" rx="3" fill="#fdf7ea" stroke="#6b6357" stroke-width="2"/><rect x="320" y="202" width="30" height="36" rx="3" fill="#fdf7ea" stroke="#6b6357" stroke-width="2"/><rect x="372" y="202" width="30" height="36" rx="3" fill="#fdf7ea" stroke="#6b6357" stroke-width="2"/><rect x="268" y="258" width="30" height="36" rx="3" fill="#fdf7ea" stroke="#6b6357" stroke-width="2"/><rect x="320" y="258" width="30" height="36" rx="3" fill="#fdf7ea" stroke="#6b6357" stroke-width="2"/><rect x="372" y="258" width="30" height="36" rx="3" fill="#fdf7ea" stroke="#6b6357" stroke-width="2"/><rect x="268" y="314" width="30" height="36" rx="3" fill="#fdf7ea" stroke="#6b6357" stroke-width="2"/><rect x="320" y="314" width="30" height="36" rx="3" fill="#fdf7ea" stroke="#6b6357" stroke-width="2"/><rect x="372" y="314" width="30" height="36" rx="3" fill="#fdf7ea" stroke="#6b6357" stroke-width="2"/>
+<rect x="316" y="358" width="36" height="34" rx="3" fill="#6b6357"/>
+</g>
+<!-- Neubau mit Balkonen -->
+<g>
+<rect x="456" y="180" width="130" height="212" rx="6" fill="#f7efdd" stroke="#e8e1d3" stroke-width="2"/>
+<g><rect x="472" y="206" width="98" height="30" rx="3" fill="#fdf7ea" stroke="#12876a" stroke-width="2"/><line x1="472" y1="242" x2="570" y2="242" stroke="#12876a" stroke-width="3"/></g><g><rect x="472" y="268" width="98" height="30" rx="3" fill="#fdf7ea" stroke="#12876a" stroke-width="2"/><line x1="472" y1="304" x2="570" y2="304" stroke="#12876a" stroke-width="3"/></g><g><rect x="472" y="330" width="98" height="30" rx="3" fill="#fdf7ea" stroke="#12876a" stroke-width="2"/><line x1="472" y1="366" x2="570" y2="366" stroke="#12876a" stroke-width="3"/></g>
+</g>
+<!-- Baum -->
+<g><rect x="612" y="330" width="8" height="62" fill="#8a6d3b"/><circle cx="616" cy="312" r="34" fill="#12876a" opacity=".8"/><circle cx="596" cy="330" r="24" fill="#12876a" opacity=".6"/></g>
+<g font-family="Segoe UI,Roboto,Arial,sans-serif" font-size="15" fill="#6b6357"><text x="60" y="426">Bestand</text><text x="288" y="426">Mehrfamilienhaus</text><text x="470" y="426">Neubau</text></g>
+</svg>

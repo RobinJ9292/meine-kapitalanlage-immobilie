@@ -192,6 +192,22 @@ gtag('consent','default',{
   .sources a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
   .sources a:hover{color:#0f4aa0;text-decoration:underline}
   .sources .srcstand{color:#857b6a}
+
+  /* Kurzbox, Tipps, Seiten-TOC, Diagramme, Icons */
+  .kurzbox{background:#f2f7f2;border:1px solid #cfe3d2;border-left:4px solid var(--green);border-radius:12px;padding:16px 20px;margin:6px 0 18px;max-width:860px}
+  .kurzbox h2{font-size:14px;margin:0 0 8px;color:var(--green);text-transform:uppercase;letter-spacing:.6px}
+  .kurzbox ul{margin:0;padding-left:20px}
+  .kurzbox li{font-size:14.5px;color:#39483c;margin:5px 0;line-height:1.5}
+  .pagetoc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px;max-width:900px}
+  .pagetoc a{font-size:12.5px;color:#5a5344;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:5px 12px;transition:.13s}
+  .pagetoc a:hover{border-color:#d2c19a;color:#241f18}
+  .tipp{margin:14px 0 4px;background:#fdf6e3;border:1px solid #eeddb0;border-left:4px solid var(--gold);border-radius:10px;padding:13px 16px;font-size:13.8px;color:#4a3f28;line-height:1.55}
+  .tipp .tiptag{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--gold);margin-right:8px}
+  .diagramm{margin:16px 0 6px;background:#fbf8f1;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .diagramm img{width:100%;height:auto;display:block}
+  .diagramm figcaption{font-size:12.3px;color:var(--muted);margin-top:8px}
+  .clicon{flex:none;vertical-align:-6px;margin-right:10px}
+  .cpage-hero h1 .clicon{width:34px;height:34px;vertical-align:-4px}
 </style>
 </head>
 <body>
@@ -210,9 +226,12 @@ gtag('consent','default',{
 <section class="lexhero" style="background:transparent;border:0;padding-top:8px"><div class="wrap">
   <div class="cpage-hero">
     <p class="eyebrow" style="color:var(--green)">EINSTIEG</p>
-    <h1>Grundlagen &amp; Konzept</h1>
+    <h1><svg class="clicon" width="34" height="34" viewBox="0 0 26 26" fill="none" stroke="var(--gold)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="13" r="10"/><path d="M13 7v6l4 3"/></svg>Grundlagen &amp; Konzept</h1>
     <p class="lexlead">Bevor Zahlen, Steuerparagrafen und Renditekennziffern eine Rolle spielen, braucht es ein klares Verständnis der Grundbegriffe. Dieser Bereich klärt, was eine Immobilie zur Kapitalanlage macht, wie sie sich von anderen Anlageformen unterscheidet und welche Mechanismen — Hebelwirkung, Sachwert, laufende Erträge — tatsächlich dahinterstehen.</p>
   </div>
+  <div class="kurzbox"><h2>Das Wichtigste in K&uuml;rze</h2><ul><li>Eine Anlageimmobilie kombiniert drei Hebel: Fremdkapital der Bank, Steuerwirkung (AfA) und die Tilgung durch den Mieter.</li><li>Rund 16 Millionen Wohnungen in Deutschland werden von Privatpersonen vermietet (IW K&ouml;ln, 2025) &mdash; du w&auml;rst in guter Gesellschaft.</li><li>Entscheidend ist nicht die Bruttomietrendite, sondern das Zusammenspiel aus Lage, Kaufpreisfaktor, Finanzierung und deiner Steuersituation.</li></ul></div>
+<nav class="pagetoc" aria-label="Auf dieser Seite"><a href="#anlageimmobilie">Anlageimmobilie</a><a href="#kapitalanlage-vs-eigennutzung">Kapitalanlage vs. Eigennutzung</a><a href="#immobilie-vs-aktien-etf">Immobilie vs. Aktien/ETF</a><a href="#hebelwirkung-leverage">Hebelwirkung (Leverage) durch Fremdkapital</a><a href="#sachwert-inflationsschutz">Sachwert &amp; Inflationsschutz</a><a href="#passives-einkommen">Passives Einkommen (Mythos vs. Realität)</a></nav>
+
 </div></section>
 <div class="wrap"><main class="content">
 <article class="entry" id="anlageimmobilie">
@@ -269,7 +288,8 @@ gtag('consent','default',{
         <li>Zentrales Risiko: Zinsänderung bei der Anschlussfinanzierung nach Ablauf der Zinsbindung</li>
       </ul>
     </div>
-    <div class="example"><span class="extag">Rechenbeispiel</span> Kaufpreis 400.000 €, Eigenkapital 100.000 €, Fremdkapital 300.000 € zu 3,5 % Zins. Nettomietrendite (nach Bewirtschaftungskosten) 4 % auf den Kaufpreis = 16.000 € Ertrag. Zinskosten: 300.000 € × 3,5 % = 10.500 €. Verbleibender Überschuss vor Steuern und Tilgung: 5.500 € — bezogen auf die eingesetzten 100.000 € Eigenkapital entspricht das 5,5 % Eigenkapitalrendite, also mehr als die ungehebelte Objektrendite von 4 %. Bei einem Fremdkapitalzins von 5 % würde sich der Effekt umkehren.</div>
+    <figure class="diagramm"><img src="/assets/diagramm-drei-hebel.svg" alt="Diagramm: Die drei Hebel der Anlageimmobilie" width="760" height="330" loading="lazy"><figcaption>Bank, Finanzamt und Mieter arbeiten gleichzeitig &mdash; das unterscheidet die Immobilie von fast allen Anlageklassen.</figcaption></figure>
+  <div class="example"><span class="extag">Rechenbeispiel</span> Kaufpreis 400.000 €, Eigenkapital 100.000 €, Fremdkapital 300.000 € zu 3,5 % Zins. Nettomietrendite (nach Bewirtschaftungskosten) 4 % auf den Kaufpreis = 16.000 € Ertrag. Zinskosten: 300.000 € × 3,5 % = 10.500 €. Verbleibender Überschuss vor Steuern und Tilgung: 5.500 € — bezogen auf die eingesetzten 100.000 € Eigenkapital entspricht das 5,5 % Eigenkapitalrendite, also mehr als die ungehebelte Objektrendite von 4 %. Bei einem Fremdkapitalzins von 5 % würde sich der Effekt umkehren.</div>
     <p class="related"><span class="reltag">Verwandt:</span> Eigenkapitalrendite, Fremdkapitalzins, Cashflow, Zinsänderungsrisiko</p>
   </article>
 
