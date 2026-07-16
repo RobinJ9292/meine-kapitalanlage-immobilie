@@ -20,18 +20,28 @@ gtag('consent','default',{
   wait_for_update:500
 });
 </script>
-<title>Immobilienrechner &ndash; Rendite, Cashflow &amp; Steuer berechnen</title>
-<meta name="description" content="Kostenloser Immobilienrechner: Rendite, Cashflow und Steuerwirkung deiner Anlageimmobilie mit eigenen Zahlen berechnen.">
+<title>Risiken &ndash; Ratgeber Immobilie als Kapitalanlage</title>
+<meta name="description" content="Eine Immobilie als Kapitalanlage ist kein risikoloses Investment. Die folgenden Risiken lassen sich nicht wegdiskutieren, aber durch realistische Kalkulation">
 <meta name="robots" content="index,follow,max-image-preview:large">
-<link rel="canonical" href="https://meine-kapitalanlage-immobilie.de/rechner/">
+<link rel="canonical" href="https://meine-kapitalanlage-immobilie.de/ratgeber/risiken/">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta property="og:type" content="article">
 <meta property="og:locale" content="de_DE">
-<meta property="og:title" content="Immobilienrechner">
-<meta property="og:url" content="https://meine-kapitalanlage-immobilie.de/rechner/">
+<meta property="og:title" content="Risiken &amp;ndash; Ratgeber Immobilie als Kapitalanlage">
+<meta property="og:url" content="https://meine-kapitalanlage-immobilie.de/ratgeber/risiken/">
 <link rel="preconnect" href="https://fonts.bunny.net"><link href="https://fonts.bunny.net/css?family=open-sans:400,600,700,800" rel="stylesheet">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Immobilienrechner","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"url":"https://meine-kapitalanlage-immobilie.de/rechner/"}
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {"@type":"BreadcrumbList","itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Start","item":"https://meine-kapitalanlage-immobilie.de/"},
+      {"@type":"ListItem","position":2,"name":"Ratgeber","item":"https://meine-kapitalanlage-immobilie.de/ratgeber/"},
+      {"@type":"ListItem","position":3,"name":"Risiken","item":"https://meine-kapitalanlage-immobilie.de/ratgeber/risiken/"}
+    ]},
+    {"@type":"DefinedTermSet","name":"Risiken","hasDefinedTerm":[{"@type":"DefinedTerm","name":"Mietausfall &amp;amp; Leerstand"},{"@type":"DefinedTerm","name":"Zinsänderungsrisiko"},{"@type":"DefinedTerm","name":"Instandhaltungsrisiko"},{"@type":"DefinedTerm","name":"Wertentwicklungsrisiko"},{"@type":"DefinedTerm","name":"Klumpenrisiko"},{"@type":"DefinedTerm","name":"Regulierungs-/politisches Risiko"}]}
+  ]
+}
 </script>
 <style>
   :root{--bg:#faf7f1;--bg2:#f2ece0;--ink:#2b2620;--muted:#6b6357;--gold:#b07d12;--blue:#1a66c9;
@@ -176,6 +186,28 @@ gtag('consent','default',{
   .hubcard ul li a:hover{color:#241f18;border-color:#ddceac}
   @media(max-width:900px){.hubgrid{grid-template-columns:1fr 1fr}}
   @media(max-width:600px){.hubgrid{grid-template-columns:1fr}}
+
+  .sources{margin:12px 0 0;font-size:12.3px;color:#6b6357;line-height:1.55}
+  .sources .srctag{font-weight:700;color:var(--muted);margin-right:5px}
+  .sources a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
+  .sources a:hover{color:#0f4aa0;text-decoration:underline}
+  .sources .srcstand{color:#857b6a}
+
+  /* Kurzbox, Tipps, Seiten-TOC, Diagramme, Icons */
+  .kurzbox{background:#f2f7f2;border:1px solid #cfe3d2;border-left:4px solid var(--green);border-radius:12px;padding:16px 20px;margin:6px 0 18px;max-width:860px}
+  .kurzbox h2{font-size:14px;margin:0 0 8px;color:var(--green);text-transform:uppercase;letter-spacing:.6px}
+  .kurzbox ul{margin:0;padding-left:20px}
+  .kurzbox li{font-size:14.5px;color:#39483c;margin:5px 0;line-height:1.5}
+  .pagetoc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px;max-width:900px}
+  .pagetoc a{font-size:12.5px;color:#5a5344;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:5px 12px;transition:.13s}
+  .pagetoc a:hover{border-color:#d2c19a;color:#241f18}
+  .tipp{margin:14px 0 4px;background:#fdf6e3;border:1px solid #eeddb0;border-left:4px solid var(--gold);border-radius:10px;padding:13px 16px;font-size:13.8px;color:#4a3f28;line-height:1.55}
+  .tipp .tiptag{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--gold);margin-right:8px}
+  .diagramm{margin:16px 0 6px;background:#fbf8f1;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .diagramm img{width:100%;height:auto;display:block}
+  .diagramm figcaption{font-size:12.3px;color:var(--muted);margin-top:8px}
+  .clicon{flex:none;vertical-align:-6px;margin-right:10px}
+  .cpage-hero h1 .clicon{width:34px;height:34px;vertical-align:-4px}
 </style>
 </head>
 <body>
@@ -191,14 +223,82 @@ gtag('consent','default',{
     </nav>
   <div class="navsearch"><span>&#128269;</span><input type="text" id="navSearch" placeholder="Begriff suchen &hellip;" aria-label="Suchen" onkeydown="if(event.key==='Enter'){location.href='/ratgeber/?q='+encodeURIComponent(this.value)}"></div>
 </div></header>
-<div class="crumb"><a href="/">Start</a> &rsaquo; <span>Rechner</span></div>
+<div class="crumb"><a href="/">Start</a> &rsaquo; <a href="/ratgeber/">Ratgeber</a> &rsaquo; <span>Risiken</span></div>
 <section class="lexhero" style="background:transparent;border:0;padding-top:8px"><div class="wrap">
-  <div class="cpage-hero"><h1>Immobilienrechner</h1></div>
-  <div style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:6px 0 0">
-    <iframe src="/rechner.html" title="Immobilienrechner" loading="lazy" style="width:100%;height:calc(100vh - 150px);min-height:1050px;border:0;border-radius:10px;background:#f4efe4"></iframe>
+  <div class="cpage-hero">
+    <p class="eyebrow" style="color:var(--green)">E · RISIKEN</p>
+    <h1><svg class="clicon" width="34" height="34" viewBox="0 0 26 26" fill="none" stroke="var(--gold)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3L24 22H2z"/><path d="M13 10v6M13 19h.01"/></svg>Risiken</h1>
+    <p class="lexlead">Eine Immobilie als Kapitalanlage ist kein risikoloses Investment. Die folgenden Risiken lassen sich nicht wegdiskutieren, aber durch realistische Kalkulation, Streuung und sorgfältige Prüfung begrenzen.</p>
   </div>
+  <div class="kurzbox"><h2>Das Wichtigste in K&uuml;rze</h2><ul><li>Mietausfall, Zins&auml;nderung, Instandhaltung: Die drei Kernrisiken lassen sich kalkulieren &mdash; aber nicht wegreden.</li><li>Liquidit&auml;tsreserve von mehreren Monatsmieten ist Pflicht, keine K&uuml;r.</li><li>Klumpenrisiko ernst nehmen: Eine Immobilie ist viel Kapital an einer Adresse.</li></ul></div>
+<nav class="pagetoc" aria-label="Auf dieser Seite"><a href="#mietausfall-leerstand">Mietausfall &amp; Leerstand</a><a href="#zinsaenderungsrisiko">Zinsänderungsrisiko</a><a href="#instandhaltungsrisiko">Instandhaltungsrisiko</a><a href="#wertentwicklungsrisiko">Wertentwicklungsrisiko</a><a href="#klumpenrisiko">Klumpenrisiko</a><a href="#regulierungsrisiko">Regulierungs-/politisches Risiko</a></nav>
+
 </div></section>
-<footer class="site"><div class="wrap">
+<div class="wrap"><main class="content">
+<article class="entry" id="mietausfall-leerstand">
+    <h3>Mietausfall &amp; Leerstand</h3>
+    <p class="short"><strong>Kurz:</strong> Das Risiko, dass Mieteinnahmen ganz oder teilweise ausbleiben – durch Zahlungsausfall, Mieterinsolvenz oder Leerstand zwischen zwei Mietverhältnissen.</p>
+    <div class="deep">
+      <p>Ursachen sind unter anderem eine schwache Mikrolage, eine über dem Marktniveau angesetzte Miete, baulicher Zustand oder schlicht die Bonität einzelner Mieter. Bei Einzelobjekten wie einer Eigentumswohnung oder einem Einfamilienhaus wirkt sich ein Ausfall besonders stark aus, da 100 % der Mieteinnahmen wegfallen können; ein Mehrfamilienhaus streut dieses Risiko über mehrere Einheiten.</p>
+      <p>Absichern lässt sich das Risiko nur begrenzt: sorgfältige Mieterauswahl und Bonitätsprüfung, eine Liquiditätsreserve für mehrere Monate Leerstand, gegebenenfalls eine Mietausfallversicherung sowie eine realistische statt optimistische Mietkalkulation von Beginn an. Wer seine Finanzierung nur bei durchgehender Vollvermietung trägt, kalkuliert zu knapp.</p>
+    </div>
+    <p class="related"><span class="reltag">Verwandt:</span> Klumpenrisiko, Objekttypen, Zinsänderungsrisiko</p>
+  </article>
+
+  <article class="entry" id="zinsaenderungsrisiko">
+    <h3>Zinsänderungsrisiko</h3>
+    <p class="short"><strong>Kurz:</strong> Das Risiko steigender Finanzierungskosten, wenn nach Ablauf der Zinsbindung eine Anschlussfinanzierung zu ungünstigeren Konditionen erfolgt.</p>
+    <div class="deep">
+      <p>Klassische Immobilienfinanzierungen laufen mit einer Zinsbindung von meist 10 bis 15 Jahren; danach muss die Restschuld zu den dann geltenden Marktzinsen refinanziert werden. Steigt das Zinsniveau in der Zwischenzeit deutlich, kann sich die monatliche Belastung spürbar erhöhen, selbst wenn sich am Objekt und an der Miete nichts verändert hat. Wer nur knapp kalkuliert hat, gerät dadurch in Cashflow-Schwierigkeiten.</p>
+      <p>Absicherungsmöglichkeiten sind ein höherer anfänglicher Tilgungssatz (senkt die Restschuld schneller), Sondertilgungen, ausreichend lange Zinsbindung sowie – bei absehbarem Anschlussbedarf – ein Forward-Darlehen, das den Zinssatz schon vor Ablauf der laufenden Bindung sichert. Grundsätzlich gilt: Eine Finanzierung sollte auch ein spürbar höheres Zinsniveau bei der Anschlussfinanzierung verkraften, nicht nur das aktuelle.</p>
+    </div>
+    <div class="example"><span class="extag">Rechenbeispiel</span> Bei einer Restschuld von 250.000 € steigt die jährliche Zinslast von 3 % (7.500 €) auf 5 % (12.500 €) – eine monatliche Mehrbelastung von rund 417 € allein durch die Anschlusskonditionen.</div>
+    <p class="related"><span class="reltag">Verwandt:</span> Kaufpreisfaktor, Instandhaltungsrisiko, Wertentwicklungsrisiko</p>
+  </article>
+
+  <article class="entry" id="instandhaltungsrisiko">
+    <h3>Instandhaltungsrisiko</h3>
+    <p class="short"><strong>Kurz:</strong> Das Risiko unerwartet hoher oder anfänglich unterschätzter Erhaltungskosten während der gesamten Haltedauer einer Immobilie.</p>
+    <div class="deep">
+      <p>Im Unterschied zum Instandhaltungsstau, der bereits beim Kauf erkennbar ist, beschreibt das Instandhaltungsrisiko die Unsicherheit über künftige Kosten: alternde Bauteile, steigende Handwerker- und Materialpreise sowie regulatorische Vorgaben, die während der Haltedauer neu hinzukommen können – etwa energetische Anforderungen im Rahmen des Gebäudemodernisierungsgesetzes. Wird die Instandhaltungsrücklage von Beginn an zu niedrig angesetzt, zeigt sich das Risiko oft erst nach Jahren in Form von Sonderumlagen oder aufgeschobenen Reparaturen.</p>
+      <p>Eine realistische Kalkulation setzt jährlich einen festen Betrag pro Quadratmeter für Instandhaltung an, unabhängig davon, ob im jeweiligen Jahr tatsächlich Kosten anfallen – so entsteht über die Zeit eine Reserve für größere Maßnahmen wie Dach, Heizung oder Fassade. Wer diese Rücklage in der Renditerechnung wegoptimiert, überschätzt systematisch die tatsächliche Nettomietrendite.</p>
+    </div>
+    <p class="related"><span class="reltag">Verwandt:</span> Instandhaltungsstau, Due Diligence, Regulierungs-/politisches Risiko</p>
+  </article>
+
+  <article class="entry" id="wertentwicklungsrisiko">
+    <h3>Wertentwicklungsrisiko</h3>
+    <p class="short"><strong>Kurz:</strong> Immobilienpreise steigen nicht garantiert – die Wertentwicklung hängt von Angebot, Nachfrage, Zinsniveau, demografischer Entwicklung und Lage ab.</p>
+    <div class="deep">
+      <p>Die Vorstellung, Immobilien seien eine per se sichere, stetig wertsteigernde Anlage, hält der Betrachtung über längere Zeiträume und Regionen nicht stand. Preise können über Jahre stagnieren oder real – also nach Abzug der Inflation – sogar sinken, während sie nominal leicht steigen. Deutschland weist mit rund 47 % eine im EU-Vergleich sehr niedrige Wohneigentumsquote auf (EU-Schnitt rund 70 %), was zeigt, wie unterschiedlich Immobilienmärkte auch innerhalb Europas strukturiert sind.</p>
+      <p>Wertentwicklung verläuft zudem regional sehr unterschiedlich: Während gefragte Großstadtlagen über Jahrzehnte an Wert gewinnen können, stagnieren strukturschwache Regionen mit rückläufiger Bevölkerung oft dauerhaft. Wer eine Kaufentscheidung auf die Annahme stützt, vergangene Preissteigerungen ließen sich linear fortschreiben, unterschätzt dieses Risiko systematisch. Seriöse Kalkulationen rechnen daher mit konservativen oder gar keinen Wertsteigerungsannahmen und betrachten die Immobilie primär über ihren laufenden Ertrag.</p>
+    </div>
+      <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Baupreise-Immobilienpreisindex/_inhalt.html" target="_blank" rel="noopener">Destatis: Baupreisindex</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
+  <p class="related"><span class="reltag">Verwandt:</span> Makrolage, A-/B-/C-Städte &amp; Lagen, Klumpenrisiko</p>
+  </article>
+
+  <article class="entry" id="klumpenrisiko">
+    <h3>Klumpenrisiko</h3>
+    <p class="short"><strong>Kurz:</strong> Das Risiko einer übermäßigen Konzentration des Vermögens auf ein einzelnes Objekt, eine einzelne Lage oder einen einzelnen Mieter beziehungsweise Betreiber.</p>
+    <div class="deep">
+      <p>Anders als ein breit gestreutes Wertpapierdepot besteht eine einzelne Immobilie meist aus genau einem Vermögensgegenstand: fällt sie aus (Leerstand, Wertverlust, Sanierungsstau), lässt sich das nicht durch andere Positionen im selben Portfolio ausgleichen. Besonders ausgeprägt ist das Risiko bei Einzelobjekten mit nur einem Mieter – etwa einem Einfamilienhaus oder einer gewerblich einzeln vermieteten Fläche – sowie bei Sonderformen wie Pflegeapartments, die von einem einzigen Betreiber abhängen.</p>
+      <p>Auch eine regionale Konzentration mehrerer Objekte in derselben Stadt oder demselben Stadtteil ist ein Klumpenrisiko, da lokale Entwicklungen dann alle Objekte gleichzeitig treffen. Wer eine Immobilie als Kapitalanlage plant, sollte sie stets im Kontext des gesamten Vermögens betrachten: Welchen Anteil macht sie am Gesamtvermögen aus, und wie stark hängt die eigene finanzielle Stabilität von genau diesem einen Investment ab?</p>
+    </div>
+    <p class="related"><span class="reltag">Verwandt:</span> Mietausfall &amp; Leerstand, Gewerbeimmobilie, Sonderformen</p>
+  </article>
+
+  <article class="entry" id="regulierungsrisiko">
+    <h3>Regulierungs-/politisches Risiko</h3>
+    <p class="short"><strong>Kurz:</strong> Das Risiko, dass gesetzliche Änderungen im Miet-, Steuer- oder Energierecht die Rahmenbedingungen einer bereits getätigten Investition nachträglich verändern.</p>
+    <div class="deep">
+      <p>Immobilieninvestitionen laufen typischerweise über 10 bis 30 Jahre – ein Zeitraum, in dem sich rechtliche Rahmenbedingungen mehrfach ändern können. Aktuelle Beispiele: Die Mietpreisbremse wurde bis Ende 2029 verlängert und begrenzt in ausgewiesenen Gebieten die Wiedervermietungsmiete auf maximal 10 % über der ortsüblichen Vergleichsmiete. Das energetische Anforderungsrecht wurde 2026 mit dem Gebäudemodernisierungsgesetz neu geordnet und ersetzt die vorherige starre 65-%-Erneuerbare-Pflicht durch mehr Technologieoffenheit – zugleich bleibt die Pflicht zur Klimaneutralität der Brennstoffe bis 2045 bestehen. Auch die Grunderwerbsteuer unterscheidet sich je nach Bundesland zwischen 3,5 % und 6,5 % und kann politisch angepasst werden.</p>
+      <p>Keine dieser Regelungen ist dauerhaft garantiert – auch günstige Rahmenbedingungen wie steuerliche Abschreibungsregeln oder Freibeträge können sich in Zukunft ändern. Eine solide Kalkulation stützt sich daher nicht auf die dauerhafte Fortgeltung aktuell vorteilhafter Regeln, sondern kalkuliert konservativ und behält gesetzliche Entwicklungen über die gesamte Haltedauer im Blick.</p>
+    </div>
+    <p class="related"><span class="reltag">Verwandt:</span> Instandhaltungsrisiko, Wertentwicklungsrisiko, Kaufpreisfaktor</p>
+  </article>
+
+<div class="prevnext"><a href="/ratgeber/pruefung/"><span class="pn-lbl">&larr; Vorheriges Thema</span><span class="pn-ttl">Objektprüfung &amp; Bewertung</span></a><a href="/ratgeber/vermietung/" style="text-align:right"><span class="pn-lbl">N&auml;chstes Thema &rarr;</span><span class="pn-ttl">Vermietung &amp; Verwaltung</span></a></div>
+</main></div><footer class="site"><div class="wrap">
   <p class="disc"><strong>Wichtiger Hinweis:</strong> Die Inhalte dieses Ratgebers dienen der allgemeinen Information und Bildung rund um die Immobilie als Kapitalanlage. Sie stellen keine individuelle Steuer-, Rechts- oder Anlageberatung dar und ersetzen diese nicht. Rechtsst&auml;nde (u.&nbsp;a. Steuer-, Miet- und Energierecht) entsprechen dem Stand 2026 und k&ouml;nnen sich &auml;ndern. Im Einzelfall bitte qualifizierte Fachpersonen hinzuziehen.</p>
   <div class="fbottom">
     <span>&copy; 2026 Kapitalanlage-Immobilie</span>

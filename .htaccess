@@ -3,6 +3,13 @@ DirectoryIndex index.html
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
+
+  # Alte Pfade dauerhaft auf neue umleiten (Linkkraft/SEO erhalten, alte Lesezeichen funktionieren)
+  RewriteRule ^lexikon/(.*)$ /ratgeber/$1 [R=301,L]
+  RewriteRule ^lexikon/?$ /ratgeber/ [R=301,L]
+  RewriteRule ^einordnung/(.*)$ /aktuelles/$1 [R=301,L]
+  RewriteRule ^einordnung/?$ /aktuelles/ [R=301,L]
+
   # Landingpage unter /beratung ausliefern (Datei bleibt an der Wurzel: beratung.html,
   # damit die relativen Asset-Pfade der LP unveraendert funktionieren)
   RewriteRule ^beratung/$ /beratung [R=301,L]

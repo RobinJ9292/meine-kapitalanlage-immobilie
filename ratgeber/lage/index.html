@@ -20,18 +20,28 @@ gtag('consent','default',{
   wait_for_update:500
 });
 </script>
-<title>Immobilienrechner &ndash; Rendite, Cashflow &amp; Steuer berechnen</title>
-<meta name="description" content="Kostenloser Immobilienrechner: Rendite, Cashflow und Steuerwirkung deiner Anlageimmobilie mit eigenen Zahlen berechnen.">
+<title>Lage &amp; Objekt &ndash; Ratgeber Immobilie als Kapitalanlage</title>
+<meta name="description" content="Lage und Objektart bestimmen über Jahrzehnte, wie leicht sich eine Immobilie vermieten, halten und wieder verkaufen lässt. Wer hier ungenau prüft, kann späte">
 <meta name="robots" content="index,follow,max-image-preview:large">
-<link rel="canonical" href="https://meine-kapitalanlage-immobilie.de/rechner/">
+<link rel="canonical" href="https://meine-kapitalanlage-immobilie.de/ratgeber/lage/">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta property="og:type" content="article">
 <meta property="og:locale" content="de_DE">
-<meta property="og:title" content="Immobilienrechner">
-<meta property="og:url" content="https://meine-kapitalanlage-immobilie.de/rechner/">
+<meta property="og:title" content="Lage &amp;amp; Objekt &amp;ndash; Ratgeber Immobilie als Kapitalanlage">
+<meta property="og:url" content="https://meine-kapitalanlage-immobilie.de/ratgeber/lage/">
 <link rel="preconnect" href="https://fonts.bunny.net"><link href="https://fonts.bunny.net/css?family=open-sans:400,600,700,800" rel="stylesheet">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Immobilienrechner","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"url":"https://meine-kapitalanlage-immobilie.de/rechner/"}
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {"@type":"BreadcrumbList","itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Start","item":"https://meine-kapitalanlage-immobilie.de/"},
+      {"@type":"ListItem","position":2,"name":"Ratgeber","item":"https://meine-kapitalanlage-immobilie.de/ratgeber/"},
+      {"@type":"ListItem","position":3,"name":"Lage &amp;amp; Objekt","item":"https://meine-kapitalanlage-immobilie.de/ratgeber/lage/"}
+    ]},
+    {"@type":"DefinedTermSet","name":"Lage &amp;amp; Objekt","hasDefinedTerm":[{"@type":"DefinedTerm","name":"Makrolage"},{"@type":"DefinedTerm","name":"Mikrolage"},{"@type":"DefinedTerm","name":"Neubau vs. Bestand"},{"@type":"DefinedTerm","name":"Objekttypen: Eigentumswohnung, Einfamilienhaus, Mehrfamilienhaus"},{"@type":"DefinedTerm","name":"Gewerbeimmobilie"},{"@type":"DefinedTerm","name":"Sonderformen: Pflegeapartment, Studentenapartment, Ferienimmobilie"},{"@type":"DefinedTerm","name":"A-/B-/C-Städte &amp;amp; Lagen"}]}
+  ]
+}
 </script>
 <style>
   :root{--bg:#faf7f1;--bg2:#f2ece0;--ink:#2b2620;--muted:#6b6357;--gold:#b07d12;--blue:#1a66c9;
@@ -176,6 +186,28 @@ gtag('consent','default',{
   .hubcard ul li a:hover{color:#241f18;border-color:#ddceac}
   @media(max-width:900px){.hubgrid{grid-template-columns:1fr 1fr}}
   @media(max-width:600px){.hubgrid{grid-template-columns:1fr}}
+
+  .sources{margin:12px 0 0;font-size:12.3px;color:#6b6357;line-height:1.55}
+  .sources .srctag{font-weight:700;color:var(--muted);margin-right:5px}
+  .sources a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
+  .sources a:hover{color:#0f4aa0;text-decoration:underline}
+  .sources .srcstand{color:#857b6a}
+
+  /* Kurzbox, Tipps, Seiten-TOC, Diagramme, Icons */
+  .kurzbox{background:#f2f7f2;border:1px solid #cfe3d2;border-left:4px solid var(--green);border-radius:12px;padding:16px 20px;margin:6px 0 18px;max-width:860px}
+  .kurzbox h2{font-size:14px;margin:0 0 8px;color:var(--green);text-transform:uppercase;letter-spacing:.6px}
+  .kurzbox ul{margin:0;padding-left:20px}
+  .kurzbox li{font-size:14.5px;color:#39483c;margin:5px 0;line-height:1.5}
+  .pagetoc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px;max-width:900px}
+  .pagetoc a{font-size:12.5px;color:#5a5344;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:5px 12px;transition:.13s}
+  .pagetoc a:hover{border-color:#d2c19a;color:#241f18}
+  .tipp{margin:14px 0 4px;background:#fdf6e3;border:1px solid #eeddb0;border-left:4px solid var(--gold);border-radius:10px;padding:13px 16px;font-size:13.8px;color:#4a3f28;line-height:1.55}
+  .tipp .tiptag{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--gold);margin-right:8px}
+  .diagramm{margin:16px 0 6px;background:#fbf8f1;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .diagramm img{width:100%;height:auto;display:block}
+  .diagramm figcaption{font-size:12.3px;color:var(--muted);margin-top:8px}
+  .clicon{flex:none;vertical-align:-6px;margin-right:10px}
+  .cpage-hero h1 .clicon{width:34px;height:34px;vertical-align:-4px}
 </style>
 </head>
 <body>
@@ -191,14 +223,103 @@ gtag('consent','default',{
     </nav>
   <div class="navsearch"><span>&#128269;</span><input type="text" id="navSearch" placeholder="Begriff suchen &hellip;" aria-label="Suchen" onkeydown="if(event.key==='Enter'){location.href='/ratgeber/?q='+encodeURIComponent(this.value)}"></div>
 </div></header>
-<div class="crumb"><a href="/">Start</a> &rsaquo; <span>Rechner</span></div>
+<div class="crumb"><a href="/">Start</a> &rsaquo; <a href="/ratgeber/">Ratgeber</a> &rsaquo; <span>Lage &amp; Objekt</span></div>
 <section class="lexhero" style="background:transparent;border:0;padding-top:8px"><div class="wrap">
-  <div class="cpage-hero"><h1>Immobilienrechner</h1></div>
-  <div style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:6px 0 0">
-    <iframe src="/rechner.html" title="Immobilienrechner" loading="lazy" style="width:100%;height:calc(100vh - 150px);min-height:1050px;border:0;border-radius:10px;background:#f4efe4"></iframe>
+  <div class="cpage-hero">
+    <p class="eyebrow" style="color:var(--green)">D · LAGE &amp; OBJEKT</p>
+    <h1><svg class="clicon" width="34" height="34" viewBox="0 0 26 26" fill="none" stroke="var(--gold)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 23s-8-7-8-13a8 8 0 0116 0c0 6-8 13-8 13z"/><circle cx="13" cy="10" r="3"/></svg>Lage &amp; Objekt</h1>
+    <p class="lexlead">Lage und Objektart bestimmen über Jahrzehnte, wie leicht sich eine Immobilie vermieten, halten und wieder verkaufen lässt. Wer hier ungenau prüft, kann spätere Renditeprobleme kaum noch durch Finanzierung oder Steuergestaltung ausgleichen.</p>
   </div>
+  <div class="kurzbox"><h2>Das Wichtigste in K&uuml;rze</h2><ul><li>Lage schl&auml;gt Objekt: Makro- und Mikrolage bestimmen Wertentwicklung und Vermietbarkeit st&auml;rker als die Ausstattung.</li><li>B- und C-St&auml;dte (Bulwiengesa-Systematik) bieten oft das bessere Rendite-Risiko-Verh&auml;ltnis als die teuren A-Metropolen.</li><li>Pr&uuml;fe die Mieterbrille: Wer soll hier wohnen wollen &mdash; und warum dauerhaft?</li></ul></div>
+<nav class="pagetoc" aria-label="Auf dieser Seite"><a href="#makrolage">Makrolage</a><a href="#mikrolage">Mikrolage</a><a href="#neubau-vs-bestand">Neubau vs. Bestand</a><a href="#objekttypen">Objekttypen: Eigentumswohnung, Einfamilienhaus, Mehrfamilienhaus</a><a href="#gewerbeimmobilie">Gewerbeimmobilie</a><a href="#sonderformen">Sonderformen: Pflegeapartment, Studentenapartment, Ferienimmobilie</a><a href="#a-b-c-staedte-lagen">A-/B-/C-Städte &amp; Lagen</a></nav>
+
 </div></section>
-<footer class="site"><div class="wrap">
+<div class="wrap"><main class="content">
+<article class="entry" id="makrolage">
+    <h3>Makrolage</h3>
+    <p class="short"><strong>Kurz:</strong> Die Makrolage beschreibt das großräumige Umfeld einer Immobilie – Stadt oder Region – samt ihrer wirtschaftlichen, demografischen und infrastrukturellen Verfassung.</p>
+    <div class="deep">
+      <p>Zur Makrolage zählen Bevölkerungsentwicklung, Arbeitsmarktstruktur, Kaufkraft, Verkehrsanbindung (Fernverkehr, Flughafen), Hochschulen und Forschungseinrichtungen sowie die Frage, ob eine Wirtschaft breit diversifiziert ist oder von wenigen Arbeitgebern abhängt. Sie wirkt langfristiger als die Mikrolage und beeinflusst Vermietbarkeit und Wertentwicklung stärker als kurzfristige Modetrends einzelner Viertel.</p>
+      <p>Häufig unterschätzt wird das Klumpenrisiko einer einseitigen Regionalwirtschaft: Fällt ein dominierender Industriezweig oder Arbeitgeber weg, wirkt sich das über Jahre auf Nachfrage und Mietniveau aus. Wer eine Immobilie als Kapitalanlage prüft, sollte Bevölkerungsprognosen, Leerstandsquoten und die Entwicklung des Mietspiegels über mehrere Jahre betrachten – nicht nur die aktuelle Momentaufnahme im Exposé.<p><strong>Einordnung nach A/B/C-St&auml;dten:</strong> Die Branche (Systematik von Bulwiengesa) unterscheidet A-St&auml;dte (Metropolen wie M&uuml;nchen, Hamburg, Berlin), B-St&auml;dte (250.000&ndash;650.000 Einwohner, z.&nbsp;B. Bonn, Ingolstadt) und C-/D-St&auml;dte. F&uuml;r Kapitalanleger sind B- und C-St&auml;dte mit Universit&auml;ten und starken Arbeitgebern oft attraktiv: &auml;hnlich stabile Nachfrage wie in A-Lagen, aber deutlich niedrigere Kaufpreisfaktoren. Vorsicht dagegen bei strukturschwachen l&auml;ndlichen Regionen ohne Anbindung.</p></p>
+    </div>
+      <div class="tipp"><span class="tiptag">&#128161; Tipp f&uuml;r deine Kapitalanlage</span>Schau auf B- und C-St&auml;dte mit Universit&auml;t oder starken Arbeitgebern: &auml;hnliche Nachfrage-Stabilit&auml;t wie A-St&auml;dte, aber niedrigere Einstiegsfaktoren &mdash; oft das bessere Rendite-Risiko-Verh&auml;ltnis.</div>
+  <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.bodenrichtwerte-boris.de/" target="_blank" rel="noopener">BORIS-D (Bodenrichtwerte)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
+  <p class="related"><span class="reltag">Verwandt:</span> Mikrolage, A-/B-/C-Städte &amp; Lagen, Wertentwicklungsrisiko</p>
+  </article>
+
+  <article class="entry" id="mikrolage">
+    <h3>Mikrolage</h3>
+    <p class="short"><strong>Kurz:</strong> Die Mikrolage bezeichnet das unmittelbare Wohnumfeld eines Objekts – Straßenzug, Nachbarschaft und Nahversorgung.</p>
+    <div class="deep">
+      <p>Zu den Kriterien zählen ÖPNV-Anbindung, Nahversorgung (Supermarkt, Ärzte, Schulen), Lärm- und Emissionsbelastung, Grünflächen, die soziale Zusammensetzung des Quartiers sowie dessen Entwicklungsperspektive – Aufwertung oder schleichende Abwertung. Zwei Objekte in derselben Stadt mit identischer Makrolage können sich in Vermietbarkeit und Wertentwicklung deutlich unterscheiden, wenn die Mikrolage voneinander abweicht.</p>
+      <ul>
+        <li>Vor-Ort-Begehung zu unterschiedlichen Tageszeiten (Werktag/Wochenende, Tag/Abend)</li>
+        <li>Gespräche mit Nachbarn oder Hausverwaltung statt nur Exposé-Fotos</li>
+        <li>Blick in Bebauungspläne: geplante Neubauprojekte, Gewerbeansiedlungen, Verkehrsprojekte</li>
+      </ul>
+      <p>Ein häufiger Fehler ist, sich allein auf Kartenansicht und Anbieterfotos zu verlassen, statt die reale Umgebung selbst zu prüfen.</p>
+    </div>
+      <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.bodenrichtwerte-boris.de/" target="_blank" rel="noopener">BORIS-D (Bodenrichtwerte)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
+  <p class="related"><span class="reltag">Verwandt:</span> Makrolage, Due Diligence, Objekttypen</p>
+  </article>
+
+  <article class="entry" id="neubau-vs-bestand">
+    <h3>Neubau vs. Bestand</h3>
+    <p class="short"><strong>Kurz:</strong> Neubau und Bestandsimmobilie unterscheiden sich deutlich in Kaufpreis, Instandhaltungsbedarf, energetischem Standard und steuerlicher Behandlung.</p>
+    <div class="deep">
+      <p>Bestandsimmobilien sind oft günstiger pro Quadratmeter und liegen häufig in etablierten, gewachsenen Lagen, bringen aber Sanierungsbedarf mit sich – Heizung, Dach, Leitungen, Fenster. Insbesondere ein Heizungstausch ist seit dem Gebäudemodernisierungsgesetz (GModG, Stand 2026) planbar, da Technologieoffenheit gilt (Wärmepumpe, Fernwärme, Hybrid, Biomasse, auch neue Gas-/Öl-Systeme mit steigender Grüngas-/Grünölquote), aber die Klimaneutralitätspflicht bis 2045 bleibt bestehen.</p>
+      <p>Neubauten verursachen höhere Anschaffungskosten, senken aber kurzfristig das Sanierungsrisiko und profitieren von degressiver AfA (5 % vom Restwert bei Baubeginn Oktober 2023 bis September 2029) oder der Sonder-AfA nach §7b EStG. Dafür tragen Käufer ein Bauträgerrisiko (Fertigstellungsverzug, Baumängel) und Neubaugebiete liegen mitunter in schwächerer Mikrolage am Stadtrand.</p>
+    </div>
+    <div class="example"><span class="extag">Rechenbeispiel</span> Bei einem Gebäudeanteil von 300.000 € beträgt die lineare AfA für Neubau (Fertigstellung ab 2023) 3 % = 9.000 €/Jahr, für Bestand Baujahr 1925–2022 dagegen 2 % = 6.000 €/Jahr – jeweils nur auf den Gebäude-, nie auf den Grundstücksanteil.</div>
+    <p class="related"><span class="reltag">Verwandt:</span> Instandhaltungsstau, Bewertungsverfahren, Objekttypen</p>
+  </article>
+
+  <article class="entry" id="objekttypen">
+    <h3>Objekttypen: Eigentumswohnung, Einfamilienhaus, Mehrfamilienhaus</h3>
+    <p class="short"><strong>Kurz:</strong> Die drei klassischen Wohnimmobilientypen unterscheiden sich in Kapitaleinsatz, Kontrolle und Risikostreuung.</p>
+    <div class="deep">
+      <p>Die Eigentumswohnung (ETW) besteht aus Sondereigentum an der Wohnung und einem Miteigentumsanteil am Gemeinschaftseigentum. Sie erfordert vergleichsweise wenig Kapital, macht Eigentümer aber von der Eigentümergemeinschaft und deren Verwaltung abhängig – Beschlüsse zu Sanierungen oder Sonderumlagen liegen nicht allein in der eigenen Hand.</p>
+      <p>Das Einfamilienhaus (EFH) als Kapitalanlage bietet volle Kontrolle ohne Eigentümergemeinschaft, verlangt aber höheren Kapitaleinsatz und trägt ein klares Klumpenrisiko: Fällt der einzige Mieter aus, entfallen 100 % der Mieteinnahmen. Auch die Marktliquidität beim Wiederverkauf ist stärker vom individuellen Zuschnitt abhängig.</p>
+      <p>Das Mehrfamilienhaus (MFH) streut Mietausfallrisiko über mehrere Einheiten, verlangt jedoch größeren Kapitalbedarf und komplexere Verwaltung (mehrere Mietverhältnisse, Instandhaltung des Gesamtgebäudes). Bei Gesamtübernahme ergibt sich mitunter ein attraktiverer Kaufpreisfaktor je Einheit als beim Einzelkauf vergleichbarer Wohnungen.</p>
+    </div>
+    <p class="related"><span class="reltag">Verwandt:</span> Gewerbeimmobilie, Klumpenrisiko, Mietausfall &amp; Leerstand</p>
+  </article>
+
+  <article class="entry" id="gewerbeimmobilie">
+    <h3>Gewerbeimmobilie</h3>
+    <p class="short"><strong>Kurz:</strong> Immobilien, die überwiegend gewerblich genutzt werden – etwa Büro, Einzelhandel oder Logistik –, folgen eigenen Rendite- und Risikomustern.</p>
+    <div class="deep">
+      <p>Im Unterschied zu Wohnimmobilien sind Mietverträge oft langfristiger und als Staffel- oder Indexmiete ausgestaltet; häufig werden Instandhaltungspflichten per Nettomietvertrag teilweise auf den Mieter übertragen. Das führt tendenziell zu höheren Renditen bei gleichzeitig höherem Risiko: Gewerbeimmobilien haben oft nur einen oder wenige Mieter, wodurch ein Ausfall besonders schwer wiegt, und sie reagieren stärker auf Konjunkturzyklen.</p>
+      <p>Zudem ist die Drittverwendungsfähigkeit häufig eingeschränkt – eine Umnutzung, etwa von Bürofläche zu Wohnraum, ist oft baurechtlich und wirtschaftlich aufwendig. Für Wohnraum geltende Regeln wie die Mietpreisbremse greifen hier nicht, dafür fehlt auch der besondere Kündigungsschutz des Wohnraummietrechts. Privatanleger haben zudem oft höhere Einstiegshürden (Losgrößen, Bewertungskomplexität) und benötigen Spezialwissen zu Ankermieterbonität und Restlaufzeit der Mietverträge.</p>
+    </div>
+    <p class="related"><span class="reltag">Verwandt:</span> Klumpenrisiko, Kaufpreisfaktor, Due Diligence</p>
+  </article>
+
+  <article class="entry" id="sonderformen">
+    <h3>Sonderformen: Pflegeapartment, Studentenapartment, Ferienimmobilie</h3>
+    <p class="short"><strong>Kurz:</strong> Nischensegmente mit eigenen Ertragsmodellen, die meist ein höheres Risiko und eine geringere Marktliquidität als klassische Wohnimmobilien aufweisen.</p>
+    <div class="deep">
+      <p>Beim Pflegeapartment wird die Einheit meist an einen Betreiber verpachtet; die Pachtrendite hängt entscheidend von dessen Bonität ab – fällt der Betreiber aus, drohen Ertragsausfälle und ein schwer zu findender Nachmieter. Verträge laufen oft lang, Eigennutzung und Weiterverkauf sind eingeschränkt, weil ein Käufer wiederum vom selben Betreibermodell abhängt.</p>
+      <p>Studentenapartments profitieren von hoher Nachfrage in Hochschulstädten, verursachen aber durch häufigen Mieterwechsel höheren Verwaltungs- und Möblierungsaufwand; oft handelt es sich rechtlich um möblierte Kurzzeitvermietung mit eigenen Besonderheiten.</p>
+      <p>Ferienimmobilien mischen Eigennutzung und Vermietung, unterliegen aber deutlichen Auslastungsschwankungen durch Saison, Wetter oder Reisetrends sowie oft strengerer lokaler Regulierung (etwa Zweitwohnungsteuer oder Vermietungsauflagen). Der Wiederverkauf richtet sich meist an eine ähnliche, kleinere Käufergruppe, was die Marktliquidität senkt.</p>
+      <p>Gemeinsam ist allen drei Formen: geringere Fungibilität und stärkere Abhängigkeit von einzelnen Akteuren oder Betreibern als der breite Wohnungsmarkt – wer hier investiert, sollte das Betreiber- bzw. Nischenrisiko explizit einpreisen.</p>
+    </div>
+    <p class="related"><span class="reltag">Verwandt:</span> Klumpenrisiko, Mietausfall &amp; Leerstand, Objekttypen</p>
+  </article>
+
+  <article class="entry" id="a-b-c-staedte-lagen">
+    <h3>A-/B-/C-Städte &amp; Lagen</h3>
+    <p class="short"><strong>Kurz:</strong> Eine gebräuchliche, aber nicht amtlich normierte Einteilung von Städten nach Marktgröße und Liquidität, die zur groben Einordnung von Chance-Risiko-Profilen dient.</p>
+    <div class="deep">
+      <p>A-Städte – etwa Berlin, München, Hamburg, Frankfurt, Köln, Stuttgart oder Düsseldorf – bieten hohe Nachfrage und hohe Handelsliquidität, aber auch hohe Kaufpreisfaktoren, häufig im Bereich 25 bis 30 und darüber, was die laufende Bruttomietrendite entsprechend niedrig hält. B-Städte, meist solide Landeshauptstädte oder Regionalzentren, zeigen oft ein ausgewogeneres Verhältnis von Kaufpreis und erzielbarer Miete.</p>
+      <p>C-Städte und Kleinstädte bieten günstigere Einstiegspreise und potenziell höhere Renditen, tragen aber ein größeres Klumpenrisiko: Die Nachfrage hängt oft von wenigen ansässigen Arbeitgebern ab, und die Wiederverkaufsliquidität ist geringer, was Verkäufe in schwierigen Marktphasen erschweren kann.</p>
+      <p>Diese Klassifizierung ist eine Marktkonvention – verschiedene Quellen und Makler grenzen die Kategorien unterschiedlich ab. Sie ersetzt keinesfalls die Einzelfallprüfung von Makro- und Mikrolage eines konkreten Objekts.</p>
+    </div>
+    <p class="related"><span class="reltag">Verwandt:</span> Makrolage, Kaufpreisfaktor, Wertentwicklungsrisiko</p>
+  </article>
+
+<div class="prevnext"><a href="/ratgeber/steuerstrategie/"><span class="pn-lbl">&larr; Vorheriges Thema</span><span class="pn-ttl">Steuerstrategie &amp; Gestaltung</span></a><a href="/ratgeber/pruefung/" style="text-align:right"><span class="pn-lbl">N&auml;chstes Thema &rarr;</span><span class="pn-ttl">Objektprüfung &amp; Bewertung</span></a></div>
+</main></div><footer class="site"><div class="wrap">
   <p class="disc"><strong>Wichtiger Hinweis:</strong> Die Inhalte dieses Ratgebers dienen der allgemeinen Information und Bildung rund um die Immobilie als Kapitalanlage. Sie stellen keine individuelle Steuer-, Rechts- oder Anlageberatung dar und ersetzen diese nicht. Rechtsst&auml;nde (u.&nbsp;a. Steuer-, Miet- und Energierecht) entsprechen dem Stand 2026 und k&ouml;nnen sich &auml;ndern. Im Einzelfall bitte qualifizierte Fachpersonen hinzuziehen.</p>
   <div class="fbottom">
     <span>&copy; 2026 Kapitalanlage-Immobilie</span>

@@ -20,18 +20,28 @@ gtag('consent','default',{
   wait_for_update:500
 });
 </script>
-<title>Immobilienrechner &ndash; Rendite, Cashflow &amp; Steuer berechnen</title>
-<meta name="description" content="Kostenloser Immobilienrechner: Rendite, Cashflow und Steuerwirkung deiner Anlageimmobilie mit eigenen Zahlen berechnen.">
+<title>Modernisierung &amp; Energie &ndash; Ratgeber Immobilie als Kapitalanlage</title>
+<meta name="description" content="Bewirtschaftung heißt: die Bausubstanz erhalten, gesetzliche Vorgaben erfüllen und die Immobilie zukunftsfähig halten. Modernisierung und Energie sind durch ">
 <meta name="robots" content="index,follow,max-image-preview:large">
-<link rel="canonical" href="https://meine-kapitalanlage-immobilie.de/rechner/">
+<link rel="canonical" href="https://meine-kapitalanlage-immobilie.de/ratgeber/energie/">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta property="og:type" content="article">
 <meta property="og:locale" content="de_DE">
-<meta property="og:title" content="Immobilienrechner">
-<meta property="og:url" content="https://meine-kapitalanlage-immobilie.de/rechner/">
+<meta property="og:title" content="Modernisierung &amp;amp; Energie &amp;ndash; Ratgeber Immobilie als Kapitalanlage">
+<meta property="og:url" content="https://meine-kapitalanlage-immobilie.de/ratgeber/energie/">
 <link rel="preconnect" href="https://fonts.bunny.net"><link href="https://fonts.bunny.net/css?family=open-sans:400,600,700,800" rel="stylesheet">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Immobilienrechner","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"url":"https://meine-kapitalanlage-immobilie.de/rechner/"}
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {"@type":"BreadcrumbList","itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Start","item":"https://meine-kapitalanlage-immobilie.de/"},
+      {"@type":"ListItem","position":2,"name":"Ratgeber","item":"https://meine-kapitalanlage-immobilie.de/ratgeber/"},
+      {"@type":"ListItem","position":3,"name":"Modernisierung &amp;amp; Energie","item":"https://meine-kapitalanlage-immobilie.de/ratgeber/energie/"}
+    ]},
+    {"@type":"DefinedTermSet","name":"Modernisierung &amp;amp; Energie","hasDefinedTerm":[{"@type":"DefinedTerm","name":"Modernisierung vs. Instandhaltung"},{"@type":"DefinedTerm","name":"Modernisierungsumlage"},{"@type":"DefinedTerm","name":"Energetische Sanierung"},{"@type":"DefinedTerm","name":"GEG / Heizungsgesetz"},{"@type":"DefinedTerm","name":"Energieausweis"},{"@type":"DefinedTerm","name":"Förderung (BEG)"},{"@type":"DefinedTerm","name":"ESG &amp;amp; Immobilie"}]}
+  ]
+}
 </script>
 <style>
   :root{--bg:#faf7f1;--bg2:#f2ece0;--ink:#2b2620;--muted:#6b6357;--gold:#b07d12;--blue:#1a66c9;
@@ -176,6 +186,28 @@ gtag('consent','default',{
   .hubcard ul li a:hover{color:#241f18;border-color:#ddceac}
   @media(max-width:900px){.hubgrid{grid-template-columns:1fr 1fr}}
   @media(max-width:600px){.hubgrid{grid-template-columns:1fr}}
+
+  .sources{margin:12px 0 0;font-size:12.3px;color:#6b6357;line-height:1.55}
+  .sources .srctag{font-weight:700;color:var(--muted);margin-right:5px}
+  .sources a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
+  .sources a:hover{color:#0f4aa0;text-decoration:underline}
+  .sources .srcstand{color:#857b6a}
+
+  /* Kurzbox, Tipps, Seiten-TOC, Diagramme, Icons */
+  .kurzbox{background:#f2f7f2;border:1px solid #cfe3d2;border-left:4px solid var(--green);border-radius:12px;padding:16px 20px;margin:6px 0 18px;max-width:860px}
+  .kurzbox h2{font-size:14px;margin:0 0 8px;color:var(--green);text-transform:uppercase;letter-spacing:.6px}
+  .kurzbox ul{margin:0;padding-left:20px}
+  .kurzbox li{font-size:14.5px;color:#39483c;margin:5px 0;line-height:1.5}
+  .pagetoc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px;max-width:900px}
+  .pagetoc a{font-size:12.5px;color:#5a5344;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:5px 12px;transition:.13s}
+  .pagetoc a:hover{border-color:#d2c19a;color:#241f18}
+  .tipp{margin:14px 0 4px;background:#fdf6e3;border:1px solid #eeddb0;border-left:4px solid var(--gold);border-radius:10px;padding:13px 16px;font-size:13.8px;color:#4a3f28;line-height:1.55}
+  .tipp .tiptag{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--gold);margin-right:8px}
+  .diagramm{margin:16px 0 6px;background:#fbf8f1;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .diagramm img{width:100%;height:auto;display:block}
+  .diagramm figcaption{font-size:12.3px;color:var(--muted);margin-top:8px}
+  .clicon{flex:none;vertical-align:-6px;margin-right:10px}
+  .cpage-hero h1 .clicon{width:34px;height:34px;vertical-align:-4px}
 </style>
 </head>
 <body>
@@ -191,14 +223,104 @@ gtag('consent','default',{
     </nav>
   <div class="navsearch"><span>&#128269;</span><input type="text" id="navSearch" placeholder="Begriff suchen &hellip;" aria-label="Suchen" onkeydown="if(event.key==='Enter'){location.href='/ratgeber/?q='+encodeURIComponent(this.value)}"></div>
 </div></header>
-<div class="crumb"><a href="/">Start</a> &rsaquo; <span>Rechner</span></div>
+<div class="crumb"><a href="/">Start</a> &rsaquo; <a href="/ratgeber/">Ratgeber</a> &rsaquo; <span>Modernisierung &amp; Energie</span></div>
 <section class="lexhero" style="background:transparent;border:0;padding-top:8px"><div class="wrap">
-  <div class="cpage-hero"><h1>Immobilienrechner</h1></div>
-  <div style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:6px 0 0">
-    <iframe src="/rechner.html" title="Immobilienrechner" loading="lazy" style="width:100%;height:calc(100vh - 150px);min-height:1050px;border:0;border-radius:10px;background:#f4efe4"></iframe>
+  <div class="cpage-hero">
+    <p class="eyebrow" style="color:var(--green)">BEWIRTSCHAFTUNG</p>
+    <h1><svg class="clicon" width="34" height="34" viewBox="0 0 26 26" fill="none" stroke="var(--gold)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2L5 15h6l-2 9 9-13h-6z"/></svg>Modernisierung &amp; Energie</h1>
+    <p class="lexlead">Bewirtschaftung heißt: die Bausubstanz erhalten, gesetzliche Vorgaben erfüllen und die Immobilie zukunftsfähig halten. Modernisierung und Energie sind durch die Klimadebatte und schärfere Regulierung zu einem zentralen Kosten- und Wertfaktor zugleich geworden.</p>
   </div>
+  <div class="kurzbox"><h2>Das Wichtigste in K&uuml;rze</h2><ul><li>Das Geb&auml;udemodernisierungsgesetz (2026) hat die 65-%-Pflicht abgel&ouml;st &mdash; Technologieoffenheit statt Heizungszwang.</li><li>Energetischer Zustand wird zum Preisfaktor: Effizienzklasse beeinflusst Finanzierung, Miete und Wiederverkauf.</li><li>F&ouml;rderung (KfW/BAFA) vor der Sanierung beantragen &mdash; die Konditionen werden ab 21.07.2026 schrittweise umgestellt.</li></ul></div>
+<nav class="pagetoc" aria-label="Auf dieser Seite"><a href="#modernisierung-instandhaltung">Modernisierung vs. Instandhaltung</a><a href="#modernisierungsumlage">Modernisierungsumlage</a><a href="#energetische-sanierung">Energetische Sanierung</a><a href="#geg-heizungsgesetz">GEG / Heizungsgesetz</a><a href="#energieausweis">Energieausweis</a><a href="#foerderung-beg">Förderung (BEG)</a><a href="#esg-immobilie">ESG &amp; Immobilie</a></nav>
+
 </div></section>
-<footer class="site"><div class="wrap">
+<div class="wrap"><main class="content">
+<article class="entry" id="modernisierung-instandhaltung">
+    <h3>Modernisierung vs. Instandhaltung</h3>
+    <p class="short"><strong>Kurz:</strong> Die rechtliche und wirtschaftliche Abgrenzung zwischen wertsteigernden Maßnahmen (Modernisierung) und der reinen Erhaltung des bestehenden Zustands (Instandhaltung).</p>
+    <div class="deep">
+      <p>Instandhaltung bzw. Instandsetzung beseitigt Mängel und stellt den ursprünglichen Zustand wieder her, etwa die Reparatur eines undichten Dachs. Steuerlich sind solche Kosten grundsätzlich sofort als Werbungskosten abziehbar – mit einer wichtigen Ausnahme: Übersteigen Instandsetzungs- und Modernisierungskosten in den ersten drei Jahren nach Anschaffung 15 % der Gebäudeanschaffungskosten (ohne Umsatzsteuer), gelten sie steuerlich als „anschaffungsnahe Herstellungskosten“ (§ 6 Abs. 1 Nr. 1a EStG) und müssen über die AfA verteilt statt sofort abgesetzt werden.</p>
+      <p>Modernisierung geht über den ursprünglichen Zustand hinaus und verbessert die Immobilie – etwa der nachträgliche Einbau eines Aufzugs oder eine energetische Verbesserung. Modernisierungskosten können teilweise dauerhaft auf die Miete umgelegt werden (Modernisierungsumlage) und gelten steuerlich meist als Herstellungskosten, die über die AfA abgeschrieben werden.</p>
+    </div>
+    <div class="example"><span class="extag">Rechenbeispiel</span> Gebäudeanschaffungskosten: 300.000 €. 15-%-Grenze für anschaffungsnahe Herstellungskosten in den ersten drei Jahren: 45.000 €. Werden in dieser Zeit 50.000 € in Instandsetzung investiert, sind die Kosten nicht sofort abziehbar, sondern über die AfA zu verteilen.</div>
+      <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.gesetze-im-internet.de/bgb/__559.html" target="_blank" rel="noopener">&sect;&nbsp;559 BGB (Modernisierung)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
+  <p class="related"><span class="reltag">Verwandt:</span> Modernisierungsumlage, AfA, Instandhaltungsrücklage</p>
+  </article>
+
+  <article class="entry" id="modernisierungsumlage">
+    <h3>Modernisierungsumlage</h3>
+    <p class="short"><strong>Kurz:</strong> Die Möglichkeit für Vermieter, einen Teil der Modernisierungskosten dauerhaft auf die Miete umzulegen.</p>
+    <div class="deep">
+      <p>Nach § 559 BGB können jährlich 8 % der aufgewendeten Modernisierungskosten (abzüglich ersparter Instandhaltungskosten) auf die Jahresmiete umgelegt werden. Zum Schutz der Mieter gilt eine Kappung: Die Miete darf durch Modernisierungsumlagen innerhalb von sechs Jahren um höchstens 3 €/m² steigen, bei niedrigen Ausgangsmieten (unter rund 7 €/m²) reduziert sich dieser Wert auf 2 €/m² (stabile, aber im Detail prüfbedürftige Rechtsgrößen, Stand 2026). Der Vermieter muss die Modernisierung mindestens drei Monate vorher ankündigen; Mieter können unter engen Voraussetzungen einen Härtefalleinwand geltend machen.</p>
+      <p>Betroffen sind vor allem energetische Sanierungen, der Einbau von Aufzügen oder Maßnahmen zur Barrierefreiheit. Für Kapitalanleger verbindet die Modernisierungsumlage zwei Effekte: Sie kann die Investition teilweise refinanzieren und zugleich den Gebäudewert steigern – sollte aber realistisch kalkuliert werden, da Kappungsgrenzen und Härtefälle die tatsächlich durchsetzbare Erhöhung begrenzen.</p>
+    </div>
+    <div class="example"><span class="extag">Rechenbeispiel</span> Modernisierungskosten für ein Mehrfamilienhaus: 200.000 €. Jährlich umlagefähig (8 %): 16.000 € auf alle Einheiten verteilt – begrenzt durch die individuelle Kappungsgrenze je Wohnung.</div>
+      <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.gesetze-im-internet.de/bgb/__559.html" target="_blank" rel="noopener">&sect;&nbsp;559 BGB (Modernisierung)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
+  <p class="related"><span class="reltag">Verwandt:</span> Energetische Sanierung, GEG / Heizungsgesetz, Mieterhöhung &amp; Kappungsgrenze</p>
+  </article>
+
+  <article class="entry" id="energetische-sanierung">
+    <h3>Energetische Sanierung</h3>
+    <p class="short"><strong>Kurz:</strong> Bauliche Maßnahmen zur Senkung des Energieverbrauchs eines Gebäudes, etwa Dämmung, neue Fenster oder eine effizientere Heizung.</p>
+    <div class="deep">
+      <p>Typische Maßnahmen sind die Dämmung von Fassade, Dach und oberster Geschossdecke, der Austausch alter Fenster, der Einbau moderner Lüftungstechnik sowie der Heizungstausch – etwa auf Wärmepumpen, Fernwärme oder Hybridlösungen. Treiber sind gesetzliche Vorgaben (siehe GEG / Heizungsgesetz), Förderprogramme, der Erhalt der Vermietbarkeit sowie die wachsende Bedeutung der Energieeffizienz für Mieter und Käufer.</p>
+      <p>Die Kosten lassen sich teils über die Modernisierungsumlage refinanzieren, teils über Förderprogramme (siehe Förderung/BEG) reduzieren; steuerlich handelt es sich für vermietete Objekte in der Regel um Herstellungskosten, die über die AfA verteilt werden (die einkommensteuerliche Sonderabschreibung nach § 35c EStG für energetische Maßnahmen gilt dagegen nur für selbstgenutzte Gebäude, nicht für Vermieter).</p>
+      <p>Das zentrale Risiko liegt in den hohen Vorlaufkosten und einem oft über Jahrzehnte aufgeschobenen Sanierungsstau bei älterem Bestand. Gebäude mit besonders schlechter Energiebilanz – gelegentlich als „Worst Performing Buildings“ bezeichnet – geraten zunehmend unter regulatorischen und marktseitigen Druck, was sowohl ein Risiko als auch eine Chance für Investoren mit Sanierungskompetenz darstellen kann.<p><strong>Aktuell (Stand Juli 2026):</strong> Die BEG-Heizungsf&ouml;rderung mit bis zu 70&nbsp;% Zuschuss gilt in dieser Form nur noch bis zum 21.07.2026; danach werden die Boni schrittweise abgesenkt. Wer eine Sanierung plant, sollte die aktuellen Konditionen direkt bei KfW/BAFA pr&uuml;fen &mdash; und F&ouml;rderung grunds&auml;tzlich vor Vorhabensbeginn beantragen.</p></p>
+    </div>
+      <div class="tipp"><span class="tiptag">&#128161; Tipp f&uuml;r deine Kapitalanlage</span>Energetische Ma&szlig;nahmen doppelt rechnen: einmal als Steuerabzug (Erhaltungsaufwand/AfA), einmal &uuml;ber F&ouml;rderung &mdash; und die Modernisierungsumlage (&sect; 559 BGB) erlaubt bis zu 8 % der Kosten auf die Jahresmiete.</div>
+  <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.kfw.de/inlandsfoerderung/Privatpersonen/" target="_blank" rel="noopener">KfW-F&ouml;rderung</a> &middot; <a href="https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/effiziente_gebaeude_node.html" target="_blank" rel="noopener">BAFA (BEG)</a> &middot; <a href="https://www.gesetze-im-internet.de/geg/" target="_blank" rel="noopener">Geb&auml;udeenergiegesetz (GEG)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
+  <p class="related"><span class="reltag">Verwandt:</span> GEG / Heizungsgesetz, Modernisierungsumlage, Förderung (BEG)</p>
+  </article>
+
+  <article class="entry" id="geg-heizungsgesetz">
+    <h3>GEG / Heizungsgesetz</h3>
+    <p class="short"><strong>Kurz:</strong> Das Gebäudeenergiegesetz (GEG) regelt energetische Standards für Gebäude und Heizungen; Stand 2026 wurde die frühere starre 65-%-Pflicht durch das neue Gebäudemodernisierungsgesetz (GModG) abgelöst.</p>
+    <div class="deep">
+      <p>Die GEG-Novelle von 2024 (umgangssprachlich „Heizungsgesetz“) hatte vorgeschrieben, dass neu eingebaute Heizungen grundsätzlich zu 65 % mit erneuerbaren Energien betrieben werden müssen (§§ 71/72 GEG), flankiert von einer stufenweisen kommunalen Wärmeplanung.</p>
+      <p>Stand 2026 (aktuelle Rechtslage, mit gebotener Vorsicht formuliert, da Details sich weiterentwickeln können): Bundestag und Bundesrat haben am 10.07.2026 das Gebäudemodernisierungsgesetz (GModG) verabschiedet, das im Sommer 2026 in Kraft treten soll und die feste 65-%-Erneuerbare-Pflicht streicht. An ihre Stelle tritt eine technologieoffene Regelung: Wärmepumpe, Fernwärme, Hybridheizungen und Biomasse bleiben zulässig, ebenso grundsätzlich neue Gas- oder Ölheizungen. Als Ausgleich sind eine Grüngas- bzw. Grünöl-Quote sowie eine sogenannte „Biotreppe“ vorgesehen – ab 2029 steigende Pflichtanteile an biogenen Brennstoffen. Übergeordnetes Ziel bleibt, dass eingesetzte Brennstoffe bis 2045 klimaneutral sein müssen.</p>
+      <p>Für Kapitalanleger folgt daraus: Die konkrete Umsetzung (Übergangsfristen, Bestandsschutz für vorhandene Heizungen, Zusammenspiel mit der kommunalen Wärmeplanung) sollte vor größeren Investitionsentscheidungen im Einzelfall und tagesaktuell geprüft werden, da das Regelwerk seit 2024 mehrfach angepasst wurde und weitere Änderungen nicht ausgeschlossen sind.</p>
+    </div>
+      <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.gesetze-im-internet.de/geg/" target="_blank" rel="noopener">Geb&auml;udeenergiegesetz (GEG)</a> &middot; <a href="https://www.bundesregierung.de/breg-de/aktuelles/neues-gebaeudemodernisierungsgesetz-2430284" target="_blank" rel="noopener">Bundesregierung: Geb&auml;udemodernisierungsgesetz</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
+  <p class="related"><span class="reltag">Verwandt:</span> Energetische Sanierung, Energieausweis, Förderung (BEG)</p>
+  </article>
+
+  <article class="entry" id="energieausweis">
+    <h3>Energieausweis</h3>
+    <p class="short"><strong>Kurz:</strong> Pflichtdokument, das die energetische Qualität eines Gebäudes ausweist und bei Vermietung oder Verkauf vorgelegt werden muss.</p>
+    <div class="deep">
+      <p>Es gibt zwei Ausweistypen: Der Verbrauchsausweis basiert auf dem tatsächlichen Energieverbrauch der letzten drei Jahre – günstiger in der Erstellung, aber stark vom individuellen Nutzerverhalten abhängig und dadurch weniger aussagekräftig über die Bausubstanz. Der Bedarfsausweis berechnet dagegen den theoretischen Energiebedarf anhand von Bausubstanz, Dämmung und Anlagentechnik, unabhängig vom Verhalten der Bewohner – aufwendiger und teurer in der Erstellung, dafür objektiver und für kleinere Gebäude mit ungünstigem energetischem Ausgangszustand teils verpflichtend vorgeschrieben.</p>
+      <p>Beide Ausweistypen weisen eine Energieeffizienzklasse aus (in Anlehnung an die Kennzeichnung von Haushaltsgeräten), die bereits in Immobilienanzeigen angegeben werden muss und spätestens bei der Besichtigung vorzulegen ist.</p>
+      <p>Für Kapitalanleger ist der Energieausweis mehr als eine Formalie: Die Effizienzklasse beeinflusst zunehmend die Vermietbarkeit, die erzielbare Miete und die langfristige Werthaltigkeit einer Immobilie. Objekte mit schlechter Klasse tragen ein erhöhtes Sanierungs- und Regulierungsrisiko und sollten entsprechend vorsichtig bewertet werden.</p>
+    </div>
+      <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.gesetze-im-internet.de/geg/" target="_blank" rel="noopener">Geb&auml;udeenergiegesetz (GEG)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
+  <p class="related"><span class="reltag">Verwandt:</span> Energetische Sanierung, GEG / Heizungsgesetz, ESG &amp; Immobilie</p>
+  </article>
+
+  <article class="entry" id="foerderung-beg">
+    <h3>Förderung (BEG)</h3>
+    <p class="short"><strong>Kurz:</strong> Die Bundesförderung für effiziente Gebäude (BEG) ist das zentrale, aber sich regelmäßig wandelnde Förderprogramm für energetische Sanierung und effizienten Neubau in Deutschland.</p>
+    <div class="deep">
+      <p>Getragen wird die BEG von KfW und BAFA und umfasst Zuschüsse sowie zinsgünstige Kredite unter anderem für den Heizungstausch (z. B. Wärmepumpe), Dämmmaßnahmen, Fenstertausch, umfassende Sanierungen zum Effizienzhaus-Standard sowie individuelle Sanierungsfahrpläne.</p>
+      <p>Bewusst werden hier keine konkreten Fördersätze oder Eurobeträge genannt: Diese werden regelmäßig angepasst und sollten vor jeder Sanierungsmaßnahme direkt und aktuell bei KfW bzw. BAFA geprüft werden. Grundsätzlich gilt in aller Regel, dass der Förderantrag vor Beauftragung der Handwerksleistungen gestellt werden muss und eine Kombination mit bestimmten steuerlichen Vergünstigungen ausgeschlossen sein kann (Kumulierungsverbot).</p>
+      <p>Für Kapitalanleger kann die Förderung die Nettokosten einer Modernisierung spürbar senken und damit die Wirtschaftlichkeit einer Sanierung verbessern. Sie sollte jedoch nie der alleinige Auslöser für eine Sanierungsentscheidung sein, sondern in eine ohnehin sinnvolle Instandhaltungs- und Modernisierungsplanung eingebettet werden – Förderbedingungen können sich ändern, die energetische Notwendigkeit einer Maßnahme bleibt davon unabhängig bestehen.</p>
+    </div>
+    <p class="related"><span class="reltag">Verwandt:</span> Energetische Sanierung, GEG / Heizungsgesetz, Modernisierungsumlage</p>
+  </article>
+
+  <article class="entry" id="esg-immobilie">
+    <h3>ESG &amp; Immobilie</h3>
+    <p class="short"><strong>Kurz:</strong> Environmental, Social, Governance – Nachhaltigkeitskriterien, die zunehmend Finanzierung, Bewertung und Vermietbarkeit von Immobilien beeinflussen.</p>
+    <div class="deep">
+      <p>Über die EU-Taxonomie und Offenlegungspflichten für Finanzinstitute wird die energetische und ökologische Qualität eines Gebäudes zu einem Finanzierungskriterium: Banken differenzieren zunehmend zwischen als „grün“ eingestuften und konventionellen Objekten, teils mit unterschiedlichen Finanzierungskonditionen. Die „Social“-Dimension betrifft unter anderem Mieterschutz, bezahlbaren Wohnraum und Barrierefreiheit, „Governance“ etwa transparente Prozesse in Verwaltung und Wohnungseigentümergemeinschaft.</p>
+      <p>Für Kapitalanleger ist die zentrale praktische Konsequenz: Energetisch schwache Bestandsobjekte drohen als sogenannte „Stranded Assets“ an Wert zu verlieren – durch strengere Regulierung, erschwerte oder teurere Finanzierung und sinkende Nachfrage bei Mietern und Käufern. Energetisch gute Objekte profitieren tendenziell von stabilerer Nachfrage und mitunter günstigeren Finanzierungsbedingungen.</p>
+      <p>ESG ist dabei kein kurzlebiger Trend, sondern eine strukturelle Verschiebung in Regulierung und Kapitalmärkten, die in eine langfristige Investitionsentscheidung – Objektauswahl, Sanierungsplanung, Finanzierungsstruktur – einbezogen werden sollte. Daraus lassen sich jedoch keine pauschalen Rendite- oder Wertsteigerungsversprechen ableiten; die tatsächliche Wirkung hängt stark von Lage, Objekt und künftiger Regulierung ab.</p>
+    </div>
+      <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.gesetze-im-internet.de/geg/" target="_blank" rel="noopener">Geb&auml;udeenergiegesetz (GEG)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
+  <p class="related"><span class="reltag">Verwandt:</span> Energieausweis, GEG / Heizungsgesetz, Energetische Sanierung</p>
+  </article>
+
+<div class="prevnext"><a href="/ratgeber/vermietung/"><span class="pn-lbl">&larr; Vorheriges Thema</span><span class="pn-ttl">Vermietung &amp; Verwaltung</span></a><a href="/ratgeber/rendite/" style="text-align:right"><span class="pn-lbl">N&auml;chstes Thema &rarr;</span><span class="pn-ttl">Rendite &amp; Cashflow</span></a></div>
+</main></div><footer class="site"><div class="wrap">
   <p class="disc"><strong>Wichtiger Hinweis:</strong> Die Inhalte dieses Ratgebers dienen der allgemeinen Information und Bildung rund um die Immobilie als Kapitalanlage. Sie stellen keine individuelle Steuer-, Rechts- oder Anlageberatung dar und ersetzen diese nicht. Rechtsst&auml;nde (u.&nbsp;a. Steuer-, Miet- und Energierecht) entsprechen dem Stand 2026 und k&ouml;nnen sich &auml;ndern. Im Einzelfall bitte qualifizierte Fachpersonen hinzuziehen.</p>
   <div class="fbottom">
     <span>&copy; 2026 Kapitalanlage-Immobilie</span>

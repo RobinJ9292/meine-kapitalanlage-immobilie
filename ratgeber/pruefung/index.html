@@ -20,18 +20,28 @@ gtag('consent','default',{
   wait_for_update:500
 });
 </script>
-<title>Immobilienrechner &ndash; Rendite, Cashflow &amp; Steuer berechnen</title>
-<meta name="description" content="Kostenloser Immobilienrechner: Rendite, Cashflow und Steuerwirkung deiner Anlageimmobilie mit eigenen Zahlen berechnen.">
+<title>Objektprüfung &amp; Bewertung &ndash; Ratgeber Immobilie als Kapitalanlage</title>
+<meta name="description" content="Bevor ein Kaufvertrag unterschrieben wird, entscheidet die sorgfältige Prüfung von Objekt, Unterlagen und Bewertung darüber, ob eine Investition tragfähig is">
 <meta name="robots" content="index,follow,max-image-preview:large">
-<link rel="canonical" href="https://meine-kapitalanlage-immobilie.de/rechner/">
+<link rel="canonical" href="https://meine-kapitalanlage-immobilie.de/ratgeber/pruefung/">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta property="og:type" content="article">
 <meta property="og:locale" content="de_DE">
-<meta property="og:title" content="Immobilienrechner">
-<meta property="og:url" content="https://meine-kapitalanlage-immobilie.de/rechner/">
+<meta property="og:title" content="Objektprüfung &amp;amp; Bewertung &amp;ndash; Ratgeber Immobilie als Kapitalanlage">
+<meta property="og:url" content="https://meine-kapitalanlage-immobilie.de/ratgeber/pruefung/">
 <link rel="preconnect" href="https://fonts.bunny.net"><link href="https://fonts.bunny.net/css?family=open-sans:400,600,700,800" rel="stylesheet">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Immobilienrechner","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"url":"https://meine-kapitalanlage-immobilie.de/rechner/"}
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {"@type":"BreadcrumbList","itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Start","item":"https://meine-kapitalanlage-immobilie.de/"},
+      {"@type":"ListItem","position":2,"name":"Ratgeber","item":"https://meine-kapitalanlage-immobilie.de/ratgeber/"},
+      {"@type":"ListItem","position":3,"name":"Objektprüfung &amp;amp; Bewertung","item":"https://meine-kapitalanlage-immobilie.de/ratgeber/pruefung/"}
+    ]},
+    {"@type":"DefinedTermSet","name":"Objektprüfung &amp;amp; Bewertung","hasDefinedTerm":[{"@type":"DefinedTerm","name":"Due Diligence (Objektprüfung)"},{"@type":"DefinedTerm","name":"Teilungserklärung &amp;amp; Gemeinschaftsordnung"},{"@type":"DefinedTerm","name":"WEG-Protokolle &amp;amp; Beschlusssammlung"},{"@type":"DefinedTerm","name":"Instandhaltungsstau"},{"@type":"DefinedTerm","name":"Bewertungsverfahren (Ertragswert-, Sachwert-, Vergleichswertverfahren)"},{"@type":"DefinedTerm","name":"Kaufpreisfaktor"}]}
+  ]
+}
 </script>
 <style>
   :root{--bg:#faf7f1;--bg2:#f2ece0;--ink:#2b2620;--muted:#6b6357;--gold:#b07d12;--blue:#1a66c9;
@@ -176,6 +186,28 @@ gtag('consent','default',{
   .hubcard ul li a:hover{color:#241f18;border-color:#ddceac}
   @media(max-width:900px){.hubgrid{grid-template-columns:1fr 1fr}}
   @media(max-width:600px){.hubgrid{grid-template-columns:1fr}}
+
+  .sources{margin:12px 0 0;font-size:12.3px;color:#6b6357;line-height:1.55}
+  .sources .srctag{font-weight:700;color:var(--muted);margin-right:5px}
+  .sources a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
+  .sources a:hover{color:#0f4aa0;text-decoration:underline}
+  .sources .srcstand{color:#857b6a}
+
+  /* Kurzbox, Tipps, Seiten-TOC, Diagramme, Icons */
+  .kurzbox{background:#f2f7f2;border:1px solid #cfe3d2;border-left:4px solid var(--green);border-radius:12px;padding:16px 20px;margin:6px 0 18px;max-width:860px}
+  .kurzbox h2{font-size:14px;margin:0 0 8px;color:var(--green);text-transform:uppercase;letter-spacing:.6px}
+  .kurzbox ul{margin:0;padding-left:20px}
+  .kurzbox li{font-size:14.5px;color:#39483c;margin:5px 0;line-height:1.5}
+  .pagetoc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px;max-width:900px}
+  .pagetoc a{font-size:12.5px;color:#5a5344;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:5px 12px;transition:.13s}
+  .pagetoc a:hover{border-color:#d2c19a;color:#241f18}
+  .tipp{margin:14px 0 4px;background:#fdf6e3;border:1px solid #eeddb0;border-left:4px solid var(--gold);border-radius:10px;padding:13px 16px;font-size:13.8px;color:#4a3f28;line-height:1.55}
+  .tipp .tiptag{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--gold);margin-right:8px}
+  .diagramm{margin:16px 0 6px;background:#fbf8f1;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .diagramm img{width:100%;height:auto;display:block}
+  .diagramm figcaption{font-size:12.3px;color:var(--muted);margin-top:8px}
+  .clicon{flex:none;vertical-align:-6px;margin-right:10px}
+  .cpage-hero h1 .clicon{width:34px;height:34px;vertical-align:-4px}
 </style>
 </head>
 <body>
@@ -191,14 +223,90 @@ gtag('consent','default',{
     </nav>
   <div class="navsearch"><span>&#128269;</span><input type="text" id="navSearch" placeholder="Begriff suchen &hellip;" aria-label="Suchen" onkeydown="if(event.key==='Enter'){location.href='/ratgeber/?q='+encodeURIComponent(this.value)}"></div>
 </div></header>
-<div class="crumb"><a href="/">Start</a> &rsaquo; <span>Rechner</span></div>
+<div class="crumb"><a href="/">Start</a> &rsaquo; <a href="/ratgeber/">Ratgeber</a> &rsaquo; <span>Objektprüfung &amp; Bewertung</span></div>
 <section class="lexhero" style="background:transparent;border:0;padding-top:8px"><div class="wrap">
-  <div class="cpage-hero"><h1>Immobilienrechner</h1></div>
-  <div style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:6px 0 0">
-    <iframe src="/rechner.html" title="Immobilienrechner" loading="lazy" style="width:100%;height:calc(100vh - 150px);min-height:1050px;border:0;border-radius:10px;background:#f4efe4"></iframe>
+  <div class="cpage-hero">
+    <p class="eyebrow" style="color:var(--green)">PRÜFUNG</p>
+    <h1><svg class="clicon" width="34" height="34" viewBox="0 0 26 26" fill="none" stroke="var(--gold)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16 16l6 6"/></svg>Objektprüfung &amp; Bewertung</h1>
+    <p class="lexlead">Bevor ein Kaufvertrag unterschrieben wird, entscheidet die sorgfältige Prüfung von Objekt, Unterlagen und Bewertung darüber, ob eine Investition tragfähig ist oder verdeckte Kosten und Konflikte erst nach dem Kauf sichtbar werden.</p>
   </div>
+  <div class="kurzbox"><h2>Das Wichtigste in K&uuml;rze</h2><ul><li>Due Diligence hei&szlig;t: Teilungserkl&auml;rung, WEG-Protokolle und Wirtschaftsplan VOR dem Notartermin lesen.</li><li>Ertragswert- und Sachwertverfahren (ImmoWertV) machen Kaufpreise vergleichbar &mdash; der Kaufpreisfaktor liefert den schnellen Check.</li><li>Instandhaltungsstau ist der teuerste versteckte Mangel: R&uuml;cklagenh&ouml;he und Protokolle verraten ihn.</li></ul></div>
+<nav class="pagetoc" aria-label="Auf dieser Seite"><a href="#due-diligence">Due Diligence (Objektprüfung)</a><a href="#teilungserklaerung">Teilungserklärung &amp; Gemeinschaftsordnung</a><a href="#weg-protokolle">WEG-Protokolle &amp; Beschlusssammlung</a><a href="#instandhaltungsstau">Instandhaltungsstau</a><a href="#bewertungsverfahren">Bewertungsverfahren (Ertragswert-, Sachwert-, Vergleichswertverfahren)</a><a href="#kaufpreisfaktor">Kaufpreisfaktor</a></nav>
+
 </div></section>
-<footer class="site"><div class="wrap">
+<div class="wrap"><main class="content">
+<article class="entry" id="due-diligence">
+    <h3>Due Diligence (Objektprüfung)</h3>
+    <p class="short"><strong>Kurz:</strong> Die systematische Prüfung aller rechtlichen, wirtschaftlichen und baulichen Aspekte einer Immobilie vor dem Kauf.</p>
+    <div class="deep">
+      <p>Die rechtliche Prüfung umfasst Grundbuchauszug (Lasten, Rechte Dritter), Teilungserklärung, Baulasten und gegebenenfalls bestehende Mietverträge. Die wirtschaftliche Prüfung betrachtet erzielte und erzielbare Mieterträge, Neben- und Verwaltungskosten sowie den Kaufpreisfaktor im Marktvergleich. Die bauliche Prüfung untersucht Bausubstanz, erkennbaren Instandhaltungsstau und den technischen Zustand – insbesondere die Heizungsanlage im Hinblick auf die seit 2026 geltenden Anforderungen des Gebäudemodernisierungsgesetzes.</p>
+      <p>Bei größeren Investitionen empfiehlt sich der Einbezug von Fachleuten: ein unabhängiger Bausachverständiger für die Substanz, ein Steuerberater für die persönliche steuerliche Wirkung und bei komplexeren Fällen ein Anwalt für die Vertragsprüfung. Eine oberflächliche Prüfung anhand des Exposés allein ersetzt keine Due Diligence – viele der relevantesten Informationen (Rücklagenhöhe, Beschlusslage, Sanierungsstau) stehen dort nicht.</p>
+    </div>
+    <p class="related"><span class="reltag">Verwandt:</span> Teilungserklärung &amp; Gemeinschaftsordnung, Instandhaltungsstau, Bewertungsverfahren</p>
+  </article>
+
+  <article class="entry" id="teilungserklaerung">
+    <h3>Teilungserklärung &amp; Gemeinschaftsordnung</h3>
+    <p class="short"><strong>Kurz:</strong> Rechtliche Grundlagendokumente einer Eigentumswohnung, die Sondereigentum, Gemeinschaftseigentum sowie Rechte und Pflichten der Eigentümer regeln.</p>
+    <div class="deep">
+      <p>Die Teilungserklärung nach §8 WEG legt fest, wie ein Grundstück in Sondereigentum (die einzelnen Wohnungen) und Miteigentumsanteile aufgeteilt ist; sie enthält Aufteilungsplan und Abgeschlossenheitsbescheinigung. Die häufig beigefügte Gemeinschaftsordnung regelt die Nutzung des Gemeinschaftseigentums, den Kostenverteilerschlüssel, Stimmrechte in der Eigentümerversammlung, Sondernutzungsrechte (etwa an Garten oder Stellplatz) sowie mitunter Vermietungsbeschränkungen.</p>
+      <ul>
+        <li>Kostenverteilung: nach Miteigentumsanteilen (MEA) oder abweichender individueller Regelung</li>
+        <li>Zustimmungspflichten bei Vermietung – für Kapitalanleger besonders relevant zu prüfen</li>
+        <li>Öffnungsklauseln und Zuständigkeit bei baulichen Veränderungen</li>
+      </ul>
+      <p>Unklare oder veraltete Teilungserklärungen sind eine häufige Quelle späterer Konflikte innerhalb der Eigentümergemeinschaft und sollten vor Kauf von einer sachkundigen Person gegengelesen werden.</p>
+    </div>
+      <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.gesetze-im-internet.de/woeigg/" target="_blank" rel="noopener">Wohnungseigentumsgesetz (WEG)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
+  <p class="related"><span class="reltag">Verwandt:</span> WEG-Protokolle &amp; Beschlusssammlung, Due Diligence, Instandhaltungsstau</p>
+  </article>
+
+  <article class="entry" id="weg-protokolle">
+    <h3>WEG-Protokolle &amp; Beschlusssammlung</h3>
+    <p class="short"><strong>Kurz:</strong> Dokumente über Beschlüsse und Diskussionen der Eigentümerversammlung – eine der aufschlussreichsten Quellen zur Einschätzung einer Eigentümergemeinschaft.</p>
+    <div class="deep">
+      <p>Protokolle der vergangenen drei bis fünf Jahre zeigen geplante oder laufende Sanierungen, frühere Sonderumlagen, die Höhe der Instandhaltungsrücklage sowie etwaige Verwalterwechsel oder Streitigkeiten. Seit der WEG-Reform 2020 ist die Beschlusssammlung nach §24 Abs. 6 WEG verpflichtend zu führen und potenziellen Käufern zugänglich zu machen.</p>
+      <p>Warnsignale sind wiederkehrende Sonderumlagen, ungelöste Streitpunkte zwischen Eigentümern, eine auffällig niedrige Rücklage bei älterem Baubestand oder ein erkennbar verschobener Sanierungsstau bei Dach, Fassade oder Heizung. Diese Informationen tauchen im Verkaufsexposé selten vollständig auf – Kaufinteressenten sollten sich über Makler, Verkäufer oder direkt bei der Hausverwaltung Einsicht verschaffen, bevor der Kaufvertrag unterzeichnet wird.</p>
+    </div>
+      <p class="sources"><span class="srctag">Quellen &amp; Weiterf&uuml;hrend:</span> <a href="https://www.gesetze-im-internet.de/woeigg/" target="_blank" rel="noopener">Wohnungseigentumsgesetz (WEG)</a> <span class="srcstand">(amtlich, Stand&nbsp;2026)</span></p>
+  <p class="related"><span class="reltag">Verwandt:</span> Teilungserklärung &amp; Gemeinschaftsordnung, Instandhaltungsstau, Due Diligence</p>
+  </article>
+
+  <article class="entry" id="instandhaltungsstau">
+    <h3>Instandhaltungsstau</h3>
+    <p class="short"><strong>Kurz:</strong> Aufgeschobene, aber notwendige Reparatur- oder Modernisierungsmaßnahmen an einem Gebäude, die künftige Kosten vorwegnehmen.</p>
+    <div class="deep">
+      <p>Ein Instandhaltungsstau entsteht, wenn Eigentümergemeinschaft oder Vermieter Investitionen – Dach, Fassade, Heizung, Leitungen, Aufzug – über Jahre verschieben, häufig weil die Instandhaltungsrücklage von Beginn an zu niedrig angesetzt wurde. Für Käufer bedeutet ein solcher Stau entweder eine kurzfristige Sonderumlage nach dem Kauf oder schleichend steigende laufende Kosten.</p>
+      <p>Bewertungsrelevant ist: Ein erkannter Stau sollte im Kaufpreis abgezogen beziehungsweise klar eingepreist werden, statt ihn zu ignorieren. Auch regulatorisch gewinnt das Thema an Gewicht – ein anstehender Heizungstausch nach dem seit 2026 geltenden Gebäudemodernisierungsgesetz kann bei älteren Bestandsobjekten eine erhebliche zusätzliche Investition bedeuten, die bei der Objektprüfung mit einzukalkulieren ist. Erkennbar wird ein Stau durch Vor-Ort-Begehung, ein Bausubstanzgutachten sowie den Blick in Rücklagenhöhe und WEG-Protokolle.</p>
+    </div>
+    <div class="example"><span class="extag">Rechenbeispiel</span> Bei einem Mehrfamilienhaus mit 10 Einheiten und einer notwendigen Dachsanierung von 80.000 € entfällt bei gleicher Kostenverteilung ein Sonderumlagen-Anteil von 8.000 € je Einheit – eine Summe, die im Kaufpreis oft nicht sichtbar ist.</div>
+    <p class="related"><span class="reltag">Verwandt:</span> WEG-Protokolle &amp; Beschlusssammlung, Instandhaltungsrisiko, Due Diligence</p>
+  </article>
+
+  <article class="entry" id="bewertungsverfahren">
+    <h3>Bewertungsverfahren (Ertragswert-, Sachwert-, Vergleichswertverfahren)</h3>
+    <p class="short"><strong>Kurz:</strong> Drei nach der Immobilienwertermittlungsverordnung (ImmoWertV) anerkannte Methoden zur Ermittlung des Verkehrswerts einer Immobilie.</p>
+    <div class="deep">
+      <p>Das Vergleichswertverfahren leitet den Wert aus tatsächlich erzielten Kaufpreisen vergleichbarer Objekte ab und eignet sich vor allem für Eigentumswohnungen und Einfamilienhäuser mit ausreichender Datenbasis. Das Ertragswertverfahren ermittelt den Wert aus dem nachhaltig erzielbaren Ertrag – der Miete abzüglich Bewirtschaftungskosten, kapitalisiert mit einem Liegenschaftszins – und ist Standard bei vermieteten Objekten, Mehrfamilienhäusern und Gewerbeimmobilien. Das Sachwertverfahren errechnet den Wert aus Bodenwert plus Herstellungskosten des Gebäudes abzüglich Alterswertminderung und kommt vor allem bei selbstgenutzten Objekten ohne aussagekräftigen Ertrag oder Vergleichsmarkt zum Einsatz.</p>
+      <p>Für Kapitalanleger ist das Ertragswertverfahren meist am aussagekräftigsten, da es die tatsächliche Ertragslogik einer vermieteten Immobilie abbildet. Finanzierende Banken kombinieren für den Beleihungswert häufig mehrere Verfahren, um konservativ zu bewerten – dieser Beleihungswert kann spürbar unter dem Verkehrswert liegen.</p>
+    </div>
+    <p class="related"><span class="reltag">Verwandt:</span> Kaufpreisfaktor, Due Diligence, Gewerbeimmobilie</p>
+  </article>
+
+  <article class="entry" id="kaufpreisfaktor">
+    <h3>Kaufpreisfaktor</h3>
+    <p class="short"><strong>Kurz:</strong> Verhältnis von Kaufpreis zu Jahresnettokaltmiete – der Kehrwert der Bruttomietrendite und eine zentrale Kennzahl der ersten groben Einschätzung.</p>
+    <div class="deep">
+      <p>Als grobe Faustzahlen gelten: ein Faktor unter 20 als günstig, ein Bereich von 20 bis 25 als marktüblich, ein Faktor über 25 bis 30 und darüber als teuer. Diese Einordnung ist jedoch stark lageabhängig – in gefragten Toplagen können dauerhaft hohe Faktoren gerechtfertigt sein, während ein niedriger Faktor in schwachen C-Lagen oft ein Vermietungs- oder Klumpenrisiko widerspiegelt statt eines Schnäppchens.</p>
+      <p>Der Kaufpreisfaktor ersetzt keine vertiefte Objektprüfung: Er berücksichtigt weder Instandhaltungsstau noch Finanzierungskosten noch künftige Wertentwicklung. Er dient in erster Linie dem schnellen Vergleich ähnlicher Objekte in ähnlicher Lage und ist ein Ausgangspunkt, keine Kaufentscheidung.<p><strong>Marktkontext:</strong> In A-Lagen sind Faktoren von 30&ndash;35 keine Seltenheit und k&ouml;nnen dort angesichts der Wertstabilit&auml;t vertretbar sein; in Regionen mit sinkender Bev&ouml;lkerung kann schon ein Faktor von 15 zu hoch sein. Der Faktor ist ein Einordnungswert &mdash; kein Urteil ohne Lagebezug.</p></p>
+    </div>
+    <div class="example"><span class="extag">Rechenbeispiel</span> Kaufpreis 400.000 € bei einer Jahresnettokaltmiete von 16.000 € ergibt einen Kaufpreisfaktor von 25 (400.000 / 16.000) – ein Wert im markttypischen, eher gehobenen Bereich.</div>
+    <div class="tipp"><span class="tiptag">&#128161; Tipp f&uuml;r deine Kapitalanlage</span>Rechne den Faktor immer selbst nach (Kaufpreis &divide; Jahresnettokaltmiete) &mdash; mit der IST-Miete, nicht der versprochenen Zielmiete. Differenzen zwischen beiden sind ein Verhandlungsargument.</div>
+  <p class="related"><span class="reltag">Verwandt:</span> Bewertungsverfahren, Due Diligence, Wertentwicklungsrisiko</p>
+  </article>
+
+<div class="prevnext"><a href="/ratgeber/lage/"><span class="pn-lbl">&larr; Vorheriges Thema</span><span class="pn-ttl">Lage &amp; Objekt</span></a><a href="/ratgeber/risiken/" style="text-align:right"><span class="pn-lbl">N&auml;chstes Thema &rarr;</span><span class="pn-ttl">Risiken</span></a></div>
+</main></div><footer class="site"><div class="wrap">
   <p class="disc"><strong>Wichtiger Hinweis:</strong> Die Inhalte dieses Ratgebers dienen der allgemeinen Information und Bildung rund um die Immobilie als Kapitalanlage. Sie stellen keine individuelle Steuer-, Rechts- oder Anlageberatung dar und ersetzen diese nicht. Rechtsst&auml;nde (u.&nbsp;a. Steuer-, Miet- und Energierecht) entsprechen dem Stand 2026 und k&ouml;nnen sich &auml;ndern. Im Einzelfall bitte qualifizierte Fachpersonen hinzuziehen.</p>
   <div class="fbottom">
     <span>&copy; 2026 Kapitalanlage-Immobilie</span>
