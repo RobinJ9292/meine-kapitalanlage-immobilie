@@ -105,6 +105,19 @@ function lead_send_confirm($email, $name, $link) {
     return @mail($email, lead_subject_encode("Bitte bestaetigen Sie Ihre Rueckrufbitte"), $text, lead_headers());
 }
 
+// Bestaetigungsmail fuer den Leitfaden-Download (Double-Opt-In)
+function lead_send_confirm_guide($email, $name, $link) {
+    $anrede = $name !== "" ? "Hallo " . $name . "," : "Hallo,";
+    $text = $anrede . "\n\n"
+          . "vielen Dank fuer Ihr Interesse am Leitfaden \"Die ehrliche Rechnung - Immobilie als Kapitalanlage 2026\".\n\n"
+          . "Bitte bestaetigen Sie kurz Ihre E-Mail-Adresse - mit einem Klick auf diesen Link:\n\n"
+          . $link . "\n\n"
+          . "Direkt danach oeffnet sich der Download. Kein Spam, keine Serienmails - versprochen.\n"
+          . "Wenn Sie diese Anfrage nicht gestellt haben, ignorieren Sie diese Mail einfach.\n\n"
+          . "Herzliche Gruesse\nRobin Jaenicke\nSpezialist fuer Kapitalanlage-Immobilien\nTel. 0160 92085192";
+    return @mail($email, lead_subject_encode("Ihr Leitfaden wartet - bitte E-Mail bestaetigen"), $text, lead_headers());
+}
+
 // Uebergabe an HubSpot (Forms-API, EU). Ohne GUID passiert nichts.
 function lead_to_hubspot($data) {
     if (HUBSPOT_FORM_GUID === "" || !function_exists("curl_init")) return false;

@@ -52,6 +52,15 @@ lead_notify_robin($data, " (BESTAETIGT)");
 lead_to_hubspot($data);
 @unlink($file);
 
+if (!empty($data["leadmagnet"])) {
+    $pdf = LEAD_BASISURL . "/leitfaden-immobilie-kapitalanlage-2026.pdf";
+    seite("Bestaetigt – Ihr Leitfaden",
+        '<div class="ic" style="color:#1a9e5f">✓</div><h1>Vielen Dank – hier ist Ihr Leitfaden!</h1>'
+      . '<p>Der Download startet mit einem Klick. Und wenn beim Lesen Fragen aufkommen: Ich bin nur einen Anruf entfernt.</p>'
+      . '<a class="btn" href="' . $pdf . '" download>Leitfaden herunterladen (PDF)</a>'
+      . '<p style="margin-top:14px"><a class="tel" href="tel:+4916092085192">0160 92085192</a></p>');
+}
+
 seite("Bestaetigt",
     '<div class="ic" style="color:#1a9e5f">✓</div><h1>Vielen Dank – bestaetigt!</h1>'
   . '<p>Ihre Rueckrufbitte ist jetzt bei mir. Ich melde mich schnellstmoeglich persoenlich bei Ihnen.</p>'

@@ -25,9 +25,10 @@ $name  = $data["name"]  ?? "";
 $email = $data["email"] ?? "";
 $phone = $data["phone"] ?? "";
 $terminwunsch = strtolower($data["terminwunsch"] ?? "nein");
+$leadmagnet   = strtolower($data["leadmagnet"] ?? "");
 
-// Basis-Validierung
-if ($name === "" || $phone === "") {
+// Basis-Validierung (Leitfaden-Download: nur E-Mail noetig)
+if ($leadmagnet === "" && ($name === "" || $phone === "")) {
     http_response_code(400); echo json_encode(["ok" => false, "error" => "input"]); exit;
 }
 
@@ -57,6 +58,7 @@ if ($saved === false) {
 }
 
 $link = LEAD_BASISURL . "/bestaetigen.php?t=" . $token;
-lead_send_confirm($email, $name, $link);
+if ($leadmagnet !== "") { lead_send_confirm_guide($email, $name, $link); }
+else                    { lead_send_confirm($email, $name, $link); }
 
 echo json_encode(["ok" => true, "confirm" => true]);
