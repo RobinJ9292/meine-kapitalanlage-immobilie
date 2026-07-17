@@ -689,12 +689,12 @@ footer a:hover{color:var(--jade)}
             <div style="display:flex;align-items:baseline;gap:9px;margin-top:7px;flex-wrap:wrap">
               <span style="color:#8FA7B8;font-size:15px;text-decoration:line-through">25&ndash;40&times;</span>
               <span style="color:var(--jade-bright);font-weight:800">&rarr;</span>
-              <span class="hv" style="font-size:26px">18&ndash;22&times;</span>
+              <span class="hv" style="font-size:30px;font-weight:800;text-shadow:0 0 18px rgba(159,232,226,.35)" data-anim data-from="25,40" data-to="18,22" data-sep="&ndash;" data-suf="&times;">18&ndash;22&times;</span>
             </div>
             <div style="font-size:11.5px;color:var(--t-on-dark-muted);margin-top:5px">Kaufpreis &divide; Jahresmiete &mdash; g&uuml;nstiger einkaufen</div>
           </div>
           <div style="flex:none;text-align:center;background:rgba(159,232,226,.12);border:1px solid rgba(159,232,226,.38);border-radius:12px;padding:9px 12px;min-width:76px">
-            <div style="font-family:var(--serif);font-size:20px;font-weight:800;color:var(--jade-bright);line-height:1;white-space:nowrap">&minus;33&nbsp;%</div>
+            <div style="font-family:var(--serif);font-size:20px;font-weight:800;color:var(--jade-bright);line-height:1;white-space:nowrap" data-anim data-from="0" data-to="33" data-pre="&minus;" data-suf="&nbsp;%">&minus;33&nbsp;%</div>
             <div style="font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--jade-bright);margin-top:4px">Faktor</div>
           </div>
         </div>
@@ -707,12 +707,12 @@ footer a:hover{color:var(--jade)}
             <div style="display:flex;align-items:baseline;gap:9px;margin-top:7px;flex-wrap:wrap">
               <span style="color:#8FA7B8;font-size:15px;text-decoration:line-through">~1.260&nbsp;&euro;</span>
               <span style="color:var(--jade-bright);font-weight:800">&rarr;</span>
-              <span class="hv" style="font-size:26px">~5.040&nbsp;&euro;</span>
+              <span class="hv" style="font-size:30px;font-weight:800;text-shadow:0 0 18px rgba(159,232,226,.35)" data-anim data-from="1260" data-to="5040" data-pre="~" data-suf="&nbsp;&euro;" data-fmt="int">~5.040&nbsp;&euro;</span>
             </div>
             <div style="font-size:11.5px;color:var(--t-on-dark-muted);margin-top:5px">pro Jahr &mdash; der Staat tr&auml;gt deutlich mehr mit</div>
           </div>
           <div style="flex:none;text-align:center;background:rgba(159,232,226,.12);border:1px solid rgba(159,232,226,.38);border-radius:12px;padding:9px 12px;min-width:76px">
-            <div style="font-family:var(--serif);font-size:20px;font-weight:800;color:var(--jade-bright);line-height:1;white-space:nowrap">4&times;</div>
+            <div style="font-family:var(--serif);font-size:20px;font-weight:800;color:var(--jade-bright);line-height:1;white-space:nowrap" data-anim data-from="1" data-to="4" data-suf="&times;">4&times;</div>
             <div style="font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--jade-bright);margin-top:4px">mehr</div>
           </div>
         </div>
@@ -725,12 +725,12 @@ footer a:hover{color:var(--jade)}
             <div style="display:flex;align-items:baseline;gap:9px;margin-top:7px;flex-wrap:wrap">
               <span style="color:#8FA7B8;font-size:15px;text-decoration:line-through">~294.000</span>
               <span style="color:var(--jade-bright);font-weight:800">&rarr;</span>
-              <span class="hv" style="font-size:26px">206.600</span>
+              <span class="hv" style="font-size:30px;font-weight:800;text-shadow:0 0 18px rgba(159,232,226,.35)" data-anim data-from="294000" data-to="206600" data-fmt="int">206.600</span>
             </div>
             <div style="font-size:11.5px;color:var(--t-on-dark-muted);margin-top:5px">2025 &mdash; Angebot knapper, Ihr Objekt gefragter</div>
           </div>
           <div style="flex:none;text-align:center;background:rgba(159,232,226,.12);border:1px solid rgba(159,232,226,.38);border-radius:12px;padding:9px 12px;min-width:76px">
-            <div style="font-family:var(--serif);font-size:20px;font-weight:800;color:var(--jade-bright);line-height:1;white-space:nowrap">&minus;18&nbsp;%</div>
+            <div style="font-family:var(--serif);font-size:20px;font-weight:800;color:var(--jade-bright);line-height:1;white-space:nowrap" data-anim data-from="0" data-to="18" data-pre="&minus;" data-suf="&nbsp;%">&minus;18&nbsp;%</div>
             <div style="font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--jade-bright);margin-top:4px">Neubau</div>
           </div>
         </div>
@@ -2097,11 +2097,11 @@ document.querySelectorAll(".choice").forEach(function(c){
     if(done) return; done = true;
     sec.querySelectorAll(".sv").forEach(function(el){
       var target = parseFloat(el.getAttribute("data-count")), dec = +(el.getAttribute("data-decimals")||0), suf = el.getAttribute("data-suffix")||"";
-      var t0 = null, dur = 1600;
+      var t0 = null, dur = 2600;
       function frame(ts){
         if(!t0) t0 = ts;
         var x = Math.min((ts-t0)/dur, 1);
-        x = 1 - Math.pow(1-x, 3); /* ease-out */
+        x = 1 - Math.pow(1-x, 2); /* ease-out, gemächlicher */
         el.textContent = (target*x).toLocaleString("de-DE",{minimumFractionDigits:dec,maximumFractionDigits:dec}) + suf;
         if(x<1) requestAnimationFrame(frame);
       }
@@ -2111,8 +2111,52 @@ document.querySelectorAll(".choice").forEach(function(c){
   if("IntersectionObserver" in window){
     var io = new IntersectionObserver(function(es){
       es.forEach(function(e){ if(e.isIntersecting){ run(); io.disconnect(); } });
-    }, {threshold:.35});
-    io.observe(sec);
+    }, {threshold:.6, rootMargin:"0px 0px -20% 0px"});
+    io.observe(sec.querySelector(".stats") || sec);
+  } else { run(); }
+})();
+
+/* ---------- Hero-Karte: Vergleichszahlen animieren (alt -> neu) + Badges ---------- */
+(function(){
+  var card = document.querySelector(".hero-card");
+  if(!card) return;
+  var els = card.querySelectorAll("[data-anim]");
+  if(!els.length) return;
+  function fmt(v, mode){
+    if(mode === "int") return Math.round(v).toLocaleString("de-DE");
+    return String(Math.round(v));
+  }
+  function render(el, vals){
+    var pre = el.getAttribute("data-pre") || "";
+    var suf = el.getAttribute("data-suf") || "";
+    var sep = el.getAttribute("data-sep") || "";
+    var mode = el.getAttribute("data-fmt") || "plain";
+    el.textContent = pre + vals.map(function(v){ return fmt(v, mode); }).join(sep) + suf;
+  }
+  function animate(el){
+    var from = (el.getAttribute("data-from")||"0").split(",").map(function(s){ return parseFloat(s); });
+    var to   = (el.getAttribute("data-to")||"0").split(",").map(function(s){ return parseFloat(s); });
+    var t0 = null, dur = 1900;
+    render(el, from);
+    function frame(ts){
+      if(!t0) t0 = ts;
+      var x = Math.min((ts-t0)/dur, 1);
+      x = 1 - Math.pow(1-x, 3); /* ease-out */
+      render(el, from.map(function(f,i){ return f + (to[i]-f)*x; }));
+      if(x<1) requestAnimationFrame(frame); else render(el, to);
+    }
+    requestAnimationFrame(frame);
+  }
+  var started = false;
+  function run(){
+    if(started) return; started = true;
+    setTimeout(function(){ els.forEach(animate); }, 350);
+  }
+  if("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ run(); io.disconnect(); } });
+    }, {threshold:.25});
+    io.observe(card);
   } else { run(); }
 })();
 
