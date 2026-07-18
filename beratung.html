@@ -150,6 +150,10 @@ header{background:rgba(13,27,46,.82);backdrop-filter:blur(14px);border-bottom:1p
 .hstat .hv{font-family:var(--serif);font-size:24px;font-weight:700;color:var(--jade-bright);line-height:1.15;white-space:nowrap}
 .hstat .hl{font-size:11px;color:var(--t-on-dark-muted);font-weight:700;letter-spacing:.05em;text-transform:uppercase}
 .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.kraft-link{display:inline-block;cursor:pointer;color:var(--jade-bright);font-weight:800;border-bottom:1px dashed rgba(159,232,226,.55);transition:text-shadow .3s,transform .3s}
+.kraft-link:hover{text-shadow:0 0 14px rgba(159,232,226,.75)}
+.kraft-link.attn{animation:kraftAttn 1.1s ease-in-out 4}
+@keyframes kraftAttn{0%,100%{text-shadow:0 0 0 rgba(159,232,226,0);transform:scale(1)}50%{text-shadow:0 0 18px rgba(159,232,226,.9);transform:scale(1.07)}}
 .hero-micro{display:flex;gap:20px;flex-wrap:wrap;margin-top:22px;font-size:13.5px;color:var(--t-on-dark-muted);font-weight:600}
 .hero-micro .tick{color:var(--jade-bright);font-weight:800;margin-right:6px}
 .hero-note{font-size:11.5px;color:#7A93A8;margin-top:18px;max-width:540px;line-height:1.55}
@@ -667,10 +671,8 @@ footer a:hover{color:var(--jade)}
       </div>
       <span class="chip">Kapitalanlage mit Konzept</span>
       <h1 style="font-size:clamp(34px,4.4vw,52px)">Wohnen ist ein <em>Grundbed&uuml;rfnis</em> &ndash; und die vermietete Immobilie der Sachwert mit der stabilsten Nachfrage.</h1>
-      <p class="lead">Wohnraum wird immer gebraucht &ndash; er ist ein Grundbed&uuml;rfnis, und die Ausgabe f&uuml;rs Wohnen geht bei Menschen immer vor. Das macht die vermietete Immobilie zum wohl <b>stabilsten Investment</b> &uuml;berhaupt: In Deutschland fehlen rund 1,4&nbsp;Millionen Wohnungen, und wir sind Mieterland Nr.&nbsp;1 in Europa. Diese <b>Sicherheit</b> ist die eine H&auml;lfte &ndash; die <b>Rendite</b> entsteht &uuml;ber vier Hebel.</p>
-      <p style="margin:2px 0 18px"><a href="#warum" style="color:var(--jade-bright);font-weight:700;text-decoration:none;font-size:15px;border-bottom:1px solid rgba(159,232,226,.45);padding-bottom:2px">Was sind die vier Hebel? &rarr;</a></p>
+      <p class="lead">Wohnraum wird immer gebraucht &ndash; er ist ein Grundbed&uuml;rfnis, und die Ausgabe f&uuml;rs Wohnen geht bei Menschen immer vor. Das macht die vermietete Immobilie zum wohl <b>stabilsten Investment</b> &uuml;berhaupt: In Deutschland fehlen rund 1,4&nbsp;Millionen Wohnungen, und wir sind Mieterland Nr.&nbsp;1 in Europa. Diese <b>Sicherheit</b> ist die eine H&auml;lfte &ndash; die <b>Rendite</b> entsteht &uuml;ber <span class="kraft-link" id="kraefteLink" role="button" tabindex="0">vier Kr&auml;fte</span>.</p>
       <div class="hero-ctas">
-        <a class="btn btn-ghost btn-lg" href="#start">Jetzt Immobilie durchrechnen</a>
         <a class="btn btn-jade btn-lg" href="#kontakt" data-tab="rueckruf">Jetzt Rückruf vereinbaren</a>
       </div>
       <a href="https://maps.google.com/?cid=4371574991949377374" target="_blank" rel="noopener" aria-label="Google-Rezensionen: 5,0 Sterne bei 20 Bewertungen" style="display:inline-flex;align-items:center;gap:9px;margin-top:20px;padding:9px 16px;background:rgba(255,255,255,.06);border:1px solid rgba(180,214,212,.25);border-radius:999px;color:var(--t-on-dark-muted);font-size:13.5px;font-weight:600;text-decoration:none"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09C3.26 21.3 7.31 24 12 24z"/><path fill="#FBBC05" d="M5.27 14.29c-.25-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.98-3.09z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.98 3.09C6.22 6.86 8.87 4.75 12 4.75z"/></svg><span style="color:#FBBC05;letter-spacing:2px">&#9733;&#9733;&#9733;&#9733;&#9733;</span><b style="color:#fff">5,0</b><span>&middot; 20 Google-Rezensionen</span></a>
@@ -731,6 +733,7 @@ footer a:hover{color:var(--jade)}
       <span class="ek-label" style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--true-blue)">Das Fazit</span>
       <p style="font-size:19px;line-height:1.5;max-width:720px;margin:0"><b>Am Ende zählt die Eigenkapital-Rendite.</b> Die durchschnittliche Wertsteigerung deutscher Immobilien liegt langfristig bei rund <b>2 % pro Jahr</b> – klingt unspektakulär. Aber weil Bank, Finanzamt, Mieter und Inflation zusammenwirken, wird daraus bei guten Objekten oft eine Eigenkapital-Rendite von <b>über 10 %</b>. Das schafft <em style="font-style:normal;color:var(--true-blue)">kein ETF</em> und keine andere Anlageform mit vergleichbarem Risiko.</p>
       <p style="font-size:14.5px;color:var(--muted);max-width:720px;margin:0">Kein Versprechen – der Beweis steht unten: Rechnen Sie es in 2 Minuten selbst nach. <span style="opacity:.8">(Wertsteigerung: Deutsche Bundesbank, 1970–2024.)</span></p>
+      <a class="btn btn-jade btn-lg" href="#start" style="margin-top:22px">Jetzt Immobilie durchrechnen</a>
     </div>
   </div>
 </section>
@@ -2145,6 +2148,16 @@ document.querySelectorAll(".choice").forEach(function(c){
     }, {threshold:.25});
     io.observe(card);
   } else { run(); }
+})();
+
+/* ---------- Hero-Wort „vier Kräfte": nach ~5 s Aufmerksamkeits-Effekt, Klick springt zu den Kräften ---------- */
+(function(){
+  var el = document.getElementById("kraefteLink");
+  if(!el) return;
+  function go(){ var t = document.getElementById("warum"); if(t) t.scrollIntoView({behavior:"smooth",block:"start"}); }
+  el.addEventListener("click", go);
+  el.addEventListener("keydown", function(e){ if(e.key==="Enter" || e.key===" "){ e.preventDefault(); go(); } });
+  setTimeout(function(){ el.classList.add("attn"); }, 5000);
 })();
 
 /* ---------- Fallbeispiele: Slider (wischen + Pfeile + Dots) ---------- */
