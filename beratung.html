@@ -1231,8 +1231,9 @@ footer a:hover{color:var(--jade)}
     </div>
     <!-- Rückruf-Formular -->
     <div class="panel" id="panelR">
+      <div id="ckStart" style="text-align:center;padding:6px 0 2px"><button type="button" class="btn btn-jade btn-lg" id="ckStartBtn">Jetzt Rückruf vereinbaren</button></div>
       <form id="leadForm" novalidate>
-        <div id="ckSteps">
+        <div id="ckSteps" style="display:none">
         <div class="vq-progress" style="margin-bottom:22px"><div class="vq-bar"><span id="ckBar"></span></div><div class="vq-count" id="ckCount">Schritt 1 von 6</div></div>
 
         <div class="ck-step" data-step="0" data-req="f-thema">
@@ -2528,6 +2529,11 @@ document.getElementById("choiceNein").addEventListener("click",function(){ _send
   document.querySelectorAll('[data-tab], a[href="#kontakt"]').forEach(function(a){ a.addEventListener("click", function(){ setTimeout(prefill, 150); }); });
   prefill();
   render(false);
+  var ckStartBtn=document.getElementById("ckStartBtn");
+  if(ckStartBtn) ckStartBtn.addEventListener("click", function(){
+    var st=document.getElementById("ckStart"); if(st) st.style.display="none";
+    var steps=document.getElementById("ckSteps"); if(steps) steps.style.display="";
+  });
 })();
 </script>
 
