@@ -932,6 +932,7 @@ footer a:hover{color:var(--jade)}
     .ev-title{font-family:'Caveat',cursive;color:#1E3F6B;font-weight:700;font-size:30px;text-align:center;margin:2px 0 4px}
     .ev-sub{font-family:'Caveat',cursive;color:#5b7595;font-size:20px;text-align:center;margin:0 0 14px}
     .ev-corner{position:absolute;top:25px;right:16px;font-family:'Caveat',cursive;font-weight:700;font-size:18px;color:#7a5b8f;transform:rotate(3deg);line-height:1.05;text-align:right}
+    .ev-corner-l{position:absolute;top:25px;left:44px;font-family:'Caveat',cursive;font-weight:700;font-size:18px;color:#7a5b8f;transform:rotate(-3deg);line-height:1.05;text-align:left}
     .ev-cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
     .ev-col{padding:6px 6px 8px}
     .ev-colhead{font-family:'Caveat',cursive;font-weight:700;font-size:25px;margin-bottom:4px}
@@ -997,8 +998,9 @@ footer a:hover{color:var(--jade)}
       <div class="ev-overlay" id="evOverlay" role="dialog" aria-modal="true" aria-label="Echter Vergleich: Rechnung 2021 gegen 2026" hidden>
         <div class="ev-backdrop" id="evBackdrop"></div>
         <div class="ev-modal">
-          <div class="ev-sheet" id="evSheet" role="img" aria-label="Handschriftlicher Vergleich bei einem zu versteuernden Einkommen von 60.000 Euro: dieselbe 75-Quadratmeter-Wohnung, Kauf 2021 gegenüber Kauf 2026. Eigenkapital-Rendite 2021: 0,2 Prozent nach 10 Jahren, 6,0 Prozent nach 30 Jahren. 2026: 9,4 Prozent nach 10 Jahren, 7,3 Prozent nach 30 Jahren.">
+          <div class="ev-sheet" id="evSheet" role="img" aria-label="Handschriftlicher Vergleich bei einem zu versteuernden Einkommen von 60.000 Euro: dieselbe 75-Quadratmeter-Wohnung, Kauf 2021 gegenüber Kauf 2026. Eigenkapital-Rendite 2021: 1,7 Prozent nach 10 Jahren, 6,3 Prozent nach 30 Jahren. 2026: 7,2 Prozent nach 10 Jahren, 6,7 Prozent nach 30 Jahren.">
             <div class="ev-roller" aria-hidden="true"></div>
+            <div class="ev-corner-l">Tilgung<br>3 %</div>
             <div class="ev-corner">ZvE<br>60.000 €</div>
             <div class="ev-title">Dieselbe 75-m²-Wohnung &ndash; 2 Zeitpunkte</div>
             <div class="ev-sub">was zählt am Ende? die Eigenkapital-Rendite.</div>
@@ -1007,23 +1009,23 @@ footer a:hover{color:var(--jade)}
                 <div class="ev-colhead">2021 · Nullzins</div>
                 <div class="ev-row"><span>Kaufpreis</span><b>300.000 € · F33</b></div>
                 <div class="ev-row"><span>Jahresmiete</span><b>9.000 €</b></div>
-                <div class="ev-row"><span>Zins / Tilgung</span><b>1,5 % / 3 %</b></div>
+                <div class="ev-row"><span>Zins</span><b>1 %</b></div>
                 <div class="ev-row"><span>Eigenkapital</span><b>30.000 €</b></div>
                 <div class="ev-ekr">
-                  <div class="ev-row"><span>EK-Rendite 10 J</span><span class="ev-ekr-num">0,2 % p.a.</span></div>
-                  <div class="ev-row"><span>EK-Rendite 30 J</span><span class="ev-ekr-num">6,0 % p.a.</span></div>
+                  <div class="ev-row"><span>EK-Rendite 10 J</span><span class="ev-ekr-num">1,7 % p.a.</span></div>
+                  <div class="ev-row"><span>EK-Rendite 30 J</span><span class="ev-ekr-num">6,3 % p.a.</span></div>
                 </div>
               </div>
               <div class="ev-col ev-2026">
                 <div class="ev-colhead">2026 · heute</div>
                 <div class="ev-row"><span>Kaufpreis</span><b>260.000 € · F25</b></div>
                 <div class="ev-row"><span>Jahresmiete</span><b>10.350 €</b></div>
-                <div class="ev-row"><span>Zins / Tilgung</span><b>3,5 % / 3 %</b></div>
+                <div class="ev-row"><span>Zins</span><b>4,5 %</b></div>
                 <div class="ev-row"><span>Eigenkapital</span><b>26.000 €</b></div>
                 <div class="ev-ekr">
                   <span class="ev-flag">höher!</span>
-                  <div class="ev-row"><span>EK-Rendite 10 J</span><span class="ev-ekr-num">9,4 % p.a.</span></div>
-                  <div class="ev-row"><span>EK-Rendite 30 J</span><span class="ev-ekr-num">7,3 % p.a.</span></div>
+                  <div class="ev-row"><span>EK-Rendite 10 J</span><span class="ev-ekr-num">7,2 % p.a.</span></div>
+                  <div class="ev-row"><span>EK-Rendite 30 J</span><span class="ev-ekr-num">6,7 % p.a.</span></div>
                   <svg class="ev-circle" viewBox="0 0 210 96" preserveAspectRatio="none"><path d="M20,50 C14,22 70,12 116,14 C176,17 198,30 192,52 C186,76 120,88 74,85 C34,82 26,74 20,50"/></svg>
                 </div>
               </div>
@@ -1092,7 +1094,7 @@ footer a:hover{color:var(--jade)}
       document.addEventListener('keydown',function(e){ if(e.key==='Escape' && !overlay.hidden && !busy) close(); });
     })();
     </script>
-    <p style="font-size:11px;color:var(--muted);margin-top:12px;line-height:1.55">*Beispiel: 300.000-&euro;-Darlehen, 1&nbsp;% Zins (2021) vs. 3,5&nbsp;% (2026), 42&nbsp;% Steuersatz &ndash; Zinsen sind bei Vermietung als Werbungskosten voll absetzbar. Faktoren: bundesweite Spannen, Top-Lagen höher. Quellen: Destatis 2026, Dr.&nbsp;Klein, JLL.</p>
+    <p style="font-size:11px;color:var(--muted);margin-top:12px;line-height:1.55">*Beispiel: 300.000-&euro;-Darlehen, 1&nbsp;% Zins (2021) vs. 4,5&nbsp;% (2026), 42&nbsp;% Steuersatz &ndash; Zinsen sind bei Vermietung als Werbungskosten voll absetzbar. Faktoren: bundesweite Spannen, Top-Lagen höher. Quellen: Destatis 2026, Dr.&nbsp;Klein, JLL.</p>
     <p style="text-align:center;margin-top:18px;font-size:15px;color:var(--ink)">Ob sich das bei <b>Ihrem</b> Steuersatz und Objekt rechnet, zeigt die Modellrechnung &ndash; ehrlich, in 2&nbsp;Minuten. <a href="#start" style="color:var(--true-blue);font-weight:700;text-decoration:none;border-bottom:1px solid var(--jade)">Jetzt durchrechnen &rarr;</a></p>
   </div>
 </section>
