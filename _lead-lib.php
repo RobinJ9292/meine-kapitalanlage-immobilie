@@ -22,6 +22,7 @@ function lead_labels() {
         "einkommen" => "Nettoeinkommen mtl.", "eigenkapital" => "Verfuegbares Eigenkapital", "nachricht" => "Nachricht",
         "zve" => "Zu versteuerndes Einkommen (ZVE)", "familie" => "Familien-Unterstuetzung moeglich", "familie_ek" => "Voraussichtliche Familien-Unterstuetzung",
         "quelle" => "Quelle", "form-name" => "Formular", "terminwunsch" => "Terminwunsch",
+        "newsletter" => "Newsletter-Einwilligung",
         "rechner_zusammenfassung" => "Rechner-Eingaben des Kunden",
         "immobilientyp" => "Immobilientyp", "plz" => "PLZ", "ort" => "Ort",
         "nutzung" => "Nutzung", "kaltmiete" => "Aktuelle Kaltmiete (€/Monat)",
