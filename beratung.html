@@ -253,6 +253,7 @@ section{padding:84px 0;scroll-margin-top:76px}
 .obj:hover{transform:translateY(-5px);box-shadow:var(--shadow-md)}
 .obj-img{height:150px;background:linear-gradient(135deg,var(--blue-mid),var(--info));position:relative;display:flex;align-items:center;justify-content:center}
 .obj-img svg{width:52px;height:52px;stroke:rgba(255,255,255,.9);stroke-width:1.4;fill:none}
+.obj-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .obj-badge{position:absolute;top:14px;left:14px;background:rgba(13,27,46,.75);backdrop-filter:blur(6px);color:var(--jade-bright);font-size:11.5px;font-weight:800;padding:5px 13px;border-radius:999px;letter-spacing:.04em;border:1px solid rgba(180,214,212,.3)}
 .obj-body{padding:22px 22px 20px;display:flex;flex-direction:column;flex:1}
 .obj h3{font-size:20px;font-weight:800;margin-bottom:2px;color:var(--ink)}
@@ -1077,8 +1078,8 @@ footer a:hover{color:var(--jade)}
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow">Aktuelle Gelegenheiten</span>
-      <h2>Aktuelle Beispiel-Objekte &ndash; komplett gemanagt</h2>
-      <p>Ein Auszug aktuell verfügbarer, komplett gemanagter Objekte – die Kennzahlen berechnet unser Kapitalanlage-Tool. Die vollständige Rechnung gehen wir gemeinsam im Erstgespräch durch.</p>
+      <h2>Ein Auszug aus meinem Portfolio</h2>
+      <p>Ich habe dauerhaft <b>über 100 geprüfte Objekte</b> in allen Preisklassen und in ganz Deutschland – die folgenden drei sind nur eine beispielhafte Auswahl. Für nahezu jede Ausgangslage ist das passende Objekt dabei. Das verspreche ich Ihnen – vorausgesetzt, Ihre Renditeerwartung bleibt realistisch. Die Kennzahlen berechnet mein Kapitalanlage-Tool; die vollständige Rechnung gehen wir gemeinsam im Erstgespräch durch.</p>
     </div>
     <div class="qual-box">
       <div class="qual-head"><b>Passt eine dieser Immobilien zu Ihnen?</b><span>Ein paar Angaben genügen – ich markiere die passenden Objekte und rechne sie für Sie durch. Unverbindlich, nichts wird gespeichert.</span></div>
@@ -1098,6 +1099,7 @@ footer a:hover{color:var(--jade)}
         </div>
       </div>
       <p class="qual-note">Hinweis zur <b>Prognose der EK-Rendite</b>: Sie hängt von Ihrem zu versteuernden Einkommen (ZVE) und der Steuererstattung durch Verluste oder Gewinne aus Vermietung und Verpachtung ab. Verändert sich Ihr ZVE im Laufe der Zeit, verschiebt sich die Rendite entsprechend – nach oben oder nach unten. Die genaue Rechnung machen wir gemeinsam im Rechner unten.</p>
+      <div style="text-align:right;margin-top:12px"><button type="button" class="btn btn-jade" id="qShowObjekte">Jetzt Immobilien anzeigen</button></div>
     </div>
     <div class="obj-grid" id="objGrid"><!-- Karten werden per JS gerendert --></div>
 
@@ -1682,13 +1684,24 @@ var ANNAHMEN = {
 /* PORTFOLIO-STUFEN — Einsteiger fest & unveraenderbar, Rest folgt.        */
 /* EDIT: Fortgeschritten/Profi preset ergaenzen, sobald Daten vorliegen.  */
 var PORTFOLIO = [
-  { key:"einsteiger", stufe:"Einsteiger", preisRange:"100.000 – 150.000 €", badge:"Einsteiger",
-    preset:{ name:"Einsteiger-Objekt", kaufpreis:120000, miete:375, kostenMtl:40,
-             gebAnteilPct:89, afaArt:"custom", afaSatzPct:3.4,
+  { key:"einsteiger", stufe:"Einsteiger", preisRange:"bis 150.000 €", badge:"Einsteiger",
+    stadt:"Magdeburg", qm:60, img:"obj-einsteiger.jpg",
+    preset:{ name:"Einsteiger-Objekt", kaufpreis:135000, miete:460, kostenMtl:45,
+             gebAnteilPct:88, afaArt:"custom", afaSatzPct:3.0,
              notarPct:1.7, notarWkPct:40, maklerPct:0, bundesland:"Sachsen-Anhalt",
-             sollzins:4.8 } },
-  { key:"fortgeschritten", stufe:"Fortgeschritten", preisRange:"150.000 – 300.000 €", badge:"Fortgeschritten", preset:null },
-  { key:"profi", stufe:"Profi", preisRange:"ab 300.000 €", badge:"Profi", preset:null }
+             sollzins:4.7 } },
+  { key:"fortgeschritten", stufe:"Fortgeschritten", preisRange:"220.000 €", badge:"Fortgeschritten",
+    stadt:"Frankfurt", qm:55, img:"obj-fortgeschritten.jpg",
+    preset:{ name:"Fortgeschritten-Objekt", kaufpreis:220000, miete:850, kostenMtl:70,
+             gebAnteilPct:80, afaArt:"custom", afaSatzPct:3.0,
+             notarPct:1.7, notarWkPct:40, maklerPct:0, bundesland:"Hessen",
+             sollzins:4.5 } },
+  { key:"profi", stufe:"Profi", preisRange:"380.000 €", badge:"Profi",
+    stadt:"Berlin", qm:65, img:"obj-profi.jpg",
+    preset:{ name:"Profi-Objekt", kaufpreis:380000, miete:1330, kostenMtl:95,
+             gebAnteilPct:80, afaArt:"custom", afaSatzPct:3.0,
+             notarPct:1.7, notarWkPct:40, maklerPct:0, bundesland:"Berlin",
+             sollzins:4.3 } }
 ];
 
 /* Grunderwerbsteuer je Bundesland (wie im Rechner) */
@@ -1770,8 +1783,10 @@ function q_ampel(p,q){
 
 function q_objIcon(){ return '<svg viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22 24 9l16 13"/><path d="M12 20v18h24V20"/><rect x="20" y="26" width="8" height="12"/></svg>'; }
 
+var objRevealed=false;
 function renderObjekte(){
   var g=document.getElementById('objGrid'); if(!g) return;
+  if(!objRevealed){ g.innerHTML=''; return; }
   var q=q_readForm();
   var fmtE=function(n){return Math.round(n).toLocaleString('de-DE')+' €';};
   var fmtP=function(n){return (n*100).toLocaleString('de-DE',{minimumFractionDigits:1,maximumFractionDigits:1})+' %';};
@@ -1779,7 +1794,7 @@ function renderObjekte(){
     var a=q_ampel(p,q), facts='', kpis='';
     if(p.preset){
       var pr=p.preset;
-      facts='<div class="facts"><span class="fact">'+fmtE(pr.kaufpreis)+'</span><span class="fact">'+pr.miete+' € Kaltmiete/Mon.</span><span class="fact">'+pr.bundesland+'</span></div>';
+      facts='<div class="facts"><span class="fact">'+p.preisRange+'</span><span class="fact">'+pr.miete+' € Kaltmiete/Mon.</span><span class="fact">'+pr.bundesland+'</span></div>';
       if(a.r){
         kpis='<div class="kpis">'+
           '<div class="kpi"><span class="l">Benoetigtes Eigenkapital (Nebenkosten)</span><span class="v">≈ '+fmtE(a.r.requiredEK)+'</span></div>'+
@@ -1791,8 +1806,12 @@ function renderObjekte(){
     var btn = p.preset
       ? '<button type="button" class="btn btn-jade btn-sm" data-tier="'+p.key+'">Diese Immobilie durchrechnen</button>'
       : '<button type="button" class="btn btn-sm" disabled style="opacity:.5;cursor:not-allowed">Bald verfuegbar</button>';
-    var expl='<div class="obj-ampel amp-'+a.status+'"><b>'+a.kurz+'</b><span>'+a.text+'</span></div>';
-    return '<div class="obj obj-amp amp-'+a.status+'"><div class="obj-img"><span class="obj-badge">'+p.badge+'</span>'+q_objIcon()+'</div><div class="obj-body"><h3>'+p.stufe+'</h3><div class="loc">'+p.preisRange+'</div>'+facts+kpis+expl+btn+'</div></div>';
+    var expl;
+    if(a.status==='gruen') expl='<div class="obj-ampel amp-gruen"><b>Passt &#10003;</b></div>';
+    else if(a.status==='na'||a.status==='neutral') expl='';
+    else expl='<div class="obj-ampel amp-'+a.status+'"><b>'+a.kurz+'</b><span>'+a.text+'</span></div>';
+    var imgOrIcon = p.img ? '<img class="obj-photo" src="'+p.img+'" alt="Beispielobjekt in '+p.stadt+'" loading="lazy">' : q_objIcon();
+    return '<div class="obj obj-amp amp-'+a.status+'"><div class="obj-img"><span class="obj-badge">'+p.badge+'</span>'+imgOrIcon+'</div><div class="obj-body"><h3>'+p.stufe+'</h3><div class="loc">'+p.stadt+' &middot; '+p.qm+' m&sup2;</div>'+facts+kpis+expl+btn+'</div></div>';
   }).join('');
   g.querySelectorAll('[data-tier]').forEach(function(b){ b.addEventListener('click', function(){ openTierCalc(b.getAttribute('data-tier')); }); });
   var ab=document.getElementById('assBox');
@@ -1819,14 +1838,15 @@ function q_bindSlider(txtId, rngId, def, min, max, step){
       renderObjekte();
     }
   });
-  q_bindSlider('q-netto','q-netto-r', 2500, 0, 10000, 100);
-  q_bindSlider('q-monat','q-monat-r', 250, 0, 2000, 10);
-  q_bindSlider('q-ek','q-ek-r', 10000, 0, 100000, 1000);
-  q_bindSlider('q-zve','q-zve-r', 40000, 0, 200000, 1000);
-  q_bindSlider('q-fam-betrag','q-fam-betrag-r', 10000, 0, 100000, 1000);
+  q_bindSlider('q-netto','q-netto-r', 0, 0, 10000, 100);
+  q_bindSlider('q-monat','q-monat-r', 0, 0, 2000, 10);
+  q_bindSlider('q-ek','q-ek-r', 0, 0, 100000, 1000);
+  q_bindSlider('q-zve','q-zve-r', 0, 0, 200000, 1000);
+  q_bindSlider('q-fam-betrag','q-fam-betrag-r', 0, 0, 100000, 1000);
 })();
 
 renderObjekte();
+(function(){ var b=document.getElementById('qShowObjekte'); if(!b) return; b.addEventListener('click', function(){ objRevealed=true; renderObjekte(); var g=document.getElementById('objGrid'); if(g) g.scrollIntoView({behavior:'smooth',block:'start'}); }); })();
 
 /* ---------- Portfolio-Rechner: preset + gesperrt einbetten ---------- */
 function q_lockField(doc,key,val){
