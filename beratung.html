@@ -107,8 +107,9 @@ gtag('consent','default',{
   --line:#E1EAEA;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:var(--sans);color:var(--ink);background:var(--paper);font-size:16.5px;line-height:1.65}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);font-size:16.5px;line-height:1.65;overflow-x:clip;max-width:100%;overflow-wrap:break-word}
+img,video,iframe,svg{max-width:100%}
 h1,h2,h3{color:var(--true-blue);line-height:1.18;letter-spacing:-.02em}
 img{max-width:100%}
 .wrap{max-width:1150px;margin:0 auto;padding:0 24px}
@@ -205,6 +206,25 @@ section{padding:84px 0;scroll-margin-top:76px}
 .choice p{font-size:14px;color:var(--muted)}
 .choice .go{margin-top:12px;font-weight:800;color:var(--info);font-size:14px}
 .choice.active .go{color:var(--true-blue)}
+/* Weg-Kacheln farblich unterscheiden: gemanagt = grün, eigene = blau */
+.choice[data-choose="portfolio"]{border-color:rgba(26,158,95,.45);background:linear-gradient(180deg,rgba(26,158,95,.06),#fff 62%)}
+.choice[data-choose="portfolio"]::before{background:linear-gradient(90deg,#1a9e5f,#57c98b)}
+.choice[data-choose="portfolio"] svg{stroke:#1a9e5f}
+.choice[data-choose="portfolio"] .go{color:#1a9e5f}
+.choice[data-choose="portfolio"]:hover{border-color:#1a9e5f}
+.choice[data-choose="portfolio"].active{border-color:#1a9e5f;box-shadow:0 0 0 3px rgba(26,158,95,.16),var(--shadow-md)}
+.choice[data-choose="eigene"]{border-color:rgba(44,81,127,.42);background:linear-gradient(180deg,rgba(44,81,127,.06),#fff 62%)}
+.choice[data-choose="eigene"]::before{background:linear-gradient(90deg,var(--true-blue),#5b8fc9)}
+.choice[data-choose="eigene"] svg{stroke:var(--true-blue)}
+.choice[data-choose="eigene"] .go{color:var(--true-blue)}
+.choice[data-choose="eigene"]:hover{border-color:var(--true-blue)}
+.choice[data-choose="eigene"].active{border-color:var(--true-blue);box-shadow:0 0 0 3px rgba(44,81,127,.16),var(--shadow-md)}
+.btn-unsicher{background:#fff;color:var(--true-blue);border:1.5px solid var(--jade-60);padding:13px 24px;font-size:15px;box-shadow:0 2px 10px -4px rgba(44,81,127,.25)}
+.btn-unsicher:hover{border-color:var(--true-blue);background:var(--jade-20);transform:translateY(-2px)}
+.btn-unsicher svg{flex:none}
+.choice-tag{display:inline-flex;align-self:flex-start;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:4px 11px;margin-bottom:2px}
+.choice[data-choose="portfolio"] .choice-tag{background:rgba(26,158,95,.12);color:#14804c}
+.choice[data-choose="eigene"] .choice-tag{background:rgba(44,81,127,.12);color:var(--true-blue)}
 
 /* Vergleich */
 #sec-vergleich{background:var(--paper)!important}
@@ -343,6 +363,10 @@ section{padding:84px 0;scroll-margin-top:76px}
 
 /* Ablauf / Info */
 .steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.steps4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.steps3>*,.steps4>*{min-width:0}
+@media (max-width:920px){.steps4{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.steps4{grid-template-columns:1fr}}
 .step{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:30px 26px;position:relative;transition:transform .2s,box-shadow .2s}
 .step:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
 .step .num{font-family:var(--serif);font-size:44px;background:var(--grad-text);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700;line-height:1;margin-bottom:12px}
@@ -399,6 +423,12 @@ section{padding:84px 0;scroll-margin-top:76px}
 .form-ok{display:none;text-align:center;padding:40px 10px}
 .form-ok .big{font-size:52px;line-height:1;margin-bottom:14px}
 .form-ok h3{margin-bottom:8px}
+.ok-guide{margin:26px auto 0;max-width:520px;background:var(--jade-20);border:1px solid var(--jade-60);border-radius:18px;padding:22px 22px 20px;text-align:center}
+.ok-guide-eyebrow{display:inline-flex;font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--true-blue);margin-bottom:8px}
+.ok-guide h4{font-family:var(--sans);font-size:17.5px;font-weight:800;color:var(--ink);margin:0 0 6px}
+.ok-guide p{font-size:14px;color:var(--muted);line-height:1.55;margin:0 0 16px}
+.ok-guide .btn{padding:13px 24px;font-size:15px}
+.ok-guide-note{display:block;font-size:11.5px;color:var(--muted);margin-top:11px}
 .form-err{display:none;margin-top:14px;background:#FDECEE;border:1px solid var(--error);color:#8f1626;border-radius:12px;padding:12px 15px;font-size:13.5px}
 .cal-wrap{min-height:640px}
 /* Calendly fest verankert: feste Höhe, hoch genug für die komplette
@@ -666,7 +696,6 @@ footer a:hover{color:var(--jade)}
 #stickyCta .in{display:flex;gap:10px;max-width:560px;margin:0 auto}
 #stickyCta a{flex:1;text-align:center;font-weight:800;font-size:14.5px;padding:13px 10px;border-radius:999px;text-decoration:none}
 #stickyCta .cta-main{background:var(--grad-cta);color:var(--blue-deep)}
-#stickyCta .cta-sec{border:1px solid rgba(180,214,212,.4);color:var(--t-on-dark)}
 @media (max-width:820px){#stickyCta{display:block}}
 /* ---------- Leitfaden-Sektion ---------- */
 #leitfaden .lf-grid{display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center;max-width:1000px;margin:0 auto}
@@ -952,6 +981,12 @@ footer a:hover{color:var(--jade)}
     .ev-punch{font-family:'Caveat',cursive;font-weight:700;font-size:26px;color:#D0392B;text-align:center;margin:16px 6px 4px;transform:rotate(-1deg)}
     .ev-punch u{text-decoration:none;border-bottom:3px solid #E7A7A7;padding-bottom:1px}
     .ev-note{font-family:var(--sans);font-size:10.5px;line-height:1.5;color:#8092a6;margin:14px 4px 0;border-top:1px solid rgba(30,63,107,.12);padding-top:8px}
+    .ev-note-lead{display:block;font-weight:700;color:#6b7f95}
+    .ev-note details{margin-top:3px}
+    .ev-note summary{cursor:pointer;font-weight:700;color:#6b7f95;list-style:none}
+    .ev-note summary::-webkit-details-marker{display:none}
+    .ev-note summary::before{content:"\25B8\00A0"}
+    .ev-note details[open] summary::before{content:"\25BE\00A0"}
     .ev-close{display:inline-flex;align-items:center;gap:8px;margin:16px auto 2px;cursor:pointer;font-family:var(--sans);font-weight:800;font-size:13.5px;color:#5E718A;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:9px 18px;transition:border-color .2s,color .2s}
     .ev-close:hover{border-color:#D0392B;color:#D0392B}
     .ev-close svg{width:16px;height:16px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
@@ -976,10 +1011,27 @@ footer a:hover{color:var(--jade)}
       100%{transform:translate(var(--evx,0px),var(--evy,240px)) scale(.04) rotate(620deg);border-radius:50%;opacity:0}}
     .ev-overlay.ev-on .ev-sheet.ev-crumpling{animation:ev-crumple 1.05s cubic-bezier(.5,.02,.5,1) forwards;overflow:hidden;pointer-events:none}
     @media(max-width:560px){
-      .ev-cols{grid-template-columns:1fr;gap:2px}
-      .ev-sheet{padding:40px 18px 22px 40px;max-height:calc(100vh - 130px)}
-      .ev-title{font-size:26px}.ev-colhead{font-size:23px}.ev-row{font-size:20px}.ev-punch{font-size:23px}
-      .ev-col+.ev-col{border-top:2px dashed rgba(30,63,107,.18);padding-top:10px;margin-top:6px}
+      .ev-overlay{padding:10px 10px 70px;overscroll-behavior:contain}
+      .ev-modal{max-height:100%}
+      .ev-sheet{padding:26px 12px 12px 28px;max-height:100%;overflow:hidden}
+      .ev-sheet::before{left:18px}
+      .ev-sheet::after{height:13px;background:radial-gradient(circle at 17px 6px,#DFE6EA 0 4px,transparent 5px) 0 0/34px 13px repeat-x}
+      .ev-corner-l{top:15px;left:25px;font-size:min(13px,1.85vh)}
+      .ev-corner{top:15px;right:9px;font-size:min(13px,1.85vh)}
+      .ev-title{font-size:min(21px,2.95vh);margin:0 0 2px}
+      .ev-sub{font-size:min(15px,2.05vh);margin:0 0 6px}
+      .ev-cols{grid-template-columns:1fr;gap:0}
+      .ev-col{padding:2px 0 3px}
+      .ev-colhead{font-size:min(17px,2.35vh);margin-bottom:2px}
+      .ev-row{font-size:min(16px,2.15vh);padding:1px 0}
+      .ev-ekr{margin-top:5px;padding:3px 2px 1px}
+      .ev-ekr .ev-row{font-size:min(17px,2.3vh)}
+      .ev-flag{font-size:min(14px,1.9vh);top:-10px;right:-2px}
+      .ev-col+.ev-col{border-top:2px dashed rgba(30,63,107,.18);padding-top:6px;margin-top:4px}
+      .ev-punch{font-size:min(18px,2.45vh);margin:9px 2px 2px}
+      .ev-close{font-size:12px;padding:7px 14px;margin:9px auto 2px}
+      .ev-note{font-size:min(9.5px,1.3vh);margin-top:7px;padding-top:5px}
+      .ev-bin{width:56px;height:56px;bottom:12px}
     }
     @media(prefers-reduced-motion:reduce){
       .ev-overlay.ev-on .ev-sheet,.ev-overlay.ev-on .ev-roller{animation:none}
@@ -1037,7 +1089,10 @@ footer a:hover{color:var(--jade)}
                 Rechnung schließen
               </button>
             </div>
-            <p class="ev-note">Modellrechnung &ndash; kein Versprechen. Dieselbe Wohnung (75&nbsp;m²): Kauf 2021 zu ~4.000&nbsp;€/m² (Boom), 2026 rund 13&nbsp;% günstiger. Laut vdp-Immobilienpreisindex Q1&nbsp;2026 liegen die Preise noch ca.&nbsp;13&nbsp;% unter dem Höchststand 2022, während Mieten und Zinsen gestiegen sind. Annahmen: Kaufnebenkosten 10&nbsp;% (= eingesetztes Eigenkapital), Rest 100&nbsp;% finanziert, Anfangstilgung 3&nbsp;%, Zinsbindung 10&nbsp;Jahre und danach Anschluss zu 3,5&nbsp;%. AfA 2&nbsp;% auf 80&nbsp;% Gebäudeanteil, Mietsteigerung 2,5&nbsp;%&nbsp;p.a., nicht umlagefähige Kosten 1.000&nbsp;€/Jahr. Steuer über den Einkommensteuertarif bei 60.000&nbsp;€ zu versteuerndem Einkommen (Grenzsteuersatz ~39&nbsp;%). Verkauf zu Faktor&nbsp;25 (nach&nbsp;≥&nbsp;10&nbsp;Jahren steuerfrei). EK-Rendite = interner Zinsfuß des Eigenkapital-Zahlungsstroms. Ihr Ergebnis hängt von Objekt, Miete und Steuersatz ab. Quellen: vdp-Immobilienpreisindex Q1&nbsp;2026; Bauzinsen Interhyp/Dr.&nbsp;Klein.</p>
+            <div class="ev-note">
+              <span class="ev-note-lead">Modellrechnung &ndash; kein Versprechen.</span>
+              <details><summary>Annahmen &amp; Quellen</summary><span>Dieselbe Wohnung (75&nbsp;m²): Kauf 2021 zu ~4.000&nbsp;€/m² (Boom), 2026 rund 13&nbsp;% günstiger. Laut vdp-Immobilienpreisindex Q1&nbsp;2026 liegen die Preise noch ca.&nbsp;13&nbsp;% unter dem Höchststand 2022, während Mieten und Zinsen gestiegen sind. Kaufnebenkosten 10&nbsp;% (= eingesetztes Eigenkapital), Rest 100&nbsp;% finanziert, Anfangstilgung 3&nbsp;%, Zinsbindung 10&nbsp;Jahre und danach Anschluss zu 3,5&nbsp;%. AfA 2&nbsp;% auf 80&nbsp;% Gebäudeanteil, Mietsteigerung 2,5&nbsp;%&nbsp;p.a., nicht umlagefähige Kosten 1.000&nbsp;€/Jahr. Steuer über den Einkommensteuertarif bei 60.000&nbsp;€ zu versteuerndem Einkommen (Grenzsteuersatz ~39&nbsp;%). Verkauf zu Faktor&nbsp;25 (nach&nbsp;≥&nbsp;10&nbsp;Jahren steuerfrei). EK-Rendite = interner Zinsfuß des Eigenkapital-Zahlungsstroms. Ihr Ergebnis hängt von Objekt, Miete und Steuersatz ab. Quellen: vdp-Immobilienpreisindex Q1&nbsp;2026; Bauzinsen Interhyp/Dr.&nbsp;Klein.</span></details>
+            </div>
           </div>
         </div>
         <div class="ev-bin" id="evBin" aria-hidden="true">
@@ -1285,19 +1340,26 @@ footer a:hover{color:var(--jade)}
     </div>
     <div class="choose-grid">
       <button class="choice" type="button" data-choose="portfolio">
+        <span class="choice-tag">Rundum sorglos</span>
         <svg viewBox="0 0 48 48"><path d="M8 22 24 9l16 13"/><path d="M12 20v18h24V20"/><path d="M18 32l4 4 8-9"/></svg>
         <h3>Komplett gemanagte Immobilie</h3>
         <p>Sie möchten sich um nichts kümmern – und es ist Ihnen grundsätzlich egal, wo in Deutschland die Immobilie steht?</p>
         <span class="go">Diesen Weg wählen →</span>
       </button>
       <button class="choice" type="button" data-choose="eigene">
+        <span class="choice-tag">Selbst aktiv</span>
         <svg viewBox="0 0 48 48"><circle cx="21" cy="21" r="10"/><path d="M28 28l11 11"/><path d="M17 21h8M21 17v8"/></svg>
         <h3>Eine eigene Immobilie finden &amp; kaufen</h3>
         <p>Sie sind bereit, Zeit zu investieren, wollen dafür Ihre Rendite maximieren – und die Immobilie soll in Ihrer Nähe sein?</p>
         <span class="go">Diesen Weg wählen →</span>
       </button>
     </div>
-    <div style="text-align:center;margin-top:20px"><button type="button" onclick="choosePath('unsicher')" style="background:none;border:none;cursor:pointer;font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--muted);text-decoration:underline;text-underline-offset:3px">Noch unsicher? Erst einmal ganz unverbindlich informieren →</button></div>
+    <div style="text-align:center;margin-top:26px">
+      <button type="button" class="btn btn-unsicher" data-choose="unsicher" onclick="choosePath('unsicher')">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.2 2.4c-.5.2-.7.6-.7 1.1v.5"/><path d="M12 16.5h.01"/></svg>
+        Noch unsicher? Erst unverbindlich informieren
+      </button>
+    </div>
   </div>
 </section>
 
@@ -1408,7 +1470,7 @@ footer a:hover{color:var(--jade)}
       <h2>Noch unentschlossen? Dann lernen wir uns erst einmal unverbindlich kennen.</h2>
       <p>Sie müssen heute gar nichts entscheiden. Wir starten mit einem kurzen Telefonat – und nur wenn es für Sie passt, vereinbaren wir einen Termin für ein ausführliches Erstgespräch. So läuft's:</p>
     </div>
-    <div class="steps3" style="grid-template-columns:repeat(4,1fr)">
+    <div class="steps4">
       <div class="step"><span style="display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#1a9e5f;background:rgba(26,158,95,.1);border-radius:999px;padding:3px 10px;margin-bottom:10px">10 Min &middot; Telefonat</span><div class="num">1</div><h3>Kurzes Kennenlernen</h3><p>Wir telefonieren kurz, klären Ihre Situation – und ob ein ausführliches Gespräch überhaupt Sinn für Sie macht. Kein Verkauf, kein Druck.</p></div>
       <div class="step"><span style="display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--true-blue);background:rgba(44,81,127,.1);border-radius:999px;padding:3px 10px;margin-bottom:10px">60 Min &middot; Erstgespräch</span><div class="num">2</div><h3>Alle Lösungen auf den Tisch</h3><p>Komplett gemanagte Immobilie, eigenes Objekt oder erst einmal andere Bausteine: Ich stelle Ihnen alle Wege neutral vor – mit Vor- und Nachteilen.</p></div>
       <div class="step"><span style="display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--true-blue);background:rgba(44,81,127,.1);border-radius:999px;padding:3px 10px;margin-bottom:10px">60 Min &middot; Erstgespräch</span><div class="num">3</div><h3>Was passt zu Ihnen?</h3><p>Wir schauen gemeinsam auf Ihre Ziele, Ihre Einkommenssituation und Ihre Reserven – und finden heraus, was realistisch und sinnvoll ist.</p></div>
@@ -1430,7 +1492,7 @@ footer a:hover{color:var(--jade)}
       <h2>So starten wir – erst kennenlernen, dann entscheiden.</h2>
       <p>Kein Termindruck: Wir starten mit einem kurzen Telefonat – und nur wenn es für Sie passt, vereinbaren wir ein ausführliches Erstgespräch. So läuft's:</p>
     </div>
-    <div class="steps3" style="grid-template-columns:repeat(4,1fr)">
+    <div class="steps4">
       <div class="step"><span style="display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#1a9e5f;background:rgba(26,158,95,.1);border-radius:999px;padding:3px 10px;margin-bottom:10px">10 Min &middot; Telefonat</span><div class="num">1</div><h3>Kurzes Kennenlernen</h3><p>Wir telefonieren kurz, klären Ihre Situation – und ob ein ausführliches Gespräch überhaupt Sinn für Sie macht. Kein Verkauf, kein Druck.</p></div>
       <div class="step"><span style="display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--true-blue);background:rgba(44,81,127,.1);border-radius:999px;padding:3px 10px;margin-bottom:10px">60 Min &middot; Erstgespräch</span><div class="num">2</div><h3>Kennenlernen &amp; Analyse</h3><p>Wir klären Ihre Ziele, Ihre finanzielle Ausgangslage und ob eine Immobilie überhaupt zu Ihnen passt. Ehrlich – auch wenn die Antwort „noch nicht" lautet.</p></div>
       <div class="step"><span style="display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--true-blue);background:rgba(44,81,127,.1);border-radius:999px;padding:3px 10px;margin-bottom:10px">60 Min &middot; Erstgespräch</span><div class="num">3</div><h3>Objekt &amp; Konzept</h3><p>Sie erhalten passende Objektvorschläge mit vollständiger Modellrechnung: Eigenaufwand, Steuereffekt, Renditeprognose – transparent auf einen Blick.</p></div>
@@ -1842,7 +1904,6 @@ footer a:hover{color:var(--jade)}
 
 <div id="stickyCta" aria-hidden="true">
   <div class="in">
-    <a class="cta-sec" href="#rechner">Zum Rechner</a>
     <a class="cta-main" href="#kontakt" data-tab="rueckruf">Rückruf anfordern</a>
   </div>
 </div>
@@ -1857,6 +1918,7 @@ footer a:hover{color:var(--jade)}
         <a href="https://www.linkedin.com/in/robin-j%C3%A4nicke-89255a1ab" target="_blank" rel="noopener" aria-label="LinkedIn" style="background:#0A66C2;border-color:#0A66C2;color:#fff"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
         <a href="https://www.instagram.com/robin_jaenicke" target="_blank" rel="noopener" aria-label="Instagram" style="background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%);border-color:transparent;color:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg></a>
         <a href="https://www.facebook.com/rj.kapitalanlageimmos" target="_blank" rel="noopener" aria-label="Facebook" style="background:#1877F2;border-color:#1877F2;color:#fff"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07c0 6.02 4.39 11.02 10.13 11.93v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.09 24 18.09 24 12.07z"/></svg></a>
+        <a href="https://wa.me/4916092085192?text=Hallo%20Robin%2C%20ich%20habe%20eine%20Frage%20zur%20Kapitalanlage-Immobilie." target="_blank" rel="noopener" aria-label="WhatsApp Business" style="background:#25D366;border-color:#25D366;color:#fff"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.885 3.4"/></svg></a>
         <a href="https://maps.google.com/?cid=4371574991949377374" target="_blank" rel="noopener" aria-label="Google-Unternehmensprofil" style="background:#fff;border-color:#fff"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09C3.26 21.3 7.31 24 12 24z"/><path fill="#FBBC05" d="M5.27 14.29c-.25-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.98-3.09z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.98 3.09C6.22 6.86 8.87 4.75 12 4.75z"/></svg></a>
       </div>
     </div>
@@ -2344,6 +2406,7 @@ var THEMA_MAP = { portfolio:"Erste Kapitalanlageimmobilie",
                   eigene:"Eigene Immobilie – Suche und Kauf begleiten",
                   unsicher:"Allgemeine Fragen" };
 function choosePath(p, scrollTarget){
+  window.MKI_PATH = p;
   document.querySelectorAll(".choice").forEach(function(c){
     c.classList.toggle("active", c.getAttribute("data-choose")===p);
   });
@@ -2688,6 +2751,20 @@ function _sendLead(mode){
           fo.innerHTML = (j.confirm===false)
             ? '<div class="big">✓</div><h3>Vielen Dank!</h3><p>Ihre Anfrage ist angekommen – ich melde mich schnellstmöglich bei Ihnen.<br>Sie möchten nicht warten? <a href="tel:+4916092085192" style="display:inline;color:var(--true-blue);font-weight:700">0160 92085192</a></p>'
             : '<div class="big">✉️</div><h3>Fast geschafft – bitte E-Mail bestätigen</h3><p>Ich habe Ihnen eine E-Mail geschickt. Bestätigen Sie darin kurz Ihre Rückrufbitte – danach melde ich mich persönlich. Bitte ggf. auch den Spam-Ordner prüfen.</p>';
+          if(window.MKI_PATH==="unsicher"){
+            fo.insertAdjacentHTML("beforeend",
+              '<div class="ok-guide">'+
+              '<span class="ok-guide-eyebrow">Ihr nächster Schritt – ganz ohne Termin</span>'+
+              '<h4>Leitfaden „Die ehrliche Rechnung"</h4>'+
+              '<p>Die ersten Schritte auf dem Weg zur eigenen Kapitalanlage-Immobilie – und der beste Weg, meine Denkweise und Arbeitsweise schon vorab kennenzulernen.</p>'+
+              '<a class="btn btn-jade" id="okGuideBtn" href="leitfaden-immobilie-kapitalanlage-2026.pdf" download>Leitfaden jetzt herunterladen (PDF)</a>'+
+              '<span class="ok-guide-note">Ihre E-Mail liegt mir bereits vor – Sie müssen nichts erneut eintragen.</span>'+
+              '</div>');
+            var gb=document.getElementById("okGuideBtn");
+            if(gb) gb.addEventListener("click",function(){
+              try{ if(window.dataLayer) dataLayer.push({event:"leitfaden_download",variante:"nach_kontaktformular"}); }catch(_){}
+            });
+          }
           f.style.display="none"; fo.style.display="block";
         }
       } else { throw 0; }
