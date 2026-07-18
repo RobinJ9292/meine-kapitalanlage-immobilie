@@ -1181,12 +1181,17 @@ footer a:hover{color:var(--jade)}
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow">Ihr Weg</span>
-      <h2>Vom Erstgespräch zur vermieteten Immobilie</h2>
+      <h2>So starten wir – erst kennenlernen, dann entscheiden.</h2>
+      <p>Kein Termindruck: Wir starten mit einem kurzen Telefonat – und nur wenn es für Sie passt, vereinbaren wir ein ausführliches Erstgespräch. So läuft's:</p>
     </div>
-    <div class="steps3">
-      <div class="step"><div class="num">1</div><h3>Kennenlernen &amp; Analyse (60 Min.)</h3><p>Wir klären Ihre Ziele, Ihre finanzielle Ausgangslage und ob eine Immobilie überhaupt zu Ihnen passt. Ehrlich – auch wenn die Antwort „noch nicht" lautet.</p></div>
-      <div class="step"><div class="num">2</div><h3>Objekt &amp; Konzept</h3><p>Sie erhalten passende Objektvorschläge mit vollständiger Modellrechnung: Eigenaufwand, Steuereffekt, Renditeprognose – transparent auf einen Blick.</p></div>
-      <div class="step"><div class="num">3</div><h3>Umsetzung &amp; Begleitung</h3><p>Finanzierung, Notar, Übergabe an die Verwaltung – und danach bleiben wir an Ihrer Seite: jährlicher Check und Betreuung aller Finanzthemen.</p></div>
+    <div class="steps3" style="grid-template-columns:repeat(4,1fr)">
+      <div class="step"><span style="display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#1a9e5f;background:rgba(26,158,95,.1);border-radius:999px;padding:3px 10px;margin-bottom:10px">10 Min &middot; Telefonat</span><div class="num">1</div><h3>Kurzes Kennenlernen</h3><p>Wir telefonieren kurz, klären Ihre Situation – und ob ein ausführliches Gespräch überhaupt Sinn für Sie macht. Kein Verkauf, kein Druck.</p></div>
+      <div class="step"><span style="display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--true-blue);background:rgba(44,81,127,.1);border-radius:999px;padding:3px 10px;margin-bottom:10px">60 Min &middot; Erstgespräch</span><div class="num">2</div><h3>Kennenlernen &amp; Analyse</h3><p>Wir klären Ihre Ziele, Ihre finanzielle Ausgangslage und ob eine Immobilie überhaupt zu Ihnen passt. Ehrlich – auch wenn die Antwort „noch nicht" lautet.</p></div>
+      <div class="step"><span style="display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--true-blue);background:rgba(44,81,127,.1);border-radius:999px;padding:3px 10px;margin-bottom:10px">60 Min &middot; Erstgespräch</span><div class="num">3</div><h3>Objekt &amp; Konzept</h3><p>Sie erhalten passende Objektvorschläge mit vollständiger Modellrechnung: Eigenaufwand, Steuereffekt, Renditeprognose – transparent auf einen Blick.</p></div>
+      <div class="step"><span style="display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--true-blue);background:rgba(44,81,127,.1);border-radius:999px;padding:3px 10px;margin-bottom:10px">60 Min &middot; Erstgespräch</span><div class="num">4</div><h3>Umsetzung &amp; Begleitung</h3><p>Finanzierung, Notar, Übergabe an die Verwaltung – und danach bleiben wir an Ihrer Seite: jährlicher Check und Betreuung aller Finanzthemen.</p></div>
+    </div>
+    <div style="text-align:center;margin-top:30px">
+      <a class="btn btn-blue btn-lg" href="#kontakt" data-tab="rueckruf">Rückruf vereinbaren</a>
     </div>
   </div>
 </section>
@@ -1984,7 +1989,9 @@ function openTierCalc(key){
   window.MKI_getRechnerDaten = function(){
     var out = {};
     var doc;
-    try{ doc = frame.contentDocument || frame.contentWindow.document; }catch(_){ return out; }
+    /* gemanagter Weg nutzt den Objekt-Rechner (objRechnerFrame), sonst den Haupt-Rechner */
+    var frmEl = document.getElementById("objRechnerFrame") || frame;
+    try{ doc = frmEl.contentDocument || frmEl.contentWindow.document; }catch(_){ return out; }
     if(!doc) return out;
     try{
       doc.querySelectorAll("[data-f]").forEach(function(el){
@@ -2009,9 +2016,17 @@ function openTierCalc(key){
       eigenkapital:"Eigenkapital (€)", zinsPct:"Sollzins (%)", tilgungPct:"Tilgung (%)",
       steuersatzPct:"Steuersatz (%)", zvE:"zu verst. Einkommen (€)"
     };
-    var keys = Object.keys(d);
-    if(!keys.length) return "";
-    return keys.map(function(k){ return (LAB[k] || k) + ": " + d[k]; }).join("\n");
+    var rlines = Object.keys(d).map(function(k){ return (LAB[k] || k) + ": " + d[k]; });
+    /* Angaben aus dem Schnell-Check (gemanagter Weg) – liegen nicht im Rechner */
+    function qv(id){ var e=document.getElementById(id); return e && e.value && (""+e.value).trim(); }
+    var QMAP = [["q-monat","Möglicher mtl. Eigenaufwand (€)"],["q-netto","Nettoeinkommen mtl. (€)"],["q-zve","zu verst. Einkommen ZVE (€)"],["q-ek","Eigenkapital (€)"],["q-fam-betrag","Familien-Unterstützung (€)"]];
+    var qlines = []; QMAP.forEach(function(p){ var v=qv(p[0]); if(v) qlines.push(p[1]+": "+v); });
+    var groups = [];
+    if(rlines.length) groups.push("— Aus dem Rechner —\n"+rlines.join("\n"));
+    if(qlines.length) groups.push("— Aus dem Schnell-Check —\n"+qlines.join("\n"));
+    if(!groups.length) return "";
+    var note = "⚠ Hinweis: Diese Angaben wurden vom Interessenten NICHT aktiv im Formular übermittelt, sondern automatisch aus den Eingaben auf der Landingpage (Rechner/Check) übernommen – bitte im Telefonat gegenprüfen.";
+    return note + "\n\n" + groups.join("\n\n");
   };
 })();
 
