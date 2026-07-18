@@ -918,6 +918,7 @@ footer a:hover{color:var(--jade)}
     .ev-open-btn:hover{transform:translateY(-2px);box-shadow:0 16px 32px -12px rgba(44,81,127,.6)}
     .ev-open-btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
     .ev-overlay{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:22px}
+    .ev-overlay[hidden]{display:none}
     .ev-backdrop{position:absolute;inset:0;background:rgba(9,18,32,.62);opacity:0;transition:opacity .35s ease}
     .ev-overlay.ev-on .ev-backdrop{opacity:1}
     .ev-modal{position:relative;z-index:1;width:100%;max-width:600px;display:flex;flex-direction:column;align-items:center}
@@ -961,14 +962,18 @@ footer a:hover{color:var(--jade)}
     .ev-overlay.ev-lidup .ev-bin .lid{transform:translateY(-10px) rotate(-26deg)}
     .ev-overlay.ev-shake .ev-bin{animation:ev-binshake .45s ease}
     @keyframes ev-binshake{0%,100%{transform:translateX(-50%) rotate(0)}25%{transform:translateX(-54%) rotate(-5deg)}75%{transform:translateX(-46%) rotate(5deg)}}
-    @keyframes ev-in{0%{opacity:0;transform:translateY(-10px) rotate(-1.2deg) scale(.9)}100%{opacity:1;transform:none}}
-    .ev-overlay.ev-on .ev-sheet{animation:ev-in .5s cubic-bezier(.34,1.2,.4,1) both}
+    .ev-roller{position:absolute;left:0;right:0;top:0;height:24px;z-index:5;pointer-events:none;opacity:0;background:linear-gradient(180deg,rgba(30,45,70,.05),rgba(30,45,70,.22));border-radius:0 0 10px 10px;box-shadow:0 10px 16px -4px rgba(20,40,68,.45)}
+    @keyframes ev-unroll{0%{clip-path:inset(0 0 100% 0);transform:translateY(-4px)}100%{clip-path:inset(0 0 0 0);transform:none}}
+    @keyframes ev-roll{0%{top:-2px;opacity:1}88%{opacity:1}100%{top:100%;opacity:0}}
+    .ev-overlay.ev-on .ev-sheet{animation:ev-unroll .75s cubic-bezier(.33,.68,.3,1) both}
+    .ev-overlay.ev-on .ev-roller{animation:ev-roll .75s cubic-bezier(.33,.68,.3,1) both}
     @keyframes ev-crumple{
       0%{transform:translate(0,0) scale(1) rotate(0);border-radius:6px;opacity:1;box-shadow:0 30px 70px -20px rgba(9,18,32,.7)}
-      25%{transform:translate(0,0) scale(.9) rotate(-5deg);border-radius:26px}
-      55%{transform:translate(calc(var(--evx,0px)*.55),calc(var(--evy,120px)*.55)) scale(.34) rotate(220deg);border-radius:50%;box-shadow:inset 0 0 30px rgba(20,40,68,.45),0 10px 16px -6px rgba(0,0,0,.5)}
-      100%{transform:translate(var(--evx,0px),var(--evy,240px)) scale(.045) rotate(560deg);border-radius:50%;opacity:0;box-shadow:inset 0 0 30px rgba(20,40,68,.5)}}
-    .ev-sheet.ev-crumpling{animation:ev-crumple 1.05s cubic-bezier(.5,.02,.5,1) forwards;overflow:hidden;pointer-events:none}
+      18%{transform:translate(0,0) scale(.84) rotate(-7deg);border-radius:34px 22px 30px 26px}
+      55%{transform:translate(calc(var(--evx,0px)*.55),calc(var(--evy,120px)*.55)) scale(.3) rotate(240deg);border-radius:48% 56% 44% 52%;box-shadow:inset 9px 7px 16px rgba(20,40,68,.42),inset -8px -11px 18px rgba(20,40,68,.36),0 10px 16px -6px rgba(0,0,0,.5)}
+      80%{transform:translate(calc(var(--evx,0px)*.85),calc(var(--evy,180px)*.85)) scale(.12) rotate(430deg);border-radius:52% 46% 54% 48%;box-shadow:inset 6px 5px 12px rgba(20,40,68,.5),inset -6px -8px 14px rgba(20,40,68,.4)}
+      100%{transform:translate(var(--evx,0px),var(--evy,240px)) scale(.04) rotate(620deg);border-radius:50%;opacity:0}}
+    .ev-overlay.ev-on .ev-sheet.ev-crumpling{animation:ev-crumple 1.05s cubic-bezier(.5,.02,.5,1) forwards;overflow:hidden;pointer-events:none}
     @media(max-width:560px){
       .ev-cols{grid-template-columns:1fr;gap:2px}
       .ev-sheet{padding:40px 18px 22px 40px;max-height:calc(100vh - 130px)}
@@ -976,8 +981,9 @@ footer a:hover{color:var(--jade)}
       .ev-col+.ev-col{border-top:2px dashed rgba(30,63,107,.18);padding-top:10px;margin-top:6px}
     }
     @media(prefers-reduced-motion:reduce){
-      .ev-sheet.ev-crumpling{animation:none;opacity:0;transition:opacity .25s}
-      .ev-overlay.ev-on .ev-sheet{animation:none}
+      .ev-overlay.ev-on .ev-sheet,.ev-overlay.ev-on .ev-roller{animation:none}
+      .ev-overlay.ev-on .ev-sheet.ev-crumpling{animation:none;opacity:0;transition:opacity .25s}
+      .ev-roller{display:none}
       .ev-circle path{transition:none;stroke-dashoffset:0}
     }
     </style>
@@ -992,6 +998,7 @@ footer a:hover{color:var(--jade)}
         <div class="ev-backdrop" id="evBackdrop"></div>
         <div class="ev-modal">
           <div class="ev-sheet" id="evSheet" role="img" aria-label="Handschriftlicher Vergleich bei einem zu versteuernden Einkommen von 60.000 Euro: dieselbe 75-Quadratmeter-Wohnung, Kauf 2021 gegenüber Kauf 2026. Eigenkapital-Rendite 2021: 0,2 Prozent nach 10 Jahren, 6,0 Prozent nach 30 Jahren. 2026: 9,4 Prozent nach 10 Jahren, 7,3 Prozent nach 30 Jahren.">
+            <div class="ev-roller" aria-hidden="true"></div>
             <div class="ev-corner">ZvE<br>60.000 €</div>
             <div class="ev-title">Dieselbe 75-m²-Wohnung &ndash; 2 Zeitpunkte</div>
             <div class="ev-sub">was zählt am Ende? die Eigenkapital-Rendite.</div>
