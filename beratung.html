@@ -240,6 +240,19 @@ section{padding:84px 0;scroll-margin-top:76px}
 .usps{background:#fff}
 .usp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .usp{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:28px 22px;transition:transform .2s,box-shadow .2s}
+.kflip{perspective:1000px;height:238px;cursor:pointer;border-radius:var(--r)}
+.kflip:focus-visible{outline:2px solid var(--jade);outline-offset:3px}
+.kflip-in{position:relative;width:100%;height:100%;transition:transform .55s cubic-bezier(.4,.15,.2,1);transform-style:preserve-3d}
+.kflip.on .kflip-in{transform:rotateY(180deg)}
+.kflip-face{position:absolute;inset:0;-webkit-backface-visibility:hidden;backface-visibility:hidden;border-radius:var(--r);padding:24px 20px;box-sizing:border-box;overflow:hidden;background:var(--paper);border:1px solid var(--line);display:flex;flex-direction:column}
+.kflip-front{align-items:center;justify-content:center;text-align:center;gap:10px;border:1.5px dashed var(--jade);background:var(--jade-20)}
+.kflip-back{transform:rotateY(180deg)}
+.kflip-num{font-family:var(--serif);font-size:40px;font-weight:800;color:rgba(44,81,127,.16);line-height:1}
+.kflip-front svg{width:30px;height:30px;stroke:var(--true-blue);stroke-width:1.5;fill:none}
+.kflip-hint{font-size:13px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--true-blue)}
+.kflip-back svg{width:34px;height:34px;stroke:var(--true-blue);stroke-width:1.6;fill:none;margin-bottom:8px}
+.kflip-back h3{font-family:var(--sans);font-size:16px;font-weight:800;color:var(--ink);margin-bottom:7px}
+.kflip-back p{font-size:13.5px;color:var(--muted);line-height:1.5}
 .usp:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
 .usp svg{width:44px;height:44px;stroke:var(--true-blue);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round;margin-bottom:14px;background:var(--jade-20);border-radius:14px;padding:9px}
 .usp h3{font-family:var(--sans);font-size:16px;font-weight:800;color:var(--ink);margin-bottom:7px}
@@ -259,8 +272,8 @@ section{padding:84px 0;scroll-margin-top:76px}
 .obj h3{font-size:20px;font-weight:800;margin-bottom:2px;color:var(--ink)}
 .obj .loc{font-size:13px;color:var(--muted);margin-bottom:14px}
 .facts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.fact{background:var(--jade-20);border:1px solid var(--jade-60);border-radius:999px;padding:5px 12px;font-size:12.5px;color:var(--ink);font-weight:700}
-.kpis{border-top:1px solid var(--line);padding-top:14px;margin-top:auto}
+.fact{background:#f1efe8;border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:12.5px;color:var(--muted);font-weight:700}
+.kpis{background:var(--jade-20);border:1px solid var(--jade-60);border-radius:12px;padding:12px 14px;margin-top:14px}
 .kpi{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:5px 0;font-size:13.5px}
 .kpi .l{color:var(--muted)}
 .kpi .v{font-weight:800;color:var(--true-blue);font-size:15.5px;white-space:nowrap;flex:none}
@@ -731,26 +744,31 @@ footer a:hover{color:var(--jade)}
       <h2>Die Anlage, in die ich selbst investiere.</h2>
       <p>Ich sage es offen: Ich bin selbst überzeugter Immobilien-Investor – nicht, weil es sich gut verkauft, sondern weil hier gleich <b>vier Kräfte</b> gleichzeitig für Sie arbeiten:</p>
     </div>
+    <p style="text-align:center;font-size:13.5px;color:var(--muted);margin:0 0 16px"><i style="font-style:normal">Tippen zum Aufdecken – vier Kräfte, die für Sie arbeiten</i></p>
     <div class="usp-grid">
-      <div class="usp">
-        <svg viewBox="0 0 48 48"><path d="M8 32h10v8H8zM19 24h10v16H19zM30 14h10v26H30z"/></svg>
-        <h3>Die Bank hebelt Ihre Rendite</h3>
-        <p>Sie setzen wenig Eigenkapital ein – Ihre Rendite läuft aber auf den vollen Kaufpreis der Immobilie.</p>
+      <div class="kflip" tabindex="0" role="button" aria-label="Aufdecken: Die Bank hebelt Ihre Rendite">
+        <div class="kflip-in">
+          <div class="kflip-face kflip-front"><span class="kflip-num">1</span><svg viewBox="0 0 48 48"><path d="M8 32h10v8H8zM19 24h10v16H19zM30 14h10v26H30z"/></svg><span class="kflip-hint">Aufdecken</span></div>
+          <div class="kflip-face kflip-back"><svg viewBox="0 0 48 48"><path d="M8 32h10v8H8zM19 24h10v16H19zM30 14h10v26H30z"/></svg><h3>Die Bank hebelt Ihre Rendite</h3><p>Sie setzen wenig Eigenkapital ein – Ihre Rendite läuft aber auf den vollen Kaufpreis der Immobilie.</p></div>
+        </div>
       </div>
-      <div class="usp">
-        <svg viewBox="0 0 48 48"><path d="M12 8h24v32H12z"/><path d="M18 16h12M18 23h12M18 30h6"/></svg>
-        <h3>Das Finanzamt zahlt mit</h3>
-        <p>Über Abschreibung (AfA) und absetzbare Kosten beteiligt sich der Staat spürbar an Ihrer Investition – Jahr für Jahr.</p>
+      <div class="kflip" tabindex="0" role="button" aria-label="Aufdecken: Das Finanzamt zahlt mit">
+        <div class="kflip-in">
+          <div class="kflip-face kflip-front"><span class="kflip-num">2</span><svg viewBox="0 0 48 48"><path d="M12 8h24v32H12z"/><path d="M18 16h12M18 23h12M18 30h6"/></svg><span class="kflip-hint">Aufdecken</span></div>
+          <div class="kflip-face kflip-back"><svg viewBox="0 0 48 48"><path d="M12 8h24v32H12z"/><path d="M18 16h12M18 23h12M18 30h6"/></svg><h3>Das Finanzamt zahlt mit</h3><p>Über Abschreibung (AfA) und absetzbare Kosten beteiligt sich der Staat spürbar an Ihrer Investition – Jahr für Jahr.</p></div>
+        </div>
       </div>
-      <div class="usp">
-        <svg viewBox="0 0 48 48"><circle cx="24" cy="16" r="6"/><path d="M12 40c1-8 5-12 12-12s11 4 12 12"/></svg>
-        <h3>Ihr Mieter tilgt für Sie</h3>
-        <p>Monat für Monat zahlt Ihr Mieter die Miete – und tilgt damit Ihr Darlehen. Sie bauen Eigentum auf, ohne es selbst abzuzahlen.</p>
+      <div class="kflip" tabindex="0" role="button" aria-label="Aufdecken: Ihr Mieter tilgt für Sie">
+        <div class="kflip-in">
+          <div class="kflip-face kflip-front"><span class="kflip-num">3</span><svg viewBox="0 0 48 48"><circle cx="24" cy="16" r="6"/><path d="M12 40c1-8 5-12 12-12s11 4 12 12"/></svg><span class="kflip-hint">Aufdecken</span></div>
+          <div class="kflip-face kflip-back"><svg viewBox="0 0 48 48"><circle cx="24" cy="16" r="6"/><path d="M12 40c1-8 5-12 12-12s11 4 12 12"/></svg><h3>Ihr Mieter tilgt für Sie</h3><p>Monat für Monat zahlt Ihr Mieter die Miete – und tilgt damit Ihr Darlehen. Sie bauen Eigentum auf, ohne es selbst abzuzahlen.</p></div>
+        </div>
       </div>
-      <div class="usp">
-        <svg viewBox="0 0 48 48"><path d="M8 40L20 26l8 8 12-16"/><path d="M32 18h8v8"/></svg>
-        <h3>Die Inflation arbeitet mit</h3>
-        <p>Als Sachwert steigen Miete und Immobilienwert mit der Inflation. Was Erspartes auf dem Konto entwertet, wirkt bei der Immobilie für Sie.</p>
+      <div class="kflip" tabindex="0" role="button" aria-label="Aufdecken: Die Inflation arbeitet mit">
+        <div class="kflip-in">
+          <div class="kflip-face kflip-front"><span class="kflip-num">4</span><svg viewBox="0 0 48 48"><path d="M8 40L20 26l8 8 12-16"/><path d="M32 18h8v8"/></svg><span class="kflip-hint">Aufdecken</span></div>
+          <div class="kflip-face kflip-back"><svg viewBox="0 0 48 48"><path d="M8 40L20 26l8 8 12-16"/><path d="M32 18h8v8"/></svg><h3>Die Inflation arbeitet mit</h3><p>Als Sachwert steigen Miete und Immobilienwert mit der Inflation. Was Erspartes auf dem Konto entwertet, wirkt bei der Immobilie für Sie.</p></div>
+        </div>
       </div>
     </div>
     <div class="ek-highlight" style="flex-direction:column;text-align:center;gap:12px">
@@ -1691,13 +1709,13 @@ var PORTFOLIO = [
              gebAnteilPct:88, afaArt:"custom", afaSatzPct:3.0,
              notarPct:1.7, notarWkPct:40, maklerPct:0, bundesland:"Sachsen-Anhalt",
              sollzins:4.7 } },
-  { key:"fortgeschritten", stufe:"Fortgeschritten", preisRange:"220.000 €", badge:"Fortgeschritten",
+  { key:"fortgeschritten", stufe:"Fortgeschritten", preisRange:"150.000 € bis 300.000 €", badge:"Fortgeschritten",
     stadt:"Frankfurt", qm:55, img:"obj-fortgeschritten.jpg",
     preset:{ name:"Fortgeschritten-Objekt", kaufpreis:220000, miete:850, kostenMtl:70,
              gebAnteilPct:80, afaArt:"custom", afaSatzPct:3.0,
              notarPct:1.7, notarWkPct:40, maklerPct:0, bundesland:"Hessen",
              sollzins:4.5 } },
-  { key:"profi", stufe:"Profi", preisRange:"380.000 €", badge:"Profi",
+  { key:"profi", stufe:"Profi", preisRange:"über 300.000 €", badge:"Profi",
     stadt:"Berlin", qm:65, img:"obj-profi.jpg",
     preset:{ name:"Profi-Objekt", kaufpreis:380000, miete:1330, kostenMtl:95,
              gebAnteilPct:80, afaArt:"custom", afaSatzPct:3.0,
@@ -1795,7 +1813,7 @@ function renderObjekte(){
     var a=q_ampel(p,q), facts='', kpis='';
     if(p.preset){
       var pr=p.preset;
-      facts='<div class="facts"><span class="fact">'+p.preisRange+'</span><span class="fact">'+pr.miete+' € Kaltmiete/Mon.</span><span class="fact">'+pr.bundesland+'</span></div>';
+      facts='<div class="facts"><span class="fact">'+fmtE(pr.kaufpreis)+'</span><span class="fact">'+p.stadt+' &middot; '+p.qm+' m&sup2;</span><span class="fact">'+pr.miete+' € Kaltmiete/Mon.</span><span class="fact">'+pr.bundesland+'</span></div>';
       if(a.r){
         kpis='<div class="kpis">'+
           '<div class="kpi"><span class="l">Benoetigtes Eigenkapital (Nebenkosten)</span><span class="v">≈ '+fmtE(a.r.requiredEK)+'</span></div>'+
@@ -1812,7 +1830,7 @@ function renderObjekte(){
     else if(a.status==='na'||a.status==='neutral') expl='';
     else expl='<div class="obj-ampel amp-'+a.status+'"><b>'+a.kurz+'</b><span>'+a.text+'</span></div>';
     var imgOrIcon = p.img ? '<img class="obj-photo" src="'+p.img+'" alt="Beispielobjekt in '+p.stadt+'" loading="lazy">' : q_objIcon();
-    return '<div class="obj obj-amp amp-'+a.status+'"><div class="obj-img"><span class="obj-badge">'+p.badge+'</span>'+imgOrIcon+'</div><div class="obj-body"><h3>'+p.stufe+'</h3><div class="loc">'+p.stadt+' &middot; '+p.qm+' m&sup2;</div>'+facts+kpis+expl+btn+'</div></div>';
+    return '<div class="obj obj-amp amp-'+a.status+'"><div class="obj-img"><span class="obj-badge">'+p.badge+'</span>'+imgOrIcon+'</div><div class="obj-body"><h3>'+p.stufe+'</h3><div class="loc">'+p.preisRange+'</div>'+facts+kpis+expl+btn+'</div></div>';
   }).join('');
   g.querySelectorAll('[data-tier]').forEach(function(b){ b.addEventListener('click', function(){ openTierCalc(b.getAttribute('data-tier')); }); });
   var ab=document.getElementById('assBox');
@@ -2256,6 +2274,15 @@ document.querySelectorAll(".choice").forEach(function(c){
   el.addEventListener("click", go);
   el.addEventListener("keydown", function(e){ if(e.key==="Enter" || e.key===" "){ e.preventDefault(); go(); } });
   setTimeout(function(){ el.classList.add("attn"); }, 5000);
+})();
+
+/* ---------- Kräfte-Karten: Klick/Tap zum Aufdecken ---------- */
+(function(){
+  document.querySelectorAll('.kflip').forEach(function(el){
+    function tog(){ el.classList.toggle('on'); }
+    el.addEventListener('click',tog);
+    el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); tog(); } });
+  });
 })();
 
 /* ---------- Fallbeispiele: Slider (wischen + Pfeile + Dots) ---------- */
