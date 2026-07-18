@@ -276,9 +276,11 @@ section{padding:84px 0;scroll-margin-top:76px}
 .qual-head{margin-bottom:16px}
 .qual-head b{display:block;font-size:18px;color:var(--ink)}
 .qual-head span{font-size:13.5px;color:var(--muted)}
-.qual-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;align-items:start}
-.qual-ek{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;margin-top:14px}
-.qual-show{display:flex;align-items:flex-start;padding-top:26px}
+.qual-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:start}
+.qual-show{text-align:center;margin-top:20px}
+.qin{position:relative;display:block;max-width:150px}
+.qin input[type=text]{width:100%;padding-right:26px;box-sizing:border-box}
+.qeuro{position:absolute;right:11px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px;pointer-events:none}
 .qfield{display:flex;flex-direction:column;gap:5px}
 .qfield label{font-size:13px;font-weight:700;color:var(--ink)}
 .qfield label span{color:var(--muted);font-weight:400}
@@ -293,7 +295,7 @@ section{padding:84px 0;scroll-margin-top:76px}
 .obj-ekr b{font-size:16px;color:#0f6b40;font-family:var(--serif,inherit)}
 #objCta{text-align:center;margin-top:24px;padding-top:8px}
 #objCta .obj-cta-lead{font-size:15px;color:var(--ink);margin-bottom:14px;font-weight:600}
-.qfield-fam .qcheck{flex-direction:row;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--ink);cursor:pointer}
+.qcheck{display:flex;flex-direction:row;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--ink);cursor:pointer}
 .qual-note{font-size:12px;color:var(--muted);margin-top:14px}
 .obj-amp{border-width:2px;border-style:solid}
 .obj-amp.amp-gruen{border-color:#1a9e5f;box-shadow:0 0 0 3px #1a9e5f1f}
@@ -492,8 +494,7 @@ footer a:hover{color:var(--jade)}
   .fgrid{grid-template-columns:1fr}
   .foot-grid{grid-template-columns:1fr}
   .qlead .qrow{grid-template-columns:1fr}
-  .qual-ek{grid-template-columns:1fr}
-  .qual-show{padding-top:0}
+  .qual-grid{grid-template-columns:1fr}
   .mcta{display:flex}
   body{padding-bottom:66px}
   .fabs{bottom:86px}
@@ -1086,27 +1087,22 @@ footer a:hover{color:var(--jade)}
       <p>Ich habe dauerhaft <b>über 100 geprüfte Objekte</b> in allen Preisklassen und in ganz Deutschland – die folgenden drei sind nur eine beispielhafte Auswahl. Für nahezu jede Ausgangslage ist das passende Objekt dabei. Das verspreche ich Ihnen – vorausgesetzt, Ihre Renditeerwartung bleibt realistisch. Die Kennzahlen berechnet mein Kapitalanlage-Tool; die vollständige Rechnung gehen wir gemeinsam im Erstgespräch durch.</p>
     </div>
     <div class="qual-box">
-      <div class="qual-head"><b>Passt eine dieser Immobilien zu Ihnen?</b><span>Ein paar Angaben genügen – ich markiere die passenden Objekte und rechne sie für Sie durch. Unverbindlich, nichts wird gespeichert.</span></div>
+      <div class="qual-head"><b>Passt eine dieser Immobilien zu Ihnen?</b><span>Geben Sie hier ein paar Daten ein und schauen Sie, welche Immobilie für Sie geeignet sein könnte.</span></div>
       <div class="qual-grid">
-        <div class="qfield"><label for="q-netto">Monatliches Netto-Einkommen <span>€ / Monat</span></label>
-          <div class="qrow"><input type="text" inputmode="numeric" autocomplete="off" id="q-netto"><input type="range" id="q-netto-r"></div></div>
+        <div class="qfield"><label for="q-netto">Monatliches Netto-Einkommen</label>
+          <div class="qrow"><span class="qin"><input type="text" inputmode="numeric" autocomplete="off" id="q-netto"><span class="qeuro">€</span></span><input type="range" id="q-netto-r"></div></div>
         <div class="qfield"><label for="q-monat">Möglicher monatlicher Eigenaufwand</label>
-          <div class="qrow"><input type="text" inputmode="numeric" autocomplete="off" id="q-monat"><input type="range" id="q-monat-r"></div></div>
+          <div class="qrow"><span class="qin"><input type="text" inputmode="numeric" autocomplete="off" id="q-monat"><span class="qeuro">€</span></span><input type="range" id="q-monat-r"></div></div>
         <div class="qfield"><label for="q-zve">Zu versteuerndes Einkommen (ZVE)</label>
-          <div class="qrow"><input type="text" inputmode="numeric" autocomplete="off" id="q-zve"><input type="range" id="q-zve-r"></div></div>
-      </div>
-      <div class="qual-ek">
-        <div class="qual-ek-left">
-          <div class="qfield"><label for="q-ek">Eigenkapital <span>€</span></label>
-            <div class="qrow"><input type="text" inputmode="numeric" autocomplete="off" id="q-ek"><input type="range" id="q-ek-r"></div></div>
-          <div class="qfield qfield-fam" style="margin-top:14px">
-            <label class="qcheck"><input type="checkbox" id="q-fam"> Können Eltern, Großeltern oder andere Verwandte finanziell unterstützen?</label>
-            <div id="q-fam-wrap" style="display:none;margin-top:10px"><label for="q-fam-betrag">Voraussichtliche Unterstützung <span>€</span></label>
-              <div class="qrow"><input type="text" inputmode="numeric" autocomplete="off" id="q-fam-betrag"><input type="range" id="q-fam-betrag-r"></div></div>
-          </div>
+          <div class="qrow"><span class="qin"><input type="text" inputmode="numeric" autocomplete="off" id="q-zve"><span class="qeuro">€</span></span><input type="range" id="q-zve-r"></div></div>
+        <div class="qfield"><label for="q-ek">Verfügbares Eigenkapital</label>
+          <div class="qrow"><span class="qin"><input type="text" inputmode="numeric" autocomplete="off" id="q-ek"><span class="qeuro">€</span></span><input type="range" id="q-ek-r"></div>
+          <label class="qcheck" style="margin-top:12px"><input type="checkbox" id="q-fam"> Können Eltern, Großeltern oder andere Verwandte finanziell unterstützen?</label>
+          <div id="q-fam-wrap" style="display:none;margin-top:10px"><label for="q-fam-betrag">Voraussichtliche Unterstützung</label>
+            <div class="qrow"><span class="qin"><input type="text" inputmode="numeric" autocomplete="off" id="q-fam-betrag"><span class="qeuro">€</span></span><input type="range" id="q-fam-betrag-r"></div></div>
         </div>
-        <div class="qual-show"><button type="button" class="btn btn-jade btn-sm" id="qShowObjekte">Jetzt Immobilien anzeigen</button></div>
       </div>
+      <div class="qual-show"><button type="button" class="btn btn-jade btn-sm" id="qShowObjekte">Jetzt Immobilien anzeigen</button></div>
     </div>
     <div class="obj-grid" id="objGrid"><!-- Karten werden per JS gerendert --></div>
 
@@ -1123,11 +1119,6 @@ footer a:hover{color:var(--jade)}
       </div>
     </div>
 
-    <p class="model-note">* Modellrechnung, keine Anlage- oder Steuerberatung. Prognosewerte hängen von Annahmen ab und sind nicht garantiert.
-      <details><summary>Annahmen der Modellrechnung anzeigen</summary>
-        <div class="ass" id="assBox"></div>
-      </details>
-    </p>
   </div>
 </section>
 
