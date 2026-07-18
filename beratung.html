@@ -783,7 +783,7 @@ footer a:hover{color:var(--jade)}
       <div class="kflip" tabindex="0" role="button" aria-label="Aufdecken: Die Inflation arbeitet mit">
         <div class="kflip-in">
           <div class="kflip-face kflip-front"><span class="kflip-num">4</span><svg viewBox="0 0 48 48"><path d="M8 40L20 26l8 8 12-16"/><path d="M32 18h8v8"/></svg><span class="kflip-hint">Aufdecken</span></div>
-          <div class="kflip-face kflip-back"><svg viewBox="0 0 48 48"><path d="M8 40L20 26l8 8 12-16"/><path d="M32 18h8v8"/></svg><h3>Die Inflation arbeitet mit</h3><p>Als Sachwert steigen Miete und Immobilienwert mit der Inflation. Was Erspartes auf dem Konto entwertet, wirkt bei der Immobilie für Sie.</p></div>
+          <div class="kflip-face kflip-back"><svg viewBox="0 0 48 48"><path d="M8 40L20 26l8 8 12-16"/><path d="M32 18h8v8"/></svg><h3>Die Inflation arbeitet mit</h3><p>Als Sachwert steigen Miete und Immobilienwert mit der Inflation. Auf der anderen Seite schrumpfen Ihre Kreditschulden im Verhältnis zu Ihrem Einkommen – Jahr für Jahr.</p></div>
         </div>
       </div>
     </div>
@@ -917,8 +917,11 @@ footer a:hover{color:var(--jade)}
     .ev-open-btn{display:inline-flex;align-items:center;gap:10px;cursor:pointer;border:none;font-family:var(--sans);font-weight:800;font-size:16px;letter-spacing:.01em;padding:15px 26px;border-radius:999px;color:var(--blue-deep);background:var(--grad-cta);box-shadow:0 10px 26px -10px rgba(44,81,127,.55);transition:transform .18s,box-shadow .18s}
     .ev-open-btn:hover{transform:translateY(-2px);box-shadow:0 16px 32px -12px rgba(44,81,127,.6)}
     .ev-open-btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
-    .ev-stage{position:relative;margin:22px auto 0;max-width:660px;min-height:60px}
-    .ev-sheet{position:relative;background:#FCFBF3;border-radius:3px 3px 6px 6px;padding:44px 26px 26px 46px;text-align:left;box-shadow:0 18px 40px -18px rgba(20,40,68,.5),0 2px 0 rgba(0,0,0,.04);transform-origin:50% 120%;overflow:hidden;
+    .ev-overlay{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:22px}
+    .ev-backdrop{position:absolute;inset:0;background:rgba(9,18,32,.62);opacity:0;transition:opacity .35s ease}
+    .ev-overlay.ev-on .ev-backdrop{opacity:1}
+    .ev-modal{position:relative;z-index:1;width:100%;max-width:600px;display:flex;flex-direction:column;align-items:center}
+    .ev-sheet{position:relative;width:100%;max-height:calc(100vh - 150px);overflow:auto;background:#FCFBF3;border-radius:3px 3px 6px 6px;padding:44px 26px 26px 46px;text-align:left;box-shadow:0 30px 70px -20px rgba(9,18,32,.7);transform-origin:50% 50%;
       background-image:repeating-linear-gradient(#FCFBF3 0 31px,#CFE0EC 31px 32px);background-position:0 44px}
     .ev-sheet::before{content:"";position:absolute;top:0;bottom:0;left:32px;width:2px;background:#E7A7A7}
     .ev-sheet::after{content:"";position:absolute;top:0;left:0;right:0;height:20px;background:
@@ -927,6 +930,7 @@ footer a:hover{color:var(--jade)}
     .ev-hand{font-family:'Caveat',cursive;color:#1E3F6B;line-height:1.15}
     .ev-title{font-family:'Caveat',cursive;color:#1E3F6B;font-weight:700;font-size:30px;text-align:center;margin:2px 0 4px}
     .ev-sub{font-family:'Caveat',cursive;color:#5b7595;font-size:20px;text-align:center;margin:0 0 14px}
+    .ev-corner{position:absolute;top:25px;right:16px;font-family:'Caveat',cursive;font-weight:700;font-size:18px;color:#7a5b8f;transform:rotate(3deg);line-height:1.05;text-align:right}
     .ev-cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
     .ev-col{padding:6px 6px 8px}
     .ev-colhead{font-family:'Caveat',cursive;font-weight:700;font-size:25px;margin-bottom:4px}
@@ -940,8 +944,8 @@ footer a:hover{color:var(--jade)}
     .ev-2026 .ev-ekr-num{color:#1E7A63}
     .ev-circle{position:absolute;inset:-6px -2px -4px -2px;width:calc(100% + 4px);height:calc(100% + 10px);pointer-events:none}
     .ev-circle path{fill:none;stroke:#D0392B;stroke-width:2.4;stroke-linecap:round;
-      stroke-dasharray:640;stroke-dashoffset:640;transition:stroke-dashoffset 1s ease .35s}
-    .ev-stage.ev-on .ev-circle path{stroke-dashoffset:0}
+      stroke-dasharray:640;stroke-dashoffset:640;transition:stroke-dashoffset 1s ease .4s}
+    .ev-overlay.ev-on .ev-circle path{stroke-dashoffset:0}
     .ev-flag{position:absolute;top:-14px;right:-6px;font-family:'Caveat',cursive;font-weight:700;font-size:19px;color:#D0392B;transform:rotate(-7deg)}
     .ev-punch{font-family:'Caveat',cursive;font-weight:700;font-size:26px;color:#D0392B;text-align:center;margin:16px 6px 4px;transform:rotate(-1deg)}
     .ev-punch u{text-decoration:none;border-bottom:3px solid #E7A7A7;padding-bottom:1px}
@@ -950,78 +954,82 @@ footer a:hover{color:var(--jade)}
     .ev-close:hover{border-color:#D0392B;color:#D0392B}
     .ev-close svg{width:16px;height:16px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
     .ev-closerow{text-align:center}
-    .ev-bin{position:absolute;left:50%;bottom:-6px;width:64px;height:64px;margin-left:-32px;opacity:0;pointer-events:none;transition:opacity .2s}
-    .ev-bin svg{width:100%;height:100%;overflow:visible}
+    .ev-bin{position:absolute;left:50%;bottom:18px;width:76px;height:76px;transform:translateX(-50%);opacity:0;pointer-events:none;z-index:2;transition:opacity .2s}
+    .ev-bin svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 8px 10px rgba(0,0,0,.35))}
     .ev-bin .lid{transform-origin:50% 90%;transition:transform .25s ease}
-    .ev-stage.ev-binopen .ev-bin{opacity:1}
-    .ev-stage.ev-lidup .ev-bin .lid{transform:translateY(-9px) rotate(-24deg)}
-    .ev-stage.ev-shake .ev-bin{animation:ev-binshake .4s ease}
-    @keyframes ev-binshake{0%,100%{margin-left:-32px}25%{margin-left:-36px}75%{margin-left:-28px}}
-    @keyframes ev-in{0%{opacity:0;transform:translateY(-14px) rotate(-1.2deg) scale(.98)}100%{opacity:1;transform:none}}
-    .ev-stage.ev-on .ev-sheet{animation:ev-in .5s cubic-bezier(.4,.15,.2,1) both}
+    .ev-overlay.ev-binopen .ev-bin{opacity:1}
+    .ev-overlay.ev-lidup .ev-bin .lid{transform:translateY(-10px) rotate(-26deg)}
+    .ev-overlay.ev-shake .ev-bin{animation:ev-binshake .45s ease}
+    @keyframes ev-binshake{0%,100%{transform:translateX(-50%) rotate(0)}25%{transform:translateX(-54%) rotate(-5deg)}75%{transform:translateX(-46%) rotate(5deg)}}
+    @keyframes ev-in{0%{opacity:0;transform:translateY(-10px) rotate(-1.2deg) scale(.9)}100%{opacity:1;transform:none}}
+    .ev-overlay.ev-on .ev-sheet{animation:ev-in .5s cubic-bezier(.34,1.2,.4,1) both}
     @keyframes ev-crumple{
-      0%{transform:translateY(0) scale(1) rotate(0);border-radius:4px;opacity:1}
-      30%{transform:translateY(0) scale(.92) rotate(-3deg);border-radius:22px}
-      65%{transform:translateY(46px) scale(.3) rotate(22deg);border-radius:50%;box-shadow:inset 0 0 22px rgba(20,40,68,.35),0 6px 14px -6px rgba(0,0,0,.4)}
-      100%{transform:translateY(150px) scale(.05) rotate(70deg);border-radius:50%;opacity:0}}
-    .ev-sheet.ev-crumpling{animation:ev-crumple 1s cubic-bezier(.45,.05,.35,1) forwards;pointer-events:none}
+      0%{transform:translate(0,0) scale(1) rotate(0);border-radius:6px;opacity:1;box-shadow:0 30px 70px -20px rgba(9,18,32,.7)}
+      25%{transform:translate(0,0) scale(.9) rotate(-5deg);border-radius:26px}
+      55%{transform:translate(calc(var(--evx,0px)*.55),calc(var(--evy,120px)*.55)) scale(.34) rotate(220deg);border-radius:50%;box-shadow:inset 0 0 30px rgba(20,40,68,.45),0 10px 16px -6px rgba(0,0,0,.5)}
+      100%{transform:translate(var(--evx,0px),var(--evy,240px)) scale(.045) rotate(560deg);border-radius:50%;opacity:0;box-shadow:inset 0 0 30px rgba(20,40,68,.5)}}
+    .ev-sheet.ev-crumpling{animation:ev-crumple 1.05s cubic-bezier(.5,.02,.5,1) forwards;overflow:hidden;pointer-events:none}
     @media(max-width:560px){
       .ev-cols{grid-template-columns:1fr;gap:2px}
-      .ev-sheet{padding:40px 18px 22px 40px}
+      .ev-sheet{padding:40px 18px 22px 40px;max-height:calc(100vh - 130px)}
       .ev-title{font-size:26px}.ev-colhead{font-size:23px}.ev-row{font-size:20px}.ev-punch{font-size:23px}
       .ev-col+.ev-col{border-top:2px dashed rgba(30,63,107,.18);padding-top:10px;margin-top:6px}
     }
     @media(prefers-reduced-motion:reduce){
-      .ev-sheet.ev-crumpling{animation:none;opacity:0;transition:opacity .2s}
-      .ev-stage.ev-on .ev-sheet{animation:none}
+      .ev-sheet.ev-crumpling{animation:none;opacity:0;transition:opacity .25s}
+      .ev-overlay.ev-on .ev-sheet{animation:none}
       .ev-circle path{transition:none;stroke-dashoffset:0}
     }
     </style>
     <div class="ev-wrap">
       <div class="ev-launch" id="evLaunch">
-        <button type="button" class="ev-open-btn" id="evOpenBtn" aria-expanded="false" aria-controls="evStage">
+        <button type="button" class="ev-open-btn" id="evOpenBtn" aria-expanded="false" aria-controls="evOverlay" aria-haspopup="dialog">
           <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M12 3v18"/></svg>
           <span id="evOpenLabel">Echter Vergleich</span>
         </button>
       </div>
-      <div class="ev-stage" id="evStage" hidden>
-        <div class="ev-sheet" id="evSheet" role="img" aria-label="Handschriftlicher Vergleich: dieselbe 75-Quadratmeter-Wohnung, Kauf 2021 gegenüber Kauf 2026. Eigenkapital-Rendite 2021: 3,1 Prozent nach 10 Jahren, 7,8 Prozent nach 30 Jahren. 2026: 11,5 Prozent nach 10 Jahren, 8,8 Prozent nach 30 Jahren.">
-          <div class="ev-title">Dieselbe 75-m²-Wohnung &ndash; 2 Zeitpunkte</div>
-          <div class="ev-sub">was zählt am Ende? die Eigenkapital-Rendite.</div>
-          <div class="ev-cols">
-            <div class="ev-col ev-2021">
-              <div class="ev-colhead">2021 · Nullzins</div>
-              <div class="ev-row"><span>Kaufpreis</span><b>273.600 € · F32</b></div>
-              <div class="ev-row"><span>Jahresmiete</span><b>8.550 €</b></div>
-              <div class="ev-row"><span>Zins</span><b>1,5 %</b></div>
-              <div class="ev-row"><span>Eigenkapital</span><b>27.360 €</b></div>
-              <div class="ev-ekr">
-                <div class="ev-row"><span>EK-Rendite 10 J</span><span class="ev-ekr-num">3,1 % p.a.</span></div>
-                <div class="ev-row"><span>EK-Rendite 30 J</span><span class="ev-ekr-num">7,8 % p.a.</span></div>
+      <div class="ev-overlay" id="evOverlay" role="dialog" aria-modal="true" aria-label="Echter Vergleich: Rechnung 2021 gegen 2026" hidden>
+        <div class="ev-backdrop" id="evBackdrop"></div>
+        <div class="ev-modal">
+          <div class="ev-sheet" id="evSheet" role="img" aria-label="Handschriftlicher Vergleich bei einem zu versteuernden Einkommen von 60.000 Euro: dieselbe 75-Quadratmeter-Wohnung, Kauf 2021 gegenüber Kauf 2026. Eigenkapital-Rendite 2021: 0,2 Prozent nach 10 Jahren, 6,0 Prozent nach 30 Jahren. 2026: 9,4 Prozent nach 10 Jahren, 7,3 Prozent nach 30 Jahren.">
+            <div class="ev-corner">ZvE<br>60.000 €</div>
+            <div class="ev-title">Dieselbe 75-m²-Wohnung &ndash; 2 Zeitpunkte</div>
+            <div class="ev-sub">was zählt am Ende? die Eigenkapital-Rendite.</div>
+            <div class="ev-cols">
+              <div class="ev-col ev-2021">
+                <div class="ev-colhead">2021 · Nullzins</div>
+                <div class="ev-row"><span>Kaufpreis</span><b>300.000 € · F33</b></div>
+                <div class="ev-row"><span>Jahresmiete</span><b>9.000 €</b></div>
+                <div class="ev-row"><span>Zins / Tilgung</span><b>1,5 % / 3 %</b></div>
+                <div class="ev-row"><span>Eigenkapital</span><b>30.000 €</b></div>
+                <div class="ev-ekr">
+                  <div class="ev-row"><span>EK-Rendite 10 J</span><span class="ev-ekr-num">0,2 % p.a.</span></div>
+                  <div class="ev-row"><span>EK-Rendite 30 J</span><span class="ev-ekr-num">6,0 % p.a.</span></div>
+                </div>
+              </div>
+              <div class="ev-col ev-2026">
+                <div class="ev-colhead">2026 · heute</div>
+                <div class="ev-row"><span>Kaufpreis</span><b>260.000 € · F25</b></div>
+                <div class="ev-row"><span>Jahresmiete</span><b>10.350 €</b></div>
+                <div class="ev-row"><span>Zins / Tilgung</span><b>3,5 % / 3 %</b></div>
+                <div class="ev-row"><span>Eigenkapital</span><b>26.000 €</b></div>
+                <div class="ev-ekr">
+                  <span class="ev-flag">höher!</span>
+                  <div class="ev-row"><span>EK-Rendite 10 J</span><span class="ev-ekr-num">9,4 % p.a.</span></div>
+                  <div class="ev-row"><span>EK-Rendite 30 J</span><span class="ev-ekr-num">7,3 % p.a.</span></div>
+                  <svg class="ev-circle" viewBox="0 0 210 96" preserveAspectRatio="none"><path d="M20,50 C14,22 70,12 116,14 C176,17 198,30 192,52 C186,76 120,88 74,85 C34,82 26,74 20,50"/></svg>
+                </div>
               </div>
             </div>
-            <div class="ev-col ev-2026">
-              <div class="ev-colhead">2026 · heute</div>
-              <div class="ev-row"><span>Kaufpreis</span><b>257.800 € · F24,8</b></div>
-              <div class="ev-row"><span>Jahresmiete</span><b>10.395 €</b></div>
-              <div class="ev-row"><span>Zins</span><b>3,5 %</b></div>
-              <div class="ev-row"><span>Eigenkapital</span><b>25.780 €</b></div>
-              <div class="ev-ekr">
-                <span class="ev-flag">höher!</span>
-                <div class="ev-row"><span>EK-Rendite 10 J</span><span class="ev-ekr-num">11,5 % p.a.</span></div>
-                <div class="ev-row"><span>EK-Rendite 30 J</span><span class="ev-ekr-num">8,8 % p.a.</span></div>
-                <svg class="ev-circle" viewBox="0 0 210 96" preserveAspectRatio="none"><path d="M20,50 C14,22 70,12 116,14 C176,17 198,30 192,52 C186,76 120,88 74,85 C34,82 26,74 20,50"/></svg>
-              </div>
+            <div class="ev-punch">Heute schlägt Nullzins &ndash; <u>trotz höherem Zins.</u></div>
+            <div class="ev-closerow">
+              <button type="button" class="ev-close" id="evCloseBtn">
+                <svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M6 6l1 14a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-14"/></svg>
+                Rechnung schließen
+              </button>
             </div>
+            <p class="ev-note">Modellrechnung &ndash; kein Versprechen. Dieselbe Wohnung (75&nbsp;m²): Kauf 2021 zu ~4.000&nbsp;€/m² (Boom), 2026 rund 13&nbsp;% günstiger. Laut vdp-Immobilienpreisindex Q1&nbsp;2026 liegen die Preise noch ca.&nbsp;13&nbsp;% unter dem Höchststand 2022, während Mieten und Zinsen gestiegen sind. Annahmen: Kaufnebenkosten 10&nbsp;% (= eingesetztes Eigenkapital), Rest 100&nbsp;% finanziert, Anfangstilgung 3&nbsp;%, Zinsbindung 10&nbsp;Jahre und danach Anschluss zu 3,5&nbsp;%. AfA 2&nbsp;% auf 80&nbsp;% Gebäudeanteil, Mietsteigerung 2,5&nbsp;%&nbsp;p.a., nicht umlagefähige Kosten 1.000&nbsp;€/Jahr. Steuer über den Einkommensteuertarif bei 60.000&nbsp;€ zu versteuerndem Einkommen (Grenzsteuersatz ~39&nbsp;%). Verkauf zu Faktor&nbsp;25 (nach&nbsp;≥&nbsp;10&nbsp;Jahren steuerfrei). EK-Rendite = interner Zinsfuß des Eigenkapital-Zahlungsstroms. Ihr Ergebnis hängt von Objekt, Miete und Steuersatz ab. Quellen: vdp-Immobilienpreisindex Q1&nbsp;2026; Bauzinsen Interhyp/Dr.&nbsp;Klein.</p>
           </div>
-          <div class="ev-punch">Heute schlägt Nullzins &ndash; <u>trotz höherem Zins.</u></div>
-          <div class="ev-closerow">
-            <button type="button" class="ev-close" id="evCloseBtn">
-              <svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M6 6l1 14a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-14"/></svg>
-              Rechnung schließen
-            </button>
-          </div>
-          <p class="ev-note">Modellrechnung &ndash; kein Versprechen. Dieselbe Wohnung (75&nbsp;m²), Kaufnebenkosten 10&nbsp;% (= eingesetztes Eigenkapital), Rest 100&nbsp;% finanziert, Anfangstilgung 2&nbsp;%, Zinsbindung 10&nbsp;Jahre und danach Anschluss zu 3,0&nbsp;%. AfA 2&nbsp;% auf 80&nbsp;% Gebäudeanteil, Mietsteigerung 2,5&nbsp;%&nbsp;p.a., nicht umlagefähige Kosten 1.000&nbsp;€/Jahr, Steuersatz 42&nbsp;%, Verkauf zu Faktor&nbsp;25 (nach&nbsp;≥&nbsp;10&nbsp;Jahren steuerfrei). EK-Rendite = interner Zinsfuß des Eigenkapital-Zahlungsstroms. Ihr Ergebnis hängt von Objekt, Miete und Steuersatz ab.</p>
         </div>
         <div class="ev-bin" id="evBin" aria-hidden="true">
           <svg viewBox="0 0 48 48"><g class="lid"><path d="M9 13h30" stroke="#5E718A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M19 13l1-4h8l1 4" stroke="#5E718A" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g><path d="M12 15l2 26a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3l2-26" stroke="#5E718A" stroke-width="2.6" fill="#EAF2F6" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 21v16M28 21v16" stroke="#9FB3C8" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
@@ -1031,41 +1039,53 @@ footer a:hover{color:var(--jade)}
     <script>
     (function(){
       var launch=document.getElementById('evLaunch'),
-          stage=document.getElementById('evStage'),
+          overlay=document.getElementById('evOverlay'),
           sheet=document.getElementById('evSheet'),
+          bin=document.getElementById('evBin'),
+          backdrop=document.getElementById('evBackdrop'),
           openBtn=document.getElementById('evOpenBtn'),
           label=document.getElementById('evOpenLabel'),
           closeBtn=document.getElementById('evCloseBtn');
-      if(!stage) return;
+      if(!overlay) return;
       var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+      var busy=false;
       function open(){
-        stage.hidden=false; launch.style.display='none';
+        overlay.hidden=false;
+        document.body.style.overflow='hidden';
         openBtn.setAttribute('aria-expanded','true');
-        void stage.offsetWidth;
-        stage.classList.add('ev-on');
+        void overlay.offsetWidth;
+        overlay.classList.add('ev-on');
       }
-      function reappear(){
+      function finish(){
+        overlay.hidden=true;
+        overlay.classList.remove('ev-on','ev-binopen','ev-lidup','ev-shake');
+        sheet.classList.remove('ev-crumpling');
+        sheet.style.removeProperty('--evx'); sheet.style.removeProperty('--evy');
+        document.body.style.overflow='';
         launch.style.display='';
         label.textContent='Rechnung anzeigen';
         openBtn.setAttribute('aria-expanded','false');
+        busy=false;
       }
       function close(){
-        if(reduce){ sheet.classList.add('ev-crumpling'); setTimeout(function(){stage.hidden=true;stage.classList.remove('ev-on');sheet.classList.remove('ev-crumpling');reappear();},220); return; }
-        stage.classList.add('ev-binopen','ev-lidup');
+        if(busy) return; busy=true;
+        if(reduce){ sheet.classList.add('ev-crumpling'); setTimeout(finish,260); return; }
+        var sr=sheet.getBoundingClientRect(), br=bin.getBoundingClientRect();
+        sheet.style.setProperty('--evx',((br.left+br.width/2)-(sr.left+sr.width/2))+'px');
+        sheet.style.setProperty('--evy',((br.top+br.height/2)-(sr.top+sr.height/2))+'px');
+        overlay.classList.add('ev-binopen','ev-lidup');
+        void sheet.offsetWidth;
         sheet.classList.add('ev-crumpling');
-        setTimeout(function(){ stage.classList.remove('ev-lidup'); stage.classList.add('ev-shake'); },600);
-        setTimeout(function(){
-          stage.hidden=true;
-          stage.classList.remove('ev-on','ev-binopen','ev-shake');
-          sheet.classList.remove('ev-crumpling');
-          reappear();
-        },1080);
+        setTimeout(function(){ overlay.classList.remove('ev-lidup'); overlay.classList.add('ev-shake'); },640);
+        setTimeout(finish,1180);
       }
       openBtn.addEventListener('click',open);
       closeBtn.addEventListener('click',close);
+      backdrop.addEventListener('click',close);
+      document.addEventListener('keydown',function(e){ if(e.key==='Escape' && !overlay.hidden && !busy) close(); });
     })();
     </script>
-    <p style="font-size:11px;color:var(--muted);margin-top:12px;line-height:1.55">*Beispiel: 300.000-&euro;-Darlehen, 1&nbsp;% Zins (2021) vs. 4&nbsp;% (2026), 42&nbsp;% Steuersatz &ndash; Zinsen sind bei Vermietung als Werbungskosten voll absetzbar. Faktoren: bundesweite Spannen, Top-Lagen höher. Quellen: Destatis 2026, Dr.&nbsp;Klein, JLL.</p>
+    <p style="font-size:11px;color:var(--muted);margin-top:12px;line-height:1.55">*Beispiel: 300.000-&euro;-Darlehen, 1&nbsp;% Zins (2021) vs. 3,5&nbsp;% (2026), 42&nbsp;% Steuersatz &ndash; Zinsen sind bei Vermietung als Werbungskosten voll absetzbar. Faktoren: bundesweite Spannen, Top-Lagen höher. Quellen: Destatis 2026, Dr.&nbsp;Klein, JLL.</p>
     <p style="text-align:center;margin-top:18px;font-size:15px;color:var(--ink)">Ob sich das bei <b>Ihrem</b> Steuersatz und Objekt rechnet, zeigt die Modellrechnung &ndash; ehrlich, in 2&nbsp;Minuten. <a href="#start" style="color:var(--true-blue);font-weight:700;text-decoration:none;border-bottom:1px solid var(--jade)">Jetzt durchrechnen &rarr;</a></p>
   </div>
 </section>
