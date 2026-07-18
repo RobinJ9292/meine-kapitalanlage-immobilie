@@ -137,7 +137,9 @@ header{background:rgba(13,27,46,.82);backdrop-filter:blur(14px);border-bottom:1p
 .blob.b2{width:420px;height:420px;background:rgba(180,214,212,.45);bottom:-180px;left:-140px;animation-delay:-8s}
 @keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(40px,30px) scale(1.08)}}
 .hero::after{content:"";position:absolute;right:6%;top:10%;width:340px;height:340px;background:transparent;border:1.5px solid rgba(180,214,212,.14);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);transform:rotate(12deg);pointer-events:none}
-.hero-in{position:relative;z-index:2;max-width:1150px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.hero-in{position:relative;z-index:2;max-width:1150px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:start}
+.hero-act--mobile{display:none}
+.hero-act--desktop{display:block;margin-top:22px}
 .chip{display:inline-flex;align-items:center;gap:9px;background:rgba(180,214,212,.12);border:1px solid rgba(180,214,212,.35);color:var(--jade);border-radius:999px;padding:8px 18px;font-size:13px;font-weight:700;margin-bottom:26px;letter-spacing:.04em}
 .chip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--jade-bright);box-shadow:0 0 12px var(--jade-bright);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
@@ -468,6 +470,8 @@ footer a:hover{color:var(--jade)}
 @media (max-width:920px){
   .hero{padding:64px 0 76px}
   .hero-in{grid-template-columns:1fr;gap:38px}
+  .hero-act--mobile{display:block}
+  .hero-act--desktop{display:none}
   .hero h1{font-size:clamp(34px,9vw,44px)}
   .choose-grid{grid-template-columns:1fr}
   .cmp-row{grid-template-columns:1fr}
@@ -678,10 +682,12 @@ footer a:hover{color:var(--jade)}
       <span class="chip">Kapitalanlage mit Konzept</span>
       <h1 style="font-size:clamp(34px,4.4vw,52px)">Wohnen ist ein <em>Grundbed&uuml;rfnis</em> &ndash; und die vermietete Immobilie ein echter Wert, den es immer braucht.</h1>
       <p class="lead">Wohnraum wird immer gebraucht &ndash; er ist ein Grundbed&uuml;rfnis, und die Ausgabe f&uuml;rs Wohnen geht bei Menschen immer vor. Das macht die vermietete Immobilie zum wohl <b>stabilsten Investment</b> &uuml;berhaupt: In Deutschland fehlen rund 1,4&nbsp;Millionen Wohnungen, und wir sind Mieterland Nr.&nbsp;1 in Europa. Diese <b>Sicherheit</b> ist die eine H&auml;lfte &ndash; die <b>Rendite</b> entsteht &uuml;ber <span class="kraft-link" id="kraefteLink" role="button" tabindex="0">vier Kr&auml;fte</span>. Und wenn Sie gut verdienen, zahlen Sie viel Steuern &ndash; &uuml;ber die vermietete Immobilie verwandeln Sie einen Teil davon <b>ganz legal in privates Verm&ouml;gen</b>, statt ihn einfach abzugeben.</p>
-      <div class="hero-ctas">
+      <div class="hero-act hero-act--mobile">
+        <div class="hero-ctas">
         <a class="btn btn-jade btn-lg" href="#kontakt" data-tab="rueckruf">Jetzt Rückruf vereinbaren</a>
       </div>
-      <a href="https://maps.google.com/?cid=4371574991949377374" target="_blank" rel="noopener" aria-label="Google-Rezensionen: 5,0 Sterne bei 20 Bewertungen" style="display:inline-flex;align-items:center;gap:9px;margin-top:20px;padding:9px 16px;background:rgba(255,255,255,.06);border:1px solid rgba(180,214,212,.25);border-radius:999px;color:var(--t-on-dark-muted);font-size:13.5px;font-weight:600;text-decoration:none"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09C3.26 21.3 7.31 24 12 24z"/><path fill="#FBBC05" d="M5.27 14.29c-.25-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.98-3.09z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.98 3.09C6.22 6.86 8.87 4.75 12 4.75z"/></svg><span style="color:#FBBC05;letter-spacing:2px">&#9733;&#9733;&#9733;&#9733;&#9733;</span><b style="color:#fff">5,0</b><span>&middot; 20 Google-Rezensionen</span></a>
+        <a href="https://maps.google.com/?cid=4371574991949377374" target="_blank" rel="noopener" aria-label="Google-Rezensionen: 5,0 Sterne bei 20 Bewertungen" style="display:inline-flex;align-items:center;gap:9px;margin-top:20px;padding:9px 16px;background:rgba(255,255,255,.06);border:1px solid rgba(180,214,212,.25);border-radius:999px;color:var(--t-on-dark-muted);font-size:13.5px;font-weight:600;text-decoration:none"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09C3.26 21.3 7.31 24 12 24z"/><path fill="#FBBC05" d="M5.27 14.29c-.25-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.98-3.09z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.98 3.09C6.22 6.86 8.87 4.75 12 4.75z"/></svg><span style="color:#FBBC05;letter-spacing:2px">&#9733;&#9733;&#9733;&#9733;&#9733;</span><b style="color:#fff">5,0</b><span>&middot; 20 Google-Rezensionen</span></a>
+      </div>
     </div>
     <div class="hero-card">
       <h3>Warum die Nachfrage so stabil ist</h3>
@@ -701,6 +707,12 @@ footer a:hover{color:var(--jade)}
         </div>
       </div>
       <details style="margin:12px 0 0;font-size:11px;color:var(--t-on-dark-muted)"><summary style="cursor:pointer;font-weight:700;color:var(--jade-bright)">Quellen</summary><span style="display:block;margin-top:4px">Wohnungsdefizit &ndash; Pestel-Institut 2026; Mieterquote &amp; Neubaubedarf &ndash; Statistisches Bundesamt / BBSR 2025.</span></details>
+      <div class="hero-act hero-act--desktop">
+        <div class="hero-ctas">
+        <a class="btn btn-jade btn-lg" href="#kontakt" data-tab="rueckruf">Jetzt Rückruf vereinbaren</a>
+      </div>
+        <a href="https://maps.google.com/?cid=4371574991949377374" target="_blank" rel="noopener" aria-label="Google-Rezensionen: 5,0 Sterne bei 20 Bewertungen" style="display:inline-flex;align-items:center;gap:9px;margin-top:20px;padding:9px 16px;background:rgba(255,255,255,.06);border:1px solid rgba(180,214,212,.25);border-radius:999px;color:var(--t-on-dark-muted);font-size:13.5px;font-weight:600;text-decoration:none"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09C3.26 21.3 7.31 24 12 24z"/><path fill="#FBBC05" d="M5.27 14.29c-.25-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.98-3.09z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.98 3.09C6.22 6.86 8.87 4.75 12 4.75z"/></svg><span style="color:#FBBC05;letter-spacing:2px">&#9733;&#9733;&#9733;&#9733;&#9733;</span><b style="color:#fff">5,0</b><span>&middot; 20 Google-Rezensionen</span></a>
+      </div>
     </div>
   </div>
 </div>
@@ -876,6 +888,15 @@ footer a:hover{color:var(--jade)}
   </div>
 </section>
 
+
+<!-- ==================== MITTE-CTA (Express-Weg für warme Besucher) ==================== -->
+<section style="background:var(--jade-20);padding:40px 0">
+  <div class="wrap" style="max-width:760px;text-align:center">
+    <p style="font-size:20px;font-weight:700;color:var(--ink);margin:0 0 6px;font-family:var(--serif)">Klingt nach jemandem, mit dem Sie sprechen möchten?</p>
+    <p style="color:var(--muted);margin:0 0 18px">Dann lassen Sie uns unverbindlich starten – ein kurzes Telefonat genügt, den Rest klären wir in Ruhe.</p>
+    <a class="btn btn-blue btn-lg" href="#kontakt" data-tab="rueckruf">Rückruf vereinbaren</a>
+  </div>
+</section>
 
 <!-- ==================== MEINE LEISTUNG ==================== -->
 <section class="leistung" id="leistung" style="background:#fff">
@@ -1178,7 +1199,7 @@ footer a:hover{color:var(--jade)}
 </section>
 
 <!-- ==================== ABLAUF ==================== -->
-<section class="gated" data-paths="portfolio">
+<section class="gated" data-paths="portfolio eigene">
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow">Ihr Weg</span>
