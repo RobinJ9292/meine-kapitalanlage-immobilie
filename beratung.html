@@ -277,6 +277,8 @@ section{padding:84px 0;scroll-margin-top:76px}
 .qual-head b{display:block;font-size:18px;color:var(--ink)}
 .qual-head span{font-size:13.5px;color:var(--muted)}
 .qual-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;align-items:start}
+.qual-ek{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;margin-top:14px}
+.qual-show{display:flex;align-items:flex-start;padding-top:26px}
 .qfield{display:flex;flex-direction:column;gap:5px}
 .qfield label{font-size:13px;font-weight:700;color:var(--ink)}
 .qfield label span{color:var(--muted);font-weight:400}
@@ -284,7 +286,7 @@ section{padding:84px 0;scroll-margin-top:76px}
 .qfield input[type=text]:focus{outline:none;border-color:var(--true-blue)}
 .qrow{display:flex;flex-direction:column;gap:8px}
 .qrow input[type=text]{max-width:150px}
-.qrow input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:999px;background:var(--jade-20,#e4eef0);outline:none;margin:2px 0}
+.qrow input[type=range]{-webkit-appearance:none;appearance:none;width:100%;max-width:150px;height:6px;border-radius:999px;background:var(--jade-20,#e4eef0);outline:none;margin:2px 0}
 .qrow input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--true-blue);cursor:pointer;border:3px solid #fff;box-shadow:0 1px 4px rgba(13,27,46,.25)}
 .qrow input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--true-blue);cursor:pointer;border:3px solid #fff;box-shadow:0 1px 4px rgba(13,27,46,.25)}
 .obj-ekr{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:12.5px;color:var(--muted);margin:4px 0 12px}
@@ -490,6 +492,8 @@ footer a:hover{color:var(--jade)}
   .fgrid{grid-template-columns:1fr}
   .foot-grid{grid-template-columns:1fr}
   .qlead .qrow{grid-template-columns:1fr}
+  .qual-ek{grid-template-columns:1fr}
+  .qual-show{padding-top:0}
   .mcta{display:flex}
   body{padding-bottom:66px}
   .fabs{bottom:86px}
@@ -1088,18 +1092,21 @@ footer a:hover{color:var(--jade)}
           <div class="qrow"><input type="text" inputmode="numeric" autocomplete="off" id="q-netto"><input type="range" id="q-netto-r"></div></div>
         <div class="qfield"><label for="q-monat">Möglicher monatlicher Eigenaufwand</label>
           <div class="qrow"><input type="text" inputmode="numeric" autocomplete="off" id="q-monat"><input type="range" id="q-monat-r"></div></div>
-        <div class="qfield"><label for="q-ek">Eigenkapital <span>€</span></label>
-          <div class="qrow"><input type="text" inputmode="numeric" autocomplete="off" id="q-ek"><input type="range" id="q-ek-r"></div></div>
         <div class="qfield"><label for="q-zve">Zu versteuerndes Einkommen (ZVE)</label>
           <div class="qrow"><input type="text" inputmode="numeric" autocomplete="off" id="q-zve"><input type="range" id="q-zve-r"></div></div>
-        <div class="qfield qfield-fam">
-          <label class="qcheck"><input type="checkbox" id="q-fam"> Können Eltern, Großeltern oder andere Verwandte finanziell unterstützen?</label>
-          <div id="q-fam-wrap" style="display:none;margin-top:10px"><label for="q-fam-betrag">Voraussichtliche Unterstützung <span>€</span></label>
-            <div class="qrow"><input type="text" inputmode="numeric" autocomplete="off" id="q-fam-betrag"><input type="range" id="q-fam-betrag-r"></div></div>
-        </div>
       </div>
-      <p class="qual-note">Hinweis zur <b>Prognose der EK-Rendite</b>: Sie hängt von Ihrem zu versteuernden Einkommen (ZVE) und der Steuererstattung durch Verluste oder Gewinne aus Vermietung und Verpachtung ab. Verändert sich Ihr ZVE im Laufe der Zeit, verschiebt sich die Rendite entsprechend – nach oben oder nach unten. Die genaue Rechnung machen wir gemeinsam im Rechner unten.</p>
-      <div style="text-align:right;margin-top:12px"><button type="button" class="btn btn-jade btn-lg" id="qShowObjekte">Jetzt Immobilien anzeigen</button></div>
+      <div class="qual-ek">
+        <div class="qual-ek-left">
+          <div class="qfield"><label for="q-ek">Eigenkapital <span>€</span></label>
+            <div class="qrow"><input type="text" inputmode="numeric" autocomplete="off" id="q-ek"><input type="range" id="q-ek-r"></div></div>
+          <div class="qfield qfield-fam" style="margin-top:14px">
+            <label class="qcheck"><input type="checkbox" id="q-fam"> Können Eltern, Großeltern oder andere Verwandte finanziell unterstützen?</label>
+            <div id="q-fam-wrap" style="display:none;margin-top:10px"><label for="q-fam-betrag">Voraussichtliche Unterstützung <span>€</span></label>
+              <div class="qrow"><input type="text" inputmode="numeric" autocomplete="off" id="q-fam-betrag"><input type="range" id="q-fam-betrag-r"></div></div>
+          </div>
+        </div>
+        <div class="qual-show"><button type="button" class="btn btn-jade btn-sm" id="qShowObjekte">Jetzt Immobilien anzeigen</button></div>
+      </div>
     </div>
     <div class="obj-grid" id="objGrid"><!-- Karten werden per JS gerendert --></div>
 
@@ -1845,6 +1852,14 @@ function q_bindSlider(txtId, rngId, def, min, max, step){
   q_bindSlider('q-ek','q-ek-r', 0, 0, 100000, 1000);
   q_bindSlider('q-zve','q-zve-r', 0, 0, 200000, 1000);
   q_bindSlider('q-fam-betrag','q-fam-betrag-r', 0, 0, 100000, 1000);
+  (function(){
+    var nt=document.getElementById('q-netto'), ntr=document.getElementById('q-netto-r');
+    var mo=document.getElementById('q-monat'), mor=document.getElementById('q-monat-r');
+    if(!nt||!ntr||!mo||!mor) return;
+    function d(el){ return parseFloat((el.value||'').replace(/[^\d]/g,''))||0; }
+    function cap(){ var n=d(nt); mor.max=Math.max(0,n); if(d(mo)>n){ mo.value=n.toLocaleString('de-DE'); mor.value=n; renderObjekte(); } }
+    ntr.addEventListener('input',cap); nt.addEventListener('input',cap); cap();
+  })();
 })();
 
 renderObjekte();
