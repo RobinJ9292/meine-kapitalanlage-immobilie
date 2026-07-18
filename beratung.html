@@ -399,6 +399,9 @@ section{padding:84px 0;scroll-margin-top:76px}
 .about h2{font-size:clamp(26px,3vw,36px);font-weight:800;margin-bottom:16px;letter-spacing:-.02em}
 .about p{margin-bottom:12px;font-size:15.5px;color:var(--muted)}
 .about .claim{font-family:var(--serif);color:var(--true-blue);font-size:21px;font-weight:600;margin-top:18px}
+.lt-title{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.lt-desktop{display:block;margin-top:22px}
+.lt-mobile{display:none}
 .stats{display:flex;gap:14px;flex-wrap:wrap;margin:24px 0 10px}
 .stat{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 20px;flex:1;min-width:150px}
 .stat .sv{font-family:var(--serif);font-size:34px;font-weight:700;color:var(--true-blue);line-height:1.1;white-space:nowrap}
@@ -476,6 +479,8 @@ footer a:hover{color:var(--jade)}
   .obj-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto}
   .steps3{grid-template-columns:1fr}
   .about-grid{grid-template-columns:1fr}
+  .lt-desktop{display:none}
+  .lt-mobile{display:block}
   .fgrid{grid-template-columns:1fr}
   .foot-grid{grid-template-columns:1fr}
   .qlead .qrow{grid-template-columns:1fr}
@@ -741,8 +746,18 @@ footer a:hover{color:var(--jade)}
 <!-- ==================== ÜBER MICH ==================== -->
 <section class="about">
   <div class="wrap about-grid">
-    <div class="about-photo">
-      <img src="ueber-mich.jpg" alt="Robin Jänicke – Finanzberater für Bonnfinanz">
+    <div class="about-col">
+      <div class="about-photo">
+        <img src="ueber-mich.jpg" alt="Robin Jänicke – Finanzberater für Bonnfinanz">
+      </div>
+      <div class="lt-desktop">
+        <p class="lt-title">Die Leuchttürme meiner Beratung</p>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px"><b style="color:var(--true-blue);font-size:15px">Ehrlichkeit</b><span style="display:block;font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5">Chancen und Risiken kommen auf den Tisch – inklusive einem ehrlichen „Nein", wenn es nicht passt.</span></div>
+          <div style="background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px"><b style="color:var(--true-blue);font-size:15px">Qualität</b><span style="display:block;font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5">Geprüfte Objekte und sauber durchgerechnete Konzepte – Substanz statt Schnellschuss.</span></div>
+          <div style="background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px"><b style="color:var(--true-blue);font-size:15px">Zuverlässigkeit</b><span style="display:block;font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5">Was ich zusage, halte ich – und bleibe an Ihrer Seite, über den Kauf hinaus.</span></div>
+        </div>
+      </div>
     </div>
     <div>
       <span class="eyebrow">Über mich</span>
@@ -752,11 +767,13 @@ footer a:hover{color:var(--jade)}
       <p class="claim">„Ich empfehle Ihnen nur ein Restaurant, in dem ich selbst war – und in dem es besonders gut war.“<span style="display:block;font-family:var(--sans);font-size:14px;font-weight:700;color:var(--muted);margin-top:8px;">— Robin Jänicke</span></p>
       <p class="creds" style="font-size:15.5px;color:var(--muted);border-left:3px solid var(--jade);padding-left:16px;margin:2px 0 8px;line-height:1.65">Ich weiß, wovon ich rede: Ich habe früher <b>Lehramt Mathematik</b> studiert – da ging es um Zahlen, aber nicht um die, die fürs Leben wirklich zählen. Gelernt habe ich dort vor allem eins: wie man Dinge <b>erklärt</b>, nicht wie man sie verkauft.</p>
       <p style="font-size:15px;color:var(--muted);margin:12px 0 4px;line-height:1.6">Und ehrlich: Bei uns hört das Thema auch nach Feierabend nicht auf – meine Partnerin ist beruflich ebenfalls in der Immobilien- und Bauwelt zuhause. Es dreht sich also gefühlt rund um die Uhr alles um Immobilien. 😉</p>
-      <p style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:16px 0 10px">Die Leuchttürme meiner Beratung</p>
-      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:6px">
-        <div style="flex:1;min-width:180px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px"><b style="color:var(--true-blue);font-size:15px">Ehrlichkeit</b><span style="display:block;font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5">Chancen und Risiken kommen auf den Tisch – inklusive einem ehrlichen „Nein", wenn es nicht passt.</span></div>
-        <div style="flex:1;min-width:180px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px"><b style="color:var(--true-blue);font-size:15px">Qualität</b><span style="display:block;font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5">Geprüfte Objekte und sauber durchgerechnete Konzepte – Substanz statt Schnellschuss.</span></div>
-        <div style="flex:1;min-width:180px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px"><b style="color:var(--true-blue);font-size:15px">Zuverlässigkeit</b><span style="display:block;font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5">Was ich zusage, halte ich – und bleibe an Ihrer Seite, über den Kauf hinaus.</span></div>
+      <div class="lt-mobile">
+        <p style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:16px 0 10px">Die Leuchttürme meiner Beratung</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:6px">
+          <div style="flex:1;min-width:180px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px"><b style="color:var(--true-blue);font-size:15px">Ehrlichkeit</b><span style="display:block;font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5">Chancen und Risiken kommen auf den Tisch – inklusive einem ehrlichen „Nein", wenn es nicht passt.</span></div>
+          <div style="flex:1;min-width:180px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px"><b style="color:var(--true-blue);font-size:15px">Qualität</b><span style="display:block;font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5">Geprüfte Objekte und sauber durchgerechnete Konzepte – Substanz statt Schnellschuss.</span></div>
+          <div style="flex:1;min-width:180px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px"><b style="color:var(--true-blue);font-size:15px">Zuverlässigkeit</b><span style="display:block;font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5">Was ich zusage, halte ich – und bleibe an Ihrer Seite, über den Kauf hinaus.</span></div>
+        </div>
       </div>
       <div class="stats" id="stats">
         <div class="stat"><div class="sv" data-count="100" data-suffix=" %">0</div><div class="sl">ehrliche Modellrechnung zu jedem Objekt</div></div>
