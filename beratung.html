@@ -617,6 +617,22 @@ footer a:hover{color:var(--jade)}
 .why .sec-head{margin-bottom:34px}
 .why .sec-head p{max-width:680px;margin-left:auto;margin-right:auto}
 .ek-highlight{display:flex;align-items:center;gap:8px;justify-content:center;flex-wrap:wrap;background:var(--jade-20);border:1px solid var(--jade-60);border-radius:var(--r);padding:26px 20px;margin-top:30px}
+/* ---------- Fazit: eingeklappt, öffnet nach 4 aufgedeckten Kräften ---------- */
+.fazit-box{transition:padding .5s ease}
+.fazit-box.locked{padding:34px 20px}
+.fazit-label{font-size:12px;transition:font-size .55s cubic-bezier(.4,.15,.2,1)}
+.fazit-box.locked .fazit-label{font-size:26px}
+.fazit-lockhint{font-size:13.5px;color:var(--muted);max-height:48px;opacity:1;overflow:hidden;transition:opacity .35s ease,max-height .45s ease,margin .45s ease}
+.fazit-box.unlocked .fazit-lockhint{opacity:0;max-height:0;margin:0}
+.fazit-reveal{display:grid;grid-template-rows:0fr;width:100%;transition:grid-template-rows .65s cubic-bezier(.4,.15,.2,1)}
+.fazit-box.unlocked .fazit-reveal{grid-template-rows:1fr}
+.fazit-reveal-inner{overflow:hidden;min-height:0;display:flex;flex-direction:column;align-items:center;gap:12px}
+.fazit-reveal-inner>*{opacity:0;transform:translateY(10px);transition:opacity .55s ease,transform .55s ease}
+.fazit-box.unlocked .fazit-reveal-inner>*{opacity:1;transform:none}
+.fazit-box.unlocked .fazit-reveal-inner>*:nth-child(1){transition-delay:.30s}
+.fazit-box.unlocked .fazit-reveal-inner>*:nth-child(2){transition-delay:.55s}
+.fazit-box.unlocked .fazit-reveal-inner>*:nth-child(3){transition-delay:.80s}
+@media (prefers-reduced-motion:reduce){.fazit-label,.fazit-reveal,.fazit-reveal-inner>*{transition-duration:.01ms!important}}
 .ek-col{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:180px;padding:6px 18px}
 .ek-col .ek-label{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .ek-col .ek-val{font-family:var(--serif);font-size:46px;font-weight:700;color:var(--muted);line-height:1.05;margin:6px 0 2px}
@@ -771,11 +787,16 @@ footer a:hover{color:var(--jade)}
         </div>
       </div>
     </div>
-    <div class="ek-highlight" style="flex-direction:column;text-align:center;gap:12px">
-      <span class="ek-label" style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--true-blue)">Das Fazit</span>
-      <p style="font-size:19px;line-height:1.5;max-width:720px;margin:0"><b>Am Ende zählt die Eigenkapital-Rendite.</b> Die durchschnittliche Wertsteigerung deutscher Immobilien liegt langfristig bei rund <b>2 % pro Jahr</b> – klingt unspektakulär. Aber weil Bank, Finanzamt, Mieter und Inflation zusammenwirken, wird daraus bei guten Objekten oft eine Eigenkapital-Rendite von <b>über 10 %</b>. Das schafft <em style="font-style:normal;color:var(--true-blue)">kein ETF</em> und keine andere Anlageform mit vergleichbarem Risiko.</p>
-      <p style="font-size:14.5px;color:var(--muted);max-width:720px;margin:0">Kein Versprechen – der Beweis steht unten: Rechnen Sie es in 2 Minuten selbst nach. <span style="opacity:.8">(Wertsteigerung: Deutsche Bundesbank, 1970–2024.)</span></p>
-      <a class="btn btn-jade btn-lg" href="#start" style="margin-top:22px">Jetzt Immobilie durchrechnen</a>
+    <div class="ek-highlight fazit-box locked" id="fazitBox" style="flex-direction:column;text-align:center;gap:12px">
+      <span class="ek-label fazit-label" style="letter-spacing:.08em;text-transform:uppercase;color:var(--true-blue)">Das Fazit</span>
+      <span class="fazit-lockhint">Decken Sie alle vier Kräfte auf, um das Fazit zu sehen.</span>
+      <div class="fazit-reveal">
+        <div class="fazit-reveal-inner">
+          <p style="font-size:19px;line-height:1.5;max-width:720px;margin:0"><b>Am Ende zählt die Eigenkapital-Rendite.</b> Die durchschnittliche Wertsteigerung deutscher Immobilien liegt langfristig bei rund <b>2 % pro Jahr</b> – klingt unspektakulär. Aber weil Bank, Finanzamt, Mieter und Inflation zusammenwirken, wird daraus bei guten Objekten oft eine Eigenkapital-Rendite von <b>über 10 %</b>. Das schafft <em style="font-style:normal;color:var(--true-blue)">kein ETF</em> und keine andere Anlageform mit vergleichbarem Risiko.</p>
+          <p style="font-size:14.5px;color:var(--muted);max-width:720px;margin:0">Kein Versprechen – der Beweis steht unten: Rechnen Sie es in 2 Minuten selbst nach. <span style="opacity:.8">(Wertsteigerung: Deutsche Bundesbank, 1970–2024.)</span></p>
+          <a class="btn btn-jade btn-lg" href="#start" style="margin-top:22px">Jetzt Immobilie durchrechnen</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -2278,8 +2299,21 @@ document.querySelectorAll(".choice").forEach(function(c){
 
 /* ---------- Kräfte-Karten: Klick/Tap zum Aufdecken ---------- */
 (function(){
-  document.querySelectorAll('.kflip').forEach(function(el){
-    function tog(){ el.classList.toggle('on'); }
+  var cards = document.querySelectorAll('.kflip');
+  var fazit = document.getElementById('fazitBox');
+  var unlocked = false;
+  function check(){
+    if(unlocked || !fazit) return;
+    var allOn = true;
+    cards.forEach(function(c){ if(!c.classList.contains('on')) allOn = false; });
+    if(allOn){
+      unlocked = true;
+      fazit.classList.remove('locked');
+      fazit.classList.add('unlocked');
+    }
+  }
+  cards.forEach(function(el){
+    function tog(){ el.classList.toggle('on'); check(); }
     el.addEventListener('click',tog);
     el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); tog(); } });
   });
