@@ -471,8 +471,11 @@ table.vgl td:first-child,table.vgl th:first-child{text-align:left}
             <div style="grid-column:1/-1;border-top:1px dashed var(--border);padding-top:12px;margin-top:4px">
               <label class="check"><input type="checkbox" id="familie">
                 <span><b>Kann Sie jemand aus Ihrer Familie finanziell unterstützen?</b>
-                <small>Das benötigte Eigenkapital kann als Privatdarlehen bereitgestellt oder geschenkt werden — der Kunde startet dann ohne eigenen Kapitaleinsatz.</small></span></label>
+                <small>Die Familie kann das benötigte Eigenkapital ganz oder teilweise beisteuern — als Privatdarlehen oder als Schenkung. Der Rest bleibt eigenes Eigenkapital.</small></span></label>
               <div id="familieFields" style="display:none;margin-top:12px">
+                <div class="field" style="max-width:320px;margin-bottom:14px"><label><b>Beitrag der Familie</b><span class="unit">€</span></label>
+                  <input type="text" inputmode="numeric" autocomplete="off" id="familieBetrag">
+                  <div class="hint" id="familieBetragHint"></div></div>
                 <div style="display:flex;gap:24px;flex-wrap:wrap;margin-bottom:2px">
                   <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.92rem;font-weight:600;color:var(--ink)"><input type="radio" name="famModus" id="famDarlehen" value="darlehen"> Eigenkapital über Privatdarlehen finanzieren</label>
                   <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.92rem;font-weight:600;color:var(--ink)"><input type="radio" name="famModus" id="famSchenkung" value="schenkung"> Eigenkapital wird geschenkt</label>
@@ -670,7 +673,7 @@ table.vgl td:first-child,table.vgl th:first-child{text-align:left}
         <p><b>AfA:</b> Bemessungsgrundlage = (Kaufpreis + aktivierte Erwerbsnebenkosten) × Gebäudeanteil. Linear 2 % / 2,5 % / 3 % je nach Fertigstellungsjahr; degressiv 5 % (§ 7 Abs. 5a EStG) für Neubau mit Kaufvertrag zwischen 10/2023 und 9/2029 bei Erwerb im Fertigstellungsjahr, mit automatischem Wechsel zur linearen Rest-AfA, sobald diese günstiger ist. Alternativ individueller Satz bei kürzerer tatsächlicher Restnutzungsdauer per Gutachten (§ 7 Abs. 4 S. 2 EStG) — Anerkennung durch das Finanzamt vorausgesetzt.</p>
         <p><b>Sanierung:</b> Eingabe und Finanzierung brutto (inkl. 19 % USt — bei umsatzsteuerfreier Wohnraumvermietung gibt es keinen Vorsteuerabzug). Die 15-%-Grenze des § 6 Abs. 1 Nr. 1a EStG wird auf den Nettowert geprüft: Liegen die Nettokosten der ersten drei Jahre bis 15 % der Anschaffungskosten des Gebäudes, ist der Bruttobetrag sofort abziehbarer Erhaltungsaufwand — wahlweise gleichmäßig auf 2–5 Jahre verteilt (§ 82b EStDV). Darüber gelten die gesamten Kosten als anschaffungsnahe Herstellungskosten und erhöhen nur die AfA-Bemessungsgrundlage. Im Modell erhöht die Sanierung die Wertbasis der Immobilie.</p>
         <p><b>Mietanpassung:</b> Optionale zusätzliche Mieterhöhungen (z. B. Anpassung an die ortsübliche Vergleichsmiete nach Sanierung) wirken ab dem gewählten Jahr dauerhaft und multiplikativ zur laufenden Mietsteigerung; je Schritt maximal 20 % (Kappungsgrenze § 558 BGB — in Städten mit angespanntem Wohnungsmarkt gelten 15 %; Mietspiegel und Sperrfristen im Einzelfall prüfen).</p>
-        <p><b>Familiäre Unterstützung des Eigenkapitals:</b> Das benötigte Eigenkapital kann über ein <b>Privatdarlehen</b> aus der Familie finanziert werden — Kreditsumme = benötigtes Eigenkapital, annuitätische Rate aus Zins + anfänglicher Tilgung. Die Zinsen sind als Werbungskosten angesetzt; das setzt voraus, dass das Darlehen nachweisbar für den Erwerb des Vermietungsobjekts verwendet wird (Verwendungszusammenhang dokumentieren, fremdübliche Konditionen, nicht mit privaten Ausgaben vermischen). Eine noch offene Restschuld wird beim Verkauf vom Endvermögen abgezogen. Alternativ kann das Eigenkapital <b>geschenkt</b> werden: dann fallen kein Zins, keine Tilgung und keine Restschuld an, und es erscheint nicht als Darlehen — der Kunde trägt nur den laufenden Eigenaufwand (Schenkungsteuer und Freibeträge sind nicht berücksichtigt). In beiden Fällen startet der Kunde ohne eigenen Kapitaleinsatz und der ETF-Vergleich erhält identische Zahlungen.</p>
+        <p><b>Familiäre Unterstützung des Eigenkapitals:</b> Das benötigte Eigenkapital kann über ein <b>Privatdarlehen</b> aus der Familie finanziert werden — Kreditsumme = benötigtes Eigenkapital, annuitätische Rate aus Zins + anfänglicher Tilgung. Die Zinsen sind als Werbungskosten angesetzt; das setzt voraus, dass das Darlehen nachweisbar für den Erwerb des Vermietungsobjekts verwendet wird (Verwendungszusammenhang dokumentieren, fremdübliche Konditionen, nicht mit privaten Ausgaben vermischen). Eine noch offene Restschuld wird beim Verkauf vom Endvermögen abgezogen. Alternativ kann das Eigenkapital <b>geschenkt</b> werden: dann fallen kein Zins, keine Tilgung und keine Restschuld an, und es erscheint nicht als Darlehen (Schenkungsteuer und Freibeträge sind nicht berücksichtigt). Der <b>Beitrag der Familie</b> ist frei wählbar — sie kann das gesamte benötigte Eigenkapital oder nur einen Teil übernehmen; den Rest bringt der Kunde als eigenes Eigenkapital ein. Der ETF-Vergleich erhält in jedem Fall identische <i>eigene</i> Zahlungen (eigenes Startkapital + laufender Eigenaufwand).</p>
         <p><b>Vereinfachungen:</b> Sollzins konstant über die Gesamtlaufzeit (Anschlussfinanzierung zum gleichen Satz); Verluste aus Vermietung im Jahr der Entstehung voll mit dem übrigen Einkommen verrechenbar; Basiszins der Vorabpauschale konstant; keine Vorfälligkeitsentschädigungen; Mietausfall/Leerstand nicht separat angesetzt (bei Bedarf über einen Abschlag bei der Kaltmiete berücksichtigen); keine Sonderumlagen oder Instandhaltung über die Rücklage hinaus; keine Verkaufskosten beim Exit.</p>
         <p><b>Ehegattenschaukel (rollierende Strategie, vereinfachte Modellierung):</b> Zwei Übertragungen zum jeweiligen Verkehrswert an den Ehepartner, im Timing an der Darlehenslaufzeit ausgerichtet (Verkauf am Ende = Volltilgungsjahr, mindestens Jahr 30; Übertragungen bei Exit−20 und Exit−10, jede Haltezeit ≥ 10 Jahre) — notariell beurkundet, ohne Grunderwerbsteuer (§ 3 Nr. 4 GrEStG) und nach Ablauf der jeweils zehnjährigen Spekulationsfrist steuerfrei (§ 23 EStG). Der Erwerber finanziert jeweils zu 100 % zu den gleichen Konditionen (voller Schuldzinsenabzug) und schreibt vom Verkehrswert neu ab. Der dadurch höhere Kapitaldienst der aufgestockten Darlehen wird aus der freigesetzten Liquidität selbst getragen, der Rest arbeitet im Überschuss-Depot mit den ETF-Annahmen weiter — der Eigenaufwand des Kunden und damit der ETF-Vergleich bleiben deshalb unverändert gegenüber der Variante ohne Schaukel. Verkauf an Dritte am Ende der Strategie (Volltilgungsjahr, mindestens Jahr 30), das restliche Darlehen wird abgelöst. Das zu versteuernde Einkommen wird unverändert fortgeschrieben. Hinweis: Wird die freigesetzte Liquidität statt ins Depot in weitere Immobilien reinvestiert, kann die Rendite höher ausfallen als in der Depot-Variante (erneuter Hebel, frische AfA und Zinsabzug). Die Höhe hängt stark vom Folgeobjekt, dessen Finanzierung und dem verfügbaren zvE ab (der Steuervorteil ist durch das Einkommen gedeckelt, die freie Liquidität muss als Eigenkapital ein deutlich größeres Objekt tragen) und wird daher bewusst nicht beziffert. Eine Zusammenveranlagung ist keine Eingangsvoraussetzung — entscheidend ist die bestehende Ehe zum Zeitpunkt der jeweiligen Übertragung (Kauf vor der Heirat ist möglich). Übrige Voraussetzungen: Alleineigentum des Übertragenden, fremdübliche Konditionen, tatsächliche Kaufpreiszahlung. <b>Umsetzung nur in Abstimmung mit dem Steuerberater.</b></p>
         <p style="margin-bottom:0"><b>Wichtig:</b> Modellrechnung auf Basis von Annahmen — keine Steuer-, Rechts- oder Anlageberatung und keine Garantie für künftige Entwicklungen. Frühere oder simulierte Wertentwicklungen sind kein Indikator für die Zukunft.</p>
@@ -1172,11 +1175,15 @@ function simuliere(prop, s) {
      ohne eigenen Kapitaleinsatz — der ETF-Vergleich ebenso (identische Zahlungen). */
   const pkAktiv = !!s.privatkredit && ek > 0;
   /* Alternativ: Das Eigenkapital wird von der Familie geschenkt — kein Darlehen,
-     kein Zins, keine Tilgung, keine Restschuld. Der Kunde bringt kein eigenes
-     Kapital ein; in der Rechnung taucht nichts als Privatdarlehen auf. */
+     kein Zins, keine Tilgung, keine Restschuld. In der Rechnung taucht nichts als
+     Privatdarlehen auf. */
   const schenkungAktiv = !!s.schenkung && !pkAktiv && ek > 0;
-  const eigenEinsatz = (pkAktiv || schenkungAktiv) ? 0 : ek;
-  const dPK = pkAktiv ? darlehen(ek, s.pkZins || 0, Math.max(0.005, s.pkTilgung || 0)) : null;
+  /* Die Familie steuert nur einen Teilbetrag bei (Standard, wenn nicht gesetzt:
+     das gesamte benötigte EK); der Rest bleibt eigenes Eigenkapital. */
+  const famBetrag = (pkAktiv || schenkungAktiv)
+    ? Math.min(ek, Math.max(0, s.familieBetrag != null ? s.familieBetrag : ek)) : 0;
+  const eigenEinsatz = ek - famBetrag;
+  const dPK = (pkAktiv && famBetrag > 0) ? darlehen(famBetrag, s.pkZins || 0, Math.max(0.005, s.pkTilgung || 0)) : null;
 
   /* Ehegattenschaukel als rollierende Strategie (keine Veranlagungs-Voraussetzung —
      entscheidend ist die Ehe zum Zeitpunkt der Übertragung; Heirat kann nach dem
@@ -1391,7 +1398,7 @@ function simuliere(prop, s) {
 
   return {
     nk, nkAktiviert, notarWK, gesamtkosten, ek, eigenEinsatz, vermoegen0: eigenEinsatz - nk,
-    pkAktiv, schenkungAktiv, pkRate: dPK ? dPK.rate : 0, pkLaufzeit: dPK ? dPK.laufzeitJahre : 0,
+    pkAktiv, schenkungAktiv, famBetrag, pkRate: dPK ? dPK.rate : 0, pkLaufzeit: dPK ? dPK.laufzeitJahre : 0,
     darlehenBetrag: darlehen1Betrag,
     sanierung, sanNetto, sanAlsHK, sanGrenze, investSumme,
     rate: d1.rate, laufzeit: d1.laufzeitJahre, payoffJahr, H,
@@ -1451,7 +1458,7 @@ function defaultSettings() {
     mietInfl: 0.026, mietReal: 0.001, wertInfl: 0.026, wertReal: 0.001, // Steigerungen = Inflation + real
     kostenSteig: 0.026, verkaufskosten: 0,
     mietAnpassung: false, mietSchritte: [{ jahr: 2, prozent: 20 }],
-    familie: false, privatkredit: false, schenkung: false, pkZins: 0.04, pkTilgung: 0.0815, // 4 % + 8,15 % ≈ getilgt nach 10 Jahren
+    familie: false, privatkredit: false, schenkung: false, familieBetrag: 0, pkZins: 0.04, pkTilgung: 0.0815, // 4 % + 8,15 % ≈ getilgt nach 10 Jahren
     etfRendite: 0.07, etfKosten: 0.002, basiszins: 0.032, teilfrei: 0.30, spbModus: 'auto',
     schaukel: false, schaukelKosten: 0.015
   };
@@ -1519,6 +1526,7 @@ function pushInputs() {
   $('mietStepsWrap').style.display = S.mietAnpassung ? '' : 'none';
   $('familie').checked = S.familie;
   $('familieFields').style.display = S.familie ? '' : 'none';
+  $('familieBetrag').value = fmtE.format(S.familieBetrag || 0);
   $('famDarlehen').checked = S.familie && S.privatkredit;
   $('famSchenkung').checked = S.familie && S.schenkung;
   $('pkFields').style.display = (S.familie && S.privatkredit) ? 'grid' : 'none';
@@ -1580,12 +1588,15 @@ function wireInputs() {
     $('pkFields').style.display = (S.familie && S.privatkredit) ? 'grid' : 'none';
     $('schenkungHint').style.display = (S.familie && S.schenkung) ? '' : 'none';
   };
+  const benoetigtesEK = () => { const p = toProp(OBJ); return Math.round(ekEffektiv(p, nebenkosten(p))); };
   $('familie').addEventListener('input', () => {
     S.familie = $('familie').checked;
     if (S.familie && !S.privatkredit && !S.schenkung) S.privatkredit = true; // Standard: Privatdarlehen
+    if (S.familie && !(S.familieBetrag > 0)) { S.familieBetrag = benoetigtesEK(); $('familieBetrag').value = fmtE.format(S.familieBetrag); } // Vorbelegung: gesamtes EK
     if (!S.familie) { S.privatkredit = false; S.schenkung = false; }
     syncFamilie(); onChange();
   });
+  wireTausend($('familieBetrag'), v => { S.familieBetrag = v; onChange(); });
   $('famDarlehen').addEventListener('input', () => {
     S.privatkredit = true; S.schenkung = false; syncFamilie(); onChange();
   });
@@ -1805,18 +1816,27 @@ function renderLive() {
   const d1 = darlehen(dl, S.sollzins, Math.max(0.005, S.tilgung));
   const famPK = S.familie && S.privatkredit && ek > 0;
   const famSchenk = S.familie && S.schenkung && ek > 0;
+  const famBetrag = (famPK || famSchenk) ? Math.min(ek, Math.max(0, S.familieBetrag || 0)) : 0;
+  const eigenEK = ek - famBetrag;
+  if (S.familie) {
+    $('familieBetragHint').innerHTML = `Benötigtes Eigenkapital gesamt: <b>${euro(ek)}</b>. ` +
+      (famBetrag >= ek ? 'Die Familie trägt das gesamte Eigenkapital — 0 € eigener Einsatz.'
+        : famBetrag <= 0 ? 'Aktuell 0 € — der Kunde bringt das gesamte Eigenkapital selbst ein.'
+        : `Davon Familie <b>${euro(famBetrag)}</b>, eigenes Eigenkapital <b>${euro(eigenEK)}</b>.`) +
+      ((S.familieBetrag || 0) > ek ? ` (Beitrag über dem benötigten EK — auf ${euro(ek)} begrenzt.)` : '');
+  }
   let pkInfo = '';
-  if (famPK) {
-    const dpk = darlehen(ek, S.pkZins, Math.max(0.005, S.pkTilgung));
-    pkInfo = `<span>Privatdarlehen <b>${euro(ek)}</b> · Rate <b>${euro(dpk.rate)}</b>/M. · ~<b>${dpk.laufzeitJahre} J.</b></span>`;
-  } else if (famSchenk) {
-    pkInfo = `<span>Eigenkapital geschenkt <b>${euro(ek)}</b> · kein Zins/Tilgung</span>`;
+  if (famPK && famBetrag > 0) {
+    const dpk = darlehen(famBetrag, S.pkZins, Math.max(0.005, S.pkTilgung));
+    pkInfo = `<span>Privatdarlehen <b>${euro(famBetrag)}</b> · Rate <b>${euro(dpk.rate)}</b>/M. · ~<b>${dpk.laufzeitJahre} J.</b></span>`;
+  } else if (famSchenk && famBetrag > 0) {
+    pkInfo = `<span>Familie schenkt <b>${euro(famBetrag)}</b> · kein Zins/Tilgung</span>`;
   }
   $('finInfo').innerHTML =
     `<span>Darlehen <b>${euro(dl)}</b></span>` +
     `<span>Rate <b>${euro(d1.rate)}</b> / Monat</span>` +
     `<span>Volltilgung nach <b>${d1.laufzeitJahre} Jahren</b></span>` +
-    `<span>Eigenkapital <b>${(famPK || famSchenk) ? '0 € eigener Einsatz' : euro(ek)}</b></span>` + pkInfo;
+    `<span>Eigenkapital <b>${euro(eigenEK)} eigener Einsatz${famBetrag > 0 ? ' + ' + euro(famBetrag) + ' Familie' : ''}</b></span>` + pkInfo;
   const abg = abgeltungSatz(S.kirche);
   $('etfInfo').innerHTML =
     `<span>Abgeltungsteuer inkl. Soli${S.kirche ? '/KiSt' : ''}: <b>${pct(abg, 3)}</b></span>` +
@@ -1849,17 +1869,19 @@ function renderAuswertung() {
   const erspar10 = R.base.jahre.slice(0, 10).reduce((x, r2) => x + Math.max(0, r2.steuerEffekt), 0) / Math.min(10, R.base.jahre.length);
   const szB = schaukelAn ? R.mitSchaukel.szTilg : R.base.szTilg;
   const j1txt = `Jahr 1: ${j1.cfMonat < 0 ? euro(-j1.cfMonat) + ' Aufwand' : euro(j1.cfMonat) + ' Überschuss'}/M.`;
+  const famB = R.base.famBetrag || 0;
+  const eigenTxt = R.base.eigenEinsatz > 0 ? ` + ${euro(R.base.eigenEinsatz)} eigen` : ' — 0 € eigen';
   const ekSub = R.base.pkAktiv
-    ? `EK ${euro(R.base.ek)} über Privatdarlehen — 0 € eigener Einsatz`
+    ? `${euro(famB)} über Privatdarlehen${eigenTxt}`
     : R.base.schenkungAktiv
-    ? `EK ${euro(R.base.ek)} geschenkt — 0 € eigener Einsatz`
+    ? `${euro(famB)} geschenkt${eigenTxt}`
     : (S.ekModus === 'fest' ? 'fester Betrag'
       : 'Kaufnebenkosten' + (S.ekZusatz ? ` + ${S.ekZusatzPct} % Zusatz-EK` : ''));
   const kpi = [
     j2.cfMonat < 0
       ? { num: euro(-j2.cfMonat), cls: '', lbl: 'Mtl. Eigenaufwand nach Steuern (ab Jahr 2)', sub: j1txt }
       : { num: euro(j2.cfMonat), cls: 'plus', lbl: 'Mtl. Überschuss nach Steuern (ab Jahr 2)', sub: j1txt },
-    { num: (R.base.pkAktiv || R.base.schenkungAktiv) ? '0 €' : euro(R.base.ek), cls: '', lbl: 'Eigenkapital-Einsatz', sub: ekSub },
+    { num: euro(R.base.eigenEinsatz), cls: '', lbl: 'Eigenkapital-Einsatz', sub: ekSub },
     { num: euro(erspar10), cls: 'plus', lbl: 'Ø Steuerersparnis pro Jahr', sub: `erste 10 Jahre · Jahr 1: ${euro(Math.max(0, j1.steuerEffekt))}` },
     { num: R.base.sz10.irrImmo != null ? pct(R.base.sz10.irrImmo, 1) : '–', cls: '', lbl: 'EK-Rendite · Verkauf nach 10 J.', sub: `ETF-Sparplan: ${R.base.sz10.irrEtf != null ? pct(R.base.sz10.irrEtf, 1) : '–'} (${pp((R.base.sz10.irrImmo || 0) - (R.base.sz10.irrEtf || 0))})` },
     schaukelAn
@@ -1876,8 +1898,8 @@ function renderAuswertung() {
     schaukelAn ? `Verkauf im Jahr ${szB.jahre} — Ehegattenschaukel` : `Verkauf nach Volltilgung — Jahr ${szB.jahre}`,
     schaukelAn ? `Übertragung an den Ehepartner nach Jahr ${R.mitSchaukel.schaukelInfo.t1} & ${R.mitSchaukel.schaukelInfo.t2} · Verkauf steuerfrei (§ 23 EStG)` : 'Objekt ist schuldenfrei, dann Verkauf');
 
-  $('schenkungHinweis').innerHTML = R.base.schenkungAktiv
-    ? `<div class="callout plain" style="margin-top:14px;border-color:var(--jade-60)"><b>EK als Schenkung — Rendite differenziert betrachten:</b> Die ausgewiesene Eigenkapitalrendite bezieht sich auf <b>0 € eigenen Kapitaleinsatz</b> und fällt deshalb besonders hoch aus. Das Eigenkapital (${euro(R.base.ek)}) wird ja trotzdem eingesetzt — nur eben von der Familie (Schenkung) statt von Ihnen selbst. Die Kennzahl zeigt also die Verzinsung Ihres tatsächlich eingesetzten <i>eigenen</i> Geldes (nur der laufende Eigenaufwand), nicht die Rendite auf das gesamte investierte Kapital inklusive der Schenkung. Für einen Vergleich mit dem ETF-Sparplan, der ebenfalls ohne Anfangskapital startet, ist das stimmig — bei der reinen Objektbeurteilung sollte das geschenkte Eigenkapital aber mitgedacht werden.</div>`
+  $('schenkungHinweis').innerHTML = (R.base.schenkungAktiv && R.base.famBetrag > 0)
+    ? `<div class="callout plain" style="margin-top:14px;border-color:var(--jade-60)"><b>Geschenktes Eigenkapital — Rendite differenziert betrachten:</b> Von den ${euro(R.base.ek)} Eigenkapital werden <b>${euro(R.base.famBetrag)}</b> geschenkt${R.base.eigenEinsatz > 0 ? `, ${euro(R.base.eigenEinsatz)} bringen Sie selbst ein` : ' (0 € eigener Einsatz)'}. Die ausgewiesene Eigenkapitalrendite bezieht sich nur auf Ihr <i>tatsächlich eigenes</i> Geld${R.base.eigenEinsatz > 0 ? '' : ' (nur der laufende Eigenaufwand)'} — das geschenkte Eigenkapital wird ja trotzdem eingesetzt, nur eben von der Familie statt von Ihnen selbst. Für den Vergleich mit dem ETF-Sparplan (identische eigene Zahlungen) ist das stimmig; bei der reinen Objektbeurteilung sollte das geschenkte Kapital mitgedacht werden.</div>`
     : '';
 
   renderSchaukel(schaukelAn);
@@ -2343,9 +2365,11 @@ function erstelleHandout() {
   sec('Die Finanzierung');
   kvZeile('Bankdarlehen', euro(B.darlehenBetrag), 'Monatliche Rate', euro(B.rate));
   kvZeile('Sollzins', pct(S.sollzins, 2) + ' p.a.', 'Anfängliche Tilgung', pct(S.tilgung, 2) + ' p.a.');
-  kvZeile('Eigenkapital', B.pkAktiv ? euro(B.ek) + ' über Privatdarlehen' : B.schenkungAktiv ? euro(B.ek) + ' geschenkt' : euro(B.ek),
-    (B.pkAktiv || B.schenkungAktiv) ? 'Eigener Kapitaleinsatz' : 'EK-Herkunft',
-    (B.pkAktiv || B.schenkungAktiv) ? '0 €' : (S.ekModus === 'fest' ? 'fester Betrag' : 'Nebenkosten' + (S.ekZusatz ? ' + ' + S.ekZusatzPct + ' % Zusatz' : '')));
+  const famHerkunft = B.pkAktiv ? euro(B.famBetrag) + ' Familie (Privatdarlehen)' : B.schenkungAktiv ? euro(B.famBetrag) + ' Familie (Schenkung)' : '';
+  kvZeile('Eigenkapital gesamt', euro(B.ek), 'Eigener Kapitaleinsatz', euro(B.eigenEinsatz));
+  kvZeile('EK-Herkunft', (B.pkAktiv || B.schenkungAktiv) && B.famBetrag > 0
+    ? famHerkunft + (B.eigenEinsatz > 0 ? ' + ' + euro(B.eigenEinsatz) + ' eigen' : '')
+    : (S.ekModus === 'fest' ? 'fester Betrag' : 'Kaufnebenkosten' + (S.ekZusatz ? ' + ' + S.ekZusatzPct + ' % Zusatz' : '')));
   if (B.pkAktiv) kvZeile('Privatdarlehen-Rate', euro(B.pkRate) + ' / Monat (~' + B.pkLaufzeit + ' J.)', 'Zins Privatdarlehen', pct(S.pkZins, 2));
   y -= 8;
 
