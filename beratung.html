@@ -429,6 +429,13 @@ section{padding:84px 0;scroll-margin-top:76px}
 .ok-guide p{font-size:14px;color:var(--muted);line-height:1.55;margin:0 0 16px}
 .ok-guide .btn{padding:13px 24px;font-size:15px}
 .ok-guide-note{display:block;font-size:11.5px;color:var(--muted);margin-top:11px}
+.ok-gift{position:relative;margin:26px auto 0;max-width:520px;background:linear-gradient(180deg,rgba(159,232,226,.16),#fff 70%);border:1.5px solid var(--jade);border-radius:18px;padding:24px 22px 20px;text-align:center;box-shadow:0 12px 30px -18px rgba(44,81,127,.5)}
+.ok-gift-ribbon{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-deep);background:var(--grad-cta);border-radius:999px;padding:5px 14px;margin-bottom:10px}
+.ok-gift h4{font-family:var(--sans);font-size:18px;font-weight:800;color:var(--ink);margin:0 0 6px}
+.ok-gift p{font-size:14px;color:var(--muted);line-height:1.55;margin:0 0 16px}
+.ok-gift .btn{padding:13px 24px;font-size:15px}
+.ok-gift-note{display:block;font-size:11.5px;color:var(--muted);margin-top:11px}
+.ok-guide{margin-top:18px}
 .form-err{display:none;margin-top:14px;background:#FDECEE;border:1px solid var(--error);color:#8f1626;border-radius:12px;padding:12px 15px;font-size:13.5px}
 .cal-wrap{min-height:640px}
 /* Calendly fest verankert: feste Höhe, hoch genug für die komplette
@@ -2701,6 +2708,18 @@ function _sendLead(mode){
           fo.innerHTML = (j.confirm===false)
             ? '<div class="big">✓</div><h3>Vielen Dank!</h3><p>Ihre Anfrage ist angekommen – ich melde mich schnellstmöglich bei Ihnen.<br>Sie möchten nicht warten? <a href="tel:+4916092085192" style="display:inline;color:var(--true-blue);font-weight:700">0160 92085192</a></p>'
             : '<div class="big">✉️</div><h3>Fast geschafft – bitte E-Mail bestätigen</h3><p>Ich habe Ihnen eine E-Mail geschickt. Bestätigen Sie darin kurz Ihre Rückrufbitte – danach melde ich mich persönlich. Bitte ggf. auch den Spam-Ordner prüfen.</p>';
+          fo.insertAdjacentHTML("beforeend",
+            '<div class="ok-gift">'+
+            '<span class="ok-gift-ribbon">🎁 Ein Geschenk für Sie</span>'+
+            '<h4>Ihr Immobilie-als-Kapitalanlage-Rechner</h4>'+
+            '<p>Die komplette Vollversion zum Behalten – alles, was Sie künftig brauchen, um die Rendite einer Kapitalanlage-Immobilie selbst zu berechnen. Einmal speichern, jederzeit offline nutzbar, ohne Anmeldung.</p>'+
+            '<a class="btn btn-jade" id="okCalcBtn" href="immobilien-rechner-robin-jaenicke.html" download>Rechner herunterladen</a>'+
+            '<span class="ok-gift-note">HTML-Datei · einfach speichern und im Browser öffnen</span>'+
+            '</div>');
+          var cb=document.getElementById("okCalcBtn");
+          if(cb) cb.addEventListener("click",function(){
+            try{ if(window.dataLayer) dataLayer.push({event:"rechner_download",variante:"geschenk_nach_rueckruf"}); }catch(_){}
+          });
           if(window.MKI_PATH==="unsicher"){
             fo.insertAdjacentHTML("beforeend",
               '<div class="ok-guide">'+
