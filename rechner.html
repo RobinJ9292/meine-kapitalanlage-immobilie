@@ -2941,5 +2941,38 @@ renderLive();
   });
 })();
 </script>
+
+<!-- ============================================================
+     ABSENDER-BLOCK fuer den Download / die eigenstaendige Nutzung.
+     Wird NUR angezeigt, wenn die Datei direkt geoeffnet wird –
+     eingebettet auf der Landingpage bleibt er unsichtbar.
+     Dadurch gibt es nur EINE Rechner-Datei: Aenderungen wirken
+     automatisch auf Landingpage UND Download.
+     ============================================================ -->
+<div id="mkiBrandFooter" style="display:none">
+  <div style="max-width:960px;margin:44px auto 30px;padding:22px 24px 4px;border-top:1px solid #dbe6e6;font-family:'Open Sans',-apple-system,'Segoe UI',sans-serif;text-align:center;color:#5E718A;font-size:13.5px;line-height:1.65">
+    <p style="margin:0 0 6px;font-size:15px"><b style="color:#22354C">Ihr pers&ouml;nlicher Kapitalanlage-Rechner</b></p>
+    <p style="margin:0 0 14px">Diese Datei geh&ouml;rt Ihnen. Speichern Sie sie ab &ndash; sie funktioniert jederzeit, auch offline, ohne Anmeldung und ohne Tracking.</p>
+    <p style="margin:0 0 14px">Fragen zu Ihrer konkreten Rechnung? Melden Sie sich einfach &ndash; ich rechne Ihr Objekt gern gemeinsam mit Ihnen durch.</p>
+    <p style="margin:0 0 18px">
+      <a href="https://meine-kapitalanlage-immobilie.de/beratung" style="color:#2C517F;font-weight:700;text-decoration:none">meine-kapitalanlage-immobilie.de</a>
+      &nbsp;&middot;&nbsp;
+      <a href="tel:+4916092085192" style="color:#2C517F;font-weight:700;text-decoration:none">0160&nbsp;92085192</a>
+      &nbsp;&middot;&nbsp; Robin J&auml;nicke
+    </p>
+    <p style="margin:0 0 18px;font-size:11px;color:#8092a6">Modellrechnung &ndash; kein Versprechen und keine individuelle Steuer- oder Anlageberatung.</p>
+  </div>
+</div>
+<script>
+  /* Nur sichtbar, wenn NICHT in einem iframe (also beim Download/Direktaufruf) */
+  (function(){
+    try{
+      if(window.self === window.top){
+        var f = document.getElementById('mkiBrandFooter');
+        if(f) f.style.display = '';
+      }
+    }catch(e){}
+  })();
+</script>
 </body>
 </html>

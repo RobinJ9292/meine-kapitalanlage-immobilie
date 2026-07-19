@@ -2449,7 +2449,11 @@ function mkiWaLink(text, url){
   return "https://wa.me/?text=" + encodeURIComponent(text + " " + url);
 }
 function mkiGeschenke(container, variante, mitGuide){
-  var calcFile  = "immobilien-rechner-robin-jaenicke.html";
+  /* Der Download zeigt bewusst auf DIESELBE Datei, die auch eingebettet wird.
+     So kann die Geschenk-Fassung nie vom Original abweichen. Der zweite Wert
+     im download-Attribut bestimmt nur den Dateinamen beim Speichern. */
+  var calcFile  = "rechner.html";
+  var calcName  = "Immobilien-Rechner-Robin-Jaenicke.html";
   var guideFile = "leitfaden-immobilie-kapitalanlage-2026.pdf";
   var waCalc  = mkiWaLink("Schau mal, mit diesem Rechner kannst du die Rendite einer Kapitalanlage-Immobilie komplett selbst durchrechnen:", MKI_BASE + calcFile);
   var waGuide = mkiWaLink("Der Leitfaden „Die ehrliche Rechnung“ erklärt Immobilien als Kapitalanlage verständlich – ohne Verkaufsgerede:", MKI_BASE + guideFile);
@@ -2460,7 +2464,7 @@ function mkiGeschenke(container, variante, mitGuide){
     '<h4>Ihr Immobilie-als-Kapitalanlage-Rechner</h4>'+
     '<p>Die komplette Vollversion zum Behalten – alles, was Sie künftig brauchen, um die Rendite einer Kapitalanlage-Immobilie selbst zu berechnen. Einmal speichern, jederzeit offline nutzbar, ohne Anmeldung.</p>'+
     '<div class="ok-actions">'+
-      '<a class="btn btn-jade ok-dl" href="'+calcFile+'" download>Rechner herunterladen</a>'+
+      '<a class="btn btn-jade ok-dl" href="'+calcFile+'" download="'+calcName+'">Rechner herunterladen</a>'+
       '<a class="btn ok-wa" href="'+waCalc+'" target="_blank" rel="noopener">'+MKI_WA_ICON+' Per WhatsApp teilen</a>'+
     '</div>'+
     '<span class="ok-gift-note">HTML-Datei · speichern und im Browser öffnen · dürfen Sie gern weitergeben</span>'+
