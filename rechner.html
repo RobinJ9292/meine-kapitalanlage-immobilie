@@ -336,6 +336,11 @@ table.vgl td:first-child,table.vgl th:first-child{text-align:left}
   html.schnell #page2 .sec-sub,
   html.schnell #page2 .panel-sub        { display:none !important; }
 
+  /* --- Unterlagen-Import (Drag & Drop) raus: auf der Landingpage
+         laden Kunden keine Exposes hoch, das gehoert in die Vollversion --- */
+  html.schnell #dropZone,
+  html.schnell #dzStatus                { display:none !important; }
+
   /* --- Ehegattenschaukel komplett raus (Parameter + Auswertung) --- */
   html.schnell #schaukelParams,
   html.schnell #schaukelBox             { display:none !important; }
