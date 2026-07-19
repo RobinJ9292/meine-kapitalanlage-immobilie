@@ -9,3 +9,4 @@ _leads/*.json
 
 # Interner Handoff, nicht deployen
 HANDOFF.md
+social-assets/
