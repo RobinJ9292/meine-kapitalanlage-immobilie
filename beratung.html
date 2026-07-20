@@ -235,8 +235,18 @@ section{padding:84px 0;scroll-margin-top:76px}
 .cmp-row:nth-child(odd):not(.head){background:var(--jade-20)}
 .cmp-cell{padding:16px 20px;font-size:14px;border-left:1px solid var(--line);line-height:1.55}
 .cmp-cell:first-child{border-left:none;font-weight:800;color:var(--true-blue);font-size:13.5px}
-.cmp2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
-.cmp2-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;box-shadow:0 1px 3px rgba(13,27,46,.05)}
+.cmp2{--c2w:min(560px,80%);display:flex;gap:14px;margin-top:8px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:4px 2px 16px}
+.cmp2::-webkit-scrollbar{display:none}
+.cmp2::after{content:"";flex:0 0 calc(50% - var(--c2w)/2 - 14px)}
+.cmp2::before{content:"";flex:0 0 calc(50% - var(--c2w)/2 - 14px)}
+.cmp2-nav{display:flex;justify-content:center;align-items:center;gap:16px;margin-top:2px}
+.cmp2-hint{text-align:center;font-size:13px;font-weight:600;color:var(--muted);margin-top:10px}
+.cmp2-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:18px;color:var(--true-blue);display:inline-flex;align-items:center;justify-content:center;transition:background .15s}
+.cmp2-btn:hover{background:var(--light-jade)}
+.cmp2-dots{display:flex;gap:8px}
+.cmp2-dot{width:9px;height:9px;border-radius:50%;background:var(--line);border:0;padding:0;cursor:pointer;transition:background .15s,transform .15s}
+.cmp2-dot.on{background:var(--true-blue);transform:scale(1.25)}
+.cmp2-card{flex:0 0 var(--c2w);scroll-snap-align:center;background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:var(--shadow-sm)}
 .cmp2-crit{font-weight:800;color:var(--true-blue);font-size:15.5px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--line)}
 .cmp2-opt{display:flex;gap:11px;margin-top:12px;font-size:14px;line-height:1.5}
 .cmp2-badge{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-weight:800;font-size:14px;flex-shrink:0;color:#fff;margin-top:1px}
@@ -259,22 +269,40 @@ section{padding:84px 0;scroll-margin-top:76px}
 
 /* USP / Eigene */
 .usps{background:#fff}
+/* "Was Sie nicht bekommen" – nacheinander aufleuchten */
+.nope li{position:relative;overflow:hidden;border-radius:11px;padding-top:7px;padding-bottom:7px;padding-right:12px;transition:background .5s ease,box-shadow .5s ease}
+.nope li::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 34%,rgba(159,232,226,.20) 50%,transparent 66%);transform:translateX(-130%)}
+.nope li.shine{background:rgba(159,232,226,.07);box-shadow:inset 0 0 0 1px rgba(159,232,226,.22)}
+.nope li.shine::after{animation:nopeSweep 1.3s ease}
+@keyframes nopeSweep{from{transform:translateX(-130%)}to{transform:translateX(130%)}}
 .usp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .usp{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:28px 22px;transition:transform .2s,box-shadow .2s}
-.kflip{perspective:1000px;height:262px;cursor:pointer;border-radius:var(--r)}
+.kflip{perspective:1000px;height:262px;cursor:pointer;border-radius:var(--r);--kf:var(--true-blue);--kf-soft:var(--jade-20)}
+.kflip:nth-child(1){--kf:#2C517F;--kf-soft:#EDF2F8}
+.kflip:nth-child(2){--kf:#1F7A6B;--kf-soft:#E9F5F2}
+.kflip:nth-child(3){--kf:#7A5B8F;--kf-soft:#F3EEF7}
+.kflip:nth-child(4){--kf:#B07A2B;--kf-soft:#FAF2E4}
 .kflip:focus-visible{outline:2px solid var(--jade);outline-offset:3px}
 .kflip-in{position:relative;width:100%;height:100%;transition:transform .55s cubic-bezier(.4,.15,.2,1);transform-style:preserve-3d}
 .kflip.on .kflip-in{transform:rotateY(180deg)}
 .kflip-face{position:absolute;inset:0;-webkit-backface-visibility:hidden;backface-visibility:hidden;border-radius:var(--r);padding:28px 22px;box-sizing:border-box;overflow:hidden;background:var(--paper);border:1px solid var(--line);display:flex;flex-direction:column}
-.kflip-front{align-items:center;justify-content:center;text-align:center;gap:10px;border:1.5px dashed var(--jade);background:var(--jade-20)}
-.kflip-back{transform:rotateY(180deg)}
-.kflip-num{font-family:var(--serif);font-size:40px;font-weight:800;color:rgba(44,81,127,.16);line-height:1}
-.kflip-front svg{width:30px;height:30px;stroke:var(--true-blue);stroke-width:1.5;fill:none}
-.kflip-hint{font-size:13px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--true-blue)}
-.kflip-back svg{width:44px;height:44px;stroke:var(--true-blue);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round;margin-bottom:14px;background:var(--jade-20);border-radius:14px;padding:9px}
+.kflip-front{align-items:center;justify-content:center;text-align:center;gap:10px;border:1.5px dashed var(--kf);background:var(--kf-soft)}
+.kflip-back{transform:rotateY(180deg);border-top:3px solid var(--kf)}
+.kflip-num{font-family:var(--serif);font-size:40px;font-weight:800;color:var(--kf);opacity:.22;line-height:1}
+.kflip-front svg{width:30px;height:30px;stroke:var(--kf);stroke-width:1.5;fill:none}
+.kflip-hint{font-size:13px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--kf)}
+.kflip-back svg{width:44px;height:44px;stroke:var(--kf);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round;margin-bottom:14px;background:var(--kf-soft);border-radius:14px;padding:9px}
 .kflip-back h3{font-family:var(--sans);font-size:16px;font-weight:800;color:var(--ink);margin-bottom:7px}
 .kflip-back p{font-size:14px;color:var(--muted)}
 .usp:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+/* Risiko-Karten: eigener Akzent je Karte */
+.risks .usp{position:relative;background:#fff;border:1px solid var(--rk-line,var(--line));border-top:3px solid var(--rk,#d64550)}
+.risks .usp:nth-child(1){--rk:#C2564F;--rk-line:#F0D9D7;--rk-soft:#FBEFEE}
+.risks .usp:nth-child(2){--rk:#B07A2B;--rk-line:#EDE0C8;--rk-soft:#FAF3E6}
+.risks .usp:nth-child(3){--rk:#2C517F;--rk-line:#D6E1EE;--rk-soft:#EDF2F8}
+.risks .usp:nth-child(4){--rk:#1F7A6B;--rk-line:#CFE6E0;--rk-soft:#E9F5F2}
+.rk-ico{width:46px;height:46px;display:block;margin-bottom:12px;padding:10px;border-radius:13px;background:var(--rk-soft);stroke:var(--rk);stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.risks .usp .rk-badge{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--rk);background:var(--rk-soft);border-radius:999px;padding:3px 11px;margin-bottom:10px}
 .usp svg{width:44px;height:44px;stroke:var(--true-blue);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round;margin-bottom:14px;background:var(--jade-20);border-radius:14px;padding:9px}
 .usp h3{font-family:var(--sans);font-size:16px;font-weight:800;color:var(--ink);margin-bottom:7px}
 .usp p{font-size:14px;color:var(--muted)}
@@ -629,6 +657,7 @@ footer a:hover{color:var(--jade)}
 
 @media (prefers-reduced-motion:reduce){
   .hp-avatar,.hp-avatar .ring,.hero h1 em{animation:none}
+  .nope li.shine::after,.ev-arrow,.ev-launch.ev-pulse::before{animation:none}
   .hero-spot{display:none}
 }
 @media(max-width:720px){
@@ -680,10 +709,13 @@ footer a:hover{color:var(--jade)}
 @media(max-width:640px){.ek-arrow{transform:rotate(90deg)}.ek-col .ek-val{font-size:40px}}
 
 /* ---------- Fallbeispiele (Slider) ---------- */
-.cs-track{position:relative;display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:4px 2px 14px}
+.cs-track{position:relative;display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:30px 0 22px}
 .cs-track::-webkit-scrollbar{display:none}
-.cs-card{position:relative;flex:0 0 min(440px,86%);scroll-snap-align:center;background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px 24px 24px;display:flex;flex-direction:column;gap:12px;overflow:hidden;box-shadow:var(--shadow-sm);transition:box-shadow .2s,transform .2s}
-.cs-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.cs-track::before,.cs-track::after{content:"";flex:0 0 calc(50% - var(--cs-w)/2 + 26px)}
+.cs-track{--cs-w:min(420px,78vw)}
+.cs-card{position:relative;flex:0 0 var(--cs-w);margin:0 -26px;scroll-snap-align:center;background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px 24px 24px;display:flex;flex-direction:column;gap:12px;overflow:hidden;box-shadow:var(--shadow-sm);transform:scale(.84);opacity:.5;z-index:1;transition:transform .38s cubic-bezier(.4,.15,.2,1),opacity .38s,box-shadow .38s}
+.cs-card.is-active{transform:scale(1);opacity:1;z-index:5;box-shadow:var(--shadow-md)}
+.cs-card:not(.is-active){cursor:pointer}
 .cs-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--cs-accent,var(--true-blue))}
 /* Akzentfarben je Ausgangslage */
 .cs-card.cs-a{--cs-accent:#2C517F;--cs-soft:#EDF2F8}
@@ -700,7 +732,7 @@ footer a:hover{color:var(--jade)}
 .cs-now{background:var(--cs-soft,var(--jade-20));border:1px solid var(--jade-60);border:1px solid color-mix(in srgb,var(--cs-accent,var(--true-blue)) 22%,transparent);border-radius:12px;padding:12px 14px 12px 15px;margin-top:auto}
 .cs-now::before{background:var(--cs-accent,var(--true-blue))}
 .cs-now b::after{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--cs-accent,var(--true-blue));margin-left:7px;vertical-align:middle}
-.cs-nav{display:flex;justify-content:center;align-items:center;gap:16px;margin-top:10px}
+.cs-nav{display:flex;justify-content:center;align-items:center;gap:16px;margin-top:4px}
 .cs-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:18px;color:var(--true-blue);display:inline-flex;align-items:center;justify-content:center;transition:background .15s}
 .cs-btn:hover{background:var(--light-jade)}
 .cs-dots{display:flex;gap:8px}
@@ -955,9 +987,16 @@ footer a:hover{color:var(--jade)}
     </div>
     <!-- ==================== ECHTER VERGLEICH: COLLEGEBLOCK ==================== -->
     <style>
-    .ev-wrap{margin:26px 0 6px;text-align:center}
-    .ev-launch{display:inline-flex}
-    .ev-open-btn{display:inline-flex;align-items:center;gap:10px;cursor:pointer;border:none;font-family:var(--sans);font-weight:800;font-size:16px;letter-spacing:.01em;padding:15px 26px;border-radius:999px;color:var(--blue-deep);background:var(--grad-cta);box-shadow:0 10px 26px -10px rgba(44,81,127,.55);transition:transform .18s,box-shadow .18s}
+    .ev-wrap{margin:30px 0 6px;text-align:center}
+    .ev-hint{display:block;font-size:14px;font-weight:700;color:var(--true-blue);margin-bottom:12px}
+    .ev-hint em{font-style:normal;color:var(--muted);font-weight:600}
+    .ev-arrow{display:block;margin:0 auto 6px;width:20px;height:20px;stroke:var(--true-blue);stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round;animation:evNudge 1.8s ease-in-out infinite}
+    @keyframes evNudge{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(5px);opacity:1}}
+    .ev-launch{position:relative;display:inline-flex}
+    .ev-launch::before{content:"";position:absolute;inset:-6px;border-radius:999px;border:2px solid var(--jade-bright);opacity:0;pointer-events:none}
+    .ev-launch.ev-pulse::before{animation:evRing 2.1s ease-out infinite}
+    @keyframes evRing{0%{transform:scale(.94);opacity:.85}70%{transform:scale(1.12);opacity:0}100%{opacity:0}}
+    .ev-open-btn{display:inline-flex;align-items:center;gap:11px;cursor:pointer;border:none;font-family:var(--sans);font-weight:800;font-size:17.5px;letter-spacing:.01em;padding:18px 34px;border-radius:999px;color:var(--blue-deep);background:var(--grad-cta);box-shadow:0 12px 30px -8px rgba(44,81,127,.6);transition:transform .18s,box-shadow .18s}
     .ev-open-btn:hover{transform:translateY(-2px);box-shadow:0 16px 32px -12px rgba(44,81,127,.6)}
     .ev-open-btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
     .ev-overlay{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:22px}
@@ -1055,6 +1094,8 @@ footer a:hover{color:var(--jade)}
     }
     </style>
     <div class="ev-wrap">
+      <span class="ev-hint">Dieselbe Wohnung, zweimal gerechnet: 2021 und 2026. <em>Der Unterschied ist gr&ouml;&szlig;er, als die meisten denken.</em></span>
+      <svg class="ev-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
       <div class="ev-launch" id="evLaunch">
         <button type="button" class="ev-open-btn" id="evOpenBtn" aria-expanded="false" aria-controls="evOverlay" aria-haspopup="dialog">
           <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M12 3v18"/></svg>
@@ -1276,22 +1317,22 @@ footer a:hover{color:var(--jade)}
     </div>
     <div class="usp-grid">
       <div class="usp">
-        <span style="display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#d64550;background:rgba(214,69,80,.09);border-radius:999px;padding:3px 11px;margin-bottom:10px">Risiko</span>
+        <svg class="rk-ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 40V16l12-8 12 8v24"/><path d="M18 40V28h8v12"/><path d="M34 12l8 8M42 12l-8 8"/></svg><span class="rk-badge">Risiko</span>
         <h3>Mietausfall</h3>
         <p><b style="color:#1a9e5f">✓ So entschärfen wir es:</b> Über einen Mietpool und eine geprüfte Mieterstruktur bleiben Ihre Einnahmen auch bei Mieterwechsel planbar.</p>
       </div>
       <div class="usp">
-        <span style="display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#d64550;background:rgba(214,69,80,.09);border-radius:999px;padding:3px 11px;margin-bottom:10px">Risiko</span>
+        <svg class="rk-ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M31 9a8 8 0 0 0-10.6 10.6L9 31l8 8 11.4-11.4A8 8 0 0 0 39 17l-5 5-5-5 5-5a8 8 0 0 0-3-3z"/></svg><span class="rk-badge">Risiko</span>
         <h3>Instandhaltung</h3>
         <p><b style="color:#1a9e5f">✓ So entschärfen wir es:</b> Eine ausreichend gefüllte Instandhaltungsrücklage und vorab geprüfte Substanz fangen unerwartete Kosten ab.</p>
       </div>
       <div class="usp">
-        <span style="display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#d64550;background:rgba(214,69,80,.09);border-radius:999px;padding:3px 11px;margin-bottom:10px">Risiko</span>
+        <svg class="rk-ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M7 39V19M18 39V11M29 39V25M40 39V15"/><path d="M5 39h38"/></svg><span class="rk-badge">Risiko</span>
         <h3>Wertentwicklung</h3>
         <p><b style="color:#1a9e5f">✓ So entschärfen wir es:</b> Sorgfältige Vorqualifizierung von Lage, Nachfrage und Objekt – gerechnet wird konservativ, nicht schöngerechnet.</p>
       </div>
       <div class="usp">
-        <span style="display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#d64550;background:rgba(214,69,80,.09);border-radius:999px;padding:3px 11px;margin-bottom:10px">Risiko</span>
+        <svg class="rk-ico" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="14"/><path d="M24 10v14l10 7"/></svg><span class="rk-badge">Risiko</span>
         <h3>Klumpenrisiko</h3>
         <p><b style="color:#1a9e5f">✓ So entschärfen wir es:</b> Eine Immobilie ist ein Baustein, kein Gesamtdepot. Wir setzen sie bewusst als einen Teil Ihres Vermögensaufbaus ein – nicht alles auf eine Karte – und bauen Schritt für Schritt breiter auf.</p>
       </div>
@@ -1341,6 +1382,12 @@ footer a:hover{color:var(--jade)}
         <div class="cmp2-opt"><span class="cmp2-badge o">±</span><div class="cmp2-body"><span class="cmp2-tag">Selbst gefunden</span><span class="cmp2-txt">Suche und Kaufabwicklung brauchen Zeit – dafür maximale Freiheit bei Lage und Objekt</span></div></div>
       </div>
     </div>
+    <div class="cmp2-nav">
+      <button class="cmp2-btn" id="c2Prev" type="button" aria-label="Vorheriges Kriterium">&larr;</button>
+      <div class="cmp2-dots" id="c2Dots"></div>
+      <button class="cmp2-btn" id="c2Next" type="button" aria-label="N&auml;chstes Kriterium">&rarr;</button>
+    </div>
+    <p class="cmp2-hint">Wischen oder Pfeile nutzen &ndash; sechs Kriterien im Vergleich</p>
   </div>
 </section>
 
@@ -2358,6 +2405,54 @@ document.querySelectorAll(".choice").forEach(function(c){
   document.getElementById("csPrev").addEventListener("click", function(){ go(cur()-1); });
   document.getElementById("csNext").addEventListener("click", function(){ go(cur()+1); });
   dots.forEach(function(d,i){ d.addEventListener("click", function(){ go(i); }); });
+  function paint(){
+    var i = cur();
+    dots.forEach(function(d,k){ d.classList.toggle("on", k===i); });
+    cards.forEach(function(c,k){ c.classList.toggle("is-active", k===i); });
+  }
+  cards.forEach(function(c,i){
+    c.addEventListener("click", function(){ if(!c.classList.contains("is-active")) go(i); });
+  });
+  var raf = null;
+  track.addEventListener("scroll", function(){
+    if(raf) return;
+    raf = requestAnimationFrame(function(){ raf = null; paint(); });
+  }, {passive:true});
+  paint();
+  window.addEventListener("resize", paint, {passive:true});
+  requestAnimationFrame(function(){ go(0); paint(); });
+})();
+
+/* ---------- Vergleich: ein Kriterium pro Ansicht (wischen + Pfeile + Dots) ---------- */
+(function(){
+  var track = document.querySelector(".cmp2");
+  if(!track) return;
+  var cards = Array.prototype.slice.call(track.querySelectorAll(".cmp2-card"));
+  var dotBox = document.getElementById("c2Dots");
+  if(!cards.length || !dotBox) return;
+  cards.forEach(function(c,i){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "cmp2-dot" + (i===0?" on":"");
+    b.setAttribute("aria-label","Kriterium "+(i+1));
+    b.addEventListener("click", function(){ go(i); });
+    dotBox.appendChild(b);
+  });
+  var dots = Array.prototype.slice.call(dotBox.children);
+  function cur(){
+    var mid = track.scrollLeft + track.clientWidth/2, best = 0, bd = Infinity;
+    cards.forEach(function(c,i){
+      var d = Math.abs(c.offsetLeft + c.clientWidth/2 - mid);
+      if(d < bd){ bd = d; best = i; }
+    });
+    return best;
+  }
+  function go(i){
+    i = Math.max(0, Math.min(i, cards.length-1));
+    var c = cards[i];
+    track.scrollTo({left: c.offsetLeft - (track.clientWidth - c.clientWidth)/2, behavior:"smooth"});
+  }
+  document.getElementById("c2Prev").addEventListener("click", function(){ go(cur()-1); });
+  document.getElementById("c2Next").addEventListener("click", function(){ go(cur()+1); });
   var raf = null;
   track.addEventListener("scroll", function(){
     if(raf) return;
@@ -2367,6 +2462,49 @@ document.querySelectorAll(".choice").forEach(function(c){
       dots.forEach(function(d,k){ d.classList.toggle("on", k===i); });
     });
   }, {passive:true});
+})();
+
+/* ---------- "Was Sie nicht bekommen": Punkte nacheinander aufleuchten ---------- */
+(function(){
+  var list = document.querySelector(".nope ul");
+  if(!list || !("IntersectionObserver" in window)) return;
+  if(window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+  var items = Array.prototype.slice.call(list.querySelectorAll("li"));
+  if(!items.length) return;
+  var timer = null, i = 0;
+  function step(){
+    items.forEach(function(el){ el.classList.remove("shine"); });
+    items[i % items.length].classList.add("shine");
+    i++;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting && !timer){
+        step();
+        timer = setInterval(step, 1700);
+      } else if(!e.isIntersecting && timer){
+        clearInterval(timer); timer = null;
+        items.forEach(function(el){ el.classList.remove("shine"); });
+      }
+    });
+  }, {threshold:.25});
+  io.observe(list);
+})();
+
+/* ---------- "Echter Vergleich": Button pulsiert, sobald er in den Blick kommt ---------- */
+(function(){
+  var launch = document.getElementById("evLaunch");
+  if(!launch || !("IntersectionObserver" in window)) return;
+  var btn = document.getElementById("evOpenBtn");
+  var seen = false;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting && !seen){ launch.classList.add("ev-pulse"); }
+      else if(!e.isIntersecting){ launch.classList.remove("ev-pulse"); }
+    });
+  }, {threshold:.6});
+  io.observe(launch);
+  if(btn) btn.addEventListener("click", function(){ seen = true; launch.classList.remove("ev-pulse"); });
 })();
 
 /* ---------- Sticky-CTA (mobil): nach 600px zeigen, bei Formularen ausblenden ---------- */
