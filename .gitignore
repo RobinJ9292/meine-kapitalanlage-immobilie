@@ -10,3 +10,5 @@ _leads/*.json
 # Interner Handoff, nicht deployen
 HANDOFF.md
 social-assets/
+rechner.html.backup
+tools/__pycache__/
