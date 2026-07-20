@@ -29,6 +29,11 @@
     '#kpiRow .stat-card:nth-child(5){display:none!important}',
     /* Diagramme und lange Hinweise; Cashflow-Tabelle bleibt */
     'details.chart-panel,[data-mki="hinweise"]{display:none!important}',
+    /* "Auswertung aushaendigen" steht zweimal auf Seite 3: oben in der
+       Kopfzeile und unten in der Seitennavigation. In der Einbettung
+       genuegt der untere am Ende - der obere wirkt dort wie ein Versehen.
+       Die Beratungs-Vollversion behaelt beide. */
+    '#btnHandout{display:none!important}',
     /* Aufklapper, die der Schnellmodus erzeugt */
     '.mki-more>summary{cursor:pointer;font-weight:600;font-size:.92rem;padding:10px 2px;list-style:none}',
     '.mki-more>summary::-webkit-details-marker{display:none}',
