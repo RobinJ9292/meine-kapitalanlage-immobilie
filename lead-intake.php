@@ -25,6 +25,17 @@ $name  = $data["name"]  ?? "";
 $email = $data["email"] ?? "";
 $phone = $data["phone"] ?? "";
 $terminwunsch = strtolower($data["terminwunsch"] ?? "nein");
+
+// Terminstatus lesbar machen. Faellt automatisch in die Robin-Mail und in die
+// HubSpot-Notiz, weil unbekannte Felder dort ueber lead_labels() mitlaufen.
+$tstat = strtolower(trim($data["terminstatus"] ?? ""));
+$statusText = [
+    "termin_gebucht" => "Termin gebucht",
+    "termin_offen"   => "Termin offen - Kalender geoeffnet, aber (noch) nicht gebucht",
+    "nur_rueckruf"   => "Nur Rueckruf gewuenscht",
+    "leitfaden"      => "Leitfaden heruntergeladen - noch kein Rueckruf angefordert",
+];
+$data["terminstatus"] = $statusText[$tstat] ?? "Nur Rueckruf gewuenscht";
 $leadmagnet   = strtolower($data["leadmagnet"] ?? "");
 
 // Basis-Validierung (Leitfaden-Download: nur E-Mail noetig)
@@ -34,14 +45,26 @@ if ($leadmagnet === "" && ($name === "" || $phone === "")) {
 
 // --- Fall 1: Terminbuchung => bereits qualifiziert, sofort an Robin (kein Double-Opt-In) ---
 if ($terminwunsch === "ja") {
-    lead_notify_robin($data, " (Terminwunsch)");
-    lead_to_hubspot($data);
+    $zusatz = ($tstat === "termin_gebucht") ? " (TERMIN GEBUCHT)" : " (Termin offen)";
+    lead_notify_robin($data, $zusatz);
+    lead_to_hubspot($data, "entfaellt - Terminwunsch ueber das Formular");
     echo json_encode(["ok" => true, "confirm" => false]); exit;
 }
 
 // --- Fall 2: Rueckruf/Quiz => Double-Opt-In. E-Mail ist hier Pflicht ---
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     http_response_code(400); echo json_encode(["ok" => false, "error" => "email"]); exit;
+}
+
+// --- Fall 2a: Leitfaden mit Sofort-Download => kein Double-Opt-In ---
+// Der Besucher hat die Datei bereits im Browser bekommen; ein Bestaetigungslink
+// wuerde ins Leere laufen. Der Lead wird deshalb sofort uebergeben und klar als
+// unbestaetigt gekennzeichnet.
+if ($leadmagnet !== "" && strtolower($data["direkt"] ?? "") === "ja") {
+    lead_send_guide_direct($email, $name);
+    lead_notify_robin($data, " (Leitfaden-Download, E-Mail unbestaetigt)");
+    lead_to_hubspot($data, "nicht bestaetigt - Sofort-Download Leitfaden");
+    echo json_encode(["ok" => true, "confirm" => false]); exit;
 }
 
 $token = bin2hex(random_bytes(16));

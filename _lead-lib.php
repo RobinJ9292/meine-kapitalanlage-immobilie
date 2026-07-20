@@ -22,6 +22,8 @@ function lead_labels() {
         "einkommen" => "Nettoeinkommen mtl.", "eigenkapital" => "Verfuegbares Eigenkapital", "nachricht" => "Nachricht",
         "zve" => "Zu versteuerndes Einkommen (ZVE)", "familie" => "Familien-Unterstuetzung moeglich", "familie_ek" => "Voraussichtliche Familien-Unterstuetzung",
         "quelle" => "Quelle", "form-name" => "Formular", "terminwunsch" => "Terminwunsch",
+        "terminstatus" => "TERMINSTATUS",
+        "direkt" => "Direkt-Download",
         "newsletter" => "Newsletter-Einwilligung",
         "rechner_zusammenfassung" => "Rechner-Eingaben des Kunden",
         "immobilientyp" => "Immobilientyp", "plz" => "PLZ", "ort" => "Ort",
@@ -110,17 +112,32 @@ function lead_send_confirm($email, $name, $link) {
 function lead_send_confirm_guide($email, $name, $link) {
     $anrede = $name !== "" ? "Hallo " . $name . "," : "Hallo,";
     $text = $anrede . "\n\n"
-          . "vielen Dank fuer Ihr Interesse am Leitfaden \"Die ehrliche Rechnung - Immobilie als Kapitalanlage 2026\".\n\n"
+          . "vielen Dank fuer Ihr Interesse am Einsteiger-Guide \"Immobilie als Kapitalanlage 2026\".\n\n"
           . "Bitte bestaetigen Sie kurz Ihre E-Mail-Adresse - mit einem Klick auf diesen Link:\n\n"
           . $link . "\n\n"
           . "Direkt danach oeffnet sich der Download. Kein Spam, keine Serienmails - versprochen.\n"
           . "Wenn Sie diese Anfrage nicht gestellt haben, ignorieren Sie diese Mail einfach.\n\n"
           . "Herzliche Gruesse\nRobin Jaenicke\nSpezialist fuer Kapitalanlage-Immobilien\nTel. 0160 92085192";
-    return @mail($email, lead_subject_encode("Ihr Leitfaden wartet - bitte E-Mail bestaetigen"), $text, lead_headers());
+    return @mail($email, lead_subject_encode("Ihr Einsteiger-Guide wartet - bitte E-Mail bestaetigen"), $text, lead_headers());
+}
+
+// Leitfaden ohne Double-Opt-In: Datei sofort, Mail als Zweitweg
+function lead_send_guide_direct($email, $name) {
+    $anrede = $name !== "" ? "Hallo " . $name . "," : "Hallo,";
+    $pdf = LEAD_BASISURL . "/einsteiger-guide-kapitalanlage-2026.pdf";
+    $text = $anrede . "\n\n"
+          . "hier ist Ihr Einsteiger-Guide \"Immobilie als Kapitalanlage 2026\":\n\n"
+          . $pdf . "\n\n"
+          . "Sie haben ihn eben schon auf der Website heruntergeladen - diese Mail ist nur,\n"
+          . "damit Sie den Link jederzeit wiederfinden.\n\n"
+          . "Wenn nach dem Lesen Fragen offen bleiben: Melden Sie sich einfach, ich helfe gern weiter.\n"
+          . "Kein Verkaufsdruck, kein Serienbrief.\n\n"
+          . "Herzliche Gruesse\nRobin Jaenicke\nSpezialist fuer Kapitalanlage-Immobilien\nTel. 0160 92085192";
+    return @mail($email, lead_subject_encode("Ihr Einsteiger-Guide: Immobilie als Kapitalanlage"), $text, lead_headers());
 }
 
 // Uebergabe an HubSpot (Forms-API, EU). Ohne GUID passiert nichts.
-function lead_to_hubspot($data) {
+function lead_to_hubspot($data, $doi = "bestaetigt") {
     if (HUBSPOT_FORM_GUID === "" || !function_exists("curl_init")) return false;
     $fields = [];
     $nm = trim((string)($data["name"] ?? ""));
@@ -169,7 +186,7 @@ function lead_to_hubspot($data) {
         $msg[] = ($labels[$k] ?? ucfirst($k)) . ": " . $v;
     }
     $msg[] = "Lead-Ampel: " . $sc["ampel"] . " (Score " . $sc["score"] . ")";
-    $msg[] = "Double-Opt-In: bestaetigt";
+    $msg[] = "Double-Opt-In: " . $doi;
     if ($msg) $fields[] = ["name" => "message", "value" => implode("\n", $msg)];
 
     $payload = json_encode([

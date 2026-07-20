@@ -754,6 +754,45 @@ footer a:hover{color:var(--jade)}
 .cs-dot.on{background:var(--true-blue);transform:scale(1.25)}
 .cs-head{display:flex;align-items:center;gap:12px}
 .cs-photo{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--cs-accent,var(--jade-60));box-shadow:0 0 0 3px var(--cs-soft,var(--jade-20));flex:0 0 56px}
+/* ---------- Leitfaden-Overlay (Unsicher-Pfad) ---------- */
+.gd-overlay{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:20px}
+.gd-overlay[hidden]{display:none}
+.gd-backdrop{position:absolute;inset:0;background:rgba(9,18,32,.66);opacity:0;transition:opacity .3s ease}
+.gd-overlay.on .gd-backdrop{opacity:1}
+.gd-card{position:relative;z-index:1;width:100%;max-width:760px;max-height:calc(100vh - 40px);overflow:auto;background:#fff;border-radius:20px;box-shadow:0 30px 70px -20px rgba(9,18,32,.7);transform:translateY(14px) scale(.98);opacity:0;transition:transform .32s cubic-bezier(.33,.1,.2,1),opacity .32s}
+.gd-overlay.on .gd-card{transform:none;opacity:1}
+.gd-close{position:absolute;top:10px;right:12px;z-index:2;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--muted);font-size:20px;line-height:1;cursor:pointer}
+.gd-close:hover{background:var(--light-jade);color:var(--true-blue)}
+.gd-grid{display:grid;grid-template-columns:250px 1fr;gap:0}
+.gd-cover{background:var(--jade-20);padding:26px 20px;display:flex;align-items:center;justify-content:center;border-radius:20px 0 0 20px}
+.gd-cover img{width:100%;max-width:200px;border-radius:8px;box-shadow:0 14px 34px -10px rgba(13,27,46,.45)}
+.gd-body{padding:28px 28px 26px}
+.gd-eyebrow{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--true-blue);background:var(--jade-20);border:1px solid var(--jade-60);border-radius:999px;padding:3px 11px;margin-bottom:10px}
+.gd-body h3{font-family:var(--serif);font-size:23px;line-height:1.25;color:var(--ink);margin-bottom:8px}
+.gd-body>p{font-size:14.5px;color:var(--muted);margin-bottom:12px}
+.gd-list{list-style:none;margin:0 0 16px;padding:0;display:grid;gap:7px}
+.gd-list li{position:relative;padding-left:23px;font-size:13.5px;color:var(--ink);line-height:1.45}
+.gd-list li::before{content:"\2713";position:absolute;left:0;top:0;color:#1a9e5f;font-weight:800}
+.gd-field label{display:block;font-size:12.5px;font-weight:800;color:var(--ink);margin-bottom:5px}
+.gd-field input[type=email]{width:100%;padding:13px 15px;border:1.5px solid var(--line);border-radius:12px;font-family:var(--sans);font-size:15px}
+.gd-field input[type=email]:focus{outline:none;border-color:var(--true-blue)}
+.gd-consent{display:flex;gap:9px;align-items:flex-start;margin:11px 0 14px;font-size:12px;color:var(--muted);line-height:1.45}
+.gd-consent input{margin-top:2px;flex:none}
+.gd-err{display:none;font-size:13px;font-weight:700;color:#B01230;margin-top:9px}
+.gd-done{text-align:center}
+.gd-done .big{font-size:38px;color:#1a9e5f;line-height:1}
+.gd-done h4{font-family:var(--serif);font-size:21px;color:var(--ink);margin:6px 0 6px}
+.gd-done p{font-size:14px;color:var(--muted);margin-bottom:14px}
+.gd-actions{display:flex;flex-direction:column;gap:9px}
+.gd-sep{margin:18px 0 12px;border-top:1px solid var(--line);padding-top:14px;font-size:13.5px;color:var(--muted)}
+@media(max-width:640px){
+  .gd-grid{grid-template-columns:1fr}
+  .gd-cover{border-radius:20px 20px 0 0;padding:20px}
+  .gd-cover img{max-width:132px}
+  .gd-body{padding:20px 20px 22px}
+  .gd-body h3{font-size:20px}
+  .gd-card{max-height:calc(100vh - 24px)}
+}
 /* ---------- Sticky-CTA (mobil) ---------- */
 #stickyCta{position:fixed;left:0;right:0;bottom:0;z-index:900;display:none;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(13,27,46,.93);backdrop-filter:blur(10px);border-top:1px solid rgba(180,214,212,.25);transform:translateY(110%);transition:transform .3s ease}
 #stickyCta.on{transform:translateY(0)}
@@ -1551,8 +1590,10 @@ footer a:hover{color:var(--jade)}
       <div class="step"><span style="display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--true-blue);background:rgba(44,81,127,.1);border-radius:999px;padding:3px 10px;margin-bottom:10px">60 Min &middot; Erstgespräch</span><div class="num">3</div><h3>Was passt zu Ihnen?</h3><p>Wir schauen gemeinsam auf Ihre Ziele, Ihre Einkommenssituation und Ihre Reserven – und finden heraus, was realistisch und sinnvoll ist.</p></div>
       <div class="step"><span style="display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--true-blue);background:rgba(44,81,127,.1);border-radius:999px;padding:3px 10px;margin-bottom:10px">60 Min &middot; Erstgespräch</span><div class="num">4</div><h3>Immobilie verstehen</h3><p>Ich erkläre verständlich, warum Immobilien als Kapitalanlage funktionieren: Mieteinnahmen, Steuervorteile, Fremdkapital-Hebel – und wo die Risiken liegen.</p></div>
     </div>
-    <div style="text-align:center;margin-top:30px">
+    <div style="text-align:center;margin-top:30px;display:flex;flex-direction:column;gap:12px;align-items:center">
       <a class="btn btn-blue btn-lg" href="#kontakt" data-tab="rueckruf">Rückruf vereinbaren</a>
+      <button class="btn btn-jade btn-lg" type="button" id="gdOpen">Oder: kostenlosen Leitfaden herunterladen</button>
+      <span style="font-size:13px;color:var(--muted)">Sofort als PDF &middot; ohne Termin &middot; ohne Verpflichtung</span>
     </div>
   </div>
 </section>
@@ -1691,13 +1732,18 @@ footer a:hover{color:var(--jade)}
 
     <!-- Terminbuchung -->
     <div class="panel cal-wrap" id="panelT" style="display:none">
-      <h3>Fast geschafft – wählen Sie Ihren Wunschtermin</h3>
-      <p class="sub">Ihre Daten sind bei mir. Suchen Sie sich einfach einen Termin aus – ich rufe Sie vorab kurz an und bestätige ihn. Kostenfrei &amp; unverbindlich, online per Video oder vor Ort.</p>
+      <div id="calHead">
+        <h3 id="calTitle">Fast geschafft – wählen Sie Ihren Wunschtermin</h3>
+        <p class="sub" id="calSub">Ihre Daten sind bei mir. Suchen Sie sich einfach einen Termin aus – ich rufe Sie vorab kurz an und bestätige ihn. Kostenfrei &amp; unverbindlich, online per Video oder vor Ort.</p>
+      </div>
       <div class="cal-consent" id="calConsent">
         <p>Zur Terminbuchung wird der Dienst <strong>Calendly</strong> geladen (Datenübertragung in die USA möglich, Details in der <a href="datenschutz.html" target="_blank" style="display:inline;color:var(--true-blue)">Datenschutzerklärung</a>).</p>
         <button class="btn btn-blue btn-lg" type="button" id="loadCal">Kalender laden &amp; Termin wählen</button>
       </div>
       <div id="calMount"></div>
+      <div id="calSkipWrap" style="display:none;text-align:center;margin-top:16px">
+        <button type="button" id="calSkip" style="background:none;border:none;cursor:pointer;font-family:var(--sans);font-size:14px;font-weight:700;color:var(--true-blue);text-decoration:underline;text-underline-offset:3px;padding:6px">Kein passender Termin dabei? R&uuml;ckruf gen&uuml;gt &ndash; hier abschlie&szlig;en</button>
+      </div>
       <p class="cal-note">Für die Terminbuchung wird <strong>Calendly</strong> geladen (Datenübertragung in die USA möglich). Details in der <a href="datenschutz.html" target="_blank" style="display:inline;color:var(--true-blue)">Datenschutzerklärung</a>.</p>
     </div>
   </div>
@@ -1726,6 +1772,51 @@ footer a:hover{color:var(--jade)}
      separat per Ads beworben. -->
 
 <!-- Verkaufs-Thema (Objekt anbieten + Quiz) vollstaendig entfernt. -->
+
+<!-- ==================== LEITFADEN-OVERLAY ==================== -->
+<div class="gd-overlay" id="gdOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="gdTitle">
+  <div class="gd-backdrop" id="gdBackdrop"></div>
+  <div class="gd-card">
+    <button class="gd-close" type="button" id="gdClose" aria-label="Schlie&szlig;en">&times;</button>
+    <div class="gd-grid">
+      <div class="gd-cover">
+        <img src="einsteiger-guide-cover.jpg" alt="Titelseite des Einsteiger-Guides &bdquo;Immobilie als Kapitalanlage &ndash; Das beste Investment der Welt?&ldquo;" width="420" height="594" loading="lazy">
+      </div>
+      <div class="gd-body">
+        <div id="gdIntro">
+          <span class="gd-eyebrow">Kostenlos &middot; ohne Termin</span>
+          <h3 id="gdTitle">Der Einsteiger-Guide 2026</h3>
+          <p>&bdquo;Immobilie als Kapitalanlage &ndash; das beste Investment der Welt?&ldquo; Der ehrliche Guide f&uuml;r alle, die gerade erst anfangen: verst&auml;ndlich erkl&auml;rt, vollst&auml;ndig gerechnet, auf 13 Seiten.</p>
+          <ul class="gd-list">
+            <li>Warum vermietete Immobilien anders funktionieren als jede andere Anlage</li>
+            <li>Der ehrliche Vergleich: Immobilie vs. ETF, Tagesgeld und Gold</li>
+            <li>Eine komplette Beispielrechnung &ndash; Schritt f&uuml;r Schritt</li>
+            <li>Die 7 h&auml;ufigsten Einsteiger-Fehler</li>
+          </ul>
+          <form id="gdForm" novalidate>
+            <div class="gd-field">
+              <label for="gd-email">Ihre E-Mail-Adresse*</label>
+              <input id="gd-email" name="email" type="email" autocomplete="email" placeholder="name@beispiel.de">
+            </div>
+            <label class="gd-consent"><input type="checkbox" id="gd-consent"><span>Ich m&ouml;chte den Leitfaden erhalten und bin damit einverstanden, dass Robin J&auml;nicke mich dazu per E-Mail kontaktiert. Details in der <a href="datenschutz.html" target="_blank" style="display:inline;color:var(--true-blue)">Datenschutzerkl&auml;rung</a>.</span></label>
+            <button class="btn btn-jade btn-lg" type="submit" id="gdSubmit" style="width:100%">Leitfaden jetzt herunterladen</button>
+            <p class="gd-err" id="gdErr">Bitte geben Sie eine g&uuml;ltige E-Mail-Adresse an und best&auml;tigen Sie das H&auml;kchen.</p>
+          </form>
+        </div>
+        <div class="gd-done" id="gdDone" style="display:none">
+          <div class="big">&#10003;</div>
+          <h4>Viel Freude damit!</h4>
+          <p>Ihr Leitfaden ist bereit &ndash; ich habe ihn Ihnen zus&auml;tzlich per E-Mail geschickt.</p>
+          <div class="gd-actions" id="gdActions"></div>
+          <div class="gd-sep">
+            Lieber doch pers&ouml;nlich? Wenn nach dem Lesen Fragen offen bleiben, melde ich mich gern &ndash; unverbindlich und ohne Verkaufsdruck.
+          </div>
+          <button class="btn btn-blue btn-lg" type="button" id="gdToKontakt" style="width:100%">Trotzdem R&uuml;ckruf vereinbaren</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div id="stickyCta" aria-hidden="true">
   <div class="in">
@@ -1773,6 +1864,14 @@ footer a:hover{color:var(--jade)}
    KONFIGURATION – hier pflegen Sie Objekte & Annahmen
    ===================================================================== */
 var CAL_URL = "https://calendly.com/robinjaenicke/kapitalanlage-erstgespraech";
+/* Calendly kann Name und E-Mail direkt vorbefuellen. Die Telefonnummer geht nur,
+   wenn sie im Event-Typ als Invitee-Frage angelegt ist - dann heisst sie je nach
+   Reihenfolge a1, a2 ... Hier die passende Nummer eintragen, "" schaltet es ab.
+   Ist die Nummer als Termin-ORT ("Telefonanruf") konfiguriert, geht es technisch nicht. */
+var CAL_TEL_FELD = "a1";
+/* So lange wird nach dem Oeffnen des Kalenders auf eine Buchung gewartet,
+   danach geht der Lead mit Status "Termin offen" raus (Millisekunden). */
+var CAL_WARTEZEIT = 180000;
 /* EDIT: Calendly-Ereignis "kapitalanlage-erstgespraech" (60 Min.) im
    Calendly-Konto anlegen oder URL hier anpassen. */
 
@@ -2635,6 +2734,86 @@ document.querySelectorAll(".choice").forEach(function(c){
   if(btn) btn.addEventListener("click", function(){ seen = true; launch.classList.remove("ev-pulse"); });
 })();
 
+/* ---------- Leitfaden-Overlay: E-Mail eintragen, direkt herunterladen ---------- */
+(function(){
+  var ov=document.getElementById("gdOverlay"), open=document.getElementById("gdOpen");
+  if(!ov || !open) return;
+  var card=ov.querySelector(".gd-card");
+  var form=document.getElementById("gdForm"), mail=document.getElementById("gd-email");
+  var ok=document.getElementById("gd-consent"), err=document.getElementById("gdErr");
+  var intro=document.getElementById("gdIntro"), done=document.getElementById("gdDone");
+  var actions=document.getElementById("gdActions"), btn=document.getElementById("gdSubmit");
+  var GUIDE="einsteiger-guide-kapitalanlage-2026.pdf";
+  var letzterFokus=null;
+
+  function zeige(){
+    letzterFokus=document.activeElement;
+    ov.hidden=false;
+    requestAnimationFrame(function(){ ov.classList.add("on"); });
+    document.body.style.overflow="hidden";
+    setTimeout(function(){ if(mail && intro.style.display!=="none") mail.focus(); }, 260);
+  }
+  function schliesse(){
+    ov.classList.remove("on");
+    document.body.style.overflow="";
+    setTimeout(function(){ ov.hidden=true; }, 300);
+    if(letzterFokus && letzterFokus.focus) try{ letzterFokus.focus(); }catch(_e){}
+  }
+  open.addEventListener("click", zeige);
+  document.getElementById("gdClose").addEventListener("click", schliesse);
+  document.getElementById("gdBackdrop").addEventListener("click", schliesse);
+  document.addEventListener("keydown", function(e){ if(e.key==="Escape" && !ov.hidden) schliesse(); });
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var em=(mail.value||"").trim();
+    if(!_ckValidEmail(em) || !ok.checked){ err.style.display="block"; return; }
+    err.style.display="none";
+    btn.disabled=true; btn.textContent="Einen Moment …";
+
+    var fd=new FormData();
+    fd.append("email", em);
+    fd.append("leadmagnet", "leitfaden");
+    fd.append("direkt", "ja");
+    fd.append("form-name", "leitfaden-download");
+    fd.append("quelle", "kapitalanlage-lp-unsicher");
+    fd.append("terminstatus", "leitfaden");
+    try{ if(window.MKI_PATH) fd.append("thema", "Pfad: "+window.MKI_PATH); }catch(_e){}
+
+    fetch("lead-intake.php",{method:"POST",body:fd})
+      .then(function(r){ return r.json(); })
+      .catch(function(){ return {ok:false}; })
+      .then(function(j){
+        /* Der Download wird auch dann freigegeben, wenn der Versand hakt -
+           der Besucher hat seine E-Mail gegeben, er soll den Leitfaden bekommen. */
+        var wa = (typeof mkiWaLink==="function")
+          ? mkiWaLink("Der Einsteiger-Guide „Immobilie als Kapitalanlage“ erklärt verständlich, wie das Ganze wirklich funktioniert – ohne Verkaufsgerede:", MKI_BASE + GUIDE)
+          : null;
+        actions.innerHTML =
+          '<a class="btn btn-jade btn-lg" href="'+GUIDE+'" download id="gdDl">Leitfaden herunterladen (PDF)</a>' +
+          (wa ? '<a class="btn" href="'+wa+'" target="_blank" rel="noopener">'+MKI_WA_ICON+' Per WhatsApp teilen</a>' : '');
+        if(j && j.ok===false){
+          done.querySelector("p").textContent="Ihr Leitfaden ist bereit. Der E-Mail-Versand hat gerade nicht geklappt – laden Sie ihn am besten direkt herunter.";
+        }
+        intro.style.display="none"; done.style.display="block";
+        card.scrollTop=0;
+        if(window.mkiTrackLead) mkiTrackLead("leitfaden-download");
+        try{ if(window.dataLayer) dataLayer.push({event:"leitfaden_download"}); }catch(_e2){}
+      });
+  });
+
+  document.getElementById("gdToKontakt").addEventListener("click", function(){
+    schliesse();
+    setTimeout(function(){
+      var k=document.getElementById("kontakt");
+      if(k) k.scrollIntoView({behavior:"smooth",block:"start"});
+      var pR=document.getElementById("panelR"); if(pR) pR.style.display="";
+      var mailFeld=document.getElementById("f-email");
+      if(mailFeld && !mailFeld.value) mailFeld.value=(mail.value||"").trim();
+    }, 320);
+  });
+})();
+
 /* ---------- Sticky-CTA (mobil): nach 600px zeigen, bei Formularen ausblenden ---------- */
 (function(){
   var bar = document.getElementById("stickyCta");
@@ -2681,7 +2860,8 @@ function loadCalendly(){
   f.setAttribute("loading","lazy");
   f.src=CAL_URL+"?hide_gdpr_banner=1&primary_color=2C517F"
        +"&embed_domain="+encodeURIComponent(location.hostname)
-       +"&embed_type=Inline";
+       +"&embed_type=Inline"
+       +_calPrefill();
   document.getElementById("calMount").appendChild(f);
 }
 /* Manueller Button bleibt als Fallback erhalten */
@@ -2698,10 +2878,17 @@ if(_loadCalBtn) _loadCalBtn.addEventListener("click",loadCalendly);
     var d=e.data;
     if(!d || typeof d!=="object" || d.event!=="calendly.event_scheduled") return;
     done=true;
+    /* Lead jetzt mit gesichertem Status senden - ueberschreibt ein evtl.
+       schon gesendetes "termin_offen". */
+    if(typeof _flushLead==="function") _flushLead("termin_gebucht", false);
     var pT=document.getElementById("panelT");
     if(!pT) return;
+    /* "Fast geschafft - waehlen Sie Ihren Wunschtermin" entfaellt jetzt */
+    if(typeof _setCalMode==="function") _setCalMode("gebucht");
     var frame=document.getElementById("calFrame");
     if(frame) frame.style.display="none";
+    var cc=document.getElementById("calConsent"); if(cc) cc.style.display="none";
+    var note=pT.querySelector(".cal-note"); if(note) note.style.display="none";
     var box=document.createElement("div");
     box.className="form-ok cal-done";
     box.style.display="block";
@@ -2729,9 +2916,9 @@ function mkiGeschenke(container, variante, mitGuide){
      im download-Attribut bestimmt nur den Dateinamen beim Speichern. */
   var calcFile  = "rechner.html";
   var calcName  = "Immobilien-Rechner-Robin-Jaenicke.html";
-  var guideFile = "leitfaden-immobilie-kapitalanlage-2026.pdf";
+  var guideFile = "einsteiger-guide-kapitalanlage-2026.pdf";
   var waCalc  = mkiWaLink("Schau mal, mit diesem Rechner kannst du die Rendite einer Kapitalanlage-Immobilie komplett selbst durchrechnen:", MKI_BASE + calcFile);
-  var waGuide = mkiWaLink("Der Leitfaden „Die ehrliche Rechnung“ erklärt Immobilien als Kapitalanlage verständlich – ohne Verkaufsgerede:", MKI_BASE + guideFile);
+  var waGuide = mkiWaLink("Der Einsteiger-Guide „Immobilie als Kapitalanlage“ erklärt verständlich, wie das Ganze wirklich funktioniert – ohne Verkaufsgerede:", MKI_BASE + guideFile);
 
   container.insertAdjacentHTML("beforeend",
     '<div class="ok-gift">'+
@@ -2749,7 +2936,7 @@ function mkiGeschenke(container, variante, mitGuide){
     container.insertAdjacentHTML("beforeend",
       '<div class="ok-guide">'+
       '<span class="ok-guide-eyebrow">Ihr nächster Schritt – ganz ohne Termin</span>'+
-      '<h4>Leitfaden „Die ehrliche Rechnung"</h4>'+
+      '<h4>Der Einsteiger-Guide 2026</h4>'+
       '<p>Die ersten Schritte auf dem Weg zur eigenen Kapitalanlage-Immobilie – und der beste Weg, meine Denkweise und Arbeitsweise schon vorab kennenzulernen.</p>'+
       '<div class="ok-actions">'+
         '<a class="btn btn-jade ok-dl" href="'+guideFile+'" download>Leitfaden herunterladen (PDF)</a>'+
@@ -2830,48 +3017,146 @@ function _normDePhone(v){
   return "0" + rest;
 }
 function _ckValidPhone(x){ x=(x||"").trim(); if(!/^[+0-9 ()\/.\-]{6,}$/.test(x)) return false; var dg=x.replace(/\D/g,""); return dg.length>=7 && dg.length<=15; }
+/* ============================================================
+   Terminstatus-Steuerung
+   Bei "Ja, Wunschtermin waehlen" wird der Lead NICHT sofort gesendet, sondern
+   erst wenn feststeht, ob gebucht wurde. Damit kein Lead verloren geht, greifen
+   drei Reissleinen: Buchung, Abbruch-Button und Zeitablauf - zusaetzlich ein
+   Signal beim Verlassen der Seite.
+   ============================================================ */
+var _leadSnapshot = null;    /* eingefrorene Formulardaten */
+var _leadStatusSent = null;  /* zuletzt gesendeter Status */
+var _leadTimer = null;
+var _awaitTermin = false;    /* true, solange auf eine Buchung gewartet wird */
+
+function _calPrefill(){
+  var f = _leadForm; if(!f) return "";
+  var q = [];
+  var n = (f.name && f.name.value || "").trim();
+  var e = (f.email && f.email.value || "").trim();
+  var t = (f.phone && f.phone.value || "").trim();
+  if(n) q.push("name=" + encodeURIComponent(n));
+  if(e) q.push("email=" + encodeURIComponent(e));
+  if(t && CAL_TEL_FELD) q.push(CAL_TEL_FELD + "=" + encodeURIComponent(t));
+  return q.length ? "&" + q.join("&") : "";
+}
+
+function _snapshotLead(){
+  var fd = new FormData(_leadForm);
+  try{
+    var rd = window.MKI_getRechnerDaten ? window.MKI_getRechnerDaten() : {};
+    if(rd && Object.keys(rd).length) fd.append("rechner_zusammenfassung", window.MKI_getRechnerText());
+  }catch(_e){}
+  var arr = []; fd.forEach(function(v,k){ arr.push([k,v]); });
+  return arr;
+}
+function _fdFrom(arr, status){
+  var fd = new FormData();
+  arr.forEach(function(pair){ fd.append(pair[0], pair[1]); });
+  fd.set("terminstatus", status);
+  /* Ein gebuchter Termin ist qualifiziert - sonst liefe er serverseitig in den
+     Double-Opt-In-Zweig und wuerde eine zweite Bestaetigungsmail ausloesen. */
+  if(status === "termin_gebucht") fd.set("terminwunsch", "ja");
+  return fd;
+}
+
+/* Sendet den zurueckgehaltenen Lead. "termin_gebucht" darf einen frueher
+   gesendeten Status "termin_offen" ueberschreiben - andersherum nicht. */
+function _flushLead(status, beacon){
+  if(!_leadSnapshot) return;
+  /* Nur wenn wir wirklich auf eine Buchung warten - sonst wuerde das Signal beim
+     Verlassen der Seite den reinen Rueckruf-Lead ein zweites Mal senden.
+     Eine echte Buchung darf dagegen immer durch. */
+  if(!_awaitTermin && status !== "termin_gebucht") return;
+  if(_leadStatusSent === status) return;
+  if(_leadStatusSent === "termin_gebucht") return;
+  _leadStatusSent = status;
+  if(_leadTimer){ clearTimeout(_leadTimer); _leadTimer = null; }
+  var fd = _fdFrom(_leadSnapshot, status);
+  if(beacon && navigator.sendBeacon){
+    try{ navigator.sendBeacon("lead-intake.php", fd); return; }catch(_e){}
+  }
+  try{
+    fetch("lead-intake.php", {method:"POST", body:fd, keepalive:true})
+      .then(function(r){ return r.json(); })
+      .then(function(j){ if(j && j.ok && window.mkiTrackLead) mkiTrackLead(status === "termin_gebucht" ? "kontakt-termin" : "kontaktformular"); })
+      .catch(function(){});
+  }catch(_e2){}
+}
+
+/* Kopfzeile der Terminseite je nach Situation */
+function _setCalMode(mode){
+  var t = document.getElementById("calTitle"), sub = document.getElementById("calSub");
+  var head = document.getElementById("calHead"), skip = document.getElementById("calSkipWrap");
+  if(!t || !sub) return;
+  if(mode === "waehlen"){
+    t.textContent = "Fast geschafft – wählen Sie Ihren Wunschtermin";
+    sub.innerHTML = "Ihre Daten sind bei mir. Suchen Sie sich einfach einen Termin aus – ich rufe Sie vorab kurz an und bestätige ihn. Kostenfrei &amp; unverbindlich, online per Video oder vor Ort.";
+    if(skip) skip.style.display = "block";
+  } else if(mode === "optional"){
+    t.textContent = "Geschafft – ich melde mich bei Ihnen";
+    sub.innerHTML = "Ihre Rückrufbitte ist eingegangen. Wenn Sie sich direkt einen Termin sichern möchten, können Sie das hier noch tun – sonst müssen Sie nichts weiter machen.";
+    if(skip) skip.style.display = "none";
+  } else if(mode === "gebucht"){
+    if(head) head.style.display = "none";
+    if(skip) skip.style.display = "none";
+  }
+}
+
 function _sendLead(mode){
   var f=_leadForm, err=document.getElementById("formErr");
   err.style.display="none";
   var tw=document.getElementById("f-terminwunsch"); if(tw) tw.value=(mode==="termin"?"ja":"nein");
-  var fd=new FormData(f);
-  try{
-    var rd = window.MKI_getRechnerDaten ? window.MKI_getRechnerDaten() : {};
-    if(rd && Object.keys(rd).length){
-      fd.append("rechner_zusammenfassung", window.MKI_getRechnerText());
-      if(window.dataLayer) dataLayer.push({event:"rechner_lead_daten", rechner:rd});
-    }
-  }catch(_){}
+  _leadSnapshot = _snapshotLead();
+
   var ja=document.getElementById("choiceJa"), nein=document.getElementById("choiceNein");
-  var active=(mode==="termin")?ja:nein, prev=active?active.textContent:"";
-  if(ja) ja.disabled=true; if(nein) nein.disabled=true;
-  if(active) active.textContent="Wird gesendet …";
+
+  /* --- Weg A: Termin gewuenscht -> Lead zurueckhalten, erst Kalender zeigen --- */
+  if(mode==="termin"){
+    var tc=document.getElementById("terminChoice"); if(tc) tc.style.display="none";
+    var pR=document.getElementById("panelR"), pT=document.getElementById("panelT");
+    if(pR) pR.style.display="none";
+    if(pT){
+      _setCalMode("waehlen");
+      pT.style.display="";
+      if(typeof loadCalendly==="function") loadCalendly();
+      pT.scrollIntoView({behavior:"smooth",block:"start"});
+    }
+    _awaitTermin = true;
+    /* Reissleine 1: Zeitablauf ohne Buchung */
+    if(_leadTimer) clearTimeout(_leadTimer);
+    _leadTimer = setTimeout(function(){ _flushLead("termin_offen", false); }, CAL_WARTEZEIT);
+    return;
+  }
+
+  /* --- Weg B: nur Rueckruf -> sofort senden --- */
+  if(ja) ja.disabled=true;
+  if(nein){ nein.disabled=true; nein.textContent="Wird gesendet …"; }
+  var fd=_fdFrom(_leadSnapshot, "nur_rueckruf");
   fetch("lead-intake.php",{method:"POST",body:fd})
     .then(function(r){return r.json()})
     .then(function(j){
-      if(j.ok){
-        if(window.mkiTrackLead) mkiTrackLead(mode==="termin"?"kontakt-termin":"kontaktformular");
-        var tc=document.getElementById("terminChoice"); if(tc) tc.style.display="none";
-        if(mode==="termin"){
-          var pR=document.getElementById("panelR"), pT=document.getElementById("panelT");
-          if(pR) pR.style.display="none";
-          if(pT){ pT.style.display=""; if(typeof loadCalendly==="function") loadCalendly(); pT.scrollIntoView({behavior:"smooth",block:"start"}); }
-        } else {
-          var fo=document.getElementById("formOk");
-          fo.innerHTML = (j.confirm===false)
-            ? '<div class="big">✓</div><h3>Vielen Dank!</h3><p>Ihre Anfrage ist angekommen – ich melde mich schnellstmöglich bei Ihnen.<br>Sie möchten nicht warten? <a href="tel:+4916092085192" style="display:inline;color:var(--true-blue);font-weight:700">0160 92085192</a></p>'
-            : '<div class="big">✉️</div><h3>Fast geschafft – bitte E-Mail bestätigen</h3><p>Ich habe Ihnen eine E-Mail geschickt. Bestätigen Sie darin kurz Ihre Rückrufbitte – danach melde ich mich persönlich. Bitte ggf. auch den Spam-Ordner prüfen.</p>';
-          mkiGeschenke(fo, "nach_rueckruf", window.MKI_PATH==="unsicher");
-          f.style.display="none"; fo.style.display="block";
-        }
-      } else { throw 0; }
+      if(!j.ok) throw 0;
+      _leadStatusSent="nur_rueckruf";
+      if(window.mkiTrackLead) mkiTrackLead("kontaktformular");
+      var tc=document.getElementById("terminChoice"); if(tc) tc.style.display="none";
+      var fo=document.getElementById("formOk");
+      fo.innerHTML = (j.confirm===false)
+        ? '<div class="big">✓</div><h3>Geschafft – ich melde mich bei Ihnen!</h3><p>Ihre Rückrufbitte ist eingegangen. Sie möchten nicht warten? <a href="tel:+4916092085192" style="display:inline;color:var(--true-blue);font-weight:700">0160 92085192</a></p>'
+        : '<div class="big">✉️</div><h3>Fast geschafft – bitte E-Mail bestätigen</h3><p>Ich habe Ihnen eine E-Mail geschickt. Bestätigen Sie darin kurz Ihre Rückrufbitte – danach melde ich mich persönlich. Bitte ggf. auch den Spam-Ordner prüfen.</p>';
+      mkiGeschenke(fo, "nach_rueckruf", window.MKI_PATH==="unsicher");
+      f.style.display="none"; fo.style.display="block";
+      /* Termin bleibt als freiwilliges Angebot darunter stehen */
+      var pT=document.getElementById("panelT");
+      if(pT){ _setCalMode("optional"); pT.style.display=""; }
     })
     .catch(function(){
       err.style.display="block";
-      if(ja){ja.disabled=false;} if(nein){nein.disabled=false;}
-      if(active) active.textContent=prev;
+      if(ja) ja.disabled=false;
+      if(nein){ nein.disabled=false; nein.textContent="Nein, ich möchte nur einen Rückruf"; }
     });
 }
+
 _leadForm.addEventListener("submit",function(e){
   e.preventDefault();
   var f=e.target, err=document.getElementById("formErr"); err.style.display="none";
@@ -2890,6 +3175,28 @@ _leadForm.addEventListener("submit",function(e){
 });
 document.getElementById("choiceJa").addEventListener("click",function(){ _sendLead("termin"); });
 document.getElementById("choiceNein").addEventListener("click",function(){ _sendLead("rueckruf"); });
+
+/* Reissleine 2: Besucher bricht die Terminwahl bewusst ab */
+(function(){
+  var sk=document.getElementById("calSkip");
+  if(!sk) return;
+  sk.addEventListener("click", function(){
+    _flushLead("termin_offen", false);
+    var pT=document.getElementById("panelT"), fo=document.getElementById("formOk"), f=_leadForm;
+    if(pT) pT.style.display="none";
+    if(fo && f){
+      fo.innerHTML='<div class="big">✓</div><h3>Geschafft – ich melde mich bei Ihnen!</h3><p>Ihre Rückrufbitte ist eingegangen, ein Termin ist nicht nötig. Sie möchten nicht warten? <a href="tel:+4916092085192" style="display:inline;color:var(--true-blue);font-weight:700">0160 92085192</a></p>';
+      if(typeof mkiGeschenke==="function") mkiGeschenke(fo, "nach_rueckruf", window.MKI_PATH==="unsicher");
+      var pR=document.getElementById("panelR");
+      if(pR) pR.style.display="";
+      f.style.display="none"; fo.style.display="block";
+      fo.scrollIntoView({behavior:"smooth",block:"center"});
+    }
+  });
+})();
+
+/* Reissleine 3: Seite wird verlassen, ohne dass gebucht wurde */
+window.addEventListener("pagehide", function(){ _flushLead("termin_offen", true); });
 
 /* ---------- Kontakt-Quiz: Schritte, Slider, Vorbelegung aus den Rechnern ---------- */
 (function(){
