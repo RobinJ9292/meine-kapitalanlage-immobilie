@@ -311,64 +311,6 @@ table.vgl td:first-child,table.vgl th:first-child{text-align:left}
   body{font-size:13px}
 }
 </style>
-<!-- ============================================================
-     SCHNELLMODUS  ·  Aufruf mit  rechner.html?modus=schnell
-     ------------------------------------------------------------
-     Ohne Parameter laeuft die VOLLVERSION unveraendert (auch der
-     Geschenk-Download). Mit dem Parameter wird die schlanke, auf der
-     Landingpage eingebettete Ansicht gezeigt.
-     WICHTIG: Hier wird nur EIN- UND AUSGEBLENDET bzw. umgruppiert.
-     An der Rechenlogik aendert sich nichts – die Zahlen sind in
-     beiden Modi identisch.
-     ============================================================ -->
-<script>
-  (function(){
-    try{
-      var p = new URLSearchParams(location.search);
-      if(p.get('modus') === 'schnell'){
-        document.documentElement.classList.add('schnell');
-      }
-    }catch(e){}
-  })();
-</script>
-<style id="schnellmodus-styles">
-  /* --- Eingaben/Annahmen: erklaerende Fliesstexte raus --- */
-  html.schnell #page2 .sec-sub,
-  html.schnell #page2 .panel-sub        { display:none !important; }
-
-  /* --- Unterlagen-Import (Drag & Drop) raus: auf der Landingpage
-         laden Kunden keine Exposes hoch, das gehoert in die Vollversion --- */
-  html.schnell #dropZone,
-  html.schnell #dzStatus                { display:none !important; }
-
-  /* --- Ehegattenschaukel komplett raus (Parameter + Auswertung) --- */
-  html.schnell #schaukelParams,
-  html.schnell #schaukelBox             { display:none !important; }
-
-  /* --- "So rechnet der Vergleich" raus --- */
-  html.schnell #vergleichNotes          { display:none !important; }
-
-  /* --- Auswertung: 5. Kachel (EK-Rendite Volltilgung/Jahr 30) raus,
-         steht weiter unten ohnehin in der Szenario-Karte --- */
-  html.schnell #kpiRow .stat-card:nth-child(5) { display:none !important; }
-
-  /* --- Diagramme und lange Hinweise raus; Cashflow-Tabelle bleibt --- */
-  html.schnell details.chart-panel,
-  html.schnell #hinweise                { display:none !important; }
-
-  /* --- Aufklapper, die der Schnellmodus neu erzeugt --- */
-  html.schnell .sr-more > summary{
-    cursor:pointer; font-weight:600; font-size:.92rem;
-    padding:10px 2px; list-style:none;
-  }
-  html.schnell .sr-more > summary::-webkit-details-marker{ display:none; }
-  html.schnell .sr-more > summary::before{ content:"▸ "; }
-  html.schnell .sr-more[open] > summary::before{ content:"▾ "; }
-  html.schnell .sr-more{ border-top:1px dashed var(--border); margin-top:12px; }
-  html.schnell #srDisclaimer{
-    margin-top:16px; font-size:.78rem; line-height:1.5; opacity:.75;
-  }
-</style>
 </head>
 <body>
 
@@ -559,7 +501,7 @@ table.vgl td:first-child,table.vgl th:first-child{text-align:left}
           </div>
         </details>
 
-        <details class="panel card" id="schaukelParams">
+        <details class="panel card">
           <summary><span class="ico lite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 20V8l5-4 5 4v12"/><path d="M3 20h18"/><path d="M12 20v-5"/></svg></span>Ehegattenschaukel — Parameter<span class="chev">▼</span></summary>
           <div class="panel-body">
           <div class="panel-sub">Der Schalter selbst sitzt in der Auswertung (Schritt 3), damit Sie den Effekt im Gespräch per Klick zeigen können. Hier nur die Kostenannahme.</div>
@@ -569,7 +511,7 @@ table.vgl td:first-child,table.vgl th:first-child{text-align:left}
           </div>
         </details>
 
-        <details class="notes" id="vergleichNotes">
+        <details class="notes">
           <summary>So rechnet der Vergleich<span class="chev">▼</span></summary>
           <div class="notes-body">
           <p><b>Fairness-Prinzip:</b> Beide Strategien erhalten zu jedem Zeitpunkt identische Einzahlungen — das Eigenkapital zu Beginn plus jeden monatlichen Eigenaufwand der Immobilie nach Steuern. Erwirtschaftet die Immobilie Überschüsse, fließen diese in ein Überschuss-Depot mit derselben ETF-Rendite und Besteuerung. So vergleichen wir am Ende Vermögen gegen Vermögen — und die Eigenkapitalrendite (interner Zinsfuß) beider Wege.</p>
@@ -656,14 +598,6 @@ table.vgl td:first-child,table.vgl th:first-child{text-align:left}
         <summary>Cashflow-Tabelle — Jahr für Jahr <span class="chev">▼</span></summary>
         <div class="tblwrap" id="cfTable"></div>
       </details>
-
-      <!-- Kurzhinweis: nur im Schnellmodus sichtbar, ersetzt den langen
-           Block "Annahmen & Hinweise" (rechtlich erforderlich). -->
-      <p id="srDisclaimer" class="notes-body" style="display:none">
-        <b>Wichtig:</b> Modellrechnung auf Basis von Annahmen &ndash; keine Steuer-, Rechts- oder
-        Anlageberatung und keine Garantie f&uuml;r k&uuml;nftige Entwicklungen. Ergebnisse
-        h&auml;ngen von Objekt, Miete und pers&ouml;nlichem Steuersatz ab.
-      </p>
 
       <details class="notes" style="margin-top:20px" id="hinweise">
         <summary>Annahmen &amp; Hinweise<span class="chev">▼</span></summary>
@@ -2876,103 +2810,9 @@ wireImport();
 renderLive();
 
 </script>
-<script>
-/* ============================================================
-   SCHNELLMODUS – Umbauten, die reines CSS nicht leisten kann.
-   Laeuft NUR bei ?modus=schnell. Verschiebt vorhandene Elemente,
-   erzeugt keine neuen Zahlen und aendert keine Berechnung.
-   ============================================================ */
-(function(){
-  if(!document.documentElement.classList.contains('schnell')) return;
 
-  function el(tag, cls, html){
-    var e = document.createElement(tag);
-    if(cls) e.className = cls;
-    if(html != null) e.innerHTML = html;
-    return e;
-  }
-
-  document.addEventListener('DOMContentLoaded', function(){
-    /* 1) Ehegattenschaukel sicher AUS – der Schalter ist ausgeblendet,
-          darf das Ergebnis also unter keinen Umstaenden beeinflussen. */
-    try{
-      var tg = document.getElementById('schaukelToggle');
-      if(tg && tg.checked){ tg.checked = false; tg.dispatchEvent(new Event('input')); }
-      if(window.S) S.schaukel = false;
-    }catch(e){}
-
-    /* 2) Vergleichsanlage: nur Bruttorendite + laufende Kosten bleiben
-          sichtbar. Basiszins, Teilfreistellung und Sparer-Pauschbetrag
-          wandern in einen Aufklapper. */
-    var grid = document.querySelector('#etfRendite') &&
-               document.getElementById('etfRendite').closest('.input-grid');
-    if(grid){
-      var more = el('details','sr-more');
-      more.appendChild(el('summary', null, 'Weitere Annahmen zur Vergleichsanlage anzeigen'));
-      var box = el('div','input-grid');
-      ['basiszins','teilfrei','spbModus'].forEach(function(id){
-        var f = document.getElementById(id);
-        var field = f && f.closest('.field');
-        if(field) box.appendChild(field);
-      });
-      more.appendChild(box);
-      grid.parentNode.insertBefore(more, grid.nextSibling);
-    }
-
-    /* 3) Auswertung: "Verkauf nach Jahr 30 / Volltilgung" einklappen,
-          damit zuerst nur die blaue 10-Jahres-Karte sichtbar ist. */
-    var tilg = document.getElementById('szTilgCard');
-    if(tilg && tilg.parentNode){
-      var col = tilg.parentNode;                 /* .two-col */
-      var d1  = el('details','sr-more');
-      d1.appendChild(el('summary', null, 'Verkauf nach Volltilgung (Jahr 30) anzeigen'));
-      col.parentNode.insertBefore(d1, col.nextSibling);
-      d1.appendChild(tilg);                      /* Element umhaengen, ID bleibt */
-      col.style.display = 'block';               /* 10-Jahres-Karte volle Breite */
-    }
-
-    /* 4) Erklaerung zur sinkenden EK-Rendite als Aufklapper mit Frage. */
-    var callout = document.querySelector('.callout.plain');
-    if(callout && /EK-Rendite/.test(callout.textContent)){
-      var d2 = el('details','sr-more');
-      d2.appendChild(el('summary', null, 'Warum die EK-Rendite über die Laufzeit sinkt?'));
-      var body = el('div','notes-body');
-      var txt = callout.innerHTML.replace(/^\s*<b>[^<]*<\/b>\s*/,'');
-      body.innerHTML = txt;
-      d2.appendChild(body);
-      callout.parentNode.insertBefore(d2, callout);
-      callout.remove();
-    }
-
-    /* 5) Kurz-Disclaimer einblenden (ersetzt "Annahmen & Hinweise"). */
-    var dis = document.getElementById('srDisclaimer');
-    if(dis) dis.style.display = '';
-
-    /* 6) Der Landingpage melden, dass eine Auswertung vorliegt –
-          dort klappt daraufhin "So starten wir" auf. */
-    try{
-      var seen = false;
-      var kpi = document.getElementById('kpiRow');
-      if(kpi && window.parent !== window){
-        new MutationObserver(function(){
-          if(!seen && kpi.children.length){
-            seen = true;
-            parent.postMessage({ type:'mki:calc-done' }, '*');
-          }
-        }).observe(kpi, { childList:true });
-      }
-    }catch(e){}
-  });
-})();
-</script>
-
-<!-- ============================================================
-     ABSENDER-BLOCK fuer den Download / die eigenstaendige Nutzung.
-     Wird NUR angezeigt, wenn die Datei direkt geoeffnet wird –
-     eingebettet auf der Landingpage bleibt er unsichtbar.
-     Dadurch gibt es nur EINE Rechner-Datei: Aenderungen wirken
-     automatisch auf Landingpage UND Download.
-     ============================================================ -->
+<!-- ====== ABSENDER-BLOCK (automatisch eingesetzt) ======
+     Nur sichtbar beim Direktaufruf/Download - im iframe unsichtbar. -->
 <div id="mkiBrandFooter" style="display:none">
   <div style="max-width:960px;margin:44px auto 30px;padding:22px 24px 4px;border-top:1px solid #dbe6e6;font-family:'Open Sans',-apple-system,'Segoe UI',sans-serif;text-align:center;color:#5E718A;font-size:13.5px;line-height:1.65">
     <p style="margin:0 0 6px;font-size:15px"><b style="color:#22354C">Ihr pers&ouml;nlicher Kapitalanlage-Rechner</b></p>
@@ -2987,16 +2827,6 @@ renderLive();
     <p style="margin:0 0 18px;font-size:11px;color:#8092a6">Modellrechnung &ndash; kein Versprechen und keine individuelle Steuer- oder Anlageberatung.</p>
   </div>
 </div>
-<script>
-  /* Nur sichtbar, wenn NICHT in einem iframe (also beim Download/Direktaufruf) */
-  (function(){
-    try{
-      if(window.self === window.top){
-        var f = document.getElementById('mkiBrandFooter');
-        if(f) f.style.display = '';
-      }
-    }catch(e){}
-  })();
-</script>
+<script>(function(){try{if(window.self===window.top){var f=document.getElementById('mkiBrandFooter');if(f)f.style.display='';}}catch(e){}})();</script>
 </body>
 </html>

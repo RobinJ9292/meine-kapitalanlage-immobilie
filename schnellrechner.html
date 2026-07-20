@@ -2,14 +2,33 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<title>Schnellrechner – Vorschau</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
+<title>Schnellrechner – Vorschau</title>
+<style>
+  html,body{margin:0;padding:0;height:100%;background:#F6FAFA;font-family:-apple-system,"Segoe UI",sans-serif}
+  .hinweis{padding:10px 16px;background:#122844;color:#EAF2F6;font-size:13px}
+  .hinweis b{color:#9FE8E2}
+  iframe{display:block;width:100%;height:calc(100% - 38px);border:0}
+</style>
 </head>
 <body>
-<!-- Startdatei zum Ansehen/Testen der SCHLANKEN Ansicht.
-     Einfach doppelklicken – leitet auf rechner.html?modus=schnell weiter.
-     Es gibt weiterhin nur EINEN Rechner: rechner.html. -->
-<p style="font-family:sans-serif">Schnellrechner wird geladen …</p>
-<script>location.replace('rechner.html?modus=schnell');</script>
+<!-- Vorschau der SCHLANKEN Ansicht. Lädt den normalen Rechner und
+     spielt den Schnellmodus von außen ein – genau wie die Landingpage.
+     rechner.html selbst bleibt unverändert. -->
+<div class="hinweis"><b>Vorschau:</b> So sieht der Rechner eingebettet auf der Landingpage aus.</div>
+<iframe id="f" src="rechner.html" title="Schnellrechner-Vorschau"></iframe>
+<script src="rechner-schnellmodus.js"></script>
+<script>
+  var f = document.getElementById('f');
+  function anwenden(){
+    try{
+      var d = f.contentDocument || (f.contentWindow && f.contentWindow.document);
+      if(d && d.body && window.mkiSchnellmodus) window.mkiSchnellmodus(d);
+    }catch(e){}
+  }
+  f.addEventListener('load', anwenden);
+  anwenden();
+</script>
 </body>
 </html>

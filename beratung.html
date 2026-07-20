@@ -1988,6 +1988,21 @@ function openTierCalc(key){
   var frame = document.getElementById("rechnerFrame");
   if(!frame) return;
 
+  /* --- Schnellmodus von aussen einspielen ---------------------------
+     Die Regeln liegen in rechner-schnellmodus.js, NICHT in rechner.html.
+     Dadurch darf rechner.html jederzeit durch eine neue Fassung ersetzt
+     werden, ohne dass die schlanke Ansicht verloren geht. */
+  function mkiSchnellAnwenden(f){
+    try{
+      var doc = f.contentDocument || (f.contentWindow && f.contentWindow.document);
+      if(doc && doc.body && typeof window.mkiSchnellmodus === "function"){
+        window.mkiSchnellmodus(doc);
+      }
+    }catch(_){}
+  }
+  frame.addEventListener("load", function(){ mkiSchnellAnwenden(frame); });
+  mkiSchnellAnwenden(frame);
+
   /* --- Fallback: alte postMessage-Höhenmeldung (falls je gebraucht) --- */
   window.addEventListener("message", function(e){
     if(e.source !== frame.contentWindow) return;
