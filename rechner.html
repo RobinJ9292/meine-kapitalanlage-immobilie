@@ -154,7 +154,10 @@ input.calc[readonly]{background:var(--jade-20);border-color:var(--jade-60);font-
 .autoval b{color:var(--navy)}
 .autoval .gd{color:var(--gold-ink)}
 .warnbox{background:#FBEDEC;border:1px solid var(--red);color:var(--red);font-size:.8rem;border-radius:12px;padding:8px 11px;margin-top:10px}
-.stack{display:grid;gap:18px}
+.stack{display:grid;gap:18px;grid-template-columns:minmax(0,1fr)}
+/* Ohne minmax(0,...) waechst die Grid-Spalte auf die Maximalbreite ihres
+   Inhalts statt sich dem Container zu fuegen - dadurch wurde der Rechner
+   in der schmalen Einbettung rechts abgeschnitten. */
 
 /* Objekt-Karten (Seite 1) */
 .obj-list{display:grid;gap:18px}
@@ -196,6 +199,17 @@ input.calc[readonly]{background:var(--jade-20);border-color:var(--jade-60);font-
 
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 @media(max-width:880px){.two-col{grid-template-columns:1fr}}
+/* Schmale Einbettung (iframe auf dem Handy ist nur ~340px breit) */
+@media(max-width:600px){
+  .input-grid{grid-template-columns:1fr}
+  .field,h2.sec{min-width:0 !important}
+  .panel{padding:18px}
+  .duo{flex-wrap:wrap}
+  /* nowrap laesst die gesperrte Unterzeile ueber den Rand laufen */
+  .topbar .brand{white-space:normal}
+  .topbar .brand small{letter-spacing:.08em}
+  .topbar-inner{padding-left:16px;padding-right:16px}
+}
 .prod{border-radius:22px;padding:24px 26px;position:relative;overflow:hidden}
 .prod.dark{background:var(--navy-night);color:#fff;border:1px solid rgba(180,214,212,.2)}
 .prod.dark::after{content:"";position:absolute;right:-70px;top:-70px;width:220px;height:220px;border:1.5px solid rgba(180,214,212,.14);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);pointer-events:none}
