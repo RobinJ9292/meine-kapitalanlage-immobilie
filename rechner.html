@@ -2811,6 +2811,23 @@ renderLive();
 
 </script>
 
+<!-- ====== SCHNELLMODUS-LADER (automatisch eingesetzt) ======
+     Laedt die schlanke Ansicht bei Aufruf mit ?modus=schnell.
+     Die Regeln stehen in rechner-schnellmodus.js, nicht hier. -->
+<script>
+(function(){
+  try{
+    if(new URLSearchParams(location.search).get('modus') !== 'schnell') return;
+    var s = document.createElement('script');
+    s.src = 'rechner-schnellmodus.js';
+    s.onload = function(){
+      try{ if(window.mkiSchnellmodus) window.mkiSchnellmodus(document); }catch(e){}
+    };
+    (document.head || document.documentElement).appendChild(s);
+  }catch(e){}
+})();
+</script>
+
 <!-- ====== ABSENDER-BLOCK (automatisch eingesetzt) ======
      Nur sichtbar beim Direktaufruf/Download - im iframe unsichtbar. -->
 <div id="mkiBrandFooter" style="display:none">

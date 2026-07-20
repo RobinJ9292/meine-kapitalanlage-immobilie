@@ -23,6 +23,26 @@ from pathlib import Path
 WURZEL = Path(__file__).resolve().parent.parent
 ZIEL = WURZEL / "rechner.html"
 MARKER = 'id="mkiBrandFooter"'
+MARKER_LADER = "rechner-schnellmodus.js"
+
+LADER = """
+<!-- ====== SCHNELLMODUS-LADER (automatisch eingesetzt) ======
+     Laedt die schlanke Ansicht bei Aufruf mit ?modus=schnell.
+     Die Regeln stehen in rechner-schnellmodus.js, nicht hier. -->
+<script>
+(function(){
+  try{
+    if(new URLSearchParams(location.search).get('modus') !== 'schnell') return;
+    var s = document.createElement('script');
+    s.src = 'rechner-schnellmodus.js';
+    s.onload = function(){
+      try{ if(window.mkiSchnellmodus) window.mkiSchnellmodus(document); }catch(e){}
+    };
+    (document.head || document.documentElement).appendChild(s);
+  }catch(e){}
+})();
+</script>
+"""
 
 ABSENDER = """
 <!-- ====== ABSENDER-BLOCK (automatisch eingesetzt) ======
@@ -61,13 +81,24 @@ def main() -> int:
         print("FEHLER: Das sieht nicht nach einer vollstaendigen HTML-Datei aus.")
         return 1
 
-    if MARKER in inhalt:
-        print("Hinweis: Absender-Block war bereits enthalten - unveraendert uebernommen.")
-        neu = inhalt
+    zusatz = ""
+    if MARKER_LADER in inhalt:
+        print("Hinweis: Schnellmodus-Lader war bereits enthalten.")
     else:
-        i = inhalt.rfind("</body>")
-        neu = inhalt[:i] + ABSENDER + inhalt[i:]
+        zusatz += LADER
+        print("Schnellmodus-Lader eingesetzt.")
+
+    if MARKER in inhalt:
+        print("Hinweis: Absender-Block war bereits enthalten.")
+    else:
+        zusatz += ABSENDER
         print("Absender-Block eingesetzt.")
+
+    if zusatz:
+        i = inhalt.rfind("</body>")
+        neu = inhalt[:i] + zusatz + inhalt[i:]
+    else:
+        neu = inhalt
 
     if ZIEL.exists():
         sicherung = ZIEL.with_suffix(".html.backup")
