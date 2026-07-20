@@ -709,13 +709,14 @@ footer a:hover{color:var(--jade)}
 @media(max-width:640px){.ek-arrow{transform:rotate(90deg)}.ek-col .ek-val{font-size:40px}}
 
 /* ---------- Fallbeispiele (Slider) ---------- */
-.cs-track{position:relative;display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:30px 0 22px}
-.cs-track::-webkit-scrollbar{display:none}
-.cs-track::before,.cs-track::after{content:"";flex:0 0 calc(50% - var(--cs-w)/2 + 26px)}
-.cs-track{--cs-w:min(420px,78vw)}
-.cs-card{position:relative;flex:0 0 var(--cs-w);margin:0 -26px;scroll-snap-align:center;background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px 24px 24px;display:flex;flex-direction:column;gap:12px;overflow:hidden;box-shadow:var(--shadow-sm);transform:scale(.84);opacity:.5;z-index:1;transition:transform .38s cubic-bezier(.4,.15,.2,1),opacity .38s,box-shadow .38s}
-.cs-card.is-active{transform:scale(1);opacity:1;z-index:5;box-shadow:var(--shadow-md)}
+.cs-track{position:relative;height:var(--cs-h,520px);overflow:hidden;touch-action:pan-y;cursor:grab;-webkit-user-select:none;user-select:none}
+.cs-track.is-drag{cursor:grabbing}
+
+.cs-track{--cs-w:min(420px,76vw)}
+.cs-card{position:absolute;top:24px;left:50%;width:var(--cs-w);margin-left:calc(var(--cs-w) / -2);background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px 24px 24px;display:flex;flex-direction:column;gap:12px;overflow:hidden;box-shadow:var(--shadow-sm);will-change:transform,opacity;transition:transform .44s cubic-bezier(.33,.1,.2,1),opacity .44s ease,box-shadow .44s ease}
+.cs-card.is-active{box-shadow:var(--shadow-md)}
 .cs-card:not(.is-active){cursor:pointer}
+.cs-card.no-anim{transition:none}
 .cs-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--cs-accent,var(--true-blue))}
 /* Akzentfarben je Ausgangslage */
 .cs-card.cs-a{--cs-accent:#2C517F;--cs-soft:#EDF2F8}
@@ -2383,44 +2384,158 @@ document.querySelectorAll(".choice").forEach(function(c){
   });
 })();
 
-/* ---------- Fallbeispiele: Slider (wischen + Pfeile + Dots) ---------- */
+/* ---------- Fallbeispiele: Endlos-Karussell (zufaelliger Start, Coverflow) ---------- */
 (function(){
-  var track = document.getElementById("csTrack");
-  if(!track) return;
-  var cards = Array.prototype.slice.call(track.querySelectorAll(".cs-card"));
-  var dots = Array.prototype.slice.call(document.querySelectorAll("#csDots .cs-dot"));
-  function cur(){
-    var mid = track.scrollLeft + track.clientWidth/2, best = 0, bd = Infinity;
-    cards.forEach(function(c,i){
-      var d = Math.abs(c.offsetLeft + c.clientWidth/2 - mid);
-      if(d < bd){ bd = d; best = i; }
-    });
-    return best;
-  }
-  function go(i){
-    i = Math.max(0, Math.min(i, cards.length-1));
-    var c = cards[i];
-    track.scrollTo({left: c.offsetLeft - (track.clientWidth - c.clientWidth)/2, behavior:"smooth"});
-  }
-  document.getElementById("csPrev").addEventListener("click", function(){ go(cur()-1); });
-  document.getElementById("csNext").addEventListener("click", function(){ go(cur()+1); });
-  dots.forEach(function(d,i){ d.addEventListener("click", function(){ go(i); }); });
-  function paint(){
-    var i = cur();
-    dots.forEach(function(d,k){ d.classList.toggle("on", k===i); });
-    cards.forEach(function(c,k){ c.classList.toggle("is-active", k===i); });
-  }
-  cards.forEach(function(c,i){
-    c.addEventListener("click", function(){ if(!c.classList.contains("is-active")) go(i); });
+  var stage = document.getElementById("csTrack");
+  if(!stage) return;
+  var real = Array.prototype.slice.call(stage.querySelectorAll(".cs-card"));
+  var N = real.length;
+  if(N < 2) return;
+  var dotBox = document.getElementById("csDots");
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+  /* Klone anhaengen: so steht links und rechts immer eine echte Karte bereit */
+  real.forEach(function(c){
+    var k = c.cloneNode(true);
+    k.setAttribute("aria-hidden","true");
+    k.removeAttribute("id");
+    stage.appendChild(k);
   });
-  var raf = null;
-  track.addEventListener("scroll", function(){
-    if(raf) return;
-    raf = requestAnimationFrame(function(){ raf = null; paint(); });
-  }, {passive:true});
-  paint();
-  window.addEventListener("resize", paint, {passive:true});
-  requestAnimationFrame(function(){ go(0); paint(); });
+  var cards = Array.prototype.slice.call(stage.querySelectorAll(".cs-card"));
+  var V = cards.length;                 /* = 2 * N */
+
+  var active = Math.floor(Math.random() * N);   /* zufaelliger Start */
+  var drag = 0;
+
+  var SLOT = [0, 62, 100];              /* Versatz in % je Abstand */
+  var SCALE = [1, .82, .68];
+  var OPA  = [1, .5, 0];
+  var Z    = [5, 3, 1];
+
+  function offset(i){                   /* kuerzester Abstand im Ring */
+    var d = i - active;
+    d = ((d % V) + V) % V;
+    if(d > V/2) d -= V;
+    return d;
+  }
+  function apply(c, d, px){
+    var a = Math.min(Math.abs(d), 2);
+    var dir = d < 0 ? -1 : 1;
+    var x = "calc(" + (dir * SLOT[a]) + "% + " + px + "px)";
+    c.style.transform = "translateX(" + x + ") scale(" + SCALE[a] + ")";
+    c.style.opacity = OPA[a];
+    c.style.zIndex = Z[a];
+    c.style.pointerEvents = a >= 2 ? "none" : "auto";
+  }
+  function paint(px, dragging){
+    px = px || 0;
+    cards.forEach(function(c,i){
+      var d = offset(i);
+      /* weit entfernte Karten ohne Animation umsetzen - sie sind unsichtbar */
+      if(Math.abs(d) > 2){ c.classList.add("no-anim"); apply(c, d > 0 ? 2 : -2, 0); }
+      else { if(!dragging) c.classList.remove("no-anim"); apply(c, d, px); }
+      c.classList.toggle("is-active", d === 0);
+    });
+    if(dotBox){
+      Array.prototype.forEach.call(dotBox.children, function(dot,k){
+        dot.classList.toggle("on", k === (active % N));
+      });
+    }
+  }
+  function go(step){
+    active = ((active + step) % V + V) % V;
+    drag = 0;
+    paint(0);
+  }
+  function goTo(idx){                   /* auf ein bestimmtes Fallbeispiel - kuerzester Weg */
+    var bd = V;
+    [idx, idx + N].forEach(function(v){
+      var d = ((v - active) % V + V) % V;
+      if(d > V/2) d -= V;
+      if(Math.abs(d) < Math.abs(bd)) bd = d;
+    });
+    go(bd);
+  }
+
+  /* Hoehe der Buehne = hoechste Karte */
+  function measure(){
+    var h = 0;
+    cards.forEach(function(c){
+      var t = c.style.transform, o = c.style.opacity;
+      c.style.transform = "none"; c.style.opacity = "0";
+      h = Math.max(h, c.offsetHeight);
+      c.style.transform = t; c.style.opacity = o;
+    });
+    stage.style.setProperty("--cs-h", (h + 48) + "px");
+  }
+
+  /* Pfeile */
+  var prev = document.getElementById("csPrev"), next = document.getElementById("csNext");
+  if(prev) prev.addEventListener("click", function(){ go(-1); });
+  if(next) next.addEventListener("click", function(){ go(1); });
+
+  /* Dots */
+  if(dotBox){
+    Array.prototype.forEach.call(dotBox.children, function(dot,k){
+      dot.addEventListener("click", function(){ goTo(k); });
+    });
+  }
+
+  var x0 = null, moved = false, w = 1;
+
+  /* Klick auf eine Nachbarkarte holt sie in die Mitte */
+  cards.forEach(function(c,i){
+    c.addEventListener("click", function(){
+      if(moved) return;
+      var d = offset(i);
+      if(d !== 0 && Math.abs(d) <= 2) go(d);
+    });
+  });
+
+  /* Wischen / Ziehen */
+  stage.addEventListener("pointerdown", function(e){
+    x0 = e.clientX; moved = false;
+    w = stage.clientWidth || 1;
+    stage.classList.add("is-drag");
+    try { stage.setPointerCapture(e.pointerId); } catch(err){}
+    cards.forEach(function(c){ c.classList.add("no-anim"); });
+  });
+  stage.addEventListener("pointermove", function(e){
+    if(x0 === null) return;
+    var dx = e.clientX - x0;
+    if(Math.abs(dx) > 6) moved = true;
+    paint(Math.max(-w/3, Math.min(w/3, dx)), true);
+  });
+  function release(e){
+    if(x0 === null) return;
+    var dx = (e.clientX || x0) - x0;
+    x0 = null;
+    stage.classList.remove("is-drag");
+    cards.forEach(function(c){ c.classList.remove("no-anim"); });
+    if(dx <= -45) go(1);
+    else if(dx >= 45) go(-1);
+    else paint(0);
+    setTimeout(function(){ moved = false; }, 60);
+  }
+  stage.addEventListener("pointerup", release);
+  stage.addEventListener("pointercancel", release);
+  stage.addEventListener("pointerleave", release);
+
+  /* Tastatur */
+  stage.setAttribute("tabindex","0");
+  stage.setAttribute("role","group");
+  stage.setAttribute("aria-label","Fallbeispiele - mit den Pfeiltasten wechseln");
+  stage.addEventListener("keydown", function(e){
+    if(e.key === "ArrowLeft"){ e.preventDefault(); go(-1); }
+    if(e.key === "ArrowRight"){ e.preventDefault(); go(1); }
+  });
+
+  if(reduce){ cards.forEach(function(c){ c.classList.add("no-anim"); }); }
+  measure();
+  paint(0);
+  window.addEventListener("resize", function(){ measure(); paint(0); }, {passive:true});
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ measure(); paint(0); });
+  window.addEventListener("load", function(){ measure(); paint(0); });
 })();
 
 /* ---------- Vergleich: ein Kriterium pro Ansicht (wischen + Pfeile + Dots) ---------- */
