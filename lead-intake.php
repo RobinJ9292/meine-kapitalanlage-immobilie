@@ -55,7 +55,7 @@ if ($terminwunsch === "ja") {
     echo json_encode(["ok" => true, "confirm" => false]); exit;
 }
 
-// --- Fall 2: Rueckruf/Quiz => Double-Opt-In. E-Mail ist hier Pflicht ---
+// --- Fall 2: E-Mail ist ab hier Pflicht ---
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     http_response_code(400); echo json_encode(["ok" => false, "error" => "email"]); exit;
 }
@@ -71,6 +71,19 @@ if ($leadmagnet !== "" && strtolower($data["direkt"] ?? "") === "ja") {
     echo json_encode(["ok" => true, "confirm" => false]); exit;
 }
 
+// --- Fall 2b: Rueckrufbitte => direkt an Robin, KEIN Double-Opt-In ---
+// Wer aktiv um einen Rueckruf bittet, hat den Kontakt selbst angefordert.
+// Ein Bestaetigungsklick davorzuschalten hiesse: Kommt die Mail nicht an
+// oder landet sie im Spam, erreicht der Lead Robin nie. Die Einwilligung
+// fuer den Newsletter laeuft weiterhin getrennt ueber HubSpot.
+if ($leadmagnet === "") {
+    lead_notify_robin($data, " (Rueckruf)");
+    lead_to_hubspot($data, "entfaellt - Rueckrufbitte direkt ueber das Formular");
+    lead_send_danke($email, $name);
+    echo json_encode(["ok" => true, "confirm" => false]); exit;
+}
+
+// --- Ab hier nur noch: Leitfaden ohne Sofort-Download => Double-Opt-In ---
 $token = bin2hex(random_bytes(16));
 if (!is_dir(LEAD_STORE)) @mkdir(LEAD_STORE, 0700, true);
 $saved = @file_put_contents(

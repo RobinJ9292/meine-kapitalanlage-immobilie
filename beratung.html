@@ -482,7 +482,7 @@ section{padding:84px 0;scroll-margin-top:76px}
 /* Calendly fest verankert: feste Höhe, hoch genug für die komplette
    Monatsansicht, damit das iframe NICHT intern scrollt (sonst "stockt" das
    Mausrad beim Vorbeiscrollen). Nur die Seite scrollt, nicht das Widget. */
-#calFrame{display:block;width:100%;height:820px;border:0}
+#calFrame{display:block;width:100%;height:820px;border:0} /* nur noch Fallback, regulaer laeuft der Kalender als Overlay */
 @media(max-width:640px){#calFrame{height:980px}}
 .cal-note{font-size:12px;color:var(--muted);text-align:center;margin:10px auto 0;max-width:520px}
 .cal-consent{text-align:center;padding:48px 20px}
@@ -1787,8 +1787,9 @@ window.MKI_scrollSperre = (function(){
       </div>
       <div class="cal-consent" id="calConsent">
         <p>Zur Terminbuchung wird der Dienst <strong>Calendly</strong> geladen (Datenübertragung in die USA möglich, Details in der <a href="datenschutz.html" target="_blank" style="display:inline;color:var(--true-blue)">Datenschutzerklärung</a>).</p>
-        <button class="btn btn-blue btn-lg" type="button" id="loadCal">Kalender laden &amp; Termin wählen</button>
+        <button class="btn btn-jade btn-lg" type="button" id="loadCal">Kalender öffnen &amp; Termin wählen</button>
       </div>
+      <p id="calLaedt" style="display:none;text-align:center;font-size:14px;color:var(--t-on-dark-muted);margin-top:12px">Kalender wird geladen &hellip;</p>
       <div id="calMount"></div>
       <div id="calSkipWrap" style="display:none;text-align:center;margin-top:16px">
         <button type="button" id="calSkip" style="background:none;border:none;cursor:pointer;font-family:var(--sans);font-size:14px;font-weight:700;color:var(--true-blue);text-decoration:underline;text-underline-offset:3px;padding:6px">Kein passender Termin dabei? R&uuml;ckruf gen&uuml;gt &ndash; hier abschlie&szlig;en</button>
@@ -1917,7 +1918,12 @@ var CAL_URL = "https://calendly.com/robinjaenicke/kapitalanlage-erstgespraech";
    wenn sie im Event-Typ als Invitee-Frage angelegt ist - dann heisst sie je nach
    Reihenfolge a1, a2 ... Hier die passende Nummer eintragen, "" schaltet es ab.
    Ist die Nummer als Termin-ORT ("Telefonanruf") konfiguriert, geht es technisch nicht. */
-var CAL_TEL_FELD = "a1";
+/* Leer lassen: Das Event "Immobilie als Kapitalanlage - Erstgespraech" hat
+   laut Calendly keine Zusatzfragen (custom_questions ist leer), es gibt dort
+   also gar kein Telefonfeld zum Vorbefuellen. Falls du in Calendly eine Frage
+   "Telefonnummer" ergaenzt, hier "a1" eintragen (bzw. a2, a3 ... je nach
+   Reihenfolge der Fragen). Name und E-Mail werden unabhaengig davon gefuellt. */
+var CAL_TEL_FELD = "";
 /* So lange wird nach dem Oeffnen des Kalenders auf eine Buchung gewartet,
    danach geht der Lead mit Status "Termin offen" raus (Millisekunden). */
 var CAL_WARTEZEIT = 180000;
@@ -2901,22 +2907,44 @@ document.querySelectorAll(".choice").forEach(function(c){
 var calLoaded=false;
 function loadCalendly(){
   if(calLoaded) return;
-  calLoaded=true;
-  var cc=document.getElementById("calConsent");
-  if(cc) cc.style.display="none";
-  var f=document.createElement("iframe");
-  f.id="calFrame";
-  f.title="Termin bei Robin Jänicke buchen";
-  f.setAttribute("loading","lazy");
-  f.src=CAL_URL+"?hide_gdpr_banner=1&primary_color=2C517F"
-       +"&embed_domain="+encodeURIComponent(location.hostname)
-       +"&embed_type=Inline"
-       +_calPrefill();
-  document.getElementById("calMount").appendChild(f);
+  calLoaded = true;
+  var cc = document.getElementById("calConsent");
+  if(cc) cc.style.display = "none";
+  var hinweis = document.getElementById("calLaedt");
+  if(hinweis) hinweis.style.display = "block";
+
+  /* Calendly als Overlay statt als eingebetteter Rahmen.
+     Grund: Ein scrollbarer Kalender innerhalb der scrollbaren Seite fuehrt
+     dazu, dass Wischen ueber dem Kalender die Seite nicht mehr bewegt - man
+     haengt fest. Das Overlay legt sich ueber die ganze Seite, darunter wird
+     nichts gescrollt, und beim Schliessen ist man wieder genau da, wo man war. */
+  var css = document.createElement("link");
+  css.rel = "stylesheet";
+  css.href = "https://assets.calendly.com/assets/external/widget.css";
+  document.head.appendChild(css);
+
+  var js = document.createElement("script");
+  js.src = "https://assets.calendly.com/assets/external/widget.js";
+  js.async = true;
+  js.onload = function(){ if(hinweis) hinweis.style.display = "none"; calOeffnen(); };
+  js.onerror = function(){
+    if(hinweis) hinweis.innerHTML = 'Der Kalender liess sich nicht laden. '
+      + '<a href="' + CAL_URL + '" target="_blank" rel="noopener" style="display:inline;color:var(--jade-bright);font-weight:700">Termin in neuem Tab waehlen</a>';
+  };
+  document.head.appendChild(js);
 }
+
+function calOeffnen(){
+  if(!window.Calendly){ window.open(CAL_URL, "_blank", "noopener"); return; }
+  var url = CAL_URL + "?hide_gdpr_banner=1&primary_color=2C517F" + _calPrefill();
+  Calendly.initPopupWidget({ url: url });
+  var b = document.getElementById("calOpen");
+  if(b) b.textContent = "Kalender erneut oeffnen";
+}
+
 /* Manueller Button bleibt als Fallback erhalten */
 var _loadCalBtn=document.getElementById("loadCal");
-if(_loadCalBtn) _loadCalBtn.addEventListener("click",loadCalendly);
+if(_loadCalBtn) _loadCalBtn.addEventListener("click", function(){ calLoaded ? calOeffnen() : loadCalendly(); });
 
 /* Nach erfolgreicher Terminbuchung: Bestätigung + dieselben Geschenke.
    Calendly meldet das Event per postMessage an die Einbettung. */
@@ -3218,8 +3246,8 @@ function _setCalMode(mode){
     sub.innerHTML = "Ihre Rückrufbitte ist eingegangen. <b>Optional:</b> Wenn Sie sich gleich einen festen Termin sichern möchten, wählen Sie hier einen aus – sonst melde ich mich einfach telefonisch.";
     if(skip) skip.style.display = "block";
   } else if(mode === "optional"){
-    t.textContent = "Geschafft – ich melde mich bei Ihnen";
-    sub.innerHTML = "Ihre Rückrufbitte ist eingegangen. Wenn Sie sich direkt einen Termin sichern möchten, können Sie das hier noch tun – sonst müssen Sie nichts weiter machen.";
+    t.textContent = "Optional: Termin gleich mitnehmen";
+    sub.innerHTML = "Sie müssen nichts weiter tun – ich melde mich. Wenn Sie sich lieber gleich einen festen Termin sichern möchten, wählen Sie hier einen aus.";
     if(skip) skip.style.display = "none";
   } else if(mode === "gebucht"){
     if(head) head.style.display = "none";
@@ -3265,9 +3293,9 @@ function _sendLead(mode){
       if(window.mkiTrackLead) mkiTrackLead("kontaktformular");
       var tc=document.getElementById("terminChoice"); if(tc) tc.style.display="none";
       var fo=document.getElementById("formOk");
-      fo.innerHTML = (j.confirm===false)
-        ? '<div class="big">✓</div><h3>Geschafft – ich melde mich bei Ihnen!</h3><p>Ihre Rückrufbitte ist eingegangen. Sie möchten nicht warten? <a href="tel:+4916092085192" style="display:inline;color:var(--true-blue);font-weight:700">0160 92085192</a></p>'
-        : '<div class="big">✉️</div><h3>Fast geschafft – bitte E-Mail bestätigen</h3><p>Ich habe Ihnen eine E-Mail geschickt. Bestätigen Sie darin kurz Ihre Rückrufbitte – danach melde ich mich persönlich. Bitte ggf. auch den Spam-Ordner prüfen.</p>';
+      fo.innerHTML = '<div class="big">✓</div><h3>Geschafft – ich melde mich bei Ihnen!</h3>'+
+        '<p>Ihre Rückrufbitte ist eingegangen. Ich melde mich zeitnah persönlich – in der Regel noch am selben oder am nächsten Werktag. Eine Bestätigung liegt gleich in Ihrem Postfach.</p>'+
+        '<p style="margin-top:6px">Sie möchten nicht warten? <a href="tel:+4916092085192" style="display:inline;color:var(--true-blue);font-weight:700">0160 92085192</a></p>';
       mkiGeschenke(fo, "nach_rueckruf", window.MKI_PATH==="unsicher");
       f.style.display="none"; fo.style.display="block";
       /* Termin bleibt als freiwilliges Angebot darunter stehen */

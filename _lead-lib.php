@@ -70,6 +70,24 @@ function lead_headers($replyTo = "") {
 
 function lead_subject_encode($s) { return "=?UTF-8?B?" . base64_encode($s) . "?="; }
 
+/* Zentraler Versand. Zwei Dinge, die vorher fehlten:
+   1. Der Envelope-Absender (-f). Ohne ihn setzt der Server als Absender das
+      Systemkonto ein; das passt nicht zur Domain, und viele Empfaenger
+      verwerfen die Mail oder sortieren sie in den Spam.
+   2. Ein Protokoll. mail() wurde mit @ aufgerufen, Fehler waren unsichtbar.
+      Jetzt landet jeder Fehlversuch in _leads/mail-fehler.log. */
+function lead_mail($to, $betreff, $text, $headers) {
+    if (!filter_var($to, FILTER_VALIDATE_EMAIL)) return false;
+    $ok = @mail($to, $betreff, $text, $headers, "-f" . LEAD_ABSENDER);
+    if (!$ok) {
+        if (!is_dir(LEAD_STORE)) @mkdir(LEAD_STORE, 0700, true);
+        @file_put_contents(LEAD_STORE . "/mail-fehler.log",
+            date("d.m.Y H:i") . "  an " . $to . "  Betreff: " . $betreff . "\n",
+            FILE_APPEND | LOCK_EX);
+    }
+    return $ok;
+}
+
 // Sendet die Lead-Benachrichtigung an Robin
 function lead_notify_robin($data, $zusatz = "") {
     $labels = lead_labels();
@@ -92,7 +110,7 @@ function lead_notify_robin($data, $zusatz = "") {
           . implode("\n", $zeilen)
           . "\n\nGesendet am " . date("d.m.Y") . " um " . date("H:i") . " Uhr";
     $reply = isset($data["email"]) ? $data["email"] : "";
-    return @mail(LEAD_EMPFAENGER, lead_subject_encode($betreff), $text, lead_headers($reply));
+    return lead_mail(LEAD_EMPFAENGER, lead_subject_encode($betreff), $text, lead_headers($reply));
 }
 
 // Sendet die Bestaetigungsmail (Double-Opt-In) an den Interessenten
@@ -105,7 +123,7 @@ function lead_send_confirm($email, $name, $link) {
           . "Erst nach dieser Bestaetigung nehme ich mit Ihnen Kontakt auf. So stelle ich sicher, dass die Angaben\n"
           . "wirklich von Ihnen stammen. Wenn Sie diese Anfrage nicht gestellt haben, ignorieren Sie diese Mail einfach.\n\n"
           . "Herzliche Gruesse\nRobin Jaenicke\nSpezialist fuer Kapitalanlage-Immobilien\nTel. 0160 92085192";
-    return @mail($email, lead_subject_encode("Bitte bestaetigen Sie Ihre Rueckrufbitte"), $text, lead_headers());
+    return lead_mail($email, lead_subject_encode("Bitte bestaetigen Sie Ihre Rueckrufbitte"), $text, lead_headers());
 }
 
 // Bestaetigungsmail fuer den Leitfaden-Download (Double-Opt-In)
@@ -118,7 +136,7 @@ function lead_send_confirm_guide($email, $name, $link) {
           . "Direkt danach oeffnet sich der Download. Kein Spam, keine Serienmails - versprochen.\n"
           . "Wenn Sie diese Anfrage nicht gestellt haben, ignorieren Sie diese Mail einfach.\n\n"
           . "Herzliche Gruesse\nRobin Jaenicke\nSpezialist fuer Kapitalanlage-Immobilien\nTel. 0160 92085192";
-    return @mail($email, lead_subject_encode("Ihr Einsteiger-Guide wartet - bitte E-Mail bestaetigen"), $text, lead_headers());
+    return lead_mail($email, lead_subject_encode("Ihr Einsteiger-Guide wartet - bitte E-Mail bestaetigen"), $text, lead_headers());
 }
 
 // Leitfaden ohne Double-Opt-In: Datei sofort, Mail als Zweitweg
@@ -133,7 +151,7 @@ function lead_send_guide_direct($email, $name) {
           . "Wenn nach dem Lesen Fragen offen bleiben: Melden Sie sich einfach, ich helfe gern weiter.\n"
           . "Kein Verkaufsdruck, kein Serienbrief.\n\n"
           . "Herzliche Gruesse\nRobin Jaenicke\nSpezialist fuer Kapitalanlage-Immobilien\nTel. 0160 92085192";
-    return @mail($email, lead_subject_encode("Ihr Einsteiger-Guide: Immobilie als Kapitalanlage"), $text, lead_headers());
+    return lead_mail($email, lead_subject_encode("Ihr Einsteiger-Guide: Immobilie als Kapitalanlage"), $text, lead_headers());
 }
 
 // Bestaetigung an den Interessenten: Rueckrufbitte ist da + die beiden Geschenke.
@@ -161,7 +179,7 @@ function lead_send_danke($email, $name) {
           . "Spezialist fuer Kapitalanlage-Immobilien\n"
           . "Tel. 0160 92085192\n"
           . "robin.jaenicke@bonnfinanz.de";
-    return @mail($email, lead_subject_encode("Ihre Rueckrufbitte ist angekommen - und zwei Dinge vorab"), $text, lead_headers());
+    return lead_mail($email, lead_subject_encode("Ihre Rueckrufbitte ist angekommen - und zwei Dinge vorab"), $text, lead_headers());
 }
 
 // Uebergabe an HubSpot (Forms-API, EU). Ohne GUID passiert nichts.
