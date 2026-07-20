@@ -755,17 +755,17 @@ footer a:hover{color:var(--jade)}
 .cs-head{display:flex;align-items:center;gap:12px}
 .cs-photo{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--cs-accent,var(--jade-60));box-shadow:0 0 0 3px var(--cs-soft,var(--jade-20));flex:0 0 56px}
 /* ---------- Leitfaden-Overlay (Unsicher-Pfad) ---------- */
-.gd-overlay{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:20px}
+.gd-overlay{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:20px;overscroll-behavior:contain}
 .gd-overlay[hidden]{display:none}
 .gd-backdrop{position:absolute;inset:0;background:rgba(9,18,32,.66);opacity:0;transition:opacity .3s ease}
 .gd-overlay.on .gd-backdrop{opacity:1}
-.gd-card{position:relative;z-index:1;width:100%;max-width:760px;max-height:calc(100vh - 40px);overflow:auto;background:#fff;border-radius:20px;box-shadow:0 30px 70px -20px rgba(9,18,32,.7);transform:translateY(14px) scale(.98);opacity:0;transition:transform .32s cubic-bezier(.33,.1,.2,1),opacity .32s}
+.gd-card{position:relative;z-index:1;width:100%;max-width:760px;max-height:calc(100dvh - 40px);overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;background:#fff;border-radius:20px;box-shadow:0 30px 70px -20px rgba(9,18,32,.7);transform:translateY(14px) scale(.98);opacity:0;transition:transform .32s cubic-bezier(.33,.1,.2,1),opacity .32s}
 .gd-overlay.on .gd-card{transform:none;opacity:1}
 .gd-close{position:absolute;top:10px;right:12px;z-index:2;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--muted);font-size:20px;line-height:1;cursor:pointer}
 .gd-close:hover{background:var(--light-jade);color:var(--true-blue)}
 .gd-grid{display:grid;grid-template-columns:250px 1fr;gap:0}
 .gd-cover{background:var(--jade-20);padding:26px 20px;display:flex;align-items:center;justify-content:center;border-radius:20px 0 0 20px}
-.gd-cover img{width:100%;max-width:200px;border-radius:8px;box-shadow:0 14px 34px -10px rgba(13,27,46,.45)}
+.gd-cover img{display:block;width:100%;max-width:200px;height:auto;aspect-ratio:414/586;object-fit:contain;border-radius:8px;box-shadow:0 14px 34px -10px rgba(13,27,46,.45)}
 .gd-body{padding:28px 28px 26px}
 .gd-eyebrow{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--true-blue);background:var(--jade-20);border:1px solid var(--jade-60);border-radius:999px;padding:3px 11px;margin-bottom:10px}
 .gd-body h3{font-family:var(--serif);font-size:23px;line-height:1.25;color:var(--ink);margin-bottom:8px}
@@ -1209,6 +1209,43 @@ footer a:hover{color:var(--jade)}
       </div>
     </div>
     <script>
+/* ============================================================
+   Scroll-Sperre fuer Overlays.
+   body{overflow:hidden} genuegt auf iOS NICHT - Safari scrollt den
+   Hintergrund trotzdem. Zuverlaessig ist nur, den Body zu fixieren und
+   die Scrollposition beim Schliessen wiederherzustellen.
+   ============================================================ */
+window.MKI_scrollSperre = (function(){
+  var y = 0, aktiv = false;
+  return {
+    an: function(){
+      if (aktiv) return;
+      aktiv = true;
+      y = window.pageYOffset || document.documentElement.scrollTop || 0;
+      var b = document.body;
+      b.style.position = "fixed";
+      b.style.top = (-y) + "px";
+      b.style.left = "0";
+      b.style.right = "0";
+      b.style.width = "100%";
+      b.style.overflow = "hidden";
+    },
+    aus: function(){
+      if (!aktiv) return;
+      aktiv = false;
+      var b = document.body, de = document.documentElement;
+      b.style.position = ""; b.style.top = ""; b.style.left = "";
+      b.style.right = ""; b.style.width = ""; b.style.overflow = "";
+      /* ohne das Abschalten wuerde scroll-behavior:smooth hier animieren */
+      var alt = de.style.scrollBehavior;
+      de.style.scrollBehavior = "auto";
+      window.scrollTo(0, y);
+      de.style.scrollBehavior = alt;
+    }
+  };
+})();
+</script>
+<script>
     (function(){
       var launch=document.getElementById('evLaunch'),
           overlay=document.getElementById('evOverlay'),
@@ -1223,7 +1260,7 @@ footer a:hover{color:var(--jade)}
       var busy=false;
       function open(){
         overlay.hidden=false;
-        document.body.style.overflow='hidden';
+        window.MKI_scrollSperre.an();
         openBtn.setAttribute('aria-expanded','true');
         void overlay.offsetWidth;
         overlay.classList.add('ev-on');
@@ -1233,7 +1270,7 @@ footer a:hover{color:var(--jade)}
         overlay.classList.remove('ev-on','ev-binopen','ev-lidup','ev-shake');
         sheet.classList.remove('ev-crumpling');
         sheet.style.removeProperty('--evx'); sheet.style.removeProperty('--evy');
-        document.body.style.overflow='';
+        window.MKI_scrollSperre.aus();
         launch.style.display='';
         label.textContent='Rechnung anzeigen';
         openBtn.setAttribute('aria-expanded','false');
@@ -1693,7 +1730,7 @@ footer a:hover{color:var(--jade)}
           <div class="vq-field" style="margin-top:6px"><label for="ckAlter">Ihr Alter</label><div class="vq-slider-out" id="ckAlterOut" style="font-size:22px;text-align:left">30 Jahre</div><input type="range" class="vq-slider" id="ckAlter" min="18" max="80" step="1" value="30"></div>
           <div class="vq-field"><label for="f-email">E-Mail*</label><input id="f-email" name="email" type="email" autocomplete="email" style="width:100%;padding:13px 15px;border:1.5px solid var(--line);border-radius:12px;font-family:var(--sans);font-size:15px"></div>
           <div class="vq-fielderr" id="ckEmailErr">Bitte eine g&uuml;ltige E-Mail-Adresse eingeben.</div>
-          <div class="vq-field"><label for="f-phone">Telefon*</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" style="width:100%;padding:13px 15px;border:1.5px solid var(--line);border-radius:12px;font-family:var(--sans);font-size:15px"></div>
+          <div class="vq-field"><label for="f-phone">Telefon*</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="z. B. 0170 1234567" style="width:100%;padding:13px 15px;border:1.5px solid var(--line);border-radius:12px;font-family:var(--sans);font-size:15px"></div>
           <div class="vq-fielderr" id="ckPhoneErr">Bitte eine g&uuml;ltige Telefonnummer eingeben.</div>
           <div class="vq-field"><label for="f-time">Beste Erreichbarkeit</label><select id="f-time" name="time" style="width:100%;padding:13px 15px;border:1.5px solid var(--line);border-radius:12px;font-family:var(--sans);font-size:15px;background:#fff"><option>Egal / jederzeit</option><option>Vormittags</option><option>Mittags</option><option>Nachmittags</option><option>Abends (nach 18 Uhr)</option></select></div>
           <p class="hp"><label>Bitte leer lassen<input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
@@ -1780,7 +1817,7 @@ footer a:hover{color:var(--jade)}
     <button class="gd-close" type="button" id="gdClose" aria-label="Schlie&szlig;en">&times;</button>
     <div class="gd-grid">
       <div class="gd-cover">
-        <img src="einsteiger-guide-cover.jpg" alt="Titelseite des Einsteiger-Guides &bdquo;Immobilie als Kapitalanlage &ndash; Das beste Investment der Welt?&ldquo;" width="420" height="594" loading="lazy">
+        <img src="einsteiger-guide-cover.jpg" alt="Titelseite des Einsteiger-Guides &bdquo;Immobilie als Kapitalanlage &ndash; Das beste Investment der Welt?&ldquo;" width="414" height="586" loading="lazy">
       </div>
       <div class="gd-body">
         <div id="gdIntro">
@@ -2750,12 +2787,12 @@ document.querySelectorAll(".choice").forEach(function(c){
     letzterFokus=document.activeElement;
     ov.hidden=false;
     requestAnimationFrame(function(){ ov.classList.add("on"); });
-    document.body.style.overflow="hidden";
+    window.MKI_scrollSperre.an();
     setTimeout(function(){ if(mail && intro.style.display!=="none") mail.focus(); }, 260);
   }
   function schliesse(){
     ov.classList.remove("on");
-    document.body.style.overflow="";
+    window.MKI_scrollSperre.aus();
     setTimeout(function(){ ov.hidden=true; }, 300);
     if(letzterFokus && letzterFokus.focus) try{ letzterFokus.focus(); }catch(_e){}
   }
@@ -3003,19 +3040,76 @@ function _contactValid(f){
   return f.name.value.trim() && f.phone.value.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em) && document.getElementById("f-consent").checked;
 }
 function _ckValidEmail(x){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test((x||"").trim()); }
-/* Deutsche Auslandsvorwahl in nationale Schreibweise: +49 / 0049 / +49 (0) -> 0
-   Hintergrund: Gespeicherte Nummern kommen per Autofill als "+49 160 ..." und haben
-   keine fuehrende Null. Auslaendische Nummern bleiben unveraendert. */
-function _normDePhone(v){
-  var s = String(v == null ? "" : v);
-  if(!/^\s*(?:\+|00)\s*49/.test(s)) return s;            /* nur +49 / 0049 anfassen */
-  var rest = s.replace(/^\s*(?:\+|00)\s*49/, "");
-  rest = rest.replace(/^[\s\-.\/]*\(\s*0\s*\)[\s\-.\/]*/, "");  /* "(0)" entfernen */
-  rest = rest.replace(/^[\s\-.\/]*0[\s\-.\/]*/, "");            /* schon vorhandene 0 entfernen */
-  rest = rest.replace(/^[\s\-.\/]+/, "");
-  if(!/\d/.test(rest)) return s;                         /* nichts Sinnvolles uebrig */
-  return "0" + rest;
+/* ============================================================
+   Telefonfeld: internationale Schreibweise in die nationale ueberfuehren.
+   Uebernommen aus finanzierung-fuerth.html (erprobt, Stand 19.07.2026).
+   Deckt drei Faelle ab:
+   1) "+49 170 ..." / "0049 ..." / "+49 (0)170 ..."  -> fuehrende 0
+   2) iOS-AutoFill liefert aus der Kontaktkarte NUR den nationalen Rest
+      ohne "+49" und ohne die 0 ("1701234567") -> 0 ergaenzen
+   3) Safari feuert bei AutoFill kein "input" -> Wert zusaetzlich pollen
+   "fertig" verhindert, dass beim Tippen mitten in der Eingabe eine 0
+   vorgesetzt wird. ============================================================ */
+function telNormalisieren(wert, fertig) {
+  var w = String(wert == null ? "" : wert);
+  var t = w.match(/^[\s(]*(?:\+|00)[\s)]*49(.*)$/);
+  if (t) {
+    var rest = t[1]
+      .replace(/^[\s\-\/\.]*\(\s*0\s*\)/, "")
+      .replace(/^[\s\-\/\.()]+/, "");
+    if (rest === "") return "0";
+    return rest.charAt(0) === "0" ? rest : "0" + rest;
+  }
+  if (fertig) {
+    /* Ergaenzung gegenueber der Vorlage: Steht eine ANDERE Auslandsvorwahl
+       davor (+43, +41 ...), darf keine 0 vorgesetzt werden - sonst entsteht
+       "0+43 660 ...". Die Vorlage kannte diesen Fall nicht. */
+    if (/^[\s(]*(?:\+|00)/.test(w)) return w;
+    var ziffern = w.replace(/\D/g, "");
+    if (ziffern.length >= 9 && ziffern.length <= 12 && ziffern.charAt(0) !== "0") {
+      return "0" + w.replace(/^[\s\-\/\.()]+/, "");
+    }
+  }
+  return w;
 }
+
+function telFeldUeberwachen(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  function auf(fertig) {
+    var neu = telNormalisieren(el.value, fertig === true);
+    if (neu !== el.value) {
+      var amEnde = el.selectionStart === el.value.length;
+      el.value = neu;
+      if (amEnde && el.setSelectionRange) {
+        try { el.setSelectionRange(neu.length, neu.length); } catch (e) {}
+      }
+      var fehler = document.getElementById("ckPhoneErr");
+      if (fehler && typeof _ckValidPhone === "function" && _ckValidPhone(neu)) fehler.style.display = "none";
+    }
+  }
+  ["input","keyup"].forEach(function(ev){ el.addEventListener(ev, function(){ auf(false); }); });
+  ["change","blur"].forEach(function(ev){ el.addEventListener(ev, function(){ auf(true); }); });
+  el.addEventListener("paste", function(){ window.setTimeout(function(){ auf(true); }, 0); });
+
+  var letzter = el.value, wache = null;
+  el.addEventListener("focus", function(){
+    if (wache) return;
+    wache = window.setInterval(function(){
+      if (el.value === letzter) return;
+      auf(Math.abs(el.value.length - letzter.length) > 3);
+      letzter = el.value;
+    }, 200);
+  });
+  el.addEventListener("blur", function(){
+    if (!wache) return;
+    window.clearInterval(wache); wache = null;
+    auf(true); letzter = el.value;
+  });
+  window.setTimeout(function(){ auf(true); letzter = el.value; }, 400);
+  auf(true);
+}
+
 function _ckValidPhone(x){ x=(x||"").trim(); if(!/^[+0-9 ()\/.\-]{6,}$/.test(x)) return false; var dg=x.replace(/\D/g,""); return dg.length>=7 && dg.length<=15; }
 /* ============================================================
    Terminstatus-Steuerung
@@ -3160,7 +3254,7 @@ function _sendLead(mode){
 _leadForm.addEventListener("submit",function(e){
   e.preventDefault();
   var f=e.target, err=document.getElementById("formErr"); err.style.display="none";
-  if(f.phone) f.phone.value = _normDePhone(f.phone.value);
+  if(f.phone) f.phone.value = telNormalisieren(f.phone.value, true);
   var nm=f.name.value.trim(), em=(f.email&&f.email.value||"").trim(), ph=(f.phone&&f.phone.value||"").trim();
   var eErr=document.getElementById("ckEmailErr"), pErr=document.getElementById("ckPhoneErr");
   var eOk=_ckValidEmail(em), pOk=_ckValidPhone(ph);
@@ -3251,24 +3345,7 @@ window.addEventListener("pagehide", function(){ _flushLead("termin_offen", true)
   var ckEmailIn=document.getElementById("f-email"), ckPhoneIn=document.getElementById("f-phone");
   if(ckEmailIn){ ckEmailIn.addEventListener("blur",function(){ var e=document.getElementById("ckEmailErr"); if(e) e.style.display=(ckEmailIn.value.trim() && !_ckValidEmail(ckEmailIn.value))?"block":"none"; }); ckEmailIn.addEventListener("input",function(){ if(_ckValidEmail(ckEmailIn.value)){ var e=document.getElementById("ckEmailErr"); if(e) e.style.display="none"; } }); }
   if(ckPhoneIn){ ckPhoneIn.addEventListener("blur",function(){ var e=document.getElementById("ckPhoneErr"); if(e) e.style.display=(ckPhoneIn.value.trim() && !_ckValidPhone(ckPhoneIn.value))?"block":"none"; }); ckPhoneIn.addEventListener("input",function(){ if(_ckValidPhone(ckPhoneIn.value)){ var e=document.getElementById("ckPhoneErr"); if(e) e.style.display="none"; } }); }
-  /* +49 aus dem Autofill in 0 umschreiben - Cursor bleibt stehen */
-  if(ckPhoneIn){
-    var _fixPhone = function(){
-      var before = ckPhoneIn.value, after = _normDePhone(before);
-      if(after === before) return;
-      var pos = null;
-      try { pos = ckPhoneIn.selectionStart; } catch(_e){}
-      var diff = before.length - after.length;
-      ckPhoneIn.value = after;
-      if(pos !== null){
-        try { var np = Math.max(0, pos - diff); ckPhoneIn.setSelectionRange(np, np); } catch(_e2){}
-      }
-    };
-    ["input","change","blur","paste"].forEach(function(ev){
-      ckPhoneIn.addEventListener(ev, function(){ setTimeout(_fixPhone, 0); });
-    });
-    setTimeout(_fixPhone, 500);   /* stiller Autofill ohne Event */
-  }
+  telFeldUeberwachen("f-phone");
   function digits(x){ x=(x==null?"":x).toString().replace(/[^\d]/g,""); return x?parseInt(x,10):null; }
   function frameVal(id){ try{ var f=document.getElementById("rechnerFrame"); var doc=f&&(f.contentDocument||f.contentWindow.document); var el=doc&&doc.getElementById(id); return el?el.value:null; }catch(_){ return null; } }
   function setSlider(s,val){ if(s&&val!=null){ val=Math.max(+s.min,Math.min(+s.max,val)); s.value=val; s.dispatchEvent(new Event("input",{bubbles:true})); } }
