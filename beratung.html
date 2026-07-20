@@ -682,21 +682,32 @@ footer a:hover{color:var(--jade)}
 /* ---------- Fallbeispiele (Slider) ---------- */
 .cs-track{position:relative;display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:4px 2px 14px}
 .cs-track::-webkit-scrollbar{display:none}
-.cs-card{flex:0 0 min(440px,86%);scroll-snap-align:center;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px}
-.cs-tag{align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--true-blue);background:var(--jade-20);border:1px solid var(--jade-60);border-radius:999px;padding:5px 12px}
+.cs-card{position:relative;flex:0 0 min(440px,86%);scroll-snap-align:center;background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px 24px 24px;display:flex;flex-direction:column;gap:12px;overflow:hidden;box-shadow:var(--shadow-sm);transition:box-shadow .2s,transform .2s}
+.cs-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.cs-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--cs-accent,var(--true-blue))}
+/* Akzentfarben je Ausgangslage */
+.cs-card.cs-a{--cs-accent:#2C517F;--cs-soft:#EDF2F8}
+.cs-card.cs-b{--cs-accent:#7A5B8F;--cs-soft:#F3EEF7}
+.cs-card.cs-c{--cs-accent:#1F7A6B;--cs-soft:#E9F5F2}
+.cs-card.cs-d{--cs-accent:#B07A2B;--cs-soft:#FAF2E4}
+.cs-tag{align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--cs-accent,var(--true-blue));background:var(--cs-soft,var(--jade-20));border:1px solid var(--jade-60);border:1px solid color-mix(in srgb,var(--cs-accent,var(--true-blue)) 25%,transparent);border-radius:999px;padding:5px 12px}
 .cs-name{font-weight:800;font-size:17px;color:var(--ink)}
 .cs-sub{display:block;font-size:12.5px;color:var(--muted);font-weight:600;margin-top:2px}
-.cs-row b{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.cs-row{position:relative;padding-left:15px}
+.cs-row::before{content:"";position:absolute;left:0;top:3px;bottom:3px;width:3px;border-radius:2px;background:var(--jade-60);background:color-mix(in srgb,var(--cs-accent,var(--true-blue)) 30%,transparent)}
+.cs-row b{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--cs-accent,var(--muted));margin-bottom:3px}
 .cs-row p{font-size:14px;line-height:1.55;color:var(--ink);margin:0}
-.cs-now{background:var(--jade-20);border:1px solid var(--jade-60);border-radius:12px;padding:10px 14px;margin-top:auto}
+.cs-now{background:var(--cs-soft,var(--jade-20));border:1px solid var(--jade-60);border:1px solid color-mix(in srgb,var(--cs-accent,var(--true-blue)) 22%,transparent);border-radius:12px;padding:12px 14px 12px 15px;margin-top:auto}
+.cs-now::before{background:var(--cs-accent,var(--true-blue))}
+.cs-now b::after{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--cs-accent,var(--true-blue));margin-left:7px;vertical-align:middle}
 .cs-nav{display:flex;justify-content:center;align-items:center;gap:16px;margin-top:10px}
 .cs-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:18px;color:var(--true-blue);display:inline-flex;align-items:center;justify-content:center;transition:background .15s}
 .cs-btn:hover{background:var(--light-jade)}
 .cs-dots{display:flex;gap:8px}
 .cs-dot{width:9px;height:9px;border-radius:50%;background:var(--line);border:0;padding:0;cursor:pointer;transition:background .15s}
-.cs-dot.on{background:var(--true-blue)}
+.cs-dot.on{background:var(--true-blue);transform:scale(1.25)}
 .cs-head{display:flex;align-items:center;gap:12px}
-.cs-photo{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--jade-60);flex:0 0 56px}
+.cs-photo{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--cs-accent,var(--jade-60));box-shadow:0 0 0 3px var(--cs-soft,var(--jade-20));flex:0 0 56px}
 /* ---------- Sticky-CTA (mobil) ---------- */
 #stickyCta{position:fixed;left:0;right:0;bottom:0;z-index:900;display:none;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(13,27,46,.93);backdrop-filter:blur(10px);border-top:1px solid rgba(180,214,212,.25);transform:translateY(110%);transition:transform .3s ease}
 #stickyCta.on{transform:translateY(0)}
@@ -744,12 +755,12 @@ footer a:hover{color:var(--jade)}
         <div class="hp-meta">
           <span class="hp-name">Robin Jänicke</span>
           <span class="hp-role">Ihr persönlicher Berater für Kapitalanlage-Immobilien</span>
-          <span class="hp-badge">Persönlich vor Ort oder digital · deutschlandweit</span>
+          <span class="hp-badge">Digital &middot; deutschlandweit</span>
         </div>
       </div>
       <span class="chip">Kapitalanlage mit Konzept</span>
-      <h1 style="font-size:clamp(34px,4.4vw,52px)">Wohnen ist ein <em>Grundbed&uuml;rfnis</em> &ndash; und die vermietete Immobilie ein echter Wert, den es immer braucht.</h1>
-      <p class="lead">Wohnraum wird immer gebraucht &ndash; er ist ein Grundbed&uuml;rfnis, und die Ausgabe f&uuml;rs Wohnen geht bei Menschen immer vor. Das macht die vermietete Immobilie zum wohl <b>stabilsten Investment</b> &uuml;berhaupt: In Deutschland fehlen rund 1,4&nbsp;Millionen Wohnungen, und wir sind Mieterland Nr.&nbsp;1 in Europa. Diese <b>Sicherheit</b> ist die eine H&auml;lfte &ndash; die <b>Rendite</b> entsteht &uuml;ber <span class="kraft-link" id="kraefteLink" role="button" tabindex="0">vier Kr&auml;fte</span>. Und wenn Sie gut verdienen, zahlen Sie viel Steuern &ndash; &uuml;ber die vermietete Immobilie verwandeln Sie einen Teil davon <b>ganz legal in privates Verm&ouml;gen</b>, statt ihn einfach abzugeben.</p>
+      <h1 style="font-size:clamp(30px,3.3vw,42px)">Wohnen ist ein <em>Grundbed&uuml;rfnis</em> &ndash; und die vermietete Immobilie ein echter Wert, den es immer braucht.</h1>
+      <p class="lead">Wohnraum wird immer gebraucht &ndash; er ist ein Grundbed&uuml;rfnis, und die Ausgabe f&uuml;rs Wohnen geht bei Menschen immer vor. Das macht die vermietete Immobilie zum wohl <b>stabilsten Investment</b> &uuml;berhaupt: In Deutschland fehlen rund 1,4&nbsp;Millionen Wohnungen, und wir sind Mieterland Nr.&nbsp;1 in Europa. Diese <b>Sicherheit</b> ist die eine H&auml;lfte &ndash; die <b>Rendite</b> entsteht &uuml;ber <span class="kraft-link" id="kraefteLink" role="button" tabindex="0">vier Kr&auml;fte</span>.</p>
       <div class="hero-act hero-act--mobile">
         <div class="hero-ctas">
         <a class="btn btn-jade btn-lg" href="#kontakt" data-tab="rueckruf">Jetzt Rückruf vereinbaren</a>
@@ -858,7 +869,6 @@ footer a:hover{color:var(--jade)}
       <p>Darum erkläre ich, statt zu verkaufen: Als selbstständiger Finanzberater rechne ich jedes Objekt ehrlich durch – mit Chancen <b>und</b> Risiken. Und ich lebe das selbst: Ich investiere in genau das, was ich empfehle – mit 34 besitze ich bereits <b>drei Wohnungen</b>, die ich erst vor Kurzem gekauft habe. Getreu meinem Grundsatz:</p>
       <p class="claim">„Ich empfehle Ihnen nur eine Immobilie, die ich auch selbst kaufen würde – und in die ich mein eigenes Geld investiere.“<span style="display:block;font-family:var(--sans);font-size:14px;font-weight:700;color:var(--muted);margin-top:8px;">— Robin Jänicke</span></p>
       <p style="font-size:15px;color:var(--muted);margin:12px 0 4px;line-height:1.6">Und ich denke weiter als viele in der Branche: Als zertifizierter <b>Generationenberater (IHK)</b> begleite ich Vermögen nicht nur beim Aufbau, sondern bis zur möglichst <b>steueroptimierten Übergabe an die nächste Generation</b> – ein Thema, das die wenigsten von A bis Z abdecken.</p>
-      <p style="font-size:15px;color:var(--muted);margin:12px 0 4px;line-height:1.6">Bei uns hört das Thema auch nach Feierabend nicht auf – meine Partnerin ist beruflich ebenfalls in der Immobilien- und Bauwelt zuhause. Es dreht sich also gefühlt rund um die Uhr alles um Immobilien. 😉</p>
       <div class="lt-mobile">
         <p style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:16px 0 10px">Worauf Sie sich bei mir verlassen können</p>
         <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:6px">
@@ -1214,28 +1224,28 @@ footer a:hover{color:var(--jade)}
       <p>Anonymisierte Musterfälle mit Symbolfotos, wie sie mir in der Beratung typischerweise begegnen &ndash; Zahlen beispielhaft, keine Erfolgsversprechen. Wo finden Sie sich wieder?</p>
     </div>
     <div class="cs-track" id="csTrack" aria-label="Fallbeispiele – wischen oder Pfeile nutzen">
-      <article class="cs-card">
+      <article class="cs-card cs-a">
         <span class="cs-tag">Erste Immobilie &middot; komplett gemanagt</span>
         <div class="cs-head"><img class="cs-photo" src="musterfall-daniel.jpg" alt="Symbolfoto – Musterfall Daniel" width="56" height="56" loading="lazy"><div class="cs-name">Daniel, 34 &middot; IT-Projektleiter<span class="cs-sub">angestellt &middot; gutes Netto, hohe Steuerlast</span></div></div>
         <div class="cs-row"><b>Ausgangslage</b><p>Das Ersparte lag auf dem Tagesgeld und verlor real an Wert. Immobilie? &bdquo;Irgendwann mal&ldquo; &ndash; und eine gesunde Skepsis gegenüber jedem, der anruft und verkaufen will.</p></div>
         <div class="cs-row"><b>Der Weg</b><p>Erstgespräch mit ehrlicher Modellrechnung. Eigenkapital: nur die Kaufnebenkosten. Geprüfte 2-Zimmer-Wohnung, komplett gemanagt, mit Mietpool.</p></div>
         <div class="cs-row cs-now"><b>Heute</b><p>Mieter und Finanzamt tilgen Monat für Monat mit &ndash; bei wenigen Stunden Aufwand im Jahr. Wohnung Nr.&nbsp;2 ist bereits eingeplant.</p></div>
       </article>
-      <article class="cs-card">
+      <article class="cs-card cs-b">
         <span class="cs-tag">Zweite Immobilie &middot; diesmal geprüft &amp; gemanagt</span>
         <div class="cs-head"><img class="cs-photo" src="musterfall-sandra.jpg" alt="Symbolfoto – Musterfall Sandra" width="56" height="56" loading="lazy"><div class="cs-name">Dr. Sandra, 39 &middot; Oberärztin<span class="cs-sub">angestellt &middot; erste Wohnung lief nicht über mich</span></div></div>
         <div class="cs-row"><b>Ausgangslage</b><p>Die erste Wohnung 2021 über einen Vertrieb gekauft &ndash; teuer eingekauft, ohne Mietpool, knapp gerechnet. Nach einem Mieterwechsel: drei Monate Leerstand, alles aus eigener Tasche.</p></div>
         <div class="cs-row"><b>Der Weg</b><p>Beide Objekte ehrlich nachgerechnet &ndash; auch das alte. Die zweite Wohnung diesmal vorqualifiziert, mit Mietpool und gefüllter Instandhaltungsrücklage.</p></div>
         <div class="cs-row cs-now"><b>Heute</b><p>Planbare Einnahmen auch bei Mieterwechsel &ndash; und ein klarer Fahrplan, was Wohnung Nr.&nbsp;1 noch leisten muss.</p></div>
       </article>
-      <article class="cs-card">
+      <article class="cs-card cs-c">
         <span class="cs-tag">Erste Immobilie &middot; selbst gefunden</span>
         <div class="cs-head"><img class="cs-photo" src="musterfall-melanie.jpg" alt="Symbolfoto – Musterfall Melanie" width="56" height="56" loading="lazy"><div class="cs-name">Melanie, 32 &middot; Bauingenieurin<span class="cs-sub">angestellt &middot; Objekt aus dem eigenen Viertel</span></div></div>
         <div class="cs-row"><b>Ausgangslage</b><p>Eine Wohnung in der Nachbarschaft entdeckt &ndash; Bauchgefühl gut, Zahlen unklar. Drei Banken, drei verschiedene Aussagen zur Finanzierung.</p></div>
         <div class="cs-row"><b>Der Weg</b><p>Objekt gemeinsam durchgerechnet, Mängel in die Preisverhandlung eingebracht, Finanzierung über das Bankennetzwerk strukturiert.</p></div>
         <div class="cs-row cs-now"><b>Heute</b><p>Erste Kapitalanlage unter dem Angebotspreis gekauft &ndash; bewusst selbst verwaltet, mit einer Rechnung, die sie versteht.</p></div>
       </article>
-      <article class="cs-card">
+      <article class="cs-card cs-d">
         <span class="cs-tag">Vier Objekte in vier Jahren &middot; gemeinsam gesucht</span>
         <div class="cs-head"><img class="cs-photo" src="musterfall-markus.jpg" alt="Symbolfoto – Musterfall Markus" width="56" height="56" loading="lazy"><div class="cs-name">Markus, 40 &middot; Vertriebsleiter<span class="cs-sub">angestellt &middot; hohes zu versteuerndes Einkommen</span></div></div>
         <div class="cs-row"><b>Ausgangslage</b><p>2022 die erste Wohnung &bdquo;zum Testen&ldquo;. Ziel: die hohe Steuerlast nutzen, statt sie nur zu zahlen &ndash; und mit 60 kürzertreten können.</p></div>
@@ -1638,19 +1648,13 @@ footer a:hover{color:var(--jade)}
   <div class="wrap">
     <div class="sec-head"><h2>Häufige Fragen</h2></div>
     <div class="faq">
-      <details><summary>Lohnt sich das bei fast 4 % Zinsen überhaupt noch?</summary><p>Oft mehr als zur Nullzins-Zeit – aber nicht pauschal, sondern je nach Objekt. Der Einkauf ist im Verhältnis zur Miete heute deutlich günstiger (niedrigere Kauffaktoren), die höheren Zinsen sind bei Vermietung voll absetzbar, und der Zins lässt sich später umschulden – der Kaufpreis nicht. Entscheidend bleibt: Die Rechnung muss beim konkreten Objekt aufgehen. Genau das prüfen wir gemeinsam – egal ob komplett gemanagt oder selbst gefunden.</p></details>
       <details><summary>Wie viel Eigenkapital brauche ich?</summary><p>Oft genügen die Kaufnebenkosten (ca. 7–10 % des Kaufpreises), in manchen Fällen sogar weniger. Fehlt Eigenkapital, können eine Schenkung oder ein Darlehen aus der Familie sinnvoll sein – das rechnen wir im Erstgespräch sauber durch. Beim selbst gefundenen Objekt ist der Einkaufspreis oft verhandelbar, was die nötige Summe zusätzlich senken kann; bei einer komplett gemanagten Immobilie steht der Preis fest, dafür ist von Anfang an alles kalkulierbar.</p></details>
-      <details><summary>Reicht mein Einkommen dafür?</summary><p>Faustregel: ein stabiles Nettoeinkommen ab etwa 3.000 €. Wichtiger als die absolute Höhe sind Stabilität und Ihre Steuerlast – je höher Ihr zu versteuerndes Einkommen, desto stärker wirkt der Steuerhebel. Ob es bei Ihnen konkret passt, zeigt der Check auf dieser Seite in zwei Minuten. Und wenn es (noch) nicht passt, sage ich Ihnen das ehrlich.</p></details>
+      <details><summary>Reicht mein Einkommen dafür?</summary><p>Faustregel: ein stabiles Nettoeinkommen ab etwa 3.000 €. Wichtiger als die absolute Höhe sind Stabilität und Ihre Steuerlast – je höher Ihr zu versteuerndes Einkommen, desto stärker wirkt der Steuerhebel. Und wenn es (noch) nicht passt, sage ich Ihnen das ehrlich.</p></details>
       <details><summary>Muss die Immobilie in meiner Nähe sein?</summary><p>Das hängt vom Weg ab. Bei einer komplett gemanagten Immobilie: nein – es zählen Kaufpreis, Miete und Standortqualität, nicht die Entfernung zu Ihnen; um alles vor Ort kümmert sich die Hausverwaltung. Wenn Sie dagegen selbst suchen und die Immobilie selbst verwalten möchten, ist Nähe sinnvoll – dann sind Sie näher dran, und ich unterstütze Sie mit meinem Netzwerk direkt in Ihrer Region.</p></details>
-      <details><summary>Was heißt „komplett gemanagt“?</summary><p>Vermietung, Verwaltung, Abrechnung und Instandhaltung übernimmt eine professionelle Hausverwaltung – Ihre Immobilie bleibt reine Kapitalanlage, kein Nebenjob. Beim selbst gefundenen Objekt haben Sie die Wahl: entweder selbst verwalten (mehr Aufwand, dafür volle Kontrolle) oder ebenfalls eine Verwaltung beauftragen. Ich erkläre Ihnen beide Varianten mit ihren Vor- und Nachteilen, damit Sie bewusst entscheiden.</p></details>
-      <details><summary>Wie viel Zeit kostet mich das im Jahr?</summary><p>Bei komplett gemanagten Objekten: wenige Stunden im Jahr – Post der Verwaltung lesen, einmal jährlich die Abrechnung prüfen, mehr nicht. Bei einer selbst verwalteten Immobilie kommt mehr dazu: Mieterwechsel, Handwerker, Nebenkostenabrechnung. Auch das lässt sich an eine Hausverwaltung abgeben – dann sind Sie wieder beim geringen Aufwand, zahlen aber die Verwaltungsgebühr. Beide Wege gehen wir vorher gemeinsam durch.</p></details>
-      <details><summary>Was passiert, wenn der Mieter auszieht?</summary><p>Bei gemanagten Objekten läuft über den Mietpool Ihre Einnahme planbar weiter, auch bei Leerstand einzelner Wohnungen – die Neuvermietung übernimmt die Verwaltung. Bei einer selbst gefundenen Wohnung tragen Sie das Leerstandsrisiko grundsätzlich selbst; deshalb kalkulieren wir hier von Anfang an mit einem Puffer und einer gefüllten Rücklage, damit ein Mieterwechsel Sie nicht aus dem Tritt bringt.</p></details>
-      <details><summary>Ist eine Immobilie nicht riskant?</summary><p>Jede Geldanlage hat Risiken – Immobilien auch. Die wichtigsten sind Mietausfall, Instandhaltung und die Lage. Wir entschärfen sie über Mietpool bzw. Rücklagen, eine sorgfältige Objekt- und Lageprüfung und konservative Annahmen in der Rechnung. Kein Konzept eliminiert jedes Risiko vollständig – aber wenn Lage, Zahlen und Finanzierung zusammenpassen, ist das Meiste kalkulierbar. Und manchmal lautet mein ehrliches Ergebnis schlicht: „Noch nicht.“</p></details>
       <details><summary>Wie spare ich mit der Immobilie Steuern?</summary><p>Über Abschreibung (AfA), Schuldzinsen und laufende Kosten senken Sie Ihr zu versteuerndes Einkommen – je höher Ihre Steuerlast, desto stärker der Effekt. Bei einer selbst gefundenen Immobilie kommen oft zusätzliche Hebel dazu: Sanierungskosten als Erhaltungsaufwand, Förderprogramme oder höhere AfA-Modelle. Konkrete Zahlen für Ihren Fall liefert die Modellrechnung – das ist keine Steuerberatung, aber eine ehrliche Grundlage für Ihre Entscheidung.</p></details>
       <details><summary>Wann kann ich wieder verkaufen?</summary><p>Verkaufen können Sie jederzeit. Steuerlich interessant ist die 10-Jahres-Frist: Nach zehn Jahren Haltedauer ist der Verkaufsgewinn bei privaten Immobilien steuerfrei. Diesen Zeitpunkt denken wir von Anfang an mit ein. Und weil ich eingetragener Immobilienmakler bin, begleite ich Sie später auch beim Verkauf – oft sogar off-market über mein Netzwerk.</p></details>
       <details><summary>Und was passiert mit der Immobilie später einmal – Erbe oder Schenkung?</summary><p>Genau da denke ich von Anfang an mit: Als zertifizierter <b>Generationenberater (IHK)</b> planen wir früh, wie Ihr Vermögen später möglichst <b>steueroptimiert</b> an Kinder oder Enkel übergeht. Bei über 178.000 Versicherungs- und rund 41.000 Finanzanlagenvermittlern in Deutschland gehört diese Qualifikation zur absoluten Ausnahme – deshalb begleiten die wenigsten den Weg von der Anlage bis zur Übertragung wirklich von A bis Z. (Keine individuelle Steuer- oder Rechtsberatung – die erfolgt mit Steuerberater/Notar.)</p></details>
       <details><summary>Was kostet mich die Beratung?</summary><p>Für Sie nichts. Bei einer über mich vermittelten Immobilie werde ich über eine <b>Innenprovision des Verkäufers</b> vergütet – diese Kosten trägt der Verkäufer, für Sie entstehen keine zusätzlichen Kosten. Bei einer <b>selbst gefundenen Immobilie</b> werde ich bei erfolgreicher Vermittlung der Finanzierung von der <b>Bank</b> bezahlt; diese Provision ist im Zins enthalten – denselben Zins hätten Sie aber auch bei Ihrer Hausbank oder jedem anderen Vermittler. Meine Extrameile – die ehrliche Prüfung, die Modellrechnung und die Begleitung – ist für Sie damit tatsächlich kostenfrei. Und ich lege das offen.</p></details>
-      <details><summary>Warum sagen Sie manchen Interessenten ab?</summary><p>Weil nicht jedes Objekt und nicht jede Situation passt. Wenn die Lage nicht trägt, der Preis zu hoch ist oder die Zahlen bei Ihnen nicht aufgehen, sage ich das – auch wenn ein Abschluss möglich wäre. Ein ehrliches „Nein“ oder „Noch nicht“ ist mir lieber als ein schlechtes Investment, das Ihnen später auf die Füße fällt.</p></details>
     </div>
     <div style="text-align:center;margin-top:28px;padding:26px 24px;background:#fff;border:1px solid var(--jade-60);border-radius:16px"><p style="font-weight:800;font-size:17px;color:var(--ink);margin-bottom:12px">Ihre Frage war nicht dabei?</p><a class="btn btn-blue btn-lg" href="#kontakt" data-tab="rueckruf" style="border-radius:14px">Stellen Sie sie mir direkt</a></div>
   </div>
