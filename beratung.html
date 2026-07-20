@@ -303,6 +303,19 @@ section{padding:84px 0;scroll-margin-top:76px}
 .risks .usp:nth-child(4){--rk:#1F7A6B;--rk-line:#CFE6E0;--rk-soft:#E9F5F2}
 .rk-ico{width:46px;height:46px;display:block;margin-bottom:12px;padding:10px;border-radius:13px;background:var(--rk-soft);stroke:var(--rk);stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .risks .usp .rk-badge{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--rk);background:var(--rk-soft);border-radius:999px;padding:3px 11px;margin-bottom:10px}
+/* Risiko-Karten: Loesung als eigener Absatz, kompaktere Typo */
+.risks .usp p{font-size:13.5px;line-height:1.55}
+.risks .usp p b{display:block;margin-bottom:5px}
+@media (max-width:920px){
+  /* links und rechts garantiert gleicher Abstand zum Rand */
+  .risks .wrap{padding-left:20px;padding-right:20px}
+  .risks .usp-grid{gap:14px}
+  .risks .usp{padding:20px 15px}
+  .risks .usp h3{font-size:15px}
+  .risks .usp p{font-size:12.8px;line-height:1.5}
+  .risks .usp .rk-badge{font-size:9.5px;padding:2px 9px;margin-bottom:8px}
+  .rk-ico{width:38px;height:38px;padding:8px;margin-bottom:9px}
+}
 .usp svg{width:44px;height:44px;stroke:var(--true-blue);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round;margin-bottom:14px;background:var(--jade-20);border-radius:14px;padding:9px}
 .usp h3{font-family:var(--sans);font-size:16px;font-weight:800;color:var(--ink);margin-bottom:7px}
 .usp p{font-size:14px;color:var(--muted)}
@@ -1320,22 +1333,22 @@ footer a:hover{color:var(--jade)}
       <div class="usp">
         <svg class="rk-ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 40V16l12-8 12 8v24"/><path d="M18 40V28h8v12"/><path d="M34 12l8 8M42 12l-8 8"/></svg><span class="rk-badge">Risiko</span>
         <h3>Mietausfall</h3>
-        <p><b style="color:#1a9e5f">✓ So entschärfen wir es:</b> Über einen Mietpool und eine geprüfte Mieterstruktur bleiben Ihre Einnahmen auch bei Mieterwechsel planbar.</p>
+        <p><b style="color:#1a9e5f">✓ So entschärfen wir es:</b> Mietpool und geprüfte Mieterstruktur halten Ihre Einnahmen auch bei Mieterwechsel planbar.</p>
       </div>
       <div class="usp">
         <svg class="rk-ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M31 9a8 8 0 0 0-10.6 10.6L9 31l8 8 11.4-11.4A8 8 0 0 0 39 17l-5 5-5-5 5-5a8 8 0 0 0-3-3z"/></svg><span class="rk-badge">Risiko</span>
         <h3>Instandhaltung</h3>
-        <p><b style="color:#1a9e5f">✓ So entschärfen wir es:</b> Eine ausreichend gefüllte Instandhaltungsrücklage und vorab geprüfte Substanz fangen unerwartete Kosten ab.</p>
+        <p><b style="color:#1a9e5f">✓ So entschärfen wir es:</b> Gefüllte Instandhaltungsrücklage und vorab geprüfte Substanz fangen unerwartete Kosten ab.</p>
       </div>
       <div class="usp">
         <svg class="rk-ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M7 39V19M18 39V11M29 39V25M40 39V15"/><path d="M5 39h38"/></svg><span class="rk-badge">Risiko</span>
         <h3>Wertentwicklung</h3>
-        <p><b style="color:#1a9e5f">✓ So entschärfen wir es:</b> Sorgfältige Vorqualifizierung von Lage, Nachfrage und Objekt – gerechnet wird konservativ, nicht schöngerechnet.</p>
+        <p><b style="color:#1a9e5f">✓ So entschärfen wir es:</b> Lage, Nachfrage und Objekt werden vorab geprüft – konservativ gerechnet, nicht schöngerechnet.</p>
       </div>
       <div class="usp">
         <svg class="rk-ico" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="14"/><path d="M24 10v14l10 7"/></svg><span class="rk-badge">Risiko</span>
         <h3>Klumpenrisiko</h3>
-        <p><b style="color:#1a9e5f">✓ So entschärfen wir es:</b> Eine Immobilie ist ein Baustein, kein Gesamtdepot. Wir setzen sie bewusst als einen Teil Ihres Vermögensaufbaus ein – nicht alles auf eine Karte – und bauen Schritt für Schritt breiter auf.</p>
+        <p><b style="color:#1a9e5f">✓ So entschärfen wir es:</b> Eine Immobilie ist ein Baustein, kein Gesamtdepot – wir bauen Schritt für Schritt breiter auf, statt alles auf eine Karte zu setzen.</p>
       </div>
     </div>
     <p style="text-align:center;font-size:15px;color:var(--muted);max-width:760px;margin:22px auto 0;line-height:1.6">Kein Konzept eliminiert jedes Risiko vollständig. Aber wenn Lage, Rechnung und Finanzierung zusammenpassen, ist das Meiste kalkulierbar – genau das prüfen wir gemeinsam, bevor Sie entscheiden.</p>
@@ -2803,6 +2816,19 @@ function _contactValid(f){
   return f.name.value.trim() && f.phone.value.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em) && document.getElementById("f-consent").checked;
 }
 function _ckValidEmail(x){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test((x||"").trim()); }
+/* Deutsche Auslandsvorwahl in nationale Schreibweise: +49 / 0049 / +49 (0) -> 0
+   Hintergrund: Gespeicherte Nummern kommen per Autofill als "+49 160 ..." und haben
+   keine fuehrende Null. Auslaendische Nummern bleiben unveraendert. */
+function _normDePhone(v){
+  var s = String(v == null ? "" : v);
+  if(!/^\s*(?:\+|00)\s*49/.test(s)) return s;            /* nur +49 / 0049 anfassen */
+  var rest = s.replace(/^\s*(?:\+|00)\s*49/, "");
+  rest = rest.replace(/^[\s\-.\/]*\(\s*0\s*\)[\s\-.\/]*/, "");  /* "(0)" entfernen */
+  rest = rest.replace(/^[\s\-.\/]*0[\s\-.\/]*/, "");            /* schon vorhandene 0 entfernen */
+  rest = rest.replace(/^[\s\-.\/]+/, "");
+  if(!/\d/.test(rest)) return s;                         /* nichts Sinnvolles uebrig */
+  return "0" + rest;
+}
 function _ckValidPhone(x){ x=(x||"").trim(); if(!/^[+0-9 ()\/.\-]{6,}$/.test(x)) return false; var dg=x.replace(/\D/g,""); return dg.length>=7 && dg.length<=15; }
 function _sendLead(mode){
   var f=_leadForm, err=document.getElementById("formErr");
@@ -2849,6 +2875,7 @@ function _sendLead(mode){
 _leadForm.addEventListener("submit",function(e){
   e.preventDefault();
   var f=e.target, err=document.getElementById("formErr"); err.style.display="none";
+  if(f.phone) f.phone.value = _normDePhone(f.phone.value);
   var nm=f.name.value.trim(), em=(f.email&&f.email.value||"").trim(), ph=(f.phone&&f.phone.value||"").trim();
   var eErr=document.getElementById("ckEmailErr"), pErr=document.getElementById("ckPhoneErr");
   var eOk=_ckValidEmail(em), pOk=_ckValidPhone(ph);
@@ -2917,6 +2944,24 @@ document.getElementById("choiceNein").addEventListener("click",function(){ _send
   var ckEmailIn=document.getElementById("f-email"), ckPhoneIn=document.getElementById("f-phone");
   if(ckEmailIn){ ckEmailIn.addEventListener("blur",function(){ var e=document.getElementById("ckEmailErr"); if(e) e.style.display=(ckEmailIn.value.trim() && !_ckValidEmail(ckEmailIn.value))?"block":"none"; }); ckEmailIn.addEventListener("input",function(){ if(_ckValidEmail(ckEmailIn.value)){ var e=document.getElementById("ckEmailErr"); if(e) e.style.display="none"; } }); }
   if(ckPhoneIn){ ckPhoneIn.addEventListener("blur",function(){ var e=document.getElementById("ckPhoneErr"); if(e) e.style.display=(ckPhoneIn.value.trim() && !_ckValidPhone(ckPhoneIn.value))?"block":"none"; }); ckPhoneIn.addEventListener("input",function(){ if(_ckValidPhone(ckPhoneIn.value)){ var e=document.getElementById("ckPhoneErr"); if(e) e.style.display="none"; } }); }
+  /* +49 aus dem Autofill in 0 umschreiben - Cursor bleibt stehen */
+  if(ckPhoneIn){
+    var _fixPhone = function(){
+      var before = ckPhoneIn.value, after = _normDePhone(before);
+      if(after === before) return;
+      var pos = null;
+      try { pos = ckPhoneIn.selectionStart; } catch(_e){}
+      var diff = before.length - after.length;
+      ckPhoneIn.value = after;
+      if(pos !== null){
+        try { var np = Math.max(0, pos - diff); ckPhoneIn.setSelectionRange(np, np); } catch(_e2){}
+      }
+    };
+    ["input","change","blur","paste"].forEach(function(ev){
+      ckPhoneIn.addEventListener(ev, function(){ setTimeout(_fixPhone, 0); });
+    });
+    setTimeout(_fixPhone, 500);   /* stiller Autofill ohne Event */
+  }
   function digits(x){ x=(x==null?"":x).toString().replace(/[^\d]/g,""); return x?parseInt(x,10):null; }
   function frameVal(id){ try{ var f=document.getElementById("rechnerFrame"); var doc=f&&(f.contentDocument||f.contentWindow.document); var el=doc&&doc.getElementById(id); return el?el.value:null; }catch(_){ return null; } }
   function setSlider(s,val){ if(s&&val!=null){ val=Math.max(+s.min,Math.min(+s.max,val)); s.value=val; s.dispatchEvent(new Event("input",{bubbles:true})); } }
