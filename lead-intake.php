@@ -48,6 +48,10 @@ if ($terminwunsch === "ja") {
     $zusatz = ($tstat === "termin_gebucht") ? " (TERMIN GEBUCHT)" : " (Termin offen)";
     lead_notify_robin($data, $zusatz);
     lead_to_hubspot($data, "entfaellt - Terminwunsch ueber das Formular");
+    // Hier gibt es kein Double-Opt-In, also direkt die Bestaetigung an den Lead.
+    // Nur beim ersten Eingang - die spaetere Meldung "Termin gebucht" ist ein
+    // Statusupdate und soll keine zweite Mail ausloesen.
+    if ($tstat !== "termin_gebucht") lead_send_danke($email, $name);
     echo json_encode(["ok" => true, "confirm" => false]); exit;
 }
 

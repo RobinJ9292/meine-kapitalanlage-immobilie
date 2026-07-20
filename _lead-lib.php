@@ -136,6 +136,34 @@ function lead_send_guide_direct($email, $name) {
     return @mail($email, lead_subject_encode("Ihr Einsteiger-Guide: Immobilie als Kapitalanlage"), $text, lead_headers());
 }
 
+// Bestaetigung an den Interessenten: Rueckrufbitte ist da + die beiden Geschenke.
+// Wird nach dem Double-Opt-In verschickt bzw. dort, wo kein DOI noetig ist.
+function lead_send_danke($email, $name) {
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) return false;
+    $anrede = trim((string)$name) !== "" ? "Hallo " . $name . "," : "Hallo,";
+    $guide   = LEAD_BASISURL . "/einsteiger-guide-kapitalanlage-2026.pdf";
+    $rechner = LEAD_BASISURL . "/rechner.html";
+    $text = $anrede . "\n\n"
+          . "Ihre Rueckrufbitte ist bei mir angekommen - ich melde mich zeitnah persoenlich bei Ihnen.\n"
+          . "In der Regel noch am selben oder am naechsten Werktag.\n\n"
+          . "Bis dahin zwei Dinge, die Sie schon nutzen koennen:\n\n"
+          . "1) Der Einsteiger-Guide 2026 - Immobilie als Kapitalanlage\n"
+          . "   " . $guide . "\n"
+          . "   20 Seiten, verstaendlich erklaert: wie sich eine Anlageimmobilie wirklich rechnet,\n"
+          . "   der ehrliche Vergleich zu ETF, Tagesgeld und Gold, und die haeufigsten Einsteiger-Fehler.\n\n"
+          . "2) Ihr Kapitalanlage-Rechner zum Behalten\n"
+          . "   " . $rechner . "\n"
+          . "   Rendite, Cashflow und Steuerwirkung mit Ihren eigenen Zahlen durchrechnen.\n"
+          . "   Einmal speichern, danach jederzeit offline nutzbar.\n\n"
+          . "Wenn Sie vorher etwas wissen moechten, erreichen Sie mich direkt unter 0160 92085192.\n\n"
+          . "Herzliche Gruesse\n"
+          . "Robin Jaenicke\n"
+          . "Spezialist fuer Kapitalanlage-Immobilien\n"
+          . "Tel. 0160 92085192\n"
+          . "robin.jaenicke@bonnfinanz.de";
+    return @mail($email, lead_subject_encode("Ihre Rueckrufbitte ist angekommen - und zwei Dinge vorab"), $text, lead_headers());
+}
+
 // Uebergabe an HubSpot (Forms-API, EU). Ohne GUID passiert nichts.
 function lead_to_hubspot($data, $doi = "bestaetigt") {
     if (HUBSPOT_FORM_GUID === "" || !function_exists("curl_init")) return false;

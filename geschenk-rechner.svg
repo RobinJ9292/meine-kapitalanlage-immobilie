@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280" width="200" height="280" role="img" aria-label="Symbol: Kapitalanlage-Rechner">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1B3A61"/>
+      <stop offset="1" stop-color="#0D1B2E"/>
+    </linearGradient>
+    <linearGradient id="jade" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#B4D6D4"/>
+      <stop offset=".55" stop-color="#9FE8E2"/>
+      <stop offset="1" stop-color="#8CC7CF"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="26" y="18" width="148" height="244" rx="22" fill="url(#g)"/>
+  <rect x="26" y="18" width="148" height="244" rx="22" fill="none" stroke="#B4D6D4" stroke-opacity=".28" stroke-width="2"/>
+
+  <!-- Display -->
+  <rect x="44" y="38" width="112" height="52" rx="11" fill="#122844" stroke="#B4D6D4" stroke-opacity=".3"/>
+  <text x="146" y="76" text-anchor="end" font-family="'Noto Serif',Georgia,serif" font-size="30" font-weight="700" fill="#9FE8E2">7,4 %</text>
+  <text x="54" y="58" font-family="'Open Sans',sans-serif" font-size="10" font-weight="800" letter-spacing="1.2" fill="#A7BCCD">EK-RENDITE</text>
+
+  <!-- Tasten -->
+  <g fill="#EAF2F6" fill-opacity=".14">
+    <rect x="44"  y="108" width="30" height="26" rx="8"/>
+    <rect x="85"  y="108" width="30" height="26" rx="8"/>
+    <rect x="126" y="108" width="30" height="26" rx="8"/>
+    <rect x="44"  y="146" width="30" height="26" rx="8"/>
+    <rect x="85"  y="146" width="30" height="26" rx="8"/>
+    <rect x="44"  y="184" width="30" height="26" rx="8"/>
+    <rect x="85"  y="184" width="30" height="26" rx="8"/>
+    <rect x="44"  y="222" width="71" height="26" rx="8"/>
+  </g>
+  <!-- Aktionsspalte in Jade -->
+  <rect x="126" y="146" width="30" height="64" rx="8" fill="url(#jade)" fill-opacity=".85"/>
+  <rect x="126" y="222" width="30" height="26" rx="8" fill="url(#jade)" fill-opacity=".85"/>
+
+  <!-- Rechenzeichen -->
+  <g stroke="#EAF2F6" stroke-width="2.4" stroke-linecap="round" stroke-opacity=".8">
+    <path d="M53 121h12M59 115v12"/>
+    <path d="M94 121h12"/>
+    <path d="M135 121h12M135 127h12"/>
+    <path d="M53 159h12M53 165h12"/>
+    <path d="M95 154l10 12M105 154l-10 12"/>
+  </g>
+  <g stroke="#0D1B2E" stroke-width="2.8" stroke-linecap="round">
+    <path d="M135 172h12M141 166v12"/>
+    <path d="M135 235h12"/>
+  </g>
+  <circle cx="59" cy="197" r="3.2" fill="#EAF2F6" fill-opacity=".8"/>
+  <circle cx="100" cy="197" r="3.2" fill="#EAF2F6" fill-opacity=".8"/>
+</svg>

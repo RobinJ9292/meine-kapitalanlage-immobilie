@@ -482,8 +482,8 @@ section{padding:84px 0;scroll-margin-top:76px}
 /* Calendly fest verankert: feste Höhe, hoch genug für die komplette
    Monatsansicht, damit das iframe NICHT intern scrollt (sonst "stockt" das
    Mausrad beim Vorbeiscrollen). Nur die Seite scrollt, nicht das Widget. */
-#calFrame{display:block;width:100%;height:1300px;border:0}
-@media(max-width:640px){#calFrame{height:1450px}}
+#calFrame{display:block;width:100%;height:820px;border:0}
+@media(max-width:640px){#calFrame{height:980px}}
 .cal-note{font-size:12px;color:var(--muted);text-align:center;margin:10px auto 0;max-width:520px}
 .cal-consent{text-align:center;padding:48px 20px}
 .cal-consent p{font-size:14px;color:var(--muted);max-width:440px;margin:0 auto 20px}
@@ -754,6 +754,18 @@ footer a:hover{color:var(--jade)}
 .cs-dot.on{background:var(--true-blue);transform:scale(1.25)}
 .cs-head{display:flex;align-items:center;gap:12px}
 .cs-photo{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--cs-accent,var(--jade-60));box-shadow:0 0 0 3px var(--cs-soft,var(--jade-20));flex:0 0 56px}
+/* ---------- Bilder in den Geschenk-Karten ----------
+   Bild links, Text rechts daneben. Die Aktionsknoepfe bleiben darunter
+   ueber die volle Breite, damit sie gut treffbar sind. */
+.ok-gift,.ok-guide{position:relative}
+.gift-kopf{display:flex;align-items:flex-start;gap:16px;text-align:left;margin-bottom:4px}
+.gift-media{flex:none;width:84px;border-radius:10px;overflow:hidden;box-shadow:0 10px 24px -10px rgba(13,27,46,.5);background:#0D1B2E}
+.gift-media img,.gift-media svg{display:block;width:100%;height:auto}
+.ok-guide .gift-media{border:1px solid rgba(180,214,212,.35)}
+.gift-kopf h4{margin-bottom:6px}
+.gift-kopf p{margin:0}
+@media(max-width:430px){.gift-media{width:66px}.gift-kopf{gap:12px}}
+
 /* ---------- Leitfaden-Overlay (Unsicher-Pfad) ---------- */
 .gd-overlay{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:20px;overscroll-behavior:contain}
 .gd-overlay[hidden]{display:none}
@@ -1698,8 +1710,8 @@ window.MKI_scrollSperre = (function(){
         <div class="ck-step" data-step="2" id="ckIncome" hidden>
           <div id="ckNettoBlock">
             <h3>Monatliches Nettoeinkommen</h3>
-            <div class="vq-slider-out" id="ckNettoOut">3.000 &euro;</div>
-            <input type="range" class="vq-slider" id="ckNetto" min="1000" max="15000" step="100" value="3000">
+            <div class="vq-slider-out" id="ckNettoOut">2.500 &euro;</div>
+            <input type="range" class="vq-slider" id="ckNetto" min="1000" max="15000" step="100" value="2500">
           </div>
           <div id="ckZveBlock" hidden>
             <h3>Zu versteuerndes Einkommen (ZVE)</h3>
@@ -1712,8 +1724,8 @@ window.MKI_scrollSperre = (function(){
 
         <div class="ck-step" data-step="3" hidden>
           <h3>Verf&uuml;gbares Eigenkapital</h3>
-          <div class="vq-slider-out" id="ckEkOut">20.000 &euro;</div>
-          <input type="range" class="vq-slider" id="ckEk" min="0" max="200000" step="1000" value="20000">
+          <div class="vq-slider-out" id="ckEkOut">10.000 &euro;</div>
+          <input type="range" class="vq-slider" id="ckEk" min="0" max="200000" step="1000" value="10000">
           <p style="font-size:12.5px;color:var(--muted);text-align:center;margin-top:8px">Dazu z&auml;hlt auch Eigenkapital, das Ihnen z.&nbsp;B. aus der Familie zur Verf&uuml;gung gestellt werden k&ouml;nnte (Schenkung oder Darlehen).</p>
           <div class="vq-nav"><button type="button" class="vq-back" data-nav="back">&larr; Zur&uuml;ck</button><button type="button" class="btn btn-blue" data-nav="next" style="padding:12px 26px">Weiter</button></div>
         </div>
@@ -1770,8 +1782,8 @@ window.MKI_scrollSperre = (function(){
     <!-- Terminbuchung -->
     <div class="panel cal-wrap" id="panelT" style="display:none">
       <div id="calHead">
-        <h3 id="calTitle">Fast geschafft – wählen Sie Ihren Wunschtermin</h3>
-        <p class="sub" id="calSub">Ihre Daten sind bei mir. Suchen Sie sich einfach einen Termin aus – ich rufe Sie vorab kurz an und bestätige ihn. Kostenfrei &amp; unverbindlich, online per Video oder vor Ort.</p>
+        <h3 id="calTitle">Geschafft – ich melde mich bei Ihnen!</h3>
+        <p class="sub" id="calSub">Ihre R&uuml;ckrufbitte ist eingegangen. <b>Optional:</b> Wenn Sie sich gleich einen festen Termin sichern m&ouml;chten, w&auml;hlen Sie hier einen aus &ndash; sonst melde ich mich einfach telefonisch.</p>
       </div>
       <div class="cal-consent" id="calConsent">
         <p>Zur Terminbuchung wird der Dienst <strong>Calendly</strong> geladen (Datenübertragung in die USA möglich, Details in der <a href="datenschutz.html" target="_blank" style="display:inline;color:var(--true-blue)">Datenschutzerklärung</a>).</p>
@@ -2827,11 +2839,12 @@ document.querySelectorAll(".choice").forEach(function(c){
           ? mkiWaLink("Der Einsteiger-Guide „Immobilie als Kapitalanlage“ erklärt verständlich, wie das Ganze wirklich funktioniert – ohne Verkaufsgerede:", MKI_BASE + GUIDE)
           : null;
         actions.innerHTML =
-          '<a class="btn btn-jade btn-lg" href="'+GUIDE+'" download id="gdDl">Leitfaden herunterladen (PDF)</a>' +
+          '<a class="btn btn-jade btn-lg" href="'+GUIDE+'" target="_blank" rel="noopener" id="gdDl">Einsteiger-Guide öffnen (PDF)</a>' +
           (wa ? '<a class="btn" href="'+wa+'" target="_blank" rel="noopener">'+MKI_WA_ICON+' Per WhatsApp teilen</a>' : '');
         if(j && j.ok===false){
           done.querySelector("p").textContent="Ihr Leitfaden ist bereit. Der E-Mail-Versand hat gerade nicht geklappt – laden Sie ihn am besten direkt herunter.";
         }
+        if(typeof mkiGuideMerken==="function") mkiGuideMerken();
         intro.style.display="none"; done.style.display="block";
         card.scrollTop=0;
         if(window.mkiTrackLead) mkiTrackLead("leitfaden-download");
@@ -2947,7 +2960,18 @@ var MKI_WA_ICON = '<svg viewBox="0 0 24 24" width="17" height="17" fill="current
 function mkiWaLink(text, url){
   return "https://wa.me/?text=" + encodeURIComponent(text + " " + url);
 }
+/* Merkt sich, ob der Guide schon geholt wurde - dann wird er nach einer
+   Rueckrufbitte nicht noch einmal als Geschenk angeboten. */
+function mkiGuideSchonGeholt(){
+  try{ return localStorage.getItem("mki_guide") === "1"; }catch(_e){ return !!window.MKI_GUIDE_GELADEN; }
+}
+function mkiGuideMerken(){
+  window.MKI_GUIDE_GELADEN = true;
+  try{ localStorage.setItem("mki_guide","1"); }catch(_e){}
+}
+
 function mkiGeschenke(container, variante, mitGuide){
+  if(mitGuide && mkiGuideSchonGeholt()) mitGuide = false;
   /* Der Download zeigt bewusst auf DIESELBE Datei, die auch eingebettet wird.
      So kann die Geschenk-Fassung nie vom Original abweichen. Der zweite Wert
      im download-Attribut bestimmt nur den Dateinamen beim Speichern. */
@@ -2960,8 +2984,11 @@ function mkiGeschenke(container, variante, mitGuide){
   container.insertAdjacentHTML("beforeend",
     '<div class="ok-gift">'+
     '<span class="ok-gift-ribbon">Ein Geschenk für Sie</span>'+
-    '<h4>Ihr Immobilie-als-Kapitalanlage-Rechner</h4>'+
-    '<p>Die komplette Vollversion zum Behalten – alles, was Sie künftig brauchen, um die Rendite einer Kapitalanlage-Immobilie selbst zu berechnen. Einmal speichern, jederzeit offline nutzbar, ohne Anmeldung.</p>'+
+    '<div class="gift-kopf">'+
+      '<span class="gift-media"><img src="geschenk-rechner.svg" alt="" width="200" height="280" loading="lazy"></span>'+
+      '<div><h4>Ihr Kapitalanlage-Rechner</h4>'+
+      '<p>Die komplette Vollversion zum Behalten – alles, was Sie künftig brauchen, um die Rendite einer Kapitalanlage-Immobilie selbst zu berechnen. Einmal speichern, jederzeit offline nutzbar.</p></div>'+
+    '</div>'+
     '<div class="ok-actions">'+
       '<a class="btn btn-jade ok-dl" href="'+calcFile+'" download="'+calcName+'">Rechner herunterladen</a>'+
       '<a class="btn ok-wa" href="'+waCalc+'" target="_blank" rel="noopener">'+MKI_WA_ICON+' Per WhatsApp teilen</a>'+
@@ -2973,10 +3000,13 @@ function mkiGeschenke(container, variante, mitGuide){
     container.insertAdjacentHTML("beforeend",
       '<div class="ok-guide">'+
       '<span class="ok-guide-eyebrow">Ihr nächster Schritt – ganz ohne Termin</span>'+
-      '<h4>Der Einsteiger-Guide 2026</h4>'+
-      '<p>Die ersten Schritte auf dem Weg zur eigenen Kapitalanlage-Immobilie – und der beste Weg, meine Denkweise und Arbeitsweise schon vorab kennenzulernen.</p>'+
+      '<div class="gift-kopf">'+
+        '<span class="gift-media"><img src="geschenk-guide.jpg" alt="Titelseite des Einsteiger-Guides" width="257" height="363" loading="lazy"></span>'+
+        '<div><h4>Der Einsteiger-Guide 2026</h4>'+
+        '<p>Die ersten Schritte auf dem Weg zur eigenen Kapitalanlage-Immobilie – und der beste Weg, meine Denkweise und Arbeitsweise schon vorab kennenzulernen.</p></div>'+
+      '</div>'+
       '<div class="ok-actions">'+
-        '<a class="btn btn-jade ok-dl" href="'+guideFile+'" download>Leitfaden herunterladen (PDF)</a>'+
+        '<a class="btn btn-jade ok-dl" href="'+guideFile+'" target="_blank" rel="noopener">Einsteiger-Guide öffnen (PDF)</a>'+
         '<a class="btn ok-wa" href="'+waGuide+'" target="_blank" rel="noopener">'+MKI_WA_ICON+' Per WhatsApp teilen</a>'+
       '</div>'+
       '<span class="ok-guide-note">Ihre E-Mail liegt mir bereits vor – Sie müssen nichts erneut eintragen.</span>'+
@@ -3184,8 +3214,8 @@ function _setCalMode(mode){
   var head = document.getElementById("calHead"), skip = document.getElementById("calSkipWrap");
   if(!t || !sub) return;
   if(mode === "waehlen"){
-    t.textContent = "Fast geschafft – wählen Sie Ihren Wunschtermin";
-    sub.innerHTML = "Ihre Daten sind bei mir. Suchen Sie sich einfach einen Termin aus – ich rufe Sie vorab kurz an und bestätige ihn. Kostenfrei &amp; unverbindlich, online per Video oder vor Ort.";
+    t.textContent = "Geschafft – ich melde mich bei Ihnen!";
+    sub.innerHTML = "Ihre Rückrufbitte ist eingegangen. <b>Optional:</b> Wenn Sie sich gleich einen festen Termin sichern möchten, wählen Sie hier einen aus – sonst melde ich mich einfach telefonisch.";
     if(skip) skip.style.display = "block";
   } else if(mode === "optional"){
     t.textContent = "Geschafft – ich melde mich bei Ihnen";
@@ -3346,7 +3376,10 @@ window.addEventListener("pagehide", function(){ _flushLead("termin_offen", true)
   if(ckEmailIn){ ckEmailIn.addEventListener("blur",function(){ var e=document.getElementById("ckEmailErr"); if(e) e.style.display=(ckEmailIn.value.trim() && !_ckValidEmail(ckEmailIn.value))?"block":"none"; }); ckEmailIn.addEventListener("input",function(){ if(_ckValidEmail(ckEmailIn.value)){ var e=document.getElementById("ckEmailErr"); if(e) e.style.display="none"; } }); }
   if(ckPhoneIn){ ckPhoneIn.addEventListener("blur",function(){ var e=document.getElementById("ckPhoneErr"); if(e) e.style.display=(ckPhoneIn.value.trim() && !_ckValidPhone(ckPhoneIn.value))?"block":"none"; }); ckPhoneIn.addEventListener("input",function(){ if(_ckValidPhone(ckPhoneIn.value)){ var e=document.getElementById("ckPhoneErr"); if(e) e.style.display="none"; } }); }
   telFeldUeberwachen("f-phone");
-  function digits(x){ x=(x==null?"":x).toString().replace(/[^\d]/g,""); return x?parseInt(x,10):null; }
+  /* Liefert null statt 0, wenn nichts Sinnvolles dasteht. Sonst schiebt
+     prefill() eine 0 in die Slider, die auf den Mindestwert geklemmt wird -
+     dadurch waren die Voreinstellungen im Markup wirkungslos. */
+  function digits(x){ x=(x==null?"":x).toString().replace(/[^\d]/g,""); if(!x) return null; var n=parseInt(x,10); return n>0?n:null; }
   function frameVal(id){ try{ var f=document.getElementById("rechnerFrame"); var doc=f&&(f.contentDocument||f.contentWindow.document); var el=doc&&doc.getElementById(id); return el?el.value:null; }catch(_){ return null; } }
   function setSlider(s,val){ if(s&&val!=null){ val=Math.max(+s.min,Math.min(+s.max,val)); s.value=val; s.dispatchEvent(new Event("input",{bubbles:true})); } }
   function prefill(){
