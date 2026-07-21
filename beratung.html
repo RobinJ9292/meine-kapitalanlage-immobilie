@@ -584,6 +584,7 @@ footer a:hover{color:var(--jade)}
   .qlead .qrow{grid-template-columns:1fr}
   .qual-grid{grid-template-columns:1fr 1fr;gap:10px 12px}
   .mcta{display:flex}
+  .mcta.aus{display:none}
   body{padding-bottom:66px}
   .fabs{bottom:86px}
   .chat{bottom:152px}
@@ -2137,7 +2138,8 @@ function objektKarussellStarten(){
   if(nav) nav.style.display='';
   if(mehr) mehr.style.display='';
   mkiKarussell({ buehne:'objGrid', karte:'.obj', punkte:'objDots',
-                 zurueck:'objPrev', vor:'objNext', titel:'Objekte', zufall:false });
+                 zurueck:'objPrev', vor:'objNext', titel:'Objekte',
+                 zufall:false, gleich:true });
 }
 
 /* "Keine der Immobilien passt?" -> gleiches Rueckrufformular */
@@ -2205,6 +2207,9 @@ function choosePath(p, scrollTarget){
   });
   var t = document.getElementById("f-thema");
   if(THEMA_MAP[p]) t.value = THEMA_MAP[p];
+  /* Formular auf Anfang, damit die Schrittfolge zum neuen Weg passt */
+  if(typeof window.MKI_quizZuruecksetzen === "function") window.MKI_quizZuruecksetzen();
+  if(typeof window.MKI_prefill === "function") window.MKI_prefill();
   var first = scrollTarget || (p==="unsicher" ? "sec-info" : p==="eigene" ? "sec-eigene" : "objekte");
   setTimeout(function(){
     var target = document.getElementById(first);
@@ -2379,10 +2384,13 @@ function mkiKarussell(opt){
   var active = (opt.zufall === false) ? 0 : Math.floor(Math.random() * N);
   var drag = 0;
 
-  var SLOT = [0, 62, 100];              /* Versatz in % je Abstand */
-  var SCALE = [1, .82, .68];
-  var OPA  = [1, .5, 0];
-  var Z    = [5, 3, 1];
+  /* opt.gleich = true: alle Karten gleich gross, die Mitte wird nicht
+     hervorgehoben. Dann richtet sich die Buehnenhoehe nach der natuerlichen
+     Kartenhoehe statt nach einer vergroesserten Mittelkarte. */
+  var SLOT  = opt.gleich ? [0, 78, 118] : [0, 62, 100];
+  var SCALE = opt.gleich ? [1, 1, 1]    : [1, .82, .68];
+  var OPA   = opt.gleich ? [1, .42, 0]  : [1, .5, 0];
+  var Z     = [5, 3, 1];
 
   function offset(i){                   /* kuerzester Abstand im Ring */
     var d = i - active;
@@ -2694,6 +2702,12 @@ mkiKarussell({ buehne:"csTrack", karte:".cs-card", punkte:"csDots", zurueck:"csP
     var on = !overForm && window.scrollY > 600;
     bar.classList.toggle("on", on);
     bar.setAttribute("aria-hidden", on ? "false" : "true");
+    /* Die zweite Leiste (.mcta) hatte bisher gar keine Logik und lag dauerhaft
+       ueber dem Formular - dort verdeckte sie den "Weiter"-Knopf. */
+    document.querySelectorAll(".mcta").forEach(function(m){
+      m.classList.toggle("aus", overForm);
+      m.setAttribute("aria-hidden", overForm ? "true" : "false");
+    });
   }
   if("IntersectionObserver" in window){
     var io = new IntersectionObserver(function(es){
@@ -3166,12 +3180,40 @@ window.addEventListener("pagehide", function(){ _flushLead("termin_offen", true)
   }
   window.MKI_schritteSetzen = schritteSetzen;
 
+  /* Wechselt jemand mitten im Formular den Weg (oder klickt "noch unsicher"),
+     wuerde sonst die alte Schrittfolge weiterlaufen. Deshalb zurueck auf den
+     Startknopf: Beim naechsten Start gilt der neue Weg. Bereits gegebene
+     Antworten der Einstiegsfrage werden verworfen, alles andere bleibt. */
+  window.MKI_quizZuruecksetzen = function(){
+    var start=document.getElementById("ckStart"), box=document.getElementById("ckSteps");
+    var lief = box && box.style.display !== "none";
+    var erf=document.getElementById("f-erfahrung"); if(erf) erf.value="";
+    form.querySelectorAll('.vq-choice[data-target="f-erfahrung"]').forEach(function(x){ x.classList.remove("active"); });
+    cur = 0;
+    schritteSetzen();
+    if(box) box.style.display="none";
+    if(start) start.style.display="";
+    return lief;
+  };
+
   function render(scroll){
     steps.forEach(function(s,i){ s.hidden=(i!==cur); });
     if(bar) bar.style.width=Math.round(((cur+1)/total)*100)+"%";
     if(count) count.textContent="Schritt "+(cur+1)+" von "+total;
     if(steps[cur]&&steps[cur].id==="ckIncome") applyIncomeMode();
-    if(scroll){ var sec=document.getElementById("kontakt"); if(sec) sec.scrollIntoView({behavior:"smooth",block:"start"}); }
+    if(scroll){
+      /* Nicht bei jedem Schritt die ganze Sektion nach oben reissen - das warf
+         den Weiter-Knopf hinter die Sticky-Leiste. Nur nachfuehren, wenn der
+         aktuelle Schritt nicht ohnehin gut sichtbar ist. */
+      var akt = steps[cur];
+      if(akt){
+        var r = akt.getBoundingClientRect();
+        var oben = 90, unten = window.innerHeight - 80;
+        if(r.top < oben || r.top > unten - 120){
+          window.scrollTo({ top: window.pageYOffset + r.top - oben, behavior:"smooth" });
+        }
+      }
+    }
   }
   function go(n){ cur=Math.max(0,Math.min(total-1,n)); render(true); }
   schritteSetzen();
@@ -3238,11 +3280,15 @@ window.addEventListener("pagehide", function(){ _flushLead("termin_offen", true)
     setSlider(slZve, qz?digits(qz.value):null);
     setSlider(slEk, qe?digits(qe.value):null);
   }
+  /* Immer wenn das Formular geoeffnet wird, die aktuellen Eingaben aus dem
+     Objekt-Check uebernehmen - sie haben Vorrang vor den Voreinstellungen. */
   document.querySelectorAll('[data-tab], a[href="#kontakt"]').forEach(function(a){ a.addEventListener("click", function(){ setTimeout(prefill, 150); }); });
+  window.MKI_prefill = prefill;
   prefill();
   render(false);
   var ckStartBtn=document.getElementById("ckStartBtn");
   if(ckStartBtn) ckStartBtn.addEventListener("click", function(){
+    prefill();
     if(typeof window.MKI_schritteSetzen==="function") window.MKI_schritteSetzen();
     var st=document.getElementById("ckStart"); if(st) st.style.display="none";
     var steps=document.getElementById("ckSteps"); if(steps) steps.style.display="";
