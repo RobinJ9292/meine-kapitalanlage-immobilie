@@ -23,6 +23,8 @@ function lead_labels() {
         "zve" => "Zu versteuerndes Einkommen (ZVE)", "familie" => "Familien-Unterstuetzung moeglich", "familie_ek" => "Voraussichtliche Familien-Unterstuetzung",
         "quelle" => "Quelle", "form-name" => "Formular", "terminwunsch" => "Terminwunsch",
         "terminstatus" => "TERMINSTATUS",
+        "erfahrung" => "Erste Anlage oder Bestand",
+        "eigenaufwand" => "Moeglicher mtl. Eigenaufwand",
         "direkt" => "Direkt-Download",
         "newsletter" => "Newsletter-Einwilligung",
         "rechner_zusammenfassung" => "Rechner-Eingaben des Kunden",

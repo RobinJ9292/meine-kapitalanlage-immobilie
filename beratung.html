@@ -324,6 +324,14 @@ section{padding:84px 0;scroll-margin-top:76px}
 /* Objekte */
 #objekte{background:var(--paper)}
 .obj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+/* Als Karussell: gleiche Mechanik wie bei den Fallbeispielen */
+.obj-grid.karussell{display:block;position:relative;height:var(--obj-h,560px);overflow:hidden;touch-action:pan-y;cursor:grab;-webkit-user-select:none;user-select:none;--obj-w:min(380px,78vw);max-width:none}
+.obj-grid.karussell.is-drag{cursor:grabbing}
+.obj-grid.karussell .obj{position:absolute;top:14px;left:50%;width:var(--obj-w);margin-left:calc(var(--obj-w) / -2);will-change:transform,opacity;transition:transform .44s cubic-bezier(.33,.1,.2,1),opacity .44s ease,box-shadow .44s ease}
+.obj-grid.karussell .obj.no-anim{transition:none}
+.obj-grid.karussell .obj:not(.is-active){cursor:pointer}
+.obj-mehr{max-width:560px;margin:18px auto 0;text-align:center;background:var(--jade-20);border:1px solid var(--jade-60);border-radius:16px;padding:18px 20px}
+.obj-mehr p{font-size:14.5px;color:var(--ink);line-height:1.55;margin-bottom:14px}
 .obj{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
 .obj:hover{transform:translateY(-5px);box-shadow:var(--shadow-md)}
 .obj-img{height:150px;background:linear-gradient(135deg,var(--blue-mid),var(--info));position:relative;display:flex;align-items:center;justify-content:center}
@@ -347,25 +355,29 @@ section{padding:84px 0;scroll-margin-top:76px}
 .model-note summary{cursor:pointer;color:var(--true-blue);font-weight:700}
 .model-note .ass{text-align:left;background:#fff;border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 20px;margin-top:10px}
 /* Qualifizierungs-Formular + Ampel (Portfolio) */
-.qual-box{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-sm);padding:24px;margin-bottom:28px}
-.qual-head{margin-bottom:16px}
-.qual-head b{display:block;font-size:18px;color:var(--ink)}
-.qual-head span{font-size:13.5px;color:var(--muted)}
-.qual-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:start}
-.qual-show{text-align:center;margin-top:20px}
-.qin{position:relative;display:block;max-width:150px}
+.qual-box{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-sm);padding:18px 18px 16px;margin-bottom:24px;max-width:560px;margin-left:auto;margin-right:auto}
+.qual-head{margin-bottom:12px}
+.qual-head b{display:block;font-size:16px;color:var(--ink)}
+.qual-head span{font-size:12.5px;color:var(--muted);line-height:1.4;display:block;margin-top:2px}
+.qual-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 18px;align-items:start}
+.qfield-voll{grid-column:1 / -1;margin-top:2px}
+.qfield-voll .qcheck{font-size:12px;color:var(--muted);line-height:1.4;display:flex;gap:8px;align-items:flex-start}
+.qfield-voll .qcheck input{margin-top:2px;flex:none}
+.qfield-voll .qin{max-width:220px}
+.qual-show{text-align:center;margin-top:14px}
+.qin{position:relative;display:block;max-width:none}
 .qin input[type=text]{width:100%;padding-right:26px;box-sizing:border-box}
 .qeuro{position:absolute;right:11px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px;pointer-events:none}
-.qfield{display:flex;flex-direction:column;gap:5px}
-.qfield label{font-size:13px;font-weight:700;color:var(--ink)}
+.qfield{display:flex;flex-direction:column;gap:3px;min-width:0}
+.qfield label{font-size:11.5px;font-weight:700;color:var(--ink);line-height:1.25}
 .qfield label span{color:var(--muted);font-weight:400}
-.qfield input[type=text]{padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;font-family:var(--sans);font-size:15px;background:#fff;color:var(--ink);width:100%}
+.qfield input[type=text]{padding:7px 10px;border:1.5px solid var(--line);border-radius:9px;font-family:var(--sans);font-size:14px;background:#fff;color:var(--ink);width:100%}
 .qfield input[type=text]:focus{outline:none;border-color:var(--true-blue)}
-.qrow{display:flex;flex-direction:column;gap:8px}
-.qrow input[type=text]{max-width:150px}
-.qrow input[type=range]{-webkit-appearance:none;appearance:none;width:100%;max-width:150px;height:6px;border-radius:999px;background:var(--jade-20,#e4eef0);outline:none;margin:2px 0}
-.qrow input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--true-blue);cursor:pointer;border:3px solid #fff;box-shadow:0 1px 4px rgba(13,27,46,.25)}
-.qrow input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--true-blue);cursor:pointer;border:3px solid #fff;box-shadow:0 1px 4px rgba(13,27,46,.25)}
+.qrow{display:flex;flex-direction:column;gap:5px}
+.qrow input[type=text]{max-width:none}
+.qrow input[type=range]{-webkit-appearance:none;appearance:none;width:100%;max-width:none;height:5px;border-radius:999px;background:var(--jade-20,#e4eef0);outline:none;margin:2px 0}
+.qrow input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:17px;height:17px;border-radius:50%;background:var(--true-blue);cursor:pointer;border:3px solid #fff;box-shadow:0 1px 4px rgba(13,27,46,.25)}
+.qrow input[type=range]::-moz-range-thumb{width:17px;height:17px;border-radius:50%;background:var(--true-blue);cursor:pointer;border:3px solid #fff;box-shadow:0 1px 4px rgba(13,27,46,.25)}
 .obj-ekr{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:12.5px;color:var(--muted);margin:4px 0 12px}
 .obj-ekr b{font-size:16px;color:#0f6b40;font-family:var(--serif,inherit)}
 #objCta{text-align:center;margin-top:24px;padding-top:8px}
@@ -570,7 +582,7 @@ footer a:hover{color:var(--jade)}
   .fgrid{grid-template-columns:1fr}
   .foot-grid{grid-template-columns:1fr}
   .qlead .qrow{grid-template-columns:1fr}
-  .qual-grid{grid-template-columns:1fr}
+  .qual-grid{grid-template-columns:1fr 1fr;gap:10px 12px}
   .mcta{display:flex}
   body{padding-bottom:66px}
   .fabs{bottom:86px}
@@ -1517,27 +1529,38 @@ window.MKI_scrollSperre = (function(){
     <div class="sec-head">
       <span class="eyebrow">Aktuelle Gelegenheiten</span>
       <h2>Ein Auszug aus meinem Portfolio</h2>
-      <p>Ich habe dauerhaft <b>über 100 geprüfte Objekte</b> in allen Preisklassen und in ganz Deutschland – die folgenden drei sind nur eine beispielhafte Auswahl. Für nahezu jede Ausgangslage ist das passende Objekt dabei. Das verspreche ich Ihnen – vorausgesetzt, Ihre Renditeerwartung bleibt realistisch. Die Kennzahlen berechnet mein Kapitalanlage-Tool; die vollständige Rechnung gehen wir gemeinsam im Erstgespräch durch.</p>
+      <p>Dauerhaft <b>über 100 geprüfte Objekte</b> in ganz Deutschland – hier drei Beispiele. Die vollständige Rechnung gehen wir im Erstgespräch durch.</p>
     </div>
     <div class="qual-box">
       <div class="qual-head"><b>Passt eine dieser Immobilien zu Ihnen?</b><span>Geben Sie hier ein paar Daten ein und schauen Sie, welche Immobilie für Sie geeignet sein könnte.</span></div>
       <div class="qual-grid">
-        <div class="qfield"><label for="q-netto">Monatliches Netto-Einkommen</label>
+        <div class="qfield"><label for="q-netto">Mtl. Nettoeinkommen</label>
           <div class="qrow"><span class="qin"><input type="text" inputmode="numeric" autocomplete="off" id="q-netto"><span class="qeuro">€</span></span><input type="range" id="q-netto-r"></div></div>
-        <div class="qfield"><label for="q-monat">Möglicher monatlicher Eigenaufwand</label>
+        <div class="qfield"><label for="q-monat">Möglicher mtl. Eigenaufwand</label>
           <div class="qrow"><span class="qin"><input type="text" inputmode="numeric" autocomplete="off" id="q-monat"><span class="qeuro">€</span></span><input type="range" id="q-monat-r"></div></div>
-        <div class="qfield"><label for="q-zve">Zu versteuerndes Einkommen (ZVE)</label>
+        <div class="qfield"><label for="q-zve">Zu versteuer. Jahreseinkommen</label>
           <div class="qrow"><span class="qin"><input type="text" inputmode="numeric" autocomplete="off" id="q-zve"><span class="qeuro">€</span></span><input type="range" id="q-zve-r"></div></div>
         <div class="qfield"><label for="q-ek">Verfügbares Eigenkapital</label>
           <div class="qrow"><span class="qin"><input type="text" inputmode="numeric" autocomplete="off" id="q-ek"><span class="qeuro">€</span></span><input type="range" id="q-ek-r"></div>
-          <label class="qcheck" style="margin-top:12px"><input type="checkbox" id="q-fam"> Können Eltern, Großeltern oder andere Verwandte finanziell unterstützen?</label>
-          <div id="q-fam-wrap" style="display:none;margin-top:10px"><label for="q-fam-betrag">Voraussichtliche Unterstützung</label>
+        </div>
+        <div class="qfield qfield-voll">
+          <label class="qcheck"><input type="checkbox" id="q-fam"> Können Eltern, Großeltern oder andere Verwandte finanziell unterstützen?</label>
+          <div id="q-fam-wrap" style="display:none;margin-top:8px"><label for="q-fam-betrag">Voraussichtliche Unterstützung</label>
             <div class="qrow"><span class="qin"><input type="text" inputmode="numeric" autocomplete="off" id="q-fam-betrag"><span class="qeuro">€</span></span><input type="range" id="q-fam-betrag-r"></div></div>
         </div>
       </div>
       <div class="qual-show"><button type="button" class="btn btn-jade btn-sm" id="qShowObjekte">Jetzt Immobilien anzeigen</button></div>
     </div>
     <div class="obj-grid" id="objGrid"><!-- Karten werden per JS gerendert --></div>
+    <div class="cs-nav" id="objNav" style="display:none">
+      <button class="cs-btn" id="objPrev" type="button" aria-label="Vorheriges Objekt">&larr;</button>
+      <div class="cs-dots" id="objDots"></div>
+      <button class="cs-btn" id="objNext" type="button" aria-label="N&auml;chstes Objekt">&rarr;</button>
+    </div>
+    <div class="obj-mehr" id="objMehr" style="display:none">
+      <p><b>Keine der Immobilien passt?</b> Kein Problem &ndash; ich habe <b>über 100 gepr&uuml;fte Objekte</b> deutschlandweit. Das hier ist nur ein kleiner Auszug aus dem Portfolio.</p>
+      <button type="button" class="btn btn-jade btn-lg" id="objMehrBtn">Ich will mehr erfahren</button>
+    </div>
 
     
     <p class="model-note" style="margin-top:22px">* Beispielrechnung, keine Anlage- oder Steuerberatung – Prognosewerte hängen von Annahmen ab und sind nicht garantiert.</p>
@@ -1640,14 +1663,11 @@ window.MKI_scrollSperre = (function(){
         <div id="ckSteps" style="display:none">
         <div class="vq-progress" style="margin-bottom:22px"><div class="vq-bar"><span id="ckBar"></span></div><div class="vq-count" id="ckCount">Schritt 1 von 6</div></div>
 
-        <div class="ck-step" data-step="0" data-req="f-thema">
-          <h3>Worum geht es?</h3>
+        <div class="ck-step" data-step="0" data-req="f-erfahrung">
+          <h3>Ist das Ihre erste Kapitalanlage?</h3>
           <div class="vq-choices">
-            <button type="button" class="vq-choice" data-target="f-thema" data-val="Erste Kapitalanlageimmobilie" data-advance><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:22px;height:22px;color:var(--true-blue)"><path d="M4 11 12 4l8 7"/><path d="M6 10v9h12v-9"/></svg><span>Meine erste Kapitalanlageimmobilie</span></button>
-            <button type="button" class="vq-choice" data-target="f-thema" data-val="Weitere Immobilie / Bestand erweitern" data-advance><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:22px;height:22px;color:var(--true-blue)"><path d="M4 11 12 4l8 7"/><path d="M6 10v9h12v-9"/><path d="M12 12.5v4M10 14.5h4"/></svg><span>Weitere Immobilie &ndash; Bestand erweitern</span></button>
-            <button type="button" class="vq-choice" data-target="f-thema" data-val="Eigene Immobilie &ndash; Suche und Kauf begleiten" data-advance><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:22px;height:22px;color:var(--true-blue)"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4-4"/></svg><span>Eigene Immobilie &ndash; Suche &amp; Kauf begleiten</span></button>
-            <button type="button" class="vq-choice" data-target="f-thema" data-val="Konkretes Objekt von dieser Seite" data-advance><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:22px;height:22px;color:var(--true-blue)"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Konkretes Objekt von dieser Seite</span></button>
-            <button type="button" class="vq-choice" data-target="f-thema" data-val="Allgemeine Fragen" data-advance><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:22px;height:22px;color:var(--true-blue)"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.4 2.3c-.8.4-.9.9-.9 1.7"/><path d="M12 16.5h.01"/></svg><span>Allgemeine Fragen zur Kapitalanlage</span></button>
+            <button type="button" class="vq-choice" data-target="f-erfahrung" data-val="Erste Kapitalanlage" data-advance><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:22px;height:22px;color:var(--true-blue)"><path d="M4 11 12 4l8 7"/><path d="M6 10v9h12v-9"/></svg><span>Ja &ndash; meine erste Kapitalanlage</span></button>
+            <button type="button" class="vq-choice" data-target="f-erfahrung" data-val="Bestand erweitern" data-advance><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:22px;height:22px;color:var(--true-blue)"><path d="M4 11 12 4l8 7"/><path d="M6 10v9h12v-9"/><path d="M12 12.5v4M10 14.5h4"/></svg><span>Nein &ndash; ich erweitere meinen Bestand</span></button>
           </div>
           <div class="vq-nav" style="justify-content:flex-end"><button type="button" class="btn btn-blue" data-nav="next" style="padding:12px 26px">Weiter</button></div>
         </div>
@@ -1721,6 +1741,10 @@ window.MKI_scrollSperre = (function(){
 
         <input type="hidden" name="alter" id="f-alter" value="30">
         <input type="hidden" name="thema" id="f-thema" value="">
+        <input type="hidden" name="erfahrung" id="f-erfahrung" value="">
+        <input type="hidden" name="eigenaufwand" id="f-eigenaufwand" value="">
+        <input type="hidden" name="familie" id="f-familie" value="">
+        <input type="hidden" name="familie_ek" id="f-familie-ek" value="">
         <input type="hidden" name="status" id="f-status" value="">
         <input type="hidden" name="einkommen" id="f-einkommen" value="">
         <input type="hidden" name="zve" id="f-zve" value="">
@@ -2089,7 +2113,45 @@ function q_bindSlider(txtId, rngId, def, min, max, step){
 })();
 
 renderObjekte();
-(function(){ var b=document.getElementById('qShowObjekte'); if(!b) return; b.addEventListener('click', function(){ objRevealed=true; renderObjekte(); var g=document.getElementById('objGrid'); if(g) g.scrollIntoView({behavior:'smooth',block:'start'}); }); })();
+(function(){
+  var b=document.getElementById('qShowObjekte'); if(!b) return;
+  b.addEventListener('click', function(){
+    objRevealed=true; renderObjekte();
+    objektKarussellStarten();
+    var g=document.getElementById('objGrid'); if(g) g.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+})();
+
+/* Die Objektkarten werden erst nach dem Klick gerendert - deshalb wird das
+   Karussell hier nachtraeglich gestartet, sobald Karten vorhanden sind. */
+function objektKarussellStarten(){
+  var g=document.getElementById('objGrid');
+  if(!g || g.dataset.karussell) return;
+  var karten=g.querySelectorAll('.obj');
+  if(karten.length < 2) return;
+  /* Hoehe der hoechsten Karte messen, solange noch im Raster gelayoutet wird */
+  var h=0; karten.forEach(function(k){ h=Math.max(h, k.offsetHeight); });
+  g.classList.add('karussell');
+  g.style.setProperty('--obj-h', (h+34)+'px');
+  var nav=document.getElementById('objNav'), mehr=document.getElementById('objMehr');
+  if(nav) nav.style.display='';
+  if(mehr) mehr.style.display='';
+  mkiKarussell({ buehne:'objGrid', karte:'.obj', punkte:'objDots',
+                 zurueck:'objPrev', vor:'objNext', titel:'Objekte', zufall:false });
+}
+
+/* "Keine der Immobilien passt?" -> gleiches Rueckrufformular */
+(function(){
+  var b=document.getElementById('objMehrBtn'); if(!b) return;
+  b.addEventListener('click', function(){
+    var t=document.getElementById('f-thema');
+    if(t) t.value='Portfolio - weitere Objekte gewuenscht';
+    var k=document.getElementById('kontakt');
+    if(k){ k.classList.remove('gated'); if(typeof revealIn==='function') revealIn(k); }
+    if(typeof contactShowForm==='function') contactShowForm();
+    if(typeof scrollToEl==='function') scrollToEl('kontakt');
+  });
+})();
 
 /* Diese Helfer lagen im ausgebauten Rechner-Block, gehoeren aber zur
    Seitenlogik: Bereiche einblenden, zum Kontaktformular springen, die
@@ -2293,13 +2355,14 @@ document.querySelectorAll(".choice").forEach(function(c){
 })();
 
 /* ---------- Fallbeispiele: Endlos-Karussell (zufaelliger Start, Coverflow) ---------- */
-(function(){
-  var stage = document.getElementById("csTrack");
-  if(!stage) return;
-  var real = Array.prototype.slice.call(stage.querySelectorAll(".cs-card"));
+function mkiKarussell(opt){
+  var stage = document.getElementById(opt.buehne);
+  if(!stage || stage.dataset.karussell) return;
+  stage.dataset.karussell = "1";
+  var real = Array.prototype.slice.call(stage.querySelectorAll(opt.karte));
   var N = real.length;
   if(N < 2) return;
-  var dotBox = document.getElementById("csDots");
+  var dotBox = opt.punkte ? document.getElementById(opt.punkte) : null;
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches;
 
   /* Klone anhaengen: so steht links und rechts immer eine echte Karte bereit */
@@ -2309,10 +2372,11 @@ document.querySelectorAll(".choice").forEach(function(c){
     k.removeAttribute("id");
     stage.appendChild(k);
   });
-  var cards = Array.prototype.slice.call(stage.querySelectorAll(".cs-card"));
+  var cards = Array.prototype.slice.call(stage.querySelectorAll(opt.karte));
   var V = cards.length;                 /* = 2 * N */
 
-  var active = Math.floor(Math.random() * N);   /* zufaelliger Start */
+  /* Fallbeispiele starten zufaellig, die Objekte immer beim guenstigsten. */
+  var active = (opt.zufall === false) ? 0 : Math.floor(Math.random() * N);
   var drag = 0;
 
   var SLOT = [0, 62, 100];              /* Versatz in % je Abstand */
@@ -2378,11 +2442,18 @@ document.querySelectorAll(".choice").forEach(function(c){
   }
 
   /* Pfeile */
-  var prev = document.getElementById("csPrev"), next = document.getElementById("csNext");
+  var prev = opt.zurueck ? document.getElementById(opt.zurueck) : null, next = opt.vor ? document.getElementById(opt.vor) : null;
   if(prev) prev.addEventListener("click", function(){ go(-1); });
   if(next) next.addEventListener("click", function(){ go(1); });
 
-  /* Dots */
+  /* Dots: fehlen sie, werden sie erzeugt */
+  if(dotBox && !dotBox.children.length){
+    for(var d0=0; d0<N; d0++){
+      var pb=document.createElement("button");
+      pb.type="button"; pb.className=opt.punktKlasse||"cs-dot"; pb.setAttribute("aria-label","Eintrag "+(d0+1));
+      dotBox.appendChild(pb);
+    }
+  }
   if(dotBox){
     Array.prototype.forEach.call(dotBox.children, function(dot,k){
       dot.addEventListener("click", function(){ goTo(k); });
@@ -2432,7 +2503,7 @@ document.querySelectorAll(".choice").forEach(function(c){
   /* Tastatur */
   stage.setAttribute("tabindex","0");
   stage.setAttribute("role","group");
-  stage.setAttribute("aria-label","Fallbeispiele - mit den Pfeiltasten wechseln");
+  stage.setAttribute("aria-label", (opt.titel||"Auswahl") + " - mit den Pfeiltasten wechseln");
   stage.addEventListener("keydown", function(e){
     if(e.key === "ArrowLeft"){ e.preventDefault(); go(-1); }
     if(e.key === "ArrowRight"){ e.preventDefault(); go(1); }
@@ -2444,7 +2515,9 @@ document.querySelectorAll(".choice").forEach(function(c){
   window.addEventListener("resize", function(){ measure(); paint(0); }, {passive:true});
   if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ measure(); paint(0); });
   window.addEventListener("load", function(){ measure(); paint(0); });
-})();
+}
+
+mkiKarussell({ buehne:"csTrack", karte:".cs-card", punkte:"csDots", zurueck:"csPrev", vor:"csNext", titel:"Fallbeispiele" });
 
 /* ---------- Vergleich: ein Kriterium pro Ansicht (wischen + Pfeile + Dots) ---------- */
 (function(){
@@ -3070,9 +3143,29 @@ window.addEventListener("pagehide", function(){ _flushLead("termin_offen", true)
 /* ---------- Kontakt-Quiz: Schritte, Slider, Vorbelegung aus den Rechnern ---------- */
 (function(){
   var form=document.getElementById("leadForm"); if(!form) return;
-  var steps=[].slice.call(form.querySelectorAll(".ck-step"));
+  var alleSteps=[].slice.call(form.querySelectorAll(".ck-step"));
+  var steps=alleSteps.slice();
   var total=steps.length, cur=0;
   var bar=document.getElementById("ckBar"), count=document.getElementById("ckCount");
+
+  /* Welche Schritte gezeigt werden, haengt vom gewaehlten Weg ab:
+     - portfolio / eigene: Der Weg ist schon klar, gefragt wird nur noch, ob es
+       die erste Kapitalanlage ist. Danach geht es mit der Situation weiter.
+     - unsicher (und wer ueber den Guide kommt): keine Einstiegsfrage, direkt
+       zur aktuellen Situation. */
+  function schritteSetzen(){
+    var pfad = window.MKI_PATH || "";
+    var ohneEinstieg = (pfad === "unsicher");
+    steps = alleSteps.filter(function(st){
+      return !(ohneEinstieg && st.getAttribute("data-step") === "0");
+    });
+    total = steps.length;
+    cur = 0;
+    alleSteps.forEach(function(st){ if(steps.indexOf(st) < 0) st.hidden = true; });
+    render(false);
+  }
+  window.MKI_schritteSetzen = schritteSetzen;
+
   function render(scroll){
     steps.forEach(function(s,i){ s.hidden=(i!==cur); });
     if(bar) bar.style.width=Math.round(((cur+1)/total)*100)+"%";
@@ -3081,6 +3174,7 @@ window.addEventListener("pagehide", function(){ _flushLead("termin_offen", true)
     if(scroll){ var sec=document.getElementById("kontakt"); if(sec) sec.scrollIntoView({behavior:"smooth",block:"start"}); }
   }
   function go(n){ cur=Math.max(0,Math.min(total-1,n)); render(true); }
+  schritteSetzen();
   form.querySelectorAll(".ck-step .vq-choice").forEach(function(b){
     b.addEventListener("click",function(){
       var tgt=b.getAttribute("data-target"), t=document.getElementById(tgt);
@@ -3126,7 +3220,19 @@ window.addEventListener("pagehide", function(){ _flushLead("termin_offen", true)
      dadurch waren die Voreinstellungen im Markup wirkungslos. */
   function digits(x){ x=(x==null?"":x).toString().replace(/[^\d]/g,""); if(!x) return null; var n=parseInt(x,10); return n>0?n:null; }
   function setSlider(s,val){ if(s&&val!=null){ val=Math.max(+s.min,Math.min(+s.max,val)); s.value=val; s.dispatchEvent(new Event("input",{bubbles:true})); } }
+  /* Uebernimmt die Angaben aus dem Objekt-Check ("Passt eine dieser Immobilien
+     zu Ihnen?") in die versteckten Felder, damit sie mit dem Lead uebermittelt
+     werden. Die drei Slider werden weiter unten separat vorbelegt. */
+  function checkWerteUebernehmen(){
+    function zahl(id){ var e=document.getElementById(id); if(!e) return ""; var v=digits(e.value); return v?v.toLocaleString("de-DE")+" \u20ac":""; }
+    var a=document.getElementById("f-eigenaufwand"); if(a) a.value=zahl("q-monat");
+    var fam=document.getElementById("q-fam"), ff=document.getElementById("f-familie"), fe=document.getElementById("f-familie-ek");
+    if(ff) ff.value = (fam && fam.checked) ? "ja" : "";
+    if(fe) fe.value = (fam && fam.checked) ? zahl("q-fam-betrag") : "";
+  }
+
   function prefill(){
+    checkWerteUebernehmen();
     var qn=document.getElementById("q-netto"), qz=document.getElementById("q-zve"), qe=document.getElementById("q-ek"), qf=document.getElementById("q-fam"), qfb=document.getElementById("q-fam-betrag");
     if(qn) setSlider(slNetto, digits(qn.value));
     setSlider(slZve, qz?digits(qz.value):null);
@@ -3137,6 +3243,7 @@ window.addEventListener("pagehide", function(){ _flushLead("termin_offen", true)
   render(false);
   var ckStartBtn=document.getElementById("ckStartBtn");
   if(ckStartBtn) ckStartBtn.addEventListener("click", function(){
+    if(typeof window.MKI_schritteSetzen==="function") window.MKI_schritteSetzen();
     var st=document.getElementById("ckStart"); if(st) st.style.display="none";
     var steps=document.getElementById("ckSteps"); if(steps) steps.style.display="";
   });
