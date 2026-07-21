@@ -385,15 +385,6 @@ section{padding:84px 0;scroll-margin-top:76px}
 .obj-ampel.amp-neutral,.obj-ampel.amp-na{background:var(--paper);color:var(--muted)}
 .lp-locked{background:#eef2f6 !important;color:#64748b !important;cursor:not-allowed !important;border-style:dashed !important}
 
-/* Eingebetteter Voll-Rechner (eigene Immobilie) */
-.calc-embed{max-width:1180px;margin:40px auto 0;scroll-margin-top:84px}
-.calc-embed-head{text-align:center;margin-bottom:22px}
-.calc-embed-head h3{font-size:clamp(24px,2.6vw,30px);font-weight:800;margin-bottom:8px}
-.calc-embed-head p{color:var(--muted);font-size:15.5px;max-width:680px;margin:0 auto}
-.calc-frame-wrap{position:relative;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-md);background:#0D1B2E}
-.calc-frame-wrap iframe{display:block;width:100%;border:0;min-height:900px}
-.calc-embed-cta{text-align:center;margin-top:26px}
-.calc-embed-cta p{color:var(--muted);font-size:15px;margin-bottom:14px}
 
 /* Verkäufer-Banner */
 
@@ -463,12 +454,6 @@ section{padding:84px 0;scroll-margin-top:76px}
 .ok-guide p{font-size:14px;color:var(--muted);line-height:1.55;margin:0 0 16px}
 .ok-guide .btn{padding:13px 24px;font-size:15px}
 .ok-guide-note{display:block;font-size:11.5px;color:var(--muted);margin-top:11px}
-.ok-gift{position:relative;margin:26px auto 0;max-width:520px;background:linear-gradient(180deg,rgba(159,232,226,.16),#fff 70%);border:1.5px solid var(--jade);border-radius:18px;padding:24px 22px 20px;text-align:center;box-shadow:0 12px 30px -18px rgba(44,81,127,.5)}
-.ok-gift-ribbon{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-deep);background:var(--grad-cta);border-radius:999px;padding:5px 14px;margin-bottom:10px}
-.ok-gift h4{font-family:var(--sans);font-size:18px;font-weight:800;color:var(--ink);margin:0 0 6px}
-.ok-gift p{font-size:14px;color:var(--muted);line-height:1.55;margin:0 0 16px}
-.ok-gift .btn{padding:13px 24px;font-size:15px}
-.ok-gift-note{display:block;font-size:11.5px;color:var(--muted);margin-top:11px}
 .ok-guide{margin-top:18px}
 .ok-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .ok-actions .btn{padding:12px 20px;font-size:14.5px}
@@ -757,7 +742,7 @@ footer a:hover{color:var(--jade)}
 /* ---------- Bilder in den Geschenk-Karten ----------
    Bild links, Text rechts daneben. Die Aktionsknoepfe bleiben darunter
    ueber die volle Breite, damit sie gut treffbar sind. */
-.ok-gift,.ok-guide{position:relative}
+.ok-guide{position:relative}
 .gift-kopf{display:flex;align-items:flex-start;gap:16px;text-align:left;margin-bottom:4px}
 .gift-media{flex:none;width:84px;border-radius:10px;overflow:hidden;box-shadow:0 10px 24px -10px rgba(13,27,46,.5);background:#0D1B2E}
 .gift-media img,.gift-media svg{display:block;width:100%;height:auto}
@@ -827,7 +812,7 @@ footer a:hover{color:var(--jade)}
       </span>
     </a>
     <nav>
-      <a class="btn btn-ghost btn-sm" href="#start" id="navRechner">Jetzt Immobilie durchrechnen</a>
+      <a class="btn btn-ghost btn-sm" href="#start" id="navRechner">Passenden Weg finden</a>
       <a class="btn btn-blue btn-sm" href="#kontakt" data-tab="rueckruf">Rückruf vereinbaren</a>
     </nav>
   </div>
@@ -1554,18 +1539,7 @@ window.MKI_scrollSperre = (function(){
     </div>
     <div class="obj-grid" id="objGrid"><!-- Karten werden per JS gerendert --></div>
 
-    <div id="objCalcWrap" class="calc-embed" style="display:none;margin-top:36px">
-      <div class="calc-embed-head">
-        <span class="eyebrow">Rechnen Sie mit</span>
-        <h3 id="objCalcTitle">Ihr Rechner</h3>
-        <p>Die Objektdaten sind fest hinterlegt. Finanzierung und Ihre Steuerangaben können Sie frei anpassen – alles live.</p>
-      </div>
-      <div class="calc-frame-wrap" id="objCalcMount"></div>
-      <div id="objCta" style="display:none">
-        <p class="obj-cta-lead">Die Zahlen passen für Sie – oder Sie möchten sie gemeinsam einordnen?</p>
-        <a class="btn btn-jade btn-lg" href="#kontakt" id="objCtaBtn" data-tab="termin" data-thema="objekt">Lass uns über Ihre Immobilie sprechen</a>
-      </div>
-    </div>
+    
     <p class="model-note" style="margin-top:22px">* Beispielrechnung, keine Anlage- oder Steuerberatung – Prognosewerte hängen von Annahmen ab und sind nicht garantiert.</p>
 
   </div>
@@ -1607,21 +1581,7 @@ window.MKI_scrollSperre = (function(){
       <p style="font-size:15px;line-height:1.6;margin:0">In Mittelhessen habe ich die passenden Leute an der Hand &ndash; <b>Steuerberater, Notare, Handwerker, Gutachter und Banker</b>, die ich kenne und denen ich vertraue. Steht Ihre Immobilie woanders in Deutschland? Dann bekommen Sie über mein Netzwerk aus <b>Bonnfinanz-Beratern</b> genau dieselbe Begleitung direkt bei Ihnen vor Ort.</p>
     </div>
 
-    <!-- Interaktiver Voll-Rechner (eingebettet) -->
-    <div class="calc-embed" id="rechner">
-      <div class="calc-embed-head">
-        <span class="eyebrow">Rechnen Sie selbst</span>
-        <h3>Ihr Kapitalanlage-Rechner</h3>
-        <p>Spielen Sie mit den Zahlen Ihres Wunschobjekts: Steuerwirkung, Finanzierung, Eigenkapital-Rendite und der direkte Vergleich zum ETF-Sparplan – alles live, alle Felder frei änderbar.</p>
-      </div>
-      <div class="calc-frame-wrap">
-        <iframe id="rechnerFrame" src="rechner.html?modus=schnell" title="Kapitalanlage-Rechner" loading="lazy" scrolling="no"></iframe>
-      </div>
-      <div class="calc-embed-cta">
-        <p>Ihre Zahlen sehen gut aus – oder Sie sind unsicher, ob alles realistisch angesetzt ist?</p>
-        <a class="btn btn-jade btn-lg" href="#kontakt" data-tab="rueckruf" data-thema="eigene">Rechnung gemeinsam durchgehen</a>
-      </div>
-    </div>
+
   </div>
 </section>
 
@@ -1660,9 +1620,6 @@ window.MKI_scrollSperre = (function(){
       <div class="step"><span style="display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--true-blue);background:rgba(44,81,127,.1);border-radius:999px;padding:3px 10px;margin-bottom:10px">60 Min &middot; Erstgespräch</span><div class="num">2</div><h3>Kennenlernen &amp; Analyse</h3><p>Wir klären Ihre Ziele, Ihre finanzielle Ausgangslage und ob eine Immobilie überhaupt zu Ihnen passt. Ehrlich – auch wenn die Antwort „noch nicht" lautet.</p></div>
       <div class="step"><span style="display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--true-blue);background:rgba(44,81,127,.1);border-radius:999px;padding:3px 10px;margin-bottom:10px">60 Min &middot; Erstgespräch</span><div class="num">3</div><h3>Objekt &amp; Konzept</h3><p>Sie erhalten passende Objektvorschläge mit vollständiger Modellrechnung: Eigenaufwand, Steuereffekt, Renditeprognose – transparent auf einen Blick.</p></div>
       <div class="step"><span style="display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--true-blue);background:rgba(44,81,127,.1);border-radius:999px;padding:3px 10px;margin-bottom:10px">60 Min &middot; Erstgespräch</span><div class="num">4</div><h3>Umsetzung &amp; Begleitung</h3><p>Finanzierung, Notar, Übergabe an die Verwaltung – und danach bleiben wir an Ihrer Seite: jährlicher Check und Betreuung aller Finanzthemen.</p></div>
-    </div>
-    <div style="text-align:center;margin-top:30px">
-      <a class="btn btn-blue btn-lg" href="#kontakt" data-tab="rueckruf">Rückruf vereinbaren</a>
     </div>
   </div>
 </section>
@@ -2070,7 +2027,7 @@ function renderObjekte(){
       }
     } else { facts='<div class="facts"><span class="fact">Daten folgen</span></div>'; }
     var btn = p.preset
-      ? '<button type="button" class="btn btn-jade btn-sm" data-tier="'+p.key+'">Diese Immobilie durchrechnen</button>'
+      ? '<button type="button" class="btn btn-jade btn-sm" data-tier="'+p.key+'">Zu dieser Immobilie beraten lassen</button>'
       : '<button type="button" class="btn btn-sm" disabled style="opacity:.5;cursor:not-allowed">Bald verfuegbar</button>';
     var expl;
     if(a.status==='gruen') expl='<div class="obj-ampel amp-gruen"><b>Passt &#10003;</b></div>';
@@ -2079,7 +2036,19 @@ function renderObjekte(){
     var imgOrIcon = p.img ? '<img class="obj-photo" src="'+p.img+'" alt="Beispielobjekt in '+p.stadt+'" loading="lazy">' : q_objIcon();
     return '<div class="obj obj-amp amp-'+a.status+'"><div class="obj-img"><span class="obj-badge">'+p.badge+'</span>'+imgOrIcon+'</div><div class="obj-body"><h3>'+p.stufe+'</h3><div class="loc">'+p.preisRange+'</div>'+facts+kpis+expl+btn+'</div></div>';
   }).join('');
-  g.querySelectorAll('[data-tier]').forEach(function(b){ b.addEventListener('click', function(){ openTierCalc(b.getAttribute('data-tier')); }); });
+  /* Frueher oeffnete das den eingebetteten Rechner. Der ist ausgebaut, also
+     fuehrt der Knopf jetzt direkt ins Rueckrufformular - mit dem Objekt als Thema. */
+  g.querySelectorAll('[data-tier]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var stufe = b.getAttribute('data-tier');
+      var t = document.getElementById('f-thema');
+      if(t) t.value = 'Konkretes Objekt von dieser Seite (' + stufe + ')';
+      var k = document.getElementById('kontakt');
+      if(k){ k.classList.remove('gated'); if(typeof revealIn==='function') revealIn(k); }
+      if(typeof contactShowForm==='function') contactShowForm();
+      if(typeof scrollToEl==='function') scrollToEl('kontakt');
+    });
+  });
   var ab=document.getElementById('assBox');
   if(ab) ab.innerHTML='Vorab-Einschaetzung vereinfacht (v1): Eigenkapital = Kaufnebenkosten (Grunderwerbsteuer je Bundesland + Notar + Makler), Kaufpreis zu 100 % finanziert, anfaengliche Tilgung '+(Q_DEF.tilgung*100).toLocaleString('de-DE')+' %, Steuerwirkung nach § 32a EStG 2026 auf Ihr ZVE (Grundtarif). Mtl. Eigenaufwand: Jahr 2 nach Steuern. Die genaue, persoenliche Rechnung erfolgt im eingebetteten Rechner und im Erstgespraech.';
 }
@@ -2122,237 +2091,9 @@ function q_bindSlider(txtId, rngId, def, min, max, step){
 renderObjekte();
 (function(){ var b=document.getElementById('qShowObjekte'); if(!b) return; b.addEventListener('click', function(){ objRevealed=true; renderObjekte(); var g=document.getElementById('objGrid'); if(g) g.scrollIntoView({behavior:'smooth',block:'start'}); }); })();
 
-/* ---------- Portfolio-Rechner: preset + gesperrt einbetten ---------- */
-function q_lockField(doc,key,val){
-  var el=doc.querySelector('[data-f="'+key+'"]'); if(!el) return;
-  el.value=val;
-  el.dispatchEvent(new Event('input',{bubbles:true}));
-  el.dispatchEvent(new Event('change',{bubbles:true}));
-  el.classList.add('lp-locked'); el.style.pointerEvents='none'; el.tabIndex=-1;
-  if(el.tagName!=='SELECT') el.setAttribute('readonly','readonly');
-}
-function openTierCalc(key){
-  var p=PORTFOLIO.filter(function(x){return x.key===key;})[0]; if(!p||!p.preset) return;
-  var wrap=document.getElementById('objCalcWrap'), mount=document.getElementById('objCalcMount'), title=document.getElementById('objCalcTitle');
-  if(title) title.textContent='Ihr Rechner — '+p.stufe+'-Objekt (Objektdaten fest vorgegeben)';
-  wrap.style.display='block';
-  setTimeout(function(){ wrap.scrollIntoView({behavior:'smooth',block:'start'}); }, 80);
-  var cta0=document.getElementById('objCta'); if(cta0) cta0.style.display='none';  /* CTA erst nach Auswertung */
-  var q=q_readForm();
-  mount.innerHTML='';
-  var f=document.createElement('iframe');
-  f.id='objRechnerFrame'; f.title='Rechner '+p.stufe; f.setAttribute('scrolling','no'); f.src='rechner.html?modus=schnell';
-  mount.appendChild(f);
-  f.addEventListener('load', function(){
-    var doc; try{ doc=f.contentDocument; }catch(_){ doc=null; }
-    if(!doc||!doc.querySelector('[data-f]')) return;
-    if(!doc.getElementById('lp-hide')){ var st=doc.createElement('style'); st.id='lp-hide'; st.textContent='#dropZone,#dzStatus{display:none !important}'; (doc.head||doc.documentElement).appendChild(st); }
-    var pr=p.preset;
-    q_lockField(doc,'name',pr.name);
-    q_lockField(doc,'afaArt',pr.afaArt);
-    q_lockField(doc,'kaufpreis',pr.kaufpreis);
-    q_lockField(doc,'miete',pr.miete);
-    q_lockField(doc,'kostenMtl',pr.kostenMtl);
-    q_lockField(doc,'gebAnteilPct',pr.gebAnteilPct);
-    q_lockField(doc,'afaSatzPct',pr.afaSatzPct);
-    q_lockField(doc,'bundesland',pr.bundesland);
-    q_lockField(doc,'notarPct',pr.notarPct);
-    q_lockField(doc,'notarWkPct',pr.notarWkPct);
-    q_lockField(doc,'maklerPct',pr.maklerPct);
-    var zins=doc.getElementById('sollzins'); if(zins){ zins.value=pr.sollzins; zins.dispatchEvent(new Event('input',{bubbles:true})); zins.dispatchEvent(new Event('change',{bubbles:true})); }
-    if(q.zve!=null){
-      var zt=doc.getElementById('zvE'), zr=doc.getElementById('zvE_r');
-      if(zt){ zt.value=Math.round(q.zve); zt.dispatchEvent(new Event('input',{bubbles:true})); zt.dispatchEvent(new Event('change',{bubbles:true})); }
-      if(zr){ zr.value=Math.round(q.zve); zr.dispatchEvent(new Event('input',{bubbles:true})); }
-    }
-    function fit(){ try{ f.style.height=Math.max(400,Math.ceil(doc.body.scrollHeight))+'px'; }catch(_){} }
-    fit(); if(window.ResizeObserver){ try{ new ResizeObserver(fit).observe(doc.body); }catch(_){} }
-    doc.addEventListener('click',function(){ setTimeout(fit,60); setTimeout(fit,350); });
-    doc.addEventListener('input',function(){ setTimeout(fit,60); });
-    setInterval(fit,1000); setTimeout(fit,300);
-    /* Schrittwechsel (Weiter: Annahmen / Zur Auswertung / Zurueck / Tabs) ->
-       Elternseite an den Rechner-Anfang scrollen, damit man nicht im Leerraum landet. */
-    try{
-      var pages=doc.querySelectorAll('.page');
-      if(pages.length && window.MutationObserver){
-        var toStart=function(){ var y=f.getBoundingClientRect().top+window.pageYOffset-90; if(y<0)y=0; window.scrollTo({top:y,behavior:'smooth'}); };
-        var mo=new MutationObserver(function(muts){
-          for(var i=0;i<muts.length;i++){ var t=muts[i].target;
-            if(t.classList && t.classList.contains('active')){
-              setTimeout(toStart,0); setTimeout(function(){ toStart(); fit(); },160);
-              var ap=[].indexOf.call(pages,t)+1;               // aktive Seite (1..3)
-              var cta=document.getElementById('objCta'); if(cta) cta.style.display=(ap===3)?'block':'none';
-              break;
-            } }
-        });
-        pages.forEach(function(pg){ mo.observe(pg,{attributes:true,attributeFilter:['class']}); });
-      }
-    }catch(_){}
-  });
-  setTimeout(function(){ wrap.scrollIntoView({behavior:'smooth',block:'start'}); }, 80);
-}
-
-/* ============================================================
-   RECHNER-BRÜCKE  (Landingpage-Layer über dem eingebetteten Rechner)
-   ------------------------------------------------------------
-   WICHTIG: rechner.html ist Robins Original – 1:1, UNVERÄNDERT.
-   Alle Landingpage-Anpassungen passieren hier von der Elternseite aus
-   (gleiche Domain = voller Zugriff aufs iframe-Dokument):
-     1) Dokumenten-Import (Drag&Drop) ausblenden
-     2) Höhe automatisch anpassen (kein Skript im Rechner nötig)
-     3) Eingegebene Kundendaten auslesen  ->  window.MKI_getRechnerDaten()
-   Künftiges Update des Rechners = einfach rechner.html ersetzen. Fertig.
-============================================================ */
-(function(){
-  var frame = document.getElementById("rechnerFrame");
-  if(!frame) return;
-
-  /* Schnellmodus: wird ueber ?modus=schnell in der iframe-URL geladen.
-     rechner.html holt sich rechner-schnellmodus.js dann selbst –
-     das funktioniert auch lokal per Doppelklick (file://), wo ein
-     Zugriff von aussen ins iframe vom Browser blockiert wuerde. */
-
-  /* --- Fallback: alte postMessage-Höhenmeldung (falls je gebraucht) --- */
-  window.addEventListener("message", function(e){
-    if(e.source !== frame.contentWindow) return;
-    var d = e.data;
-    if(d && d.type === "rechnerHeight" && typeof d.height === "number"){
-      frame.style.height = Math.max(700, Math.ceil(d.height)) + "px";
-    }
-  });
-
-  /* --- Höhe direkt von der Elternseite steuern (same-origin) ---
-     WICHTIG: den INHALT über body messen, NICHT documentElement.scrollHeight.
-     Letzteres liefert die (bereits gesetzte) iframe-Höhe zurück und würde beim
-     Wechsel auf eine kürzere Seite (z. B. Schritt 2) nicht schrumpfen
-     -> großer Leerraum. body.scrollHeight/offsetHeight ist die echte Inhaltshöhe
-     und wächst wie schrumpft korrekt mit. */
-  function fit(doc){
-    try{
-      var b = doc.body; if(!b) return;
-      var h = Math.max(b.scrollHeight, b.offsetHeight);
-      frame.style.height = Math.max(400, Math.ceil(h)) + "px";
-    }catch(_){}
-  }
-
-  var resizeTimer = null;   // ein einziger Timer, egal wie oft attach() läuft
-
-  function attach(){
-    var doc;
-    try{ doc = frame.contentDocument || (frame.contentWindow && frame.contentWindow.document); }
-    catch(_){ doc = null; }          // cross-origin -> postMessage-Fallback greift
-    if(!doc || !doc.body) return;
-    /* Nur anhängen, wenn wirklich der Rechner geladen ist (nicht about:blank
-       beim Lazy-Loading) – sonst würden zwei Timer gegeneinander laufen. */
-    if(!doc.querySelector("[data-f]")) return;
-
-    /* 1) Dokumenten-Import / Drag & Drop ausblenden (statt Datei zu ändern) */
-    if(!doc.getElementById("lp-hide")){
-      var st = doc.createElement("style");
-      st.id = "lp-hide";
-      st.textContent = "#dropZone,#dzStatus{display:none !important}";
-      (doc.head || doc.documentElement).appendChild(st);
-    }
-
-    /* 2) Auto-Resize (idempotent: alten Timer stoppen, Listener nur einmal) */
-    fit(doc);
-    if(resizeTimer){ clearInterval(resizeTimer); }
-    resizeTimer = setInterval(function(){ fit(doc); }, 1000);
-    if(!doc.__mkiWired){
-      doc.__mkiWired = true;
-      if(window.ResizeObserver){ try{ new ResizeObserver(function(){ fit(doc); }).observe(doc.body); }catch(_){} }
-      doc.addEventListener("click", function(){ setTimeout(function(){fit(doc);},60); setTimeout(function(){fit(doc);},350); });
-      doc.addEventListener("input", function(){ setTimeout(function(){fit(doc);},60); });
-      window.addEventListener("resize", function(){ fit(doc); });
-
-      /* 3) Schrittwechsel (Weiter/Zurück/Tabs) -> Elternseite an den Rechner-
-            Anfang scrollen. Der Rechner ruft intern window.scrollTo(0) auf,
-            das aber nur sein eigenes iframe-Fenster meint (wirkungslos, weil
-            volle Höhe). Wir erkennen den Wechsel an der aktiv werdenden
-            .page und scrollen die echte (Eltern-)Seite. Kein Eingriff in die
-            Rechner-Logik. */
-      try{
-        var pages = doc.querySelectorAll(".page");
-        if(pages.length && window.MutationObserver){
-          var scrollToStart = function(){
-            var frm = document.getElementById("rechnerFrame");
-            if(!frm) return;
-            var y = frm.getBoundingClientRect().top + window.pageYOffset - 90; // fixierter Header
-            if(y < 0) y = 0;
-            window.scrollTo({ top: y, behavior: "smooth" });
-          };
-          var mo = new MutationObserver(function(muts){
-            for(var i=0;i<muts.length;i++){
-              var t = muts[i].target;
-              if(t.classList && t.classList.contains("active")){
-                setTimeout(scrollToStart, 0);
-                setTimeout(scrollToStart, 140);  // nach Resize/Layout nachziehen
-                break;
-              }
-            }
-          });
-          pages.forEach(function(p){ mo.observe(p, { attributes:true, attributeFilter:["class"] }); });
-        }
-      }catch(_){}
-    }
-    setTimeout(function(){ fit(doc); }, 200);
-    setTimeout(function(){ fit(doc); }, 600);
-  }
-
-  frame.addEventListener("load", attach);
-  /* Falls beim Laden der Seite schon fertig (aus dem Cache): der Guard oben
-     ignoriert leere about:blank-Dokumente automatisch. */
-  try{ attach(); }catch(_){}
-
-  /* 3) Kundendaten aus dem Rechner auslesen – für den Lead-Funnel.
-        Liest generisch ALLE [data-f]-Felder, damit es auch nach künftigen
-        Rechner-Updates weiter funktioniert. Gibt {} zurück, wenn (noch) leer. */
-  window.MKI_getRechnerDaten = function(){
-    var out = {};
-    var doc;
-    /* gemanagter Weg nutzt den Objekt-Rechner (objRechnerFrame), sonst den Haupt-Rechner */
-    var frmEl = document.getElementById("objRechnerFrame") || frame;
-    try{ doc = frmEl.contentDocument || frmEl.contentWindow.document; }catch(_){ return out; }
-    if(!doc) return out;
-    try{
-      doc.querySelectorAll("[data-f]").forEach(function(el){
-        var k = el.getAttribute("data-f");
-        if(!k) return;
-        var v = (el.type === "checkbox") ? (el.checked ? "ja" : "") : el.value;
-        if(v !== "" && v != null) out[k] = ("" + v).trim();
-      });
-    }catch(_){}
-    return out;
-  };
-
-  /* Menschlich lesbare Kurzfassung fürs Lead-Mail / den Funnel */
-  window.MKI_getRechnerText = function(){
-    var d = window.MKI_getRechnerDaten();
-    var LAB = {
-      name:"Objekt/Name", kaufpreis:"Kaufpreis (€)", miete:"Miete kalt mtl. (€)",
-      kostenMtl:"nicht umlegbare Kosten mtl. (€)", gebAnteilPct:"Gebäudeanteil (%)",
-      afaArt:"AfA-Art", afaSatzPct:"AfA-Satz (%)", bundesland:"Bundesland",
-      notarPct:"Notar (%)", notarWkPct:"Grundbuch/Notar WK (%)", maklerPct:"Makler (%)",
-      grEStPct:"Grunderwerbsteuer (%)", sanierung:"Sanierung (€)", sanJahre:"Sanierung Jahre",
-      eigenkapital:"Eigenkapital (€)", zinsPct:"Sollzins (%)", tilgungPct:"Tilgung (%)",
-      steuersatzPct:"Steuersatz (%)", zvE:"zu verst. Einkommen (€)"
-    };
-    var rlines = Object.keys(d).map(function(k){ return (LAB[k] || k) + ": " + d[k]; });
-    /* Angaben aus dem Schnell-Check (gemanagter Weg) – liegen nicht im Rechner */
-    function qv(id){ var e=document.getElementById(id); return e && e.value && (""+e.value).trim(); }
-    var QMAP = [["q-monat","Möglicher mtl. Eigenaufwand (€)"],["q-netto","Nettoeinkommen mtl. (€)"],["q-zve","zu verst. Einkommen ZVE (€)"],["q-ek","Eigenkapital (€)"],["q-fam-betrag","Familien-Unterstützung (€)"]];
-    var qlines = []; QMAP.forEach(function(p){ var v=qv(p[0]); if(v) qlines.push(p[1]+": "+v); });
-    var groups = [];
-    if(rlines.length) groups.push("— Aus dem Rechner —\n"+rlines.join("\n"));
-    if(qlines.length) groups.push("— Aus dem Schnell-Check —\n"+qlines.join("\n"));
-    if(!groups.length) return "";
-    var note = "⚠ Hinweis: Diese Angaben wurden vom Interessenten NICHT aktiv im Formular übermittelt, sondern automatisch aus den Eingaben auf der Landingpage (Rechner/Check) übernommen – bitte im Telefonat gegenprüfen.";
-    return note + "\n\n" + groups.join("\n\n");
-  };
-})();
-
-/* ---------- Kontakt: Formular-first, Termin optional nach Absenden ---------- */
-var panelR=document.getElementById("panelR"), panelT=document.getElementById("panelT");
+/* Diese Helfer lagen im ausgebauten Rechner-Block, gehoeren aber zur
+   Seitenlogik: Bereiche einblenden, zum Kontaktformular springen, die
+   Rueckruf-Buttons (data-tab) verdrahten. */
 function contactShowForm(){
   if(panelR) panelR.style.display="";
   if(panelT) panelT.style.display="none";
@@ -2972,7 +2713,7 @@ if(_loadCalBtn) _loadCalBtn.addEventListener("click", function(){ calLoaded ? ca
     box.style.display="block";
     box.innerHTML='<div class="big">✓</div><h3>Termin steht – ich freue mich auf Sie!</h3>'+
       '<p>Sie bekommen die Bestätigung per E-Mail. Ich melde mich vorab kurz telefonisch, damit wir den Termin bestätigen.</p>';
-    if(typeof mkiGeschenke==="function") mkiGeschenke(box, "nach_terminbuchung", true);
+    if(typeof mkiGeschenke==="function") mkiGeschenke(box, "nach_terminbuchung", window.MKI_PATH==="unsicher");
     pT.appendChild(box);
     box.scrollIntoView({behavior:"smooth",block:"center"});
     try{ if(window.dataLayer) dataLayer.push({event:"termin_gebucht"}); }catch(_){}
@@ -2999,57 +2740,37 @@ function mkiGuideMerken(){
 }
 
 function mkiGeschenke(container, variante, mitGuide){
-  if(mitGuide && mkiGuideSchonGeholt()) mitGuide = false;
-  /* Der Download zeigt bewusst auf DIESELBE Datei, die auch eingebettet wird.
-     So kann die Geschenk-Fassung nie vom Original abweichen. Der zweite Wert
-     im download-Attribut bestimmt nur den Dateinamen beim Speichern. */
-  var calcFile  = "rechner.html";
-  var calcName  = "Immobilien-Rechner-Robin-Jaenicke.html";
+  /* Es gibt genau EIN Geschenk, und nur im Unsicher-Pfad: den Einsteiger-Guide.
+     Wer sich schon fuer einen Weg entschieden hat, soll direkt konvertieren -
+     ein Geschenk lenkt an der Stelle nur ab. Der Rechner wird bewusst
+     zurueckgehalten (Erstgespraech und Anzeigen), deshalb hier kein Download.
+     Der Merker verhindert, dass der Guide zweimal auftaucht: egal ob zuerst
+     heruntergeladen, nach der Rueckrufbitte oder nach der Terminbuchung. */
+  if(!mitGuide) return;
+  if(mkiGuideSchonGeholt()) return;
+  mkiGuideMerken();
+
   var guideFile = "einsteiger-guide-kapitalanlage-2026.pdf";
-  var waCalc  = mkiWaLink("Schau mal, mit diesem Rechner kannst du die Rendite einer Kapitalanlage-Immobilie komplett selbst durchrechnen:", MKI_BASE + calcFile);
   var waGuide = mkiWaLink("Der Einsteiger-Guide „Immobilie als Kapitalanlage“ erklärt verständlich, wie das Ganze wirklich funktioniert – ohne Verkaufsgerede:", MKI_BASE + guideFile);
 
   container.insertAdjacentHTML("beforeend",
-    '<div class="ok-gift">'+
-    '<span class="ok-gift-ribbon">Ein Geschenk für Sie</span>'+
+    '<div class="ok-guide">'+
+    '<span class="ok-guide-eyebrow">Ein Geschenk für Sie – ganz ohne Termin</span>'+
     '<div class="gift-kopf">'+
-      '<span class="gift-media"><img src="geschenk-rechner.svg" alt="" width="200" height="280" loading="lazy"></span>'+
-      '<div><h4>Ihr Kapitalanlage-Rechner</h4>'+
-      '<p>Die komplette Vollversion zum Behalten – alles, was Sie künftig brauchen, um die Rendite einer Kapitalanlage-Immobilie selbst zu berechnen. Einmal speichern, jederzeit offline nutzbar.</p></div>'+
+      '<span class="gift-media"><img src="geschenk-guide.jpg" alt="Titelseite des Einsteiger-Guides" width="257" height="363" loading="lazy"></span>'+
+      '<div><h4>Der Einsteiger-Guide 2026</h4>'+
+      '<p>Immobilie als Kapitalanlage, verständlich erklärt: wie sich die Rechnung wirklich zusammensetzt, der ehrliche Vergleich zu ETF und Tagesgeld und die häufigsten Einsteiger-Fehler.</p></div>'+
     '</div>'+
     '<div class="ok-actions">'+
-      '<a class="btn btn-jade ok-dl" href="'+calcFile+'" download="'+calcName+'">Rechner herunterladen</a>'+
-      '<a class="btn ok-wa" href="'+waCalc+'" target="_blank" rel="noopener">'+MKI_WA_ICON+' Per WhatsApp teilen</a>'+
+      '<a class="btn btn-jade ok-dl" href="'+guideFile+'" target="_blank" rel="noopener">Einsteiger-Guide öffnen (PDF)</a>'+
+      '<a class="btn ok-wa" href="'+waGuide+'" target="_blank" rel="noopener">'+MKI_WA_ICON+' Per WhatsApp teilen</a>'+
     '</div>'+
-    '<span class="ok-gift-note">HTML-Datei · speichern und im Browser öffnen · dürfen Sie gern weitergeben</span>'+
+    '<span class="ok-guide-note">Ihre E-Mail liegt mir bereits vor – Sie müssen nichts erneut eintragen.</span>'+
     '</div>');
-
-  if(mitGuide){
-    container.insertAdjacentHTML("beforeend",
-      '<div class="ok-guide">'+
-      '<span class="ok-guide-eyebrow">Ihr nächster Schritt – ganz ohne Termin</span>'+
-      '<div class="gift-kopf">'+
-        '<span class="gift-media"><img src="geschenk-guide.jpg" alt="Titelseite des Einsteiger-Guides" width="257" height="363" loading="lazy"></span>'+
-        '<div><h4>Der Einsteiger-Guide 2026</h4>'+
-        '<p>Die ersten Schritte auf dem Weg zur eigenen Kapitalanlage-Immobilie – und der beste Weg, meine Denkweise und Arbeitsweise schon vorab kennenzulernen.</p></div>'+
-      '</div>'+
-      '<div class="ok-actions">'+
-        '<a class="btn btn-jade ok-dl" href="'+guideFile+'" target="_blank" rel="noopener">Einsteiger-Guide öffnen (PDF)</a>'+
-        '<a class="btn ok-wa" href="'+waGuide+'" target="_blank" rel="noopener">'+MKI_WA_ICON+' Per WhatsApp teilen</a>'+
-      '</div>'+
-      '<span class="ok-guide-note">Ihre E-Mail liegt mir bereits vor – Sie müssen nichts erneut eintragen.</span>'+
-      '</div>');
-  }
 
   container.querySelectorAll(".ok-dl").forEach(function(a){
     a.addEventListener("click", function(){
-      var ev = a.getAttribute("href").indexOf(".pdf")>-1 ? "leitfaden_download" : "rechner_download";
-      try{ if(window.dataLayer) dataLayer.push({event:ev, variante:variante}); }catch(_){}
-    });
-  });
-  container.querySelectorAll(".ok-wa").forEach(function(a){
-    a.addEventListener("click", function(){
-      try{ if(window.dataLayer) dataLayer.push({event:"whatsapp_share", variante:variante}); }catch(_){}
+      try{ if(window.dataLayer) dataLayer.push({event:"leitfaden_download", variante:variante}); }catch(_e){}
     });
   });
 }
@@ -3195,10 +2916,6 @@ function _calPrefill(){
 
 function _snapshotLead(){
   var fd = new FormData(_leadForm);
-  try{
-    var rd = window.MKI_getRechnerDaten ? window.MKI_getRechnerDaten() : {};
-    if(rd && Object.keys(rd).length) fd.append("rechner_zusammenfassung", window.MKI_getRechnerText());
-  }catch(_e){}
   var arr = []; fd.forEach(function(v,k){ arr.push([k,v]); });
   return arr;
 }
@@ -3408,13 +3125,12 @@ window.addEventListener("pagehide", function(){ _flushLead("termin_offen", true)
      prefill() eine 0 in die Slider, die auf den Mindestwert geklemmt wird -
      dadurch waren die Voreinstellungen im Markup wirkungslos. */
   function digits(x){ x=(x==null?"":x).toString().replace(/[^\d]/g,""); if(!x) return null; var n=parseInt(x,10); return n>0?n:null; }
-  function frameVal(id){ try{ var f=document.getElementById("rechnerFrame"); var doc=f&&(f.contentDocument||f.contentWindow.document); var el=doc&&doc.getElementById(id); return el?el.value:null; }catch(_){ return null; } }
   function setSlider(s,val){ if(s&&val!=null){ val=Math.max(+s.min,Math.min(+s.max,val)); s.value=val; s.dispatchEvent(new Event("input",{bubbles:true})); } }
   function prefill(){
     var qn=document.getElementById("q-netto"), qz=document.getElementById("q-zve"), qe=document.getElementById("q-ek"), qf=document.getElementById("q-fam"), qfb=document.getElementById("q-fam-betrag");
     if(qn) setSlider(slNetto, digits(qn.value));
-    setSlider(slZve, digits(frameVal("zvE")) || (qz?digits(qz.value):null));
-    setSlider(slEk, digits(frameVal("ekBetrag")) || (qe?digits(qe.value):null));
+    setSlider(slZve, qz?digits(qz.value):null);
+    setSlider(slEk, qe?digits(qe.value):null);
   }
   document.querySelectorAll('[data-tab], a[href="#kontakt"]').forEach(function(a){ a.addEventListener("click", function(){ setTimeout(prefill, 150); }); });
   prefill();
